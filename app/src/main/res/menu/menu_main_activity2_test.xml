@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.mox.myapplication.MainActivity2Test">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item android:id="@+id/nextButton"
+        android:title="@string/next"
+        android:orderInCategory="200"
+        android:icon="@mipmap/ic_chevron_right_black"
+        app:showAsAction="ifRoom"
+        />
+</menu>
