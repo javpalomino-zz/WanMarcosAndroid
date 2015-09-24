@@ -1,5 +1,6 @@
 package com.example.mox.myapplication;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -18,15 +19,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mox.myapplication.Classes.User;
+
+import org.json.JSONObject;
 
 public class login extends AppCompatActivity implements View.OnClickListener {
 
-    Button btn_login;
-    EditText txt_email,txt_password;
+    Button btnLogin;
+    EditText txtEmail,txtPassword;
     RequestQueue requestQueue;
-    TextView mTextView;
 
 
     @Override
@@ -34,30 +38,29 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        txt_email = (EditText) findViewById(R.id.txt_email);
-        txt_password = (EditText) findViewById(R.id.txt_password);
-        btn_login =  (Button) findViewById(R.id.btn_login);
-        mTextView = (TextView) findViewById(R.id.mTextView);
+        txtEmail = (EditText) findViewById(R.id.txt_email);
+        txtPassword = (EditText) findViewById(R.id.txt_password);
+        btnLogin =  (Button) findViewById(R.id.btn_login);
 
         requestQueue = Volley.newRequestQueue(this);
 
-        String url ="http://192.168.1.103/proyectos/WanMarcosWEB/public/list";
-        
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        String url ="http://52.89.124.0/api/v1/users";
+        User prueba = new User("mox","wanmarcos","mox@mox.com","mox");
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url,prueba.creatingJSON(prueba),
+                new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                Log.v(response,"salio");
-                mTextView.setText("Response is: "+ response);
+            public void onResponse(JSONObject response) {
+
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                mTextView.setText("That didn't work!");
-            }
-        });
-// Add the request to the RequestQueue.
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
         requestQueue.add(stringRequest);
-        btn_login.setOnClickListener(this);
+        btnLogin.setOnClickListener(this);
     }
 
     @Override

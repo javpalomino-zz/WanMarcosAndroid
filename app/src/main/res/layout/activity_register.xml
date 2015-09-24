@@ -54,7 +54,7 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegister"
         android:text="@string/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
