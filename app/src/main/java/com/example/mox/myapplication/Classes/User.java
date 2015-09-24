@@ -7,6 +7,8 @@ import org.json.JSONObject;
  * Created by MOX on 20/09/2015.
  */
 public class User {
+    private int id;
+    private String username;
     private String first_name;
     private String last_name;
     private String email;
@@ -51,7 +53,7 @@ public class User {
         this.password = password;
     }
 
-    public JSONObject creatingJSON(User user){
+    public String creatingJSON(User user){
         JSONObject user_json = new JSONObject();
         try {
             user_json.put("first_name",user.getFirst_name());
@@ -64,6 +66,6 @@ public class User {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return user_json;
+        return user_json.toString();
     }
 }

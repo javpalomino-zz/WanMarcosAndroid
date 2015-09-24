@@ -14,23 +14,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mox.myapplication.Classes.User;
+import com.example.mox.myapplication.Services.UserService;
 
-import org.json.JSONObject;
+import java.util.List;
+
+import retrofit.*;
+
+
+
+
 
 public class login extends AppCompatActivity implements View.OnClickListener {
 
     Button btnLogin;
     EditText txtEmail,txtPassword;
     RequestQueue requestQueue;
+    TextView mTextView;
 
 
     @Override
@@ -41,25 +43,14 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         txtEmail = (EditText) findViewById(R.id.txt_email);
         txtPassword = (EditText) findViewById(R.id.txt_password);
         btnLogin =  (Button) findViewById(R.id.btn_login);
+        mTextView = (TextView) findViewById(R.id.mTextView);
 
-        requestQueue = Volley.newRequestQueue(this);
+        User prueba = new User("mox","wanmarcos","mox@prueba.com","mox");
+        Retrofit response = new Retrofit.Builder().baseUrl("http://52.89.124.0").addConverterFactory(GsonConverterFactory.create()).build();
 
-        String url ="http://52.89.124.0/api/v1/users";
-        User prueba = new User("mox","wanmarcos","mox@mox.com","mox");
-        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST,url,prueba.creatingJSON(prueba),
-                new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+        UserService service = response.create(UserService.class);
 
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-        requestQueue.add(stringRequest);
+        final Call<User> user = service.createUser(prueba);
         btnLogin.setOnClickListener(this);
     }
 
