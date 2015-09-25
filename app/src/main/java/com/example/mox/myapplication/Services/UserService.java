@@ -1,16 +1,10 @@
 package com.example.mox.myapplication.Services;
 
-import android.content.pm.LauncherApps;
-
-import com.example.mox.myapplication.Classes.User;
-
-import java.util.List;
+import com.example.mox.myapplication.Models.User;
 
 
 import retrofit.Call;
-import retrofit.Callback;
 import retrofit.http.Body;
-import retrofit.http.GET;
 import retrofit.http.POST;
 
 /**
@@ -18,6 +12,6 @@ import retrofit.http.POST;
  */
 public interface UserService {
 
-    @POST("/api/v1/")
+    @POST("/api/v1/users")
     Call<User> createUser(@Body User user);
 }

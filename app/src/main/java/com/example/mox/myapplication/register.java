@@ -2,12 +2,10 @@ package com.example.mox.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.mox.myapplication.Classes.User;
+import com.example.mox.myapplication.Models.User;
 
 public class register extends AppCompatActivity {
     EditText txtFirstName,txtLastName,txtEmail,txtPassword;

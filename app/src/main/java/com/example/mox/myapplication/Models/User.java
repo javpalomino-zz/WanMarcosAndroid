@@ -1,4 +1,4 @@
-package com.example.mox.myapplication.Classes;
+package com.example.mox.myapplication.Models;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,12 +13,17 @@ public class User {
     private String last_name;
     private String email;
     private String password;
+    private String device_token;
+    private String platform;
+    private String token;
 
     public User(String first_name, String last_name, String email, String password){
         this.setFirst_name(first_name);
         this.setLast_name(last_name);
         this.setEmail(email);
         this.setPassword(password);
+        this.setDeviceToken("xxxxxxxxx554");
+        this.setPlatform("Android");
     }
 
     public String getFirst_name() {
@@ -67,5 +72,29 @@ public class User {
             e.printStackTrace();
         }
         return user_json.toString();
+    }
+
+    public String getDeviceToken() {
+        return device_token;
+    }
+
+    public void setDeviceToken(String device_token) {
+        this.device_token = device_token;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
