@@ -3,6 +3,7 @@ package wan.wanmarcos.utils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import wan.wanmarcos.models.Session;
 import wan.wanmarcos.models.User;
 import wan.wanmarcos.models.Error;
 
@@ -21,5 +22,9 @@ public class Builder {
 
     public Error buildError(JsonObject errorObject){
         return gson.fromJson(errorObject, Error.class);
+    }
+
+    public Session buildSession(JsonObject sessionObject){
+        return gson.fromJson(sessionObject, Session.class);
     }
 }

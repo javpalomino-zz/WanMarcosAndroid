@@ -1,5 +1,6 @@
 package wan.wanmarcos.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.models.*;
 import wan.wanmarcos.models.Error;
 import wan.wanmarcos.utils.Builder;
@@ -92,12 +94,15 @@ public class RegisterFragment extends Fragment {
                         JsonObject responseBody = response.body().getAsJsonObject();
 
                         if(responseBody.has("token")){
-                            String token = responseBody.get("token").getAsString();
+                            Session session = builder.buildSession(responseBody);
 
                             if(responseBody.has("user")){
                                 User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
                                 txtError.setText(user.toString());
                             }
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), HomeActivity.class);
+                            startActivity(intent);
                         }
                         else{
                             if(responseBody.has("error")){

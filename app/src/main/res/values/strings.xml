@@ -19,4 +19,5 @@
     <string name="passwordPlaceholder">**************</string>
 
     <string name="btnRegister">SignUp</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
