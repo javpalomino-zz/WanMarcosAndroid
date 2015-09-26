@@ -1,0 +1,78 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="wan.wanmarcos.fragments.RegisterFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            style="@style/CenterVerticalLayout"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblFirstName"
+            />
+
+            <EditText
+                android:id="@+id/first_name"
+                style="@style/FormField"
+                android:hint="@string/firstNamePlaceholder"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblLastName"
+            />
+
+            <EditText
+                android:id="@+id/last_name"
+                style="@style/FormField"
+                android:hint="@string/lastNamePlaceholder"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblEmail"
+            />
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/FormField"
+                android:inputType="textEmailAddress"
+                android:hint="@string/emailPlaceholder"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblPassword"
+            />
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/FormField"
+                android:inputType="textPassword"
+                android:hint="@string/passwordPlaceholder"
+            />
+
+            <Button
+                android:id="@+id/signUp"
+                style="@style/FormField"
+                android:text="@string/btnRegister"/>
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+            />
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

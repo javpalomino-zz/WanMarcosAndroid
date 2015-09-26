@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Wanmarcos</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Fields-->
+    <string name="lblFirstName">Nombres</string>
+    <string name="lblLastName">Apellidos</string>
+    <string name="lblEmail">Email</string>
+    <string name="lblPassword">Password</string>
+    <!--PlaceHolders-->
+
+    <string name="firstNamePlaceholder">Carlos Alejandro</string>
+    <string name="lastNamePlaceholder">Zerga Morales</string>
+    <string name="emailPlaceholder">username@domain.com</string>
+    <string name="passwordPlaceholder">**************</string>
+
+    <string name="btnRegister">SignUp</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>
