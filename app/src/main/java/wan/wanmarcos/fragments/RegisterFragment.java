@@ -17,6 +17,8 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import wan.wanmarcos.R;
+import wan.wanmarcos.builders.UserBuilder;
+import wan.wanmarcos.models.User;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
 
@@ -44,6 +46,8 @@ public class RegisterFragment extends Fragment {
     private String first_name;
     private String last_name;
     private String device_token = "xxxxx";
+
+    private UserBuilder userBuilder = new UserBuilder();
 
     public static RegisterFragment newInstance() {
         RegisterFragment fragment = new RegisterFragment();
@@ -91,6 +95,10 @@ public class RegisterFragment extends Fragment {
                         }
                         else{
                             txtError.setText("No tiene token");
+                        }
+                        if(response.body().getAsJsonObject().has("user")){
+                            User user = userBuilder.build(response.body().getAsJsonObject().get("user").getAsJsonObject());
+                            txtError.setText(user.toString());
                         }
                     }
 
