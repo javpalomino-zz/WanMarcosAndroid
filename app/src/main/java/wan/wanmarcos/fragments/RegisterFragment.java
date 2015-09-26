@@ -1,7 +1,5 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,13 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import wan.wanmarcos.R;
-import wan.wanmarcos.builders.UserBuilder;
-import wan.wanmarcos.models.User;
+import wan.wanmarcos.models.*;
+import wan.wanmarcos.models.Error;
+import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
 
@@ -47,7 +47,7 @@ public class RegisterFragment extends Fragment {
     private String last_name;
     private String device_token = "xxxxx";
 
-    private UserBuilder userBuilder = new UserBuilder();
+    private Builder builder = new Builder();
 
     public static RegisterFragment newInstance() {
         RegisterFragment fragment = new RegisterFragment();
@@ -89,16 +89,24 @@ public class RegisterFragment extends Fragment {
                 signUpUser.enqueue(new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Response<JsonElement> response) {
-                        if(response.body().getAsJsonObject().has("token")){
-                            String token = response.body().getAsJsonObject().get("token").getAsString();
-                            txtError.setText(token);
+                        JsonObject responseBody = response.body().getAsJsonObject();
+
+                        if(responseBody.has("token")){
+                            String token = responseBody.get("token").getAsString();
+
+                            if(responseBody.has("user")){
+                                User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
+                                txtError.setText(user.toString());
+                            }
                         }
                         else{
-                            txtError.setText("No tiene token");
-                        }
-                        if(response.body().getAsJsonObject().has("user")){
-                            User user = userBuilder.build(response.body().getAsJsonObject().get("user").getAsJsonObject());
-                            txtError.setText(user.toString());
+                            if(responseBody.has("error")){
+                                Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
+                                txtError.setText(error.toString());
+                            }
+                            else{
+
+                            }
                         }
                     }
 
