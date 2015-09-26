@@ -105,7 +105,7 @@ public class RegisterFragment extends Fragment {
                                 txtError.setText(error.toString());
                             }
                             else{
-
+                                txtError.setText("unknow error");
                             }
                         }
                     }
