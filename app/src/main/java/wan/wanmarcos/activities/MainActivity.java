@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.fragments.LoginFragment;
 import wan.wanmarcos.fragments.RegisterFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        if(findViewById(R.id.fragment_container) != null){
+            if(savedInstanceState != null){
+                return;
+            }
+            LoginFragment loginFragment = new LoginFragment();
+            loginFragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,loginFragment).commit();
+        }
     }
 
     @Override

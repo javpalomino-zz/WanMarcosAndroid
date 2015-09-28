@@ -26,10 +26,12 @@ public interface ConsumerService {
                 @Field("device_token") String device_token,
                 @Field("platform") String platform);
 
+    @FormUrlEncoded
     @POST(Constants.LOGIN)
-    void login(@Field("email") String email,
+    Call<JsonElement> login(@Field("email") String email,
                @Field("password") String password,
-                Callback<JsonElement> callback);
+               @Field("device_token") String device_token,
+                @Field("platform") String platform);
 
     @GET(Constants.USER_INFO)
     void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);

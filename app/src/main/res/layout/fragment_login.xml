@@ -1,0 +1,68 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="wan.wanmarcos.fragments.LoginFragment">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            style="@style/CenterVerticalLayout"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblEmail"
+                />
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/FormField"
+                android:inputType="textEmailAddress"
+                android:hint="@string/emailPlaceholder"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lblPassword"
+                />
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/FormField"
+                android:inputType="textPassword"
+                android:hint="@string/passwordPlaceholder"
+                />
+
+            <Button
+                android:id="@+id/logIn"
+                style="@style/FormField"
+                android:text="@string/btnLogIn"
+                />
+
+            <Button
+                android:id="@+id/signUp"
+                style="@style/FormField"
+                android:text="@string/btnRegister"
+                />
+
+            <Button
+                android:id="@+id/forgotPassword"
+                style="@style/FormField"
+                android:text="@string/btnForgotPassword"
+                />
+
+            <TextView
+                android:id="@+id/error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>
