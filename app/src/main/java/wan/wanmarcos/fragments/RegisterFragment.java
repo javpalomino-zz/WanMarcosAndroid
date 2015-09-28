@@ -1,5 +1,6 @@
 package wan.wanmarcos.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,21 +17,18 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.models.*;
 import wan.wanmarcos.models.Error;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link RegisterFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link RegisterFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class RegisterFragment extends Fragment {
+
+    View view;
+
     private RestClient restClient;
     private Button btnRegister;
 
@@ -62,16 +60,30 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_register, container, false);
+
+        view = inflater.inflate(R.layout.fragment_register, container, false);
+
+        setUpElements();
+        addListeners();
+
+
+        return view;
+    }
+
+    private void setUpElements(){
         btnRegister = (Button)view.findViewById(R.id.signUp);
         txtEmail = (EditText)view.findViewById(R.id.email);
         txtFirstName = (EditText)view.findViewById(R.id.first_name);
         txtLastName = (EditText)view.findViewById(R.id.last_name);
         txtPassword = (EditText)view.findViewById(R.id.password);
-
         txtError = (TextView)view.findViewById(R.id.error);
+    }
+    private void addListeners(){
+        addSignUpListener();
+    }
 
+
+    private void addSignUpListener(){
         btnRegister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -81,10 +93,10 @@ public class RegisterFragment extends Fragment {
                 password = txtPassword.getText().toString();
 
                 Call<JsonElement> signUpUser = restClient.getConsumerService()
-                            .signUp(
-                                    email, password,
-                                    first_name, last_name,
-                                    device_token, Constants.PLATFORM);
+                        .signUp(
+                                email, password,
+                                first_name, last_name,
+                                device_token, Constants.PLATFORM);
 
                 signUpUser.enqueue(new Callback<JsonElement>() {
                     @Override
@@ -92,12 +104,15 @@ public class RegisterFragment extends Fragment {
                         JsonObject responseBody = response.body().getAsJsonObject();
 
                         if(responseBody.has("token")){
-                            String token = responseBody.get("token").getAsString();
+                            Session session = builder.buildSession(responseBody);
 
                             if(responseBody.has("user")){
                                 User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
                                 txtError.setText(user.toString());
                             }
+                            Intent intent = new Intent();
+                            intent.setClass(getActivity(), HomeActivity.class);
+                            startActivity(intent);
                         }
                         else{
                             if(responseBody.has("error")){
@@ -117,9 +132,5 @@ public class RegisterFragment extends Fragment {
                 });
             }
         });
-
-        return view;
     }
-
-
 }
