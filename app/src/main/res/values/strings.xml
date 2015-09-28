@@ -18,5 +18,9 @@
     <string name="emailPlaceholder">username@domain.com</string>
     <string name="passwordPlaceholder">**************</string>
 
+    <!--Buttons-->
     <string name="btnRegister">SignUp</string>
+    <string name="btnLogIn">Login</string>
+    <string name="btnForgotPassword">Forgot Password</string>
+    <string name="title_activity_home">Inicio</string>
 </resources>
