@@ -87,8 +87,6 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 getFields();
                 postLogIn();
-                Intent home_activity = new Intent(getActivity(), HomeActivity.class);
-                startActivity(home_activity);
             }
         });
     }
@@ -137,6 +135,7 @@ public class LoginFragment extends Fragment {
                 if(responseBody.has("token")){
                     String token = responseBody.get("token").getAsString();
                     lblError.setText(token);
+                    changeToHome();
 
                 }else{
                     if(responseBody.has("error")){
@@ -153,5 +152,10 @@ public class LoginFragment extends Fragment {
 
             }
         });
+    }
+
+    private void changeToHome(){
+        Intent home_activity = new Intent(getActivity(), HomeActivity.class);
+        startActivity(home_activity);
     }
 }
