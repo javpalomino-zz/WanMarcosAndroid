@@ -1,7 +1,6 @@
-package wan.wanmarcos.fragments;
+package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 import wan.wanmarcos.R;
+import wan.wanmarcos.models.NavDrawerLink;
+
 /**
  * Created by Francisco on 26/09/2015.
  */
@@ -39,8 +40,8 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavD
     @Override
     public void onBindViewHolder(NavDrawerViewHolder holder, int position) {
         NavDrawerLink current = data.get(position);
-        holder.title.setText(current.title);
-        holder.img.setImageResource(current.iconId);
+        holder.title.setText(current.getTitle());
+        holder.img.setImageResource(current.getIconId());
     }
 
     public void setClickListener(ClickListener clickListener){

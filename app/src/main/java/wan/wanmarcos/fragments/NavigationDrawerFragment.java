@@ -2,7 +2,6 @@ package wan.wanmarcos.fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +18,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import wan.wanmarcos.R;
+import wan.wanmarcos.models.NavDrawerLink;
+import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,8 +76,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         for (int i=0;i<icons.length && i<titles.length;i++)
         {
             NavDrawerLink current = new NavDrawerLink();
-            current.iconId=icons[i];
-            current.title =titles[i];
+            current.setIconId(icons[i]);
+            current.setTitle(titles[i]);
             data.add(current);
         }
         return data;
