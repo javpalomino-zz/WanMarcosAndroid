@@ -24,4 +24,7 @@
     <string name="btnForgotPassword">Forgot Password</string>
     <string name="title_activity_home">Inicio</string>
 
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
 </resources>
