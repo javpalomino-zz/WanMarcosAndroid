@@ -4,19 +4,19 @@ package wan.wanmarcos.models;
  * Created by carlos-pc on 09/10/15.
  */
 public class Rating {
-    private Double rating;
+    private float rating;
     private String type;
 
-    public Rating(Double rating, String type) {
+    public Rating(float rating, String type) {
         this.rating = rating;
         this.type = type;
     }
 
-    public Double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

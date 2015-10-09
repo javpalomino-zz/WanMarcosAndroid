@@ -9,12 +9,16 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.models.Courses;
+import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.models.Teacher;
+import wan.wanmarcos.views.adapters.CourseListAdapter;
+import wan.wanmarcos.views.adapters.RatingListAdapter;
 
 
 public class TeacherProfileFragment extends Fragment {
@@ -22,6 +26,8 @@ public class TeacherProfileFragment extends Fragment {
     ListView listRating,listCourses;
     Teacher teacher;
     TextView name;
+    ArrayList<Rating> ratings;
+    ArrayList<Course> courses;
 
     public TeacherProfileFragment() {
         // Required empty public constructor
@@ -39,9 +45,32 @@ public class TeacherProfileFragment extends Fragment {
         name=(TextView)view.findViewById(R.id.teacher_name);
         name.setText(teacher.getName());
         listRating=(ListView)view.findViewById(R.id.teacher_raitings);
+
         ImageView profilePicture=(ImageView)view.findViewById(R.id.teacher_image);
+        Picasso.with(view.getContext()).load("http://lorempixel.com/350/230/").into(profilePicture);
+        getNewRatings();
     }
     public void changeData(Teacher teacher){
         this.teacher=teacher;
+    }
+    public void getNewRatings(){
+        ratings=new ArrayList<Rating>();
+        ratings.add(new Rating((float) 4.2, "Pedagogica: "));
+        ratings.add(new Rating((float) 1.8, "Dinamismo: "));
+        ratings.add(new Rating((float) 2.5, "Concurrencia: "));
+        ratings.add(new Rating((float) 3.0, "Ganas: "));
+
+        RatingListAdapter ratingListAdapter=new RatingListAdapter(getActivity(),ratings);
+
+        listRating.setAdapter(ratingListAdapter);
+
+        courses=new ArrayList<Course>();
+        courses.add(new Course("Matematica",(float)3.0,"FISI"));
+        courses.add(new Course("Calculo",(float)2.0,"FIEE"));
+        courses.add(new Course("Nadine",(float)2.5,"FLCH"));
+
+        CourseListAdapter courseListAdapter=new CourseListAdapter(getActivity(),courses);
+        listCourses.setAdapter(courseListAdapter);
+
     }
 }

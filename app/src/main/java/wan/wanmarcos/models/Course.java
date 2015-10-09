@@ -3,14 +3,14 @@ package wan.wanmarcos.models;
 /**
  * Created by carlos-pc on 09/10/15.
  */
-public class Courses {
+public class Course {
     private String name;
-    private String rating;
+    private float rating;
     private String Faculty;
 
-    public Courses(String name, String rating, String faculty) {
+    public Course(String name, float rating, String faculty) {
         this.setName(name);
-        this.setRating(rating);
+        this.rating=rating;
         setFaculty(faculty);
     }
 
@@ -22,11 +22,11 @@ public class Courses {
         this.name = name;
     }
 
-    public String getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

@@ -28,7 +28,7 @@ public class TeacherListAdapter extends ArrayAdapter<Teacher> {
         this.teachers=objects;
     }
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
+    public View getView(int position,  View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView=layoutInflater.inflate(R.layout.teacher_new_item,parent,false);
         setElements(rowView, position);
