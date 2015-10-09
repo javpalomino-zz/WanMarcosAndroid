@@ -24,4 +24,13 @@
     <string name="btnForgotPassword">Forgot Password</string>
     <string name="title_activity_home">Inicio</string>
 
+    <!--Space-->
+    <string name="raiting">Puntaje</string>
+    <string name="teacher_places">Universidades:</string>
+    <string name="teacher_capabilities">Capacidades:</string>
+
+    <string name="course_name">Nombre del Curso:</string>
+    <string name="course_valoration">Valoracion: </string>
+    <string name="course_faculties">Facultad: </string>
+    <string name="teacher_ped">Cursos que dicta: </string>
 </resources>
