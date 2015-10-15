@@ -13,4 +13,5 @@ public class Constants {
     public static final String USER_INFO = "users/me";
 
     public static final String PLATFORM = "Android";
+    public static final String PREFERENCES = "WanMarcos_preferences";
 }
