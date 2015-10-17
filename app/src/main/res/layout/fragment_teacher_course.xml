@@ -8,11 +8,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <FrameLayout
-            android:id="@+id/sub_fragment_teacher_profile"
+            android:id="@+id/sub_fragment_course_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <FrameLayout
-            android:id="@+id/sub_fragment_teacher_courses"
+            android:id="@+id/sub_fragment_valuations_course"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

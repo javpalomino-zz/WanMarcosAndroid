@@ -16,31 +16,24 @@ import wan.wanmarcos.models.Course;
 /**
  * Created by carlos-pc on 09/10/15.
  */
-public class CourseListAdapter extends ArrayAdapter<Course> {
-    private Context context;
-    private List<Course> ratings;
+public class CourseListAdapter extends CustomListAdapter<Course> {
 
-    public CourseListAdapter(Context context, List<Course> objects) {
-        super(context, R.layout.rating_new_item,objects);
-        this.context=context;
-        this.ratings=objects;
+    public CourseListAdapter(Context context, int resourceID) {
+        super(context,resourceID);
     }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView=layoutInflater.inflate(R.layout.course_new_item,parent,false);
-        setElements(rowView, position);
-        return rowView;
+    public CourseListAdapter(Context context, int resourceID, List<Course> objectList) {
+        super(context, resourceID, objectList);
     }
     public void setElements(View view,int pos){
         RatingBar bar = (RatingBar) view.findViewById(R.id.course_rating);
         bar.setNumStars(5);
-        bar.setRating(ratings.get(pos).getRating());
+        Course course=getItem(pos);
+        bar.setRating(course.getRating());
         TextView faculty = (TextView) view.findViewById(R.id.course_faculty);
-        faculty.setText(ratings.get(pos).getFaculty());
+        faculty.setText(course.getFaculty());
         TextView name= (TextView) view.findViewById(R.id.course_name);
-        name.setText(ratings.get(pos).getName());
+        name.setText(course.getName());
         TextView mark=(TextView)view.findViewById(R.id.course_mark);
+        mark.setText(course.getRating()+"");
     }
 }

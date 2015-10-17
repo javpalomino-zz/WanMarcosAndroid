@@ -7,11 +7,14 @@ public class Course {
     private String name;
     private float rating;
     private String Faculty;
+    private String teacher;
 
-    public Course(String name, float rating, String faculty) {
+
+    public Course(String name, float rating, String faculty,String teacher) {
         this.setName(name);
         this.rating=rating;
         setFaculty(faculty);
+        this.teacher=teacher;
     }
 
     public String getName() {
@@ -36,5 +39,13 @@ public class Course {
 
     public void setFaculty(String faculty) {
         Faculty = faculty;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 }

@@ -2,6 +2,7 @@ package wan.wanmarcos.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,34 @@ import wan.wanmarcos.R;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.models.Teacher;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.views.adapters.CourseListAdapter;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
 
 
 public class TeacherProfileFragment extends Fragment {
-    View view;
+    private Teacher teacher;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getFragmentManager().beginTransaction().add(R.id.sub_fragment_teacher_profile,new SectionTeacherProfile(teacher)).commit();
+        getFragmentManager().beginTransaction().add(R.id.sub_fragment_teacher_courses,new SectionTeacherCourses()).commit();
+        return inflater.inflate(Constants.FRAGMENT_PROFILE_TEACHER_LAYOUT, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+    public void changeData(Teacher object){
+        this.teacher=object;
+    }
+    /*View view;
     ListView listRating,listCourses;
     Teacher teacher;
     TextView name;
@@ -72,5 +95,5 @@ public class TeacherProfileFragment extends Fragment {
         CourseListAdapter courseListAdapter=new CourseListAdapter(getActivity(),courses);
         listCourses.setAdapter(courseListAdapter);
 
-    }
+    }*/
 }

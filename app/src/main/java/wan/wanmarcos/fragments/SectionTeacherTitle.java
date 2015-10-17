@@ -1,41 +1,40 @@
 package wan.wanmarcos.fragments;
 
+import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-
-
-import java.util.ArrayList;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 
-
-
-public class TeacherListFragment extends Fragment {
-    public TeacherListFragment() {
-        // Required empty public constructor
+public class SectionTeacherTitle extends Fragment {
+    private String teacherName;
+    public SectionTeacherTitle(String name){
+        teacherName=name;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getFragmentManager().beginTransaction().add(R.id.sub_fragment_teacher_list,new SectionListTeachers()).commit();
-        return inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
+        return inflater.inflate(Constants.TEACHER_TITLE,container,false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        TextView editText=(TextView)view.findViewById(R.id.teacher_name);
+        editText.setText(teacherName);
     }
 
 }

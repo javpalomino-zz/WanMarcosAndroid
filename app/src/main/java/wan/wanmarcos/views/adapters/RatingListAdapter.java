@@ -16,30 +16,28 @@ import wan.wanmarcos.models.Rating;
 /**
  * Created by carlos-pc on 09/10/15.
  */
-public class RatingListAdapter  extends ArrayAdapter<Rating> {
-    private Context context;
-    private List<Rating> ratings;
+public class RatingListAdapter  extends CustomListAdapter<Rating> {
 
-    public RatingListAdapter(Context context, List<Rating> objects) {
-        super(context, R.layout.rating_new_item,objects);
-        this.context=context;
-        this.ratings=objects;
+    public RatingListAdapter(Context context,int resourceID,List<Rating> listObjects) {
+        super(context,resourceID,listObjects);
+    }
+    public RatingListAdapter(Context context,int resourceID){
+        super(context,resourceID);
     }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView=layoutInflater.inflate(R.layout.rating_new_item,parent,false);
-        setElements(rowView, position);
-        return rowView;
-    }
     public void setElements(View view,int pos){
         RatingBar bar = (RatingBar) view.findViewById(R.id.rating_progress);
         bar.setNumStars(5);
-        bar.setRating(ratings.get(pos).getRating());
+        Rating rating=getItem(pos);
+        bar.setRating(rating.getRating());
         TextView type = (TextView) view.findViewById(R.id.rating_type);
-        type.setText(ratings.get(pos).getType());
+        type.setText(rating.getType());
         TextView quantity = (TextView) view.findViewById(R.id.rating_mark);
-        quantity.setText(ratings.get(pos).getRating()+"");
+        quantity.setText(rating.getRating()+"");
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return false;
     }
 }
