@@ -34,12 +34,18 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
-            case R.id.action_settings : return true;
-            case R.id.logout : logout();
+            case R.id.action_settings : goToEvents();break;
+            case R.id.logout : logout();break;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    private void goToEvents()
+    {
+        startActivity(new Intent(this,EventsActivity.class));
+    }
+
     private void logout(){
         SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =  preferences.edit();
