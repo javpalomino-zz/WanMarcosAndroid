@@ -34,8 +34,8 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
-            case R.id.action_settings : return true;
-            case R.id.logout : logout();
+            case R.id.action_settings : Contactanos();break;
+            case R.id.logout : logout(); break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -48,5 +48,10 @@ public class HomeActivity extends AppCompatActivity {
         Intent login_activity = new Intent(this,MainActivity.class);
         finish();
         startActivity(login_activity);
+    }
+
+    private void Contactanos(){
+        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        startActivity(contactanos_activity);
     }
 }

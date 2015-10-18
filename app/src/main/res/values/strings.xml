@@ -17,13 +17,26 @@
     <string name="lastNamePlaceholder">Zerga Morales</string>
     <string name="emailPlaceholder">username@domain.com</string>
     <string name="passwordPlaceholder">**************</string>
+    <string name="contac_messagueplaceholder">¿Tiene algo que decirnos?</string>
 
     <!--Buttons-->
     <string name="btnRegister">SignUp</string>
     <string name="btnLogIn">Login</string>
     <string name="btnForgotPassword">Forgot Password</string>
     <string name="btnLogout">Cerrar Sesión</string>
+    <string name="btnEnviarFeed">Enviar Feddback</string>
+    <string name="btnDeNada">De Nada</string>
     <!--Titles-->
     <string name="title_activity_home">Inicio</string>
+    <string name="title_activity_contactanos">ContactanosActivity</string>
+
+    <!--Titles-->
+    <string name="title_contactanos">Contactanos</string>
+
+    <!--TextViews-->
+    <string name="pregunta_contactanos">¿Tiene algo que decirnos?</string>
+    <string name="respuesta_contactanos">Nos gustaría mucho escucharla</string>
+    <string name="popup_messague_contactanos">Gracias por decirnos lo que piensas</string>
+
 
 </resources>
