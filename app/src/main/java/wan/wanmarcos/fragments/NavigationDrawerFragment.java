@@ -59,14 +59,19 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout =inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        setUpElements(layout);
+        return layout;
+    }
+
+
+    private void setUpElements(View layout)
+    {
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         adapter = new NavDrawerAdapter(getActivity(),getData());
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        return layout;
     }
-
 
     public static List<NavDrawerLink> getData()
     {
@@ -86,6 +91,28 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     public void SetUp(int fragmentId,DrawerLayout drawerLayout , Toolbar toolbar) {
         containerView = getActivity().findViewById(fragmentId);
         mDrawerLayout=drawerLayout;
+        addListeners(toolbar);
+        if(!mUserLearnedDrawer && !mFromSavedInstanceState)
+        {
+            mDrawerLayout.openDrawer(containerView);
+        }
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerToggle.syncState();
+            }
+        });
+    }
+
+    private void addListeners(Toolbar toolbar)
+    {
+        addToolbarToggleListener(toolbar);
+
+    }
+
+    private void addToolbarToggleListener(Toolbar toolbar)
+    {
         mDrawerToggle= new ActionBarDrawerToggle(getActivity(),mDrawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close){
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -104,19 +131,7 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                 getActivity().invalidateOptionsMenu();
             }
         };
-        if(!mUserLearnedDrawer && !mFromSavedInstanceState)
-        {
-            mDrawerLayout.openDrawer(containerView);
-        }
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        mDrawerLayout.post(new Runnable() {
-            @Override
-            public void run() {
-                mDrawerToggle.syncState();
-            }
-        });
     }
-
     public static void SaveToPreferences(Context context , String preferenceName , String preferenceValue){
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

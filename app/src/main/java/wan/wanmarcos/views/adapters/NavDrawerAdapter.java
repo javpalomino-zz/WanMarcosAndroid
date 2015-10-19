@@ -45,6 +45,7 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavD
     }
 
     public void setClickListener(ClickListener clickListener){
+
         this.clickListener=clickListener;
     }
 
