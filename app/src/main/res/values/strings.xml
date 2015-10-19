@@ -22,6 +22,8 @@
     <string name="btnRegister">SignUp</string>
     <string name="btnLogIn">Login</string>
     <string name="btnForgotPassword">Forgot Password</string>
+    <string name="btnLogout">Cerrar Sesión</string>
+    <!--Titles-->
     <string name="title_activity_home">Inicio</string>
 
     <string name="drawer_open">Open</string>
