@@ -28,4 +28,6 @@ dependencies {
     compile group:'com.squareup.picasso', name:'picasso', version:'2.3.2'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.4.0'
     compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'com.android.support:recyclerview-v7:23.0.+'
+    compile 'com.github.traex.rippleeffect:library:1.3'
 }
