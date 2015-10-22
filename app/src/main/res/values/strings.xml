@@ -39,4 +39,7 @@
     <string name="popup_messague_contactanos">Gracias por decirnos lo que piensas</string>
 
 
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
 </resources>
