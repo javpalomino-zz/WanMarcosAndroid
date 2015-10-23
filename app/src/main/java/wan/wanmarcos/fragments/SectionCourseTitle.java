@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +12,14 @@ import android.widget.TextView;
 import wan.wanmarcos.R;
 import wan.wanmarcos.utils.Constants;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SectionCourseTitle.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SectionCourseTitle#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SectionCourseTitle extends Fragment {
     private String name;
     private String teacher;
+
+    public SectionCourseTitle(){
+        this.name="";
+        this.teacher="";
+    }
     public SectionCourseTitle(String name, String teacher){
         this.name=name;
         this.teacher=teacher;
@@ -35,7 +31,6 @@ public class SectionCourseTitle extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(Constants.COURSE_TITLE,container,false);

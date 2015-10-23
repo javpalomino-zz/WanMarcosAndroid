@@ -3,18 +3,27 @@ package wan.wanmarcos.activities;
 import android.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.LoginFragment;
 import wan.wanmarcos.fragments.RegisterFragment;
+import wan.wanmarcos.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Constants.DEVICE_DENSITY=getResources().getDisplayMetrics().density;
+        Constants.DEVICE_WIDTH=getResources().getDisplayMetrics().widthPixels;
+        Constants.DEVICE_HEIGHT=getResources().getDisplayMetrics().heightPixels;
+        DisplayMetrics metrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Constants.DEVICE_HEIGHT2=metrics.heightPixels/Constants.DEVICE_DENSITY;
+        Constants.DEVICE_WIDTH2=metrics.widthPixels/Constants.DEVICE_DENSITY;
 
         setContentView(R.layout.activity_main);
 

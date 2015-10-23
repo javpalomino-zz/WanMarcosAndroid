@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Wanmarcos</string>
     <string name="title_activity_main">MainActivity</string>
@@ -33,4 +34,6 @@
     <string name="course_valoration">Valoracion: </string>
     <string name="course_faculties">Facultad: </string>
     <string name="teacher_ped">Cursos que dicta: </string>
+    
+    <string name="welcome">\t</string>
 </resources>

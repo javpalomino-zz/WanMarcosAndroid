@@ -1,55 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-    <LinearLayout
+    android:layout_width="300dp"
+    android:layout_height="130dp"
+    android:background="@drawable/borders">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/teacher_image"
+        style="@style/TeacherItemImage" />
+
+    <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/teacher_name"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/action_settings"
-                android:id="@+id/teacher_image"/>
-            <TextView
-                android:id="@+id/teacher_raiting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/raiting"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teacher_places"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/teacher_faculty"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/teacher_capabilities"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/teacher_description"/>
+        android:teacher_descriptionid="@+id/teacher_rating"
+        android:numStars="5"
+        style="@style/TeacherItemRating"/>
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/teacher_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TeacherItemName" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/teacher_faculty"
+        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        style="@style/TeacherItemCourses"/>
+
+    <TextView
+        android:id="@+id/teacher_description"
+        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        style="@style/TeacherItemCapacities"/>
+
+    <TextView
+        android:text="@string/teacher_ped"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        style="@style/TeacherItemLabelCourses"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:text="@string/teacher_capabilities"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        style="@style/TeacherItemLabelCapacities" />
 
 </RelativeLayout>

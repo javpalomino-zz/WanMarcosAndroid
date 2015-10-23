@@ -1,10 +1,7 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +20,7 @@ import wan.wanmarcos.views.adapters.TeacherListAdapter;
 public class SectionListTeachers extends Fragment {
 
     private TeacherListAdapter teacherListAdapter;
-    ListView listView;
+    private ListView listView;
     private Communicator communicator;
 
     public static SectionListTeachers newInstance(){
@@ -44,8 +41,8 @@ public class SectionListTeachers extends Fragment {
         lista.add("FIEE");
         lista.add("FLCH");
         teacherListAdapter.add(new Teacher("Carlos", 15, lista, "Valeroso Profesor"));
-        teacherListAdapter.add(new Teacher("Juan", 13, lista, "Profesor Empeñoso"));
         teacherListAdapter.add(new Teacher("Jose",18,lista,"Educado Maestro"));
+        teacherListAdapter.add(new Teacher("Juan", 13, lista, "Profesor Empeñoso"));
     }
 
     @Override
@@ -64,5 +61,8 @@ public class SectionListTeachers extends Fragment {
 
             }
         });
+        //SideSelector sideSelector=(SideSelector)view.findViewById(R.id.generic_scroll_view);
+        //sideSelector.setListView(listView);
+
     }
 }

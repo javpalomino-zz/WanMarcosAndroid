@@ -1,6 +1,7 @@
 package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,15 @@ import java.util.List;
 /**
  * Created by postgrado on 17/10/15.
  */
-public abstract  class CustomListAdapter<T> extends BaseAdapter implements ListAdapter {
+public abstract  class CustomListAdapter<T> extends BaseAdapter implements ListAdapter{
+    private int actualChar=56;
     private final int mResource;
     private final Object mLock=new Object();
     private final Context mContext;
     private final LayoutInflater mInflater;
     private List<T> mObjects;
+
+
 
     public CustomListAdapter(Context context,int resourceID,List<T> listObjects ){
         mContext = context;
@@ -53,6 +57,8 @@ public abstract  class CustomListAdapter<T> extends BaseAdapter implements ListA
 
         if (convertView == null) {
             view = mInflater.inflate(mResource, parent, false);
+
+
         } else {
             view = convertView;
         }
@@ -64,6 +70,7 @@ public abstract  class CustomListAdapter<T> extends BaseAdapter implements ListA
             mObjects.add(object);
         }
     }
+
 
     abstract void setElements(View view,int position);
 

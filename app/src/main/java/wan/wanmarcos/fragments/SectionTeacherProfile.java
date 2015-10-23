@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 public class SectionTeacherProfile extends Fragment {
     private Teacher teacher;
@@ -31,15 +32,15 @@ public class SectionTeacherProfile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        getFragmentManager().beginTransaction().add(R.id.sub_fragment_title,new SectionTeacherTitle(teacher.getName())).commit();
-        getFragmentManager().beginTransaction().add(R.id.sub_fragment_rating, new SectionTeacherRating()).commit();
+        //getFragmentManager().beginTransaction().add(R.id.sub_fragment_title,new SectionTeacherTitle(teacher.getName())).commit();
+        //getFragmentManager().beginTransaction().add(R.id.sub_fragment_rating, new SectionTeacherRating()).commit();
         return inflater.inflate(Constants.PROFILE_INFORMATION,container,false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ImageView imageView=(ImageView)view.findViewById(R.id.image_id);
-        Picasso.with(view.getContext()).load("http://lorempixel.com/350/230/").into(imageView);
+        //ImageView imageView=(ImageView)view.findViewById(R.id.image_id);
+        //Picasso.with(view.getContext()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(imageView);
     }
 }

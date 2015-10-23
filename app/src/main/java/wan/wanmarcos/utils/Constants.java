@@ -15,7 +15,13 @@ public class Constants {
     public static final String USER_INFO = "users/me";
 
     public static final String PLATFORM = "Android";
-
+    //SCREEN DEVICE CONSTANTS
+    public static float DEVICE_WIDTH=0;
+    public static float DEVICE_WIDTH2=0;
+    public static float DEVICE_HEIGHT=0;
+    public static float DEVICE_HEIGHT2=0;
+    public static float DEVICE_DENSITY=0;
+    //LAYOUT CONSTANTS
     public static final int FRAGMENT_LIST_TEACHER_LAYOUT= R.layout.fragment_teacher_list;
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
