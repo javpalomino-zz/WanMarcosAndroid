@@ -2,6 +2,7 @@ package wan.wanmarcos.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.EventsActivity;
+import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.models.NavDrawerLink;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -148,13 +151,15 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     public void itemClicked(View view, int position) {
         switch (position){
             case 0 :
-                Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);break;
+                Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);
+                startActivity(new Intent(getActivity(), HomeActivity.class)) ;break;
             case 1:
                 Toast.makeText(getActivity(), "A Docentes", Toast.LENGTH_SHORT);break;
             case 2:
                 Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
             case 3:
-                Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);break;
+                Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);
+                startActivity(new Intent(getActivity(), EventsActivity.class));break;
         }
 
     }

@@ -12,39 +12,38 @@ import java.util.Collections;
 import java.util.List;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.models.NavDrawerLink;
+import wan.wanmarcos.models.Event;
 
 /**
- * Created by Francisco on 26/09/2015.
+ * Created by Francisco on 26/10/2015.
  */
-public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavDrawerViewHolder>{
-
+public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.EventListViewHolder>{
     private LayoutInflater inflater;
-    private List<NavDrawerLink> data = Collections.emptyList();
+    private List<Event> data = Collections.emptyList();
     private Context context;
     private ClickListener clickListener;
 
-    public NavDrawerAdapter(Context context,List<NavDrawerLink> data){
+    public EventListAdapter(Context context,List<Event> data){
 
-         inflater = LayoutInflater.from(context);
+        inflater = LayoutInflater.from(context);
         this.data=data;
         this.context=context;
     }
 
     @Override
-    public NavDrawerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-       View view =  inflater.inflate(R.layout.navdrawer_row, parent, false);
-        NavDrawerViewHolder holder = new NavDrawerViewHolder(view);
+    public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view =  inflater.inflate(R.layout.event_list_item, parent, false);
+        EventListViewHolder holder = new EventListViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(NavDrawerViewHolder holder, int position) {
-        NavDrawerLink current = data.get(position);
-        holder.title.setText(current.getTitle());
+    public void onBindViewHolder(EventListViewHolder holder, int position) {
+        Event current = data.get(position);
+        holder.title.setText(current.getName());
         holder.img.setImageResource(current.getIconId());
+        holder.dateAndTime.setText(current.getStartDate()+" "+current.getStartTime());
     }
-
     public void setClickListener(ClickListener clickListener){
 
         this.clickListener=clickListener;
@@ -52,19 +51,23 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavD
 
     @Override
     public int getItemCount() {
+
         return data.size();
     }
 
-    class NavDrawerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class EventListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView title;
+        TextView dateAndTime;
         ImageView img;
 
-        public NavDrawerViewHolder(View itemView) {
+        public EventListViewHolder(View itemView) {
+
             super(itemView);
             itemView.setOnClickListener(this);
-            title = (TextView) itemView.findViewById(R.id.navDrawerRowText);
-            img = (ImageView) itemView.findViewById(R.id.navDrawerRowIcon);
+            title = (TextView) itemView.findViewById(R.id.eventListTitle);
+            img = (ImageView) itemView.findViewById(R.id.eventListImage);
+            dateAndTime =(TextView) itemView.findViewById(R.id.eventListDateAndTime);
         }
 
 
@@ -78,8 +81,9 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.NavD
         }
 
     }
+
+
     public interface ClickListener{
         public void itemClicked(View view,int position);
     }
-
 }

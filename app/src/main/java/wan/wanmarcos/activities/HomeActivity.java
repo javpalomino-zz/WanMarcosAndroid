@@ -55,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void goToEvents()
     {
-        startActivity(new Intent(this,EventsActivity.class));
+        //startActivity(new Intent(this,EventsActivity.class));
     }
 
     private void logout(){

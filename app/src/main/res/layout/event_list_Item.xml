@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp">
 
     <ImageView
-        android:id="@+id/event_view_image"
+        android:id="@+id/eventListImage"
         android:layout_width="fill_parent"
-        android:layout_height="240dp"
+        android:layout_height="230dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:src="@mipmap/wrestlemania"
         android:background="@android:color/black"
-        />
+        android:src="@mipmap/wm17">
+        </ImageView>
 
     <TextView
-        android:id="@+id/event_view_image_title"
+        android:id="@+id/eventListTitle"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_alignLeft="@id/event_new_image"
-        android:layout_alignTop="@id/event_new_image"
-        android:layout_alignRight="@id/event_new_image"
-        android:layout_alignBottom="@id/event_new_image"
         android:gravity="center"
         android:text="Wrestlemania"
         android:textColor="@android:color/white"
-        android:background="@android:color/darker_gray"/>
+        android:textStyle="bold"/>
+        <!--android:background="@android:color/darker_gray"-->
 
     <TextView
-        android:id="@+id/event_view_image_dateAndTime"
+        android:id="@+id/eventListDateAndTime"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
-        android:layout_marginTop="225dp"
+        android:layout_marginTop="215dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:gravity="center"
         android:text="Sunday , March 30th 2015"
         android:textColor="@android:color/white"
-        android:background="@android:color/darker_gray"/>
+        android:textStyle="bold"/>
+        <!--android:background="@android:color/darker_gray"-->
 
 </RelativeLayout>
