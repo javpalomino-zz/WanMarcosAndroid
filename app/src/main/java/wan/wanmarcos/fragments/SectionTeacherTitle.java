@@ -12,14 +12,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Communicator;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 
 public class SectionTeacherTitle extends Fragment {
-    private String teacherName;
-    public SectionTeacherTitle(String name){
-        teacherName=name;
+    private Communicator communicator;
+
+    public SectionTeacherTitle() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +30,14 @@ public class SectionTeacherTitle extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(Constants.TEACHER_TITLE,container,false);
+        View view =inflater.inflate(Constants.TEACHER_TITLE,container,false);
+        setUpElements(view);
+        return view;
     }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        TextView editText=(TextView)view.findViewById(R.id.teacher_name);
-        editText.setText(teacherName);
+    public void setUpElements(View view){
+        communicator=(Communicator)getActivity();
+        TextView textView=(TextView) view.findViewById(R.id.teacher_name);
+        textView.setText(communicator.getStringInformation("teachername"));
     }
 
 }

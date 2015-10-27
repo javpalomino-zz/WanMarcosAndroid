@@ -1,6 +1,5 @@
 package wan.wanmarcos.activities;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,13 +8,14 @@ import android.view.MenuItem;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.EventNewsFragment;
+import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
 import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Teacher;
 
 public class HomeActivity extends AppCompatActivity implements Communicator{
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,23 +48,28 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            TeacherListFragment teacherListFragment= new TeacherListFragment();
-                try {
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.home_fragment, teacherListFragment);
-                    transaction.addToBackStack("teacherFragment");
-
-                    transaction.commit();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            toListTeachers();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void response(Teacher teacher) {
+    public void toListTeachers() {
+        TeacherListFragment teacherListFragment= new TeacherListFragment();
+        try {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.home_fragment, teacherListFragment);
+            transaction.addToBackStack("teacherFragment");
+
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void toProfileTeacher(Teacher teacher) {
         TeacherProfileFragment profileFragment=new TeacherProfileFragment();
         try {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -76,7 +81,56 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        profileFragment.changeData(teacher);
+        addTeacherInformation(teacher);
 
+    }
+
+    @Override
+    public void toTeacherCourseInformation(Course course) {
+        TeacherCourseProfileFragment teacherCourseProfileFragment=new TeacherCourseProfileFragment();
+        try{
+            FragmentTransaction transaction= getFragmentManager().beginTransaction();
+            transaction.replace(R.id.home_fragment, teacherCourseProfileFragment);
+            transaction.addToBackStack("profileteachercoursefragment");
+
+            transaction.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        addCourseInformation(course);
+    }
+
+    @Override
+    public void addTeacherInformation(Teacher teacher) {
+        dataTeacher.putString("teachername",teacher.getName());
+        dataTeacher.putString("facultyname",teacher.getFaculties());
+        dataTeacher.putString("imageurl",teacher.getImageUrl());
+    }
+
+    @Override
+    public void addCourseInformation(Course course) {
+        dataTeacher.putString("coursename",course.getName());
+        dataTeacher.putFloat("courserating",course.getRating());
+    }
+
+    @Override
+    public float getFloatInformation(String key) {
+        return 0;
+    }
+
+    @Override
+    public int getIntInformation(String key) {
+        return 0;
+    }
+
+    @Override
+    public String getStringInformation(String key) {
+        if(dataTeacher.containsKey(key)){
+            return dataTeacher.getString(key);
+        }
+        else{
+            return null;
+        }
     }
 }

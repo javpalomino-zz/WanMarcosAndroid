@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="328dp"
     android:layout_height="130dp"
     android:background="@drawable/borders">
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="100dp"
         android:id="@+id/teacher_image"
-        style="@style/TeacherItemImage" />
+        style="@style/TeacherItemImage"
+        android:contentDescription=":o"/>
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:teacher_descriptionid="@+id/teacher_rating"
+        android:id="@+id/teacher_rating"
         android:numStars="5"
         style="@style/TeacherItemRating"/>
 
     <TextView
         android:id="@+id/teacher_name"
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         style="@style/TeacherItemName" />
 
     <TextView
         android:id="@+id/teacher_faculty"
         android:layout_height="40dp"
-        android:layout_width="wrap_content"
-        style="@style/TeacherItemCourses"/>
+        android:layout_width="120dp"
+        style="@style/TeacherItemCourses" />
 
     <TextView
         android:id="@+id/teacher_description"
         android:layout_height="40dp"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         style="@style/TeacherItemCapacities"/>
 
     <TextView

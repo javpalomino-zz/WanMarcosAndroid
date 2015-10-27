@@ -35,5 +35,5 @@
     <string name="course_faculties">Facultad: </string>
     <string name="teacher_ped">Cursos que dicta: </string>
     
-    <string name="welcome">\t</string>
+    <string name="Tab">\t</string>
 </resources>

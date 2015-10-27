@@ -10,14 +10,17 @@ public class Teacher {
     private int raiting;
     private List<String> faculties;
     private String description;
+    private String imageUrl;
 
-    public Teacher(String name, int raiting, List<String> faculties, String description) {
+    public Teacher(String name, int raiting, List<String> faculties, String description, String imageUrl) {
         this.name = name;
         this.raiting = raiting;
         this.faculties = faculties;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
-    public Teacher(Teacher old) {
+    public Teacher(Teacher old, String imageUrl) {
+        this.imageUrl = imageUrl;
         this.name = old.getName();
         this.raiting = old.getRaiting();
         this.faculties = old.faculties;
@@ -61,5 +64,13 @@ public class Teacher {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

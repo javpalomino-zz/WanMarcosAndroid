@@ -2,11 +2,12 @@ package wan.wanmarcos.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +16,20 @@ import wan.wanmarcos.R;
 import wan.wanmarcos.managers.Communicator;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.views.adapters.TeacherListAdapter;
 
-public class SectionListTeachers extends Fragment {
+public class SectionListTeachers extends Fragment implements ItemAdapterListener<Teacher> {
 
-    private TeacherListAdapter teacherListAdapter;
-    private ListView listView;
     private Communicator communicator;
+    private RecyclerView recyclerView;
+    private TeacherListAdapter teacherListAdapter;
 
     public static SectionListTeachers newInstance(){
         SectionListTeachers sectionListTeachers=new SectionListTeachers();
         return sectionListTeachers;
     }
+
     public SectionListTeachers(){
 
     }
@@ -34,35 +37,44 @@ public class SectionListTeachers extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        communicator=(Communicator)getActivity();
-        teacherListAdapter=new TeacherListAdapter(getActivity(), Constants.TEACHER_NEW_ITEM);
-        List<String> lista=new ArrayList<>();
-        lista.add("FISI");
-        lista.add("FIEE");
-        lista.add("FLCH");
-        teacherListAdapter.add(new Teacher("Carlos", 15, lista, "Valeroso Profesor"));
-        teacherListAdapter.add(new Teacher("Jose",18,lista,"Educado Maestro"));
-        teacherListAdapter.add(new Teacher("Juan", 13, lista, "Profesor Empeñoso"));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(Constants.SECTION_LIST,container,false);
+        View layout=inflater.inflate(Constants.SECTION_LIST,container,false);
+        setUpElements(layout);
+        addListeners();
+        return layout;
+    }
+
+    public void setUpElements(View view){
+        communicator=(Communicator)getActivity();
+        recyclerView=(RecyclerView)view.findViewById(R.id.generic_listView);
+        teacherListAdapter=new TeacherListAdapter(getActivity(),getData());
+        teacherListAdapter.setListener(this);
+        recyclerView.setAdapter(teacherListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+    public void addListeners(){
+        //addItemListener(listView);
+    }
+
+    public  List <Teacher> getData() {
+        List<String> lista=new ArrayList<>();
+        lista.add("FISI");
+        lista.add("FIEE");
+        lista.add("FLCH");
+        List <Teacher>dTeachers=new ArrayList();
+
+        dTeachers.add(new Teacher("Carlos", 15, lista, "Valeroso Profesor", "http://lorempixel.com/350/230/"));
+        dTeachers.add(new Teacher("Jose",18,lista,"Educado Maestro", "http://lorempixel.com/350/230/"));
+        dTeachers.add(new Teacher("Juan", 13, lista, "Profesor Empeñoso", "http://lorempixel.com/350/230/"));
+        dTeachers.add(new Teacher("Miguel", 19, lista, "SHESHO SHESHO  ", "http://lorempixel.com/350/230/"));
+        return dTeachers;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        listView=(ListView)view.findViewById(R.id.generic_listView);
-        listView.setAdapter(teacherListAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                communicator.response(teacherListAdapter.getItem(position));
-
-            }
-        });
-        //SideSelector sideSelector=(SideSelector)view.findViewById(R.id.generic_scroll_view);
-        //sideSelector.setListView(listView);
-
+    public void itemClicked(View view, Teacher object) {
+        communicator.toProfileTeacher(object);
     }
 }

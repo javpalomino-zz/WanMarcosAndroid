@@ -33,7 +33,6 @@
         </style>
 
         <style name="TeacherItemCapacities">
-                <item name="android:paddingLeft">90dp</item>
                 <item name="android:paddingRight">0dp</item>
                 <item name="android:layout_above">@id/teacher_rating</item>
                 <item name="android:layout_alignLeft">@+id/teacher_faculty</item>
@@ -54,7 +53,6 @@
         </style>
 
         <style name="TeacherItemCourses">
-                <item name="android:paddingLeft">110dp</item>
                 <item name="android:paddingRight">0dp</item>
                 <item name="android:layout_below">@+id/teacher_name</item>
                 <item name="android:layout_alignBaseline">@+id/textView</item>
@@ -86,6 +84,7 @@
         </style>
 
         <style name="RatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+                <item name="android:layout_marginLeft">10dp</item>
                 <item name="android:layout_width">wrap_content</item>
                 <item name="android:layout_height">wrap_content</item>
                 <item name="android:layout_alignParentTop">true</item>
@@ -96,6 +95,10 @@
         </style>
 
         <style name="RatingMark">
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentRight">true</item>
+                <item name="android:layout_marginLeft">10dp</item>
+                <item name="android:layout_alignParentEnd">true</item>
                 <item name="android:layout_alignParentTop">true</item>
                 <item name="android:layout_toRightOf">@id/rating_progress</item>
                 <item name="android:layout_alignBottom">@id/rating_type</item>
@@ -158,8 +161,111 @@
         <!--Course Item-->
         <!--END-->
 
+
         <!--START-->
-        <!---->
-        <!---->
+        <!--VALUATION ITEM-->
+        <style name="ValuationItemImage">
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_marginLeft">20dp</item>
+                <item name="android:layout_marginStart">23dp</item>
+                <item name="android:layout_marginTop">20dp</item>
+                <item name="android:layout_alignParentBottom">true</item>
+                <item name="android:layout_marginBottom">10dp</item>
+        </style>
+
+        <style name="ValuationTextItem">
+                <item name="android:layout_width">wrap_content</item>
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:layout_alignTop">@+id/userImage</item>
+                <item name="android:layout_centerHorizontal">true</item>
+        </style>
+
+        <style name="ValuationLabelItem">
+                <item name="android:layout_alignLeft">@+id/textView2</item>
+                <item name="android:layout_alignStart">@+id/textView2</item>
+                <item name="android:layout_alignBottom">@+id/userImage</item>
+                <item name="android:layout_alignRight">@+id/userRate</item>
+                <item name="android:layout_alignEnd">@+id/userRate</item>
+                <item name="android:layout_below">@+id/textView2</item>
+                <item name="android:layout_marginTop">10dp</item>
+        </style>
+
+        <style name="ValuationRatingItem" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+                <item name="android:layout_alignTop">@+id/textView2</item>
+                <item name="android:layout_toRightOf">@+id/textView2</item>
+                <item name="android:layout_toEndOf">@+id/textView2</item>
+                <item name="android:layout_marginLeft">25dp</item>
+                <item name="android:layout_marginStart">25dp</item>
+        </style>
+        <!--VALUATION ITEM-->
+        <!--END-->
+
+
+        <!--START-->
+        <!--TEACHER TITLE-->
+        <style name="TitleTeacherNameItem">
+                <item name="android:layout_centerHorizontal">true</item>
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_alignParentRight">true</item>
+                <item name="android:layout_alignParentEnd">true</item>
+        </style>
+
+        <style name="TitleCourseNameItem">
+                <item name="android:layout_below">@+id/teacher_name</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_centerHorizontal">true</item>
+                <item name="android:layout_alignParentRight">true</item>
+                <item name="android:layout_alignParentEnd">true</item>
+        </style>
+
+        <style name="TitleFacultyNameItem">
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:layout_below">@+id/course_name</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_alignParentRight">true</item>
+                <item name="android:layout_alignParentEnd">true</item>
+        </style>
+
+        <!--TEACHER TITLE-->
+        <!--END-->
+
+        <style name="ProfileImageItem">
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_marginLeft">10dp</item>
+                <item name="android:layout_marginRight">10dp</item>
+                <item name="android:layout_marginTop">10dp</item>
+                <item name="android:layout_alignBottom">@+id/fragment2</item>
+        </style>
+
+        <style name="GenericListItem">
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_alignParentBottom">true</item>
+        </style>
+
+        <style name="CourseTeacherImageItem">
+                <item name="android:layout_alignParentTop">true</item>
+                <item name="android:layout_alignParentLeft">true</item>
+                <item name="android:layout_alignParentStart">true</item>
+                <item name="android:layout_marginLeft">10dp</item>
+                <item name="android:layout_marginRight">10dp</item>
+                <item name="android:layout_marginTop">10dp</item>
+                <item name="android:layout_alignBottom">@+id/fragment2</item>
+        </style>
+
+        <!--START-->
+        <!--VALUATION ITEM-->
+
+
+        <!--VALUATION ITEM-->
         <!--END-->
 </resources>

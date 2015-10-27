@@ -21,8 +21,9 @@ import wan.wanmarcos.utils.Constants;
 
 public class SectionCourseProfile extends Fragment {
     private Course course;
-    public SectionCourseProfile(Course object){
-        this.course=object;
+
+    public SectionCourseProfile(){
+
     }
 
     @Override
@@ -33,15 +34,11 @@ public class SectionCourseProfile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //getFragmentManager().beginTransaction().add(R.id.sub_fragment_title,new SectionCourseTitle(course.getName(),course.getTeacher())).commit();
-        //getFragmentManager().beginTransaction().add(R.id.sub_fragment_rating, new SectionCourseRating()).commit();
-        return inflater.inflate(Constants.PROFILE_INFORMATION,container,false);
+        return inflater.inflate(Constants.PROFILE_COURSE_INFORMATION,container,false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //ImageView imageView=(ImageView)view.findViewById(R.id.image_id);
-        //Picasso.with(view.getContext()).load("http://lorempixel.com/350/230/").into(imageView);
     }
 }

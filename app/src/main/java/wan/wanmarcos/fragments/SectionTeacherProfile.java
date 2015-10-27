@@ -14,16 +14,20 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Communicator;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 public class SectionTeacherProfile extends Fragment {
-    private Teacher teacher;
-    public SectionTeacherProfile(Teacher object){
-        this.teacher=object;
-    }
+    private Communicator communicator;
 
+    public SectionTeacherProfile(){
+
+    }
+    public static final SectionTeacherProfile newInstance(){
+        return new SectionTeacherProfile();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +36,20 @@ public class SectionTeacherProfile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //getFragmentManager().beginTransaction().add(R.id.sub_fragment_title,new SectionTeacherTitle(teacher.getName())).commit();
-        //getFragmentManager().beginTransaction().add(R.id.sub_fragment_rating, new SectionTeacherRating()).commit();
-        return inflater.inflate(Constants.PROFILE_INFORMATION,container,false);
+        View view=inflater.inflate(Constants.PROFILE_TEACHER_INFORMATION,container,false);
+        setUpElements(view);
+        return view;
+    }
+    public void setUpElements(View view){
+        communicator=(Communicator)getActivity();
+        ImageView imageView=(ImageView) view.findViewById(R.id.teacher_image);
+        Picasso.with(view.getContext()).load(communicator.getStringInformation("imageurl")).into(imageView);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //ImageView imageView=(ImageView)view.findViewById(R.id.image_id);
-        //Picasso.with(view.getContext()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(imageView);
     }
 }
+
+

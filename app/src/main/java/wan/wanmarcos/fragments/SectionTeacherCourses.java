@@ -1,42 +1,74 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.views.adapters.CourseListAdapter;
 
-public class SectionTeacherCourses extends Fragment {
+public class SectionTeacherCourses extends Fragment implements ItemAdapterListener<Course>{
+
+    private Communicator communicator;
+    private RecyclerView recyclerView;
     private CourseListAdapter courseListAdapter;
-    private ListView listView;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        courseListAdapter=new CourseListAdapter(getActivity(), Constants.COURSE_NEW_ITEM);
-        courseListAdapter.add(new Course("Matematica",(float)4.0,"FISI","carñlos"));
-        courseListAdapter.add(new Course("Letras",(float)3.4,"FIEE","carñlos"));
-        courseListAdapter.add(new Course("Humanidades",(float)3.5,"FLCHs","carñlos"));
+
+    public static SectionTeacherCourses newInstance(){
+        SectionTeacherCourses sectionTeacherCourses=new SectionTeacherCourses();
+        return sectionTeacherCourses;
     }
 
-    @Nullable
+    public SectionTeacherCourses(){
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(Constants.SECTION_LIST,container,false);
+        View layout=inflater.inflate(Constants.SECTION_LIST,container,false);
+        setUpElements(layout);
+        addListeners();
+        return layout;
+    }
+
+    private void addListeners() {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        listView=(ListView)view.findViewById(R.id.generic_listView);
-        listView.setAdapter(courseListAdapter);
+    public void itemClicked(View view, Course object) {
+        Log.d("d","Hola");
+        communicator.toTeacherCourseInformation(object);
+    }
+
+    @Override
+    public List<Course> getData() {
+        List <Course> courseList=new ArrayList();
+        courseList.add(new Course("Matematica",(float)4.0,"FISI"));
+        courseList.add(new Course("Letras",(float)3.4,"FIEE"));
+        courseList.add(new Course("Humanidades",(float)3.5,"FLCHs"));
+        return courseList;
+    }
+
+    public void setUpElements(View view) {
+        communicator=(Communicator) getActivity();
+        recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
+        courseListAdapter=new CourseListAdapter(getActivity(),getData());
+        courseListAdapter.setListener(this);
+        recyclerView.setAdapter(courseListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 }

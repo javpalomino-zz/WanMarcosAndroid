@@ -3,20 +3,30 @@ package wan.wanmarcos.fragments;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Course;
+import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.views.adapters.CourseListAdapter;
+import wan.wanmarcos.views.adapters.ValuationListAdapter;
 
 
-public class SectionValuationsCourse extends Fragment {
-    private CourseListAdapter courseListAdapter;
-    private ListView listView;
+public class SectionValuationsCourse extends Fragment implements ItemAdapterListener<Valuation> {
+    private Communicator communicator;
+    private RecyclerView recyclerView;
+    private ValuationListAdapter valuationListAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +39,41 @@ public class SectionValuationsCourse extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(Constants.SECTION_LIST,container,false);
+        View layout=inflater.inflate(Constants.SECTION_LIST,container,false);
+        setUpElements(layout);
+        addListeners();
+        return layout;
+    }
+
+    private void addListeners() {
+    }
+
+    public void setUpElements(View view){
+        communicator=(Communicator) getActivity();
+        recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
+        valuationListAdapter=new ValuationListAdapter(getActivity(),getData());
+        valuationListAdapter.setListener(this);
+        recyclerView.setAdapter(valuationListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        listView=(ListView)view.findViewById(R.id.generic_listView);
-        listView.setAdapter(courseListAdapter);
+    public void itemClicked(View view, Valuation object) {
+        //TODO:implementar
     }
 
+    @Override
+    public List<Valuation> getData() {
+        List<Valuation> valuations=new ArrayList();
+        valuations.add(new Valuation("Carlos","http://lorempixel.com/350/230/","El curso es muy aburrido",(float)1.0));
+        valuations.add(new Valuation("Miguel","http://lorempixel.com/350/230/","El curso paltea",(float)1.0));
+        valuations.add(new Valuation("Juan","http://lorempixel.com/350/230/","Panxooooooooooo",(float)3.0));
+        valuations.add(new Valuation("Parce","http://lorempixel.com/350/230/","Metemos la six",(float)2.5));
+        valuations.add(new Valuation("Javier","http://lorempixel.com/350/230/","todo aburre",(float)1.0));
+        valuations.add(new Valuation("Abigail","http://lorempixel.com/350/230/","El curso ",(float)2.0));
+        valuations.add(new Valuation("Lel","http://lorempixel.com/350/230/","El paltea",(float)1.4));
 
+
+        return valuations;
+    }
 }

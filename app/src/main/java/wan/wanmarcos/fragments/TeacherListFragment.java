@@ -31,7 +31,6 @@ public class TeacherListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Toast.makeText(getActivity(),Constants.DEVICE_DENSITY+"Density,"+Constants.DEVICE_HEIGHT2+",HEIGHT"+Constants.DEVICE_WIDTH2+",WIDTH",Toast.LENGTH_LONG).show();
-        getFragmentManager().beginTransaction().add(R.id.sub_fragment_teacher_list,new SectionListTeachers()).commit();
         return inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
     }
 

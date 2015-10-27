@@ -1,5 +1,8 @@
 package wan.wanmarcos.utils;
 
+import android.content.Context;
+import android.view.View;
+
 import wan.wanmarcos.R;
 
 /**
@@ -25,12 +28,21 @@ public class Constants {
     public static final int FRAGMENT_LIST_TEACHER_LAYOUT= R.layout.fragment_teacher_list;
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
-    public static final int PROFILE_INFORMATION=R.layout.generic_profile_view;
+    public static final int PROFILE_TEACHER_INFORMATION=R.layout.generic_teacher_profile;
+    public static final int PROFILE_COURSE_INFORMATION=R.layout.generic_course_profile;
     public static final int TEACHER_NEW_ITEM=R.layout.teacher_new_item;
-    public static final int SECTION_LIST=R.layout.fragment_generic_list;
+    public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;
+    public static final int SECTION_LIST=R.layout.generic_list;
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
     public static final int TEACHER_TITLE=R.layout.generic_teacher_title;
     public static final int COURSE_TITLE=R.layout.generic_course_title;
+
+    public static String tripleTab(){
+        return "\t\t\t\t\t\t\t\t\t";
+    }
+    public static String doubleTab(){
+        return "\t\t\t\t\t\t\t\t\t\t\t\t";
+    }
 
 }

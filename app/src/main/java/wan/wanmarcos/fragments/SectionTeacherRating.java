@@ -5,41 +5,73 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.views.adapters.CourseListAdapter;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
 
 
-public class SectionTeacherRating extends Fragment {
+public class SectionTeacherRating extends Fragment implements ItemAdapterListener {
+    private Communicator communicator;
+    private RecyclerView recyclerView;
     private RatingListAdapter ratingListAdapter;
-    private ListView listView;
+
+    public SectionTeacherRating(){
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ratingListAdapter=new RatingListAdapter(getActivity(), Constants.RATING_NEW_ITEM);
-        ratingListAdapter.add(new Rating((float)4.0,"Desempeño"));
-        ratingListAdapter.add(new Rating((float)3.0,"Entusiasmo"));
-        ratingListAdapter.add(new Rating((float)2.5,"Valor"));
-        ratingListAdapter.add(new Rating((float)1.4,"Pedagogia"));
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(Constants.SECTION_LIST,container,false);
+        View layout=inflater.inflate(Constants.SECTION_LIST,container,false);
+        setUpElements(layout);
+        addListeners();
+        return layout;
+    }
+
+    private void addListeners() {
+    }
+
+    public void setUpElements(View view){
+        communicator=(Communicator) getActivity();
+        recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
+        ratingListAdapter=new RatingListAdapter(getActivity(),getData());
+        ratingListAdapter.setListener(this);
+        recyclerView.setAdapter(ratingListAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+
+    @Override
+    public void itemClicked(View view, Object object) {
+        //TODO:implementaritemclick
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        listView=(ListView)view.findViewById(R.id.generic_listView);
-        listView.setAdapter(ratingListAdapter);
+    public List<Rating> getData() {
+        List<Rating> ratingList=new ArrayList<>();
+        ratingList.add(new Rating((float)4.0,"Desempeño"));
+        ratingList.add(new Rating((float)3.0,"Entusiasmo"));
+        ratingList.add(new Rating((float)2.5,"Valor"));
+        ratingList.add(new Rating((float)1.4,"Pedagogia"));
+        return ratingList;
     }
 }
