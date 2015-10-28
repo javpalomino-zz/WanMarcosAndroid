@@ -18,7 +18,7 @@ public class Constants {
     public static final String USER_INFO = "users/me";
 
     public static final String PLATFORM = "Android";
-<<<<<<< HEAD
+
     //SCREEN DEVICE CONSTANTS
     public static float DEVICE_WIDTH=0;
     public static float DEVICE_WIDTH2=0;
@@ -46,7 +46,6 @@ public class Constants {
         return "\t\t\t\t\t\t\t\t\t\t\t\t";
     }
 
-=======
     public static final String PREFERENCES = "WanMarcos_preferences";
->>>>>>> dev
+
 }

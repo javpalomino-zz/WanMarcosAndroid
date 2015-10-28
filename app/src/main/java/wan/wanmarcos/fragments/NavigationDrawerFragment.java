@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Communicator;
 import wan.wanmarcos.models.NavDrawerLink;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -150,7 +151,7 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             case 0 :
                 Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);break;
             case 1:
-                Toast.makeText(getActivity(), "A Docentes", Toast.LENGTH_SHORT);break;
+                ((Communicator)getActivity()).toListTeachers();break;
             case 2:
                 Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
             case 3:
