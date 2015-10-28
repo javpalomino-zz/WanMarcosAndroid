@@ -23,8 +23,11 @@
     <string name="btnRegister">SignUp</string>
     <string name="btnLogIn">Login</string>
     <string name="btnForgotPassword">Forgot Password</string>
+    <string name="btnLogout">Cerrar Sesión</string>
+    <!--Titles-->
     <string name="title_activity_home">Inicio</string>
 
+<<<<<<< HEAD
     <!--Space-->
     <string name="raiting">Puntaje</string>
     <string name="teacher_places">Universidades:</string>
@@ -36,4 +39,9 @@
     <string name="teacher_ped">Cursos que dicta: </string>
     
     <string name="Tab">\t</string>
+=======
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+>>>>>>> dev
 </resources>

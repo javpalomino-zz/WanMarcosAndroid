@@ -1,12 +1,23 @@
 package wan.wanmarcos.activities;
 
+<<<<<<< HEAD
 import android.app.FragmentTransaction;
+=======
+
+import android.support.v4.widget.DrawerLayout;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+>>>>>>> dev
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.TextView;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.R;
+<<<<<<< HEAD
 import wan.wanmarcos.fragments.EventNewsFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
@@ -16,12 +27,21 @@ import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Teacher;
 
 public class HomeActivity extends AppCompatActivity implements Communicator{
+=======
+import wan.wanmarcos.fragments.NavigationDrawerFragment;
+
+public class HomeActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    NavigationDrawerFragment drawerFragment;
+>>>>>>> dev
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
 
+<<<<<<< HEAD
         if(findViewById(R.id.home_fragment) != null){
             if(savedInstanceState != null){
                 return;
@@ -30,11 +50,18 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
             eventNewsFragment.setArguments(getIntent().getExtras());
             getFragmentManager().beginTransaction().add(R.id.home_fragment,eventNewsFragment).commit();
         }
+=======
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+>>>>>>> dev
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
@@ -46,13 +73,20 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+<<<<<<< HEAD
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             toListTeachers();
+=======
+        switch (id){
+            case R.id.action_settings : return true;
+            case R.id.logout : logout();
+>>>>>>> dev
         }
 
         return super.onOptionsItemSelected(item);
     }
+<<<<<<< HEAD
 
     @Override
     public void toListTeachers() {
@@ -132,5 +166,15 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         else{
             return null;
         }
+=======
+    private void logout(){
+        SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =  preferences.edit();
+        editor.clear();
+        editor.commit();
+        Intent login_activity = new Intent(this,MainActivity.class);
+        finish();
+        startActivity(login_activity);
+>>>>>>> dev
     }
 }

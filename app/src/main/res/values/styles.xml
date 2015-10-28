@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
     </style>
 
@@ -18,4 +18,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
+<<<<<<< HEAD
+=======
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primaryNewsColor</item>
+        <item name="colorPrimaryDark">@color/primaryNewsColorDark</item>
+        <item name="colorAccent">@color/accentNewsColor</item>
+    </style>
+
+>>>>>>> dev
 </resources>

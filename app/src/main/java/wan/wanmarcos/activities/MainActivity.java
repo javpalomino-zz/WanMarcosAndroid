@@ -1,6 +1,9 @@
 package wan.wanmarcos.activities;
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,6 +17,7 @@ import wan.wanmarcos.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +31,22 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        if(findViewById(R.id.fragment_container) != null){
-            if(savedInstanceState != null){
-                return;
-            }
-            LoginFragment loginFragment = new LoginFragment();
-            loginFragment.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,loginFragment).commit();
+        sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token",null);
+        if(token != null){
+            Intent home_activity = new Intent(this, HomeActivity.class);
+            finish();
+            startActivity(home_activity);
+
+        }else{
+            if(findViewById(R.id.fragment_container) != null){
+                if(savedInstanceState != null){
+                    return;
+                }
+                LoginFragment loginFragment = new LoginFragment();
+                loginFragment.setArguments(getIntent().getExtras());
+                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,loginFragment).commit();
+        }
         }
     }
 

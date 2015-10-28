@@ -1,6 +1,8 @@
 package wan.wanmarcos.fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
@@ -42,7 +44,7 @@ public class LoginFragment extends Fragment {
     private Builder builder;
     private String device_token = "xxxxxxxxxxx";
 
-
+    private SharedPreferences preferences;
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
 
@@ -56,7 +58,6 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = setUpElements(inflater, container);
         addListeners();
         return view;
@@ -127,14 +128,14 @@ public class LoginFragment extends Fragment {
 
     private void postLogIn(){
         Call<JsonElement> logInUser= restClient.getConsumerService().login(email, password,device_token, Constants.PLATFORM);
-
+        String token;
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if(responseBody.has("token")){
                     String token = responseBody.get("token").getAsString();
-                    lblError.setText(token);
+                    setPreferences(token);
                     changeToHome();
 
                 }else{
@@ -154,8 +155,15 @@ public class LoginFragment extends Fragment {
         });
     }
 
+    private void setPreferences(String token){
+        preferences = this.getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("token",token);
+        editor.commit();
+    }
     private void changeToHome(){
         Intent home_activity = new Intent(getActivity(), HomeActivity.class);
+        getActivity().finish();
         startActivity(home_activity);
     }
 }
