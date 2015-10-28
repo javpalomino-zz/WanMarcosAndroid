@@ -1,6 +1,7 @@
 package wan.wanmarcos.activities;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 
 
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.R;
@@ -68,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
 
     @Override
     public void toListTeachers() {
+
         TeacherListFragment teacherListFragment= new TeacherListFragment();
         try {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
