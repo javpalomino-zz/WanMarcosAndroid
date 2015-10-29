@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -20,6 +21,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Constants.DEVICE_DENSITY=getResources().getDisplayMetrics().density;
+        Constants.DEVICE_WIDTH=getResources().getDisplayMetrics().widthPixels;
+        Constants.DEVICE_HEIGHT=getResources().getDisplayMetrics().heightPixels;
+        DisplayMetrics metrics=new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Constants.DEVICE_HEIGHT2=metrics.heightPixels/Constants.DEVICE_DENSITY;
+        Constants.DEVICE_WIDTH2=metrics.widthPixels/Constants.DEVICE_DENSITY;
 
         setContentView(R.layout.activity_main);
 

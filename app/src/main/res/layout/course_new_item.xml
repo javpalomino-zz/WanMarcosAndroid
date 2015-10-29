@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="70dp"
+    android:background="@drawable/borders">
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="16dp"
+        android:id="@+id/course_name"
+        style="@style/CourseItemName" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="16dp"
+        android:id="@+id/course_faculty"
+        style="@style/CourseItemFaculty" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:text="@string/course_valoration"
+        style="@style/CouseItemLabel" />
+
+    <RatingBar
+        android:id="@+id/course_rating"
+        style="@style/CouseItemRatingBar" />
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="16dp"
+        android:id="@+id/course_mark"
+        style="@style/CourseItemMark" />
+</RelativeLayout>
