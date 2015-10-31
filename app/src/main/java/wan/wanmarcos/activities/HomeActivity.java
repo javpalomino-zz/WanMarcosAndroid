@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+        toShowEvents();
     }
 
     @Override
@@ -84,6 +85,21 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
     }
 
     @Override
+    public void toShowEvents() {
+        EventNewsFragment eventNewsFragment=new EventNewsFragment();
+        try {
+            FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.event_new_fragment,eventNewsFragment);
+            fragmentTransaction.addToBackStack("events");
+            fragmentTransaction.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public void toProfileTeacher(Teacher teacher) {
         TeacherProfileFragment profileFragment=new TeacherProfileFragment();
         try {
@@ -96,7 +112,6 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        addTeacherInformation(teacher);
 
     }
 
@@ -118,15 +133,15 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
 
     @Override
     public void addTeacherInformation(Teacher teacher) {
-        dataTeacher.putString("teachername",teacher.getName());
+        dataTeacher.putString("teachername", teacher.getName());
         dataTeacher.putString("facultyname",teacher.getFaculties());
-        dataTeacher.putString("imageurl",teacher.getImageUrl());
+        dataTeacher.putString("imageurl", teacher.getImageUrl());
     }
 
     @Override
     public void addCourseInformation(Course course) {
         dataTeacher.putString("coursename",course.getName());
-        dataTeacher.putFloat("courserating",course.getRating());
+        dataTeacher.putFloat("courserating", course.getRating());
     }
 
     @Override

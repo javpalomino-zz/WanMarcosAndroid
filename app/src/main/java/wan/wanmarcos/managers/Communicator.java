@@ -11,6 +11,7 @@ import wan.wanmarcos.models.Teacher;
 public interface Communicator {
     Bundle dataTeacher = new Bundle();
     void toListTeachers();
+    void toShowEvents();
     void toProfileTeacher(Teacher teacher);
     void toTeacherCourseInformation(Course course);
     void addTeacherInformation(Teacher teacher);
