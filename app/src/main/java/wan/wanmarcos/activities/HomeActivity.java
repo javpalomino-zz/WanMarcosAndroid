@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void Contactanos(){
         Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        this.finish();
         startActivity(contactanos_activity);
     }
 }

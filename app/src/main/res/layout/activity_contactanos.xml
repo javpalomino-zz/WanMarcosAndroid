@@ -29,7 +29,6 @@
         android:singleLine="false"
         android:gravity="top"
         android:lines="20"
-        android:
     />
     <RelativeLayout
         android:id="@+id/InnerRelativeLayout"
