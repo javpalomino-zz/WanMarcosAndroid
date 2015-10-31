@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="300dp"
+    android:layout_height="120dp">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/userImage"
+        style="@style/ValuationItemImage" />
+
+    <TextView
+        android:text="@string/course_valoration"
+        android:id="@+id/textView2"
+        style="@style/ValuationTextItem" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userRate"
+        style="@style/ValuationRatingItem" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userComments"
+        style="@style/ValuationLabelItem" />
+
+</RelativeLayout>
