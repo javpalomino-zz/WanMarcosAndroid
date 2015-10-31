@@ -18,7 +18,7 @@
     <string name="lastNamePlaceholder">Zerga Morales</string>
     <string name="emailPlaceholder">username@domain.com</string>
     <string name="passwordPlaceholder">**************</string>
-    <string name="contac_messagueplaceholder">¿Tiene algo que decirnos?</string>
+    <string name="contac_messagueplaceholder">Solo dilo</string>
 
     <!--Buttons-->
     <string name="btnRegister">SignUp</string>

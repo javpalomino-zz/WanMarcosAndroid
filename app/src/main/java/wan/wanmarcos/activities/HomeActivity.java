@@ -162,6 +162,14 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
             return null;
         }
     }
+
+    @Override
+    public void toContactanosActivity() {
+        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        this.finish();
+        startActivity(contactanos_activity);
+    }
+
     private void logout(){
         SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =  preferences.edit();

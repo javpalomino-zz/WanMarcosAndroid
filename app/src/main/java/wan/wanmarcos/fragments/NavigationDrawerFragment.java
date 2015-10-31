@@ -77,8 +77,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     public static List<NavDrawerLink> getData()
     {
         List<NavDrawerLink> data=new ArrayList<>();
-        int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
-        String[] titles={"Noticias","Docentes","Lugares","Eventos"};
+        int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+        String[] titles={"Noticias","Docentes","Lugares","Eventos","Mi Perfil","Contáctanos"};
         for (int i=0;i<icons.length && i<titles.length;i++)
         {
             NavDrawerLink current = new NavDrawerLink();
@@ -156,6 +156,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                 Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
             case 3:
                 Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);break;
+            case 4: break;
+            case 5: ((Communicator)getActivity()).toContactanosActivity();break;
         }
 
     }

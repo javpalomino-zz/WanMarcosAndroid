@@ -48,4 +48,9 @@ public class Constants {
 
     public static final String PREFERENCES = "WanMarcos_preferences";
 
+    //MODALS
+    public static String MODAL_TITLE_CONTACTANOS = "Contáctanos";
+    public static String MODAL_MESSAGE_CONTACTANOS = "Gracias por darnos tu opinión";
+    public static String MODAL_BUTTON_DENADA = "De Nada";
+
 }

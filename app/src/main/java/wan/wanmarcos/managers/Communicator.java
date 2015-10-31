@@ -19,4 +19,5 @@ public interface Communicator {
     float getFloatInformation(String key);
     int getIntInformation(String key);
     String getStringInformation(String key);
+    void toContactanosActivity();
 }
