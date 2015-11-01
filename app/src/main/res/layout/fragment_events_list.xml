@@ -7,8 +7,6 @@
     android:background="#FFFF"
     tools:context="wan.wanmarcos.fragments.EventViewListFragment">
 
-
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/eventList"
         android:layout_width="match_parent"
@@ -25,9 +23,7 @@
         android:layout_alignParentBottom="true"
         android:text="Sugiérenos un Evento"
         android:textAllCaps="true"
-        android:hapticFeedbackEnabled="true"
         android:background="@color/primaryNewsColor"
         android:textColor="@android:color/black"/>
-
 
 </RelativeLayout>

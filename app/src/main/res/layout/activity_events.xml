@@ -10,7 +10,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        tools:context="wan.wanmarcos.activities.EventsActivity">
+        tools:context="wan.wanmarcos.activities.EventsActivity"
+        android:id="@+id/eventsContainer">
 
         <include
             android:id="@+id/app_bar"
@@ -21,7 +22,8 @@
             android:name="wan.wanmarcos.fragments.EventViewListFragment"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/app_bar" />
+            android:layout_below="@id/app_bar"
+            tools:layout="@layout/fragment_events_form" />
 
     </RelativeLayout>
 
@@ -33,5 +35,6 @@
         android:layout_gravity="start"
         app:layout="@layout/fragment_navigation_drawer"
         tools:layout="@layout/fragment_navigation_drawer" />
+
 </android.support.v4.widget.DrawerLayout>
 
