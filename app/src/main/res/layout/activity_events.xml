@@ -10,20 +10,27 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        tools:context="wan.wanmarcos.activities.EventsActivity"
-        android:id="@+id/eventsContainer">
+        tools:context="wan.wanmarcos.activities.EventsActivity">
 
         <include
             android:id="@+id/app_bar"
             layout="@layout/app_bar"/>
 
-        <fragment
-            android:id="@+id/event_list_fragment"
-            android:name="wan.wanmarcos.fragments.EventViewListFragment"
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/app_bar"
-            tools:layout="@layout/fragment_events_form" />
+            android:id="@+id/eventsContainer">
+
+            <fragment
+                android:id="@+id/event_list_fragment"
+                android:name="wan.wanmarcos.fragments.EventViewListFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_events_list" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 

@@ -7,23 +7,30 @@
     android:background="#FFFF"
     tools:context="wan.wanmarcos.fragments.EventViewListFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/eventList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/newEventButton"
-        android:scrollbars="vertical"
-        >
-    </android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:id="@+id/form_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/newEventButton"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:text="Sugiérenos un Evento"
-        android:textAllCaps="true"
-        android:background="@color/primaryNewsColor"
-        android:textColor="@android:color/black"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/eventList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/newEventButton"
+            android:scrollbars="vertical"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/newEventButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:text="Sugiérenos un Evento"
+            android:textAllCaps="true"
+            android:background="@color/primaryNewsColor"
+            android:textColor="@android:color/black"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

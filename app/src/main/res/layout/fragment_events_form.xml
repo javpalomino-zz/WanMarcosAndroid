@@ -6,130 +6,160 @@ android:layout_height="match_parent"
 android:background="#FFFF"
 tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
 
-            <TextView
-                android:id="@+id/eventFormHeader"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:text="Cuéntanos acerca del evento"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
 
-            <EditText
-                android:id="@+id/eventFormName"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:hint="¿Cómo se llama el evento?"
-                android:layout_below="@+id/eventFormHeader" />
+        <Button
+            android:id="@+id/eventFormSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:text="¡¡¡¡Sugiérelo!!!!"
+            android:textAllCaps="true"
+            android:background="@color/primaryNewsColor"
+            android:textColor="@android:color/black"/>
 
-            <AutoCompleteTextView
-                android:id="@+id/eventFormPlace"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:hint="¿Dónde es el evento"
-                android:layout_below="@+id/eventFormName" />
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/eventFormSubmit">
 
-            <AutoCompleteTextView
-                android:id="@+id/eventFormCategory"
+            <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:hint="Dale una categoría al evento"
-                android:layout_below="@+id/eventFormPlace" />
+                android:layout_height="wrap_content" >
 
-            <DatePicker
-                android:id="@+id/eventFormStartDate"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_below="@id/eventFormCategory"
-                />
-            <TimePicker
-                android:id="@+id/eventFormStartTime"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_below="@id/eventFormStartDate"/>
-            <DatePicker
-                android:id="@+id/eventFormEndDate"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_below="@id/eventFormStartTime"
-                />
-            <TimePicker
-                android:id="@+id/eventFormEndTime"
-                android:layout_width="fill_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_below="@id/eventFormEndDate"/>
+                <TextView
+                    android:id="@+id/eventFormHeader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Cuéntanos acerca del evento"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    />
 
-            <EditText
-                android:id="@+id/eventFormLink"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:hint="Link de Referencia"
-                android:layout_below="@+id/eventFormEndTime" />
+                <EditText
+                    android:id="@+id/eventFormName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="¿Cómo se llama el evento?"
+                    android:layout_below="@+id/eventFormHeader" />
 
-            <Button
-                android:id="@+id/eventFormImage"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:text="Danos una imagen de referencia"
-                android:layout_below="@+id/eventFormLink" />
+                <AutoCompleteTextView
+                    android:id="@+id/eventFormPlace"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="¿Dónde es el evento"
+                    android:layout_below="@+id/eventFormName" />
 
-            <Button
-                android:id="@+id/eventFormSchedule"
-                android:layout_width="fill_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:text="Envianos el cronograma del evento"
-                android:layout_below="@+id/eventFormImage" />
+                <AutoCompleteTextView
+                    android:id="@+id/eventFormCategory"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="Dale una categoría al evento"
+                    android:layout_below="@+id/eventFormPlace" />
 
-            <EditText
-                android:id="@+id/eventFormDescription"
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:hint="Cuéntanos un poco acerca del Evento"
-                android:gravity="top"
-                android:layout_below="@+id/eventFormSchedule" />
+                <Button
+                    android:id="@+id/eventFormStartDateButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Dinos la Fecha de Inicio del Evento"
+                    android:layout_below="@+id/eventFormCategory" />
+                <Button
+                    android:id="@+id/eventFormStartTimeButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Dinos la Hora de Inicio del Evento"
+                    android:layout_below="@+id/eventFormStartDateButton" />
+                <Button
+                    android:id="@+id/eventFormEndDateButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Dinos la Fecha de Fin del Evento"
+                    android:layout_below="@+id/eventFormStartTimeButton" />
+                <Button
+                    android:id="@+id/eventFormEndTimeButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Dinos la Hora de Fin del Evento"
+                    android:layout_below="@+id/eventFormEndDateButton" />
 
-    <Button
-    android:id="@+id/eventFormSubmit"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_alignParentBottom="true"
-    android:text="¡¡¡¡Sugiérelo!!!!"/>
+
+
+                <EditText
+                    android:id="@+id/eventFormLink"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="Link de Referencia"
+                    android:layout_below="@+id/eventFormEndTimeButton" />
+
+                <Button
+                    android:id="@+id/eventFormImage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Danos una imagen de referencia"
+                    android:layout_below="@+id/eventFormLink" />
+
+                <Button
+                    android:id="@+id/eventFormSchedule"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="Envianos el cronograma del evento"
+                    android:layout_below="@+id/eventFormImage" />
+
+                <EditText
+                    android:id="@+id/eventFormDescription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="Cuéntanos un poco acerca del Evento"
+                    android:gravity="top"
+                    android:layout_below="@+id/eventFormSchedule" />
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+
+
+    </RelativeLayout>
+
 
 </RelativeLayout>
