@@ -1,35 +1,21 @@
 package wan.wanmarcos.activities;
 
-
-import android.app.FragmentTransaction;
-
-
-import android.support.v4.widget.DrawerLayout;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.R;
-
-import wan.wanmarcos.fragments.EventNewsFragment;
-import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
-import wan.wanmarcos.fragments.TeacherListFragment;
-import wan.wanmarcos.fragments.TeacherProfileFragment;
-import wan.wanmarcos.utils.Redirection.Redirect;
-import wan.wanmarcos.utils.Redirection.Redirection;
-import wan.wanmarcos.models.Course;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
-import wan.wanmarcos.models.Teacher;
+import wan.wanmarcos.utils.Redirection.Redirect;
 
-public class HomeActivity extends AppCompatActivity {
+public class TeacherActivity extends AppCompatActivity {
+
     private Redirect redirect;
     private Toolbar toolbar;
     NavigationDrawerFragment drawerFragment;
@@ -37,13 +23,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Redirect.getSingletonInstance().setActivity(this);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_teacher);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        //toShowEvents();
+        Redirect.getSingletonInstance().changeFragment(null);
     }
 
     @Override
@@ -68,15 +54,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    private void logout(){
-        SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =  preferences.edit();
-        editor.clear();
-        editor.commit();
-        Intent login_activity = new Intent(this,MainActivity.class);
-        finish();
-        startActivity(login_activity);
     }
 
 }

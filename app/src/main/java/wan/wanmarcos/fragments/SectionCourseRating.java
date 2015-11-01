@@ -1,24 +1,19 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.utils.Constants;
@@ -27,7 +22,7 @@ import wan.wanmarcos.views.adapters.RatingListAdapter;
 
 public class SectionCourseRating extends Fragment implements ItemAdapterListener<Rating> {
     private RatingListAdapter ratingListAdapter;
-    private Communicator communicator;
+    private Redirection redirection;
     private RecyclerView recyclerView;
     public SectionCourseRating(){
     }
@@ -50,7 +45,7 @@ public class SectionCourseRating extends Fragment implements ItemAdapterListener
     }
 
     public void setUpElements(View view){
-        communicator=(Communicator)getActivity();
+        redirection =(Redirection)getActivity();
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
         ratingListAdapter=new RatingListAdapter(getActivity(),getData());
         ratingListAdapter.setListener(this);

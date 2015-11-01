@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.views.adapters.TeacherListAdapter;
+import wan.wanmarcos.views.widgets.RecyclerViewDivider;
 
 public class SectionListTeachers extends Fragment implements ItemAdapterListener<Teacher> {
 
-    private Communicator communicator;
     private RecyclerView recyclerView;
     private TeacherListAdapter teacherListAdapter;
 
@@ -48,11 +48,11 @@ public class SectionListTeachers extends Fragment implements ItemAdapterListener
     }
 
     public void setUpElements(View view){
-        communicator=(Communicator)getActivity();
         recyclerView=(RecyclerView)view.findViewById(R.id.generic_listView);
         teacherListAdapter=new TeacherListAdapter(getActivity(),getData());
         teacherListAdapter.setListener(this);
         recyclerView.setAdapter(teacherListAdapter);
+        recyclerView.addItemDecoration(new RecyclerViewDivider(getActivity()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
     public void addListeners(){
@@ -75,6 +75,6 @@ public class SectionListTeachers extends Fragment implements ItemAdapterListener
 
     @Override
     public void itemClicked(View view, Teacher object) {
-        communicator.toProfileTeacher(object);
+        Redirect.getSingletonInstance().changeFragment(object);
     }
 }

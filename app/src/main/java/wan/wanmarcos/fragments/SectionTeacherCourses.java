@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.Constants;
@@ -21,7 +21,7 @@ import wan.wanmarcos.views.adapters.CourseListAdapter;
 
 public class SectionTeacherCourses extends Fragment implements ItemAdapterListener<Course>{
 
-    private Communicator communicator;
+    private Redirection redirection;
     private RecyclerView recyclerView;
     private CourseListAdapter courseListAdapter;
 
@@ -51,7 +51,7 @@ public class SectionTeacherCourses extends Fragment implements ItemAdapterListen
     @Override
     public void itemClicked(View view, Course object) {
         Log.d("d","Hola");
-        communicator.toTeacherCourseInformation(object);
+        //redirection.toTeacherCourseInformation(object);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class SectionTeacherCourses extends Fragment implements ItemAdapterListen
     }
 
     public void setUpElements(View view) {
-        communicator=(Communicator) getActivity();
+        redirection =(Redirection) getActivity();
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
         courseListAdapter=new CourseListAdapter(getActivity(),getData());
         courseListAdapter.setListener(this);

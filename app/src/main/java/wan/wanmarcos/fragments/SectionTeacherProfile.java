@@ -1,8 +1,5 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
@@ -14,13 +11,11 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
-import wan.wanmarcos.models.Teacher;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.views.widgets.CircleTransform;
 
 public class SectionTeacherProfile extends Fragment {
-    private Communicator communicator;
+    private Redirection redirection;
 
     public SectionTeacherProfile(){
 
@@ -41,9 +36,9 @@ public class SectionTeacherProfile extends Fragment {
         return view;
     }
     public void setUpElements(View view){
-        communicator=(Communicator)getActivity();
+        redirection =(Redirection)getActivity();
         ImageView imageView=(ImageView) view.findViewById(R.id.teacher_image);
-        Picasso.with(view.getContext()).load(communicator.getStringInformation("imageurl")).into(imageView);
+        //Picasso.with(view.getContext()).load(redirection.getStringInformation("imageurl")).into(imageView);
     }
 
     @Override

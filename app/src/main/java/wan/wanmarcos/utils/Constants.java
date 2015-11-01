@@ -4,11 +4,18 @@ import android.content.Context;
 import android.view.View;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.activities.TeacherActivity;
 
 /**
  * Created by javier on 25/09/15.
  */
 public class Constants {
+    //ACTIVITIES
+    public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
+    public static final String HOME_ACTIVITY= HomeActivity.class.getName();
+
+
     public static final String WANMARCOS_BASE_URL = "http://52.89.124.0";
     public static final String WANMARCOS_API_VERSION = "v1";
     public static final String WANMARCOS_API_BASE_URL = WANMARCOS_BASE_URL+"/api/"+WANMARCOS_API_VERSION+"/";

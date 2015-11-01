@@ -18,7 +18,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.models.NavDrawerLink;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -39,7 +42,6 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     private DrawerLayout mDrawerLayout;
 
     private NavDrawerAdapter adapter;
-
     private View containerView;
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -147,16 +149,21 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
 
     @Override
     public void itemClicked(View view, int position) {
+
+        String activityExecute="";
+
         switch (position){
             case 0 :
                 Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);break;
             case 1:
-                ((Communicator)getActivity()).toListTeachers();break;
+                activityExecute=Constants.TEACHER_ACTIVITY;break;
+
             case 2:
                 Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
             case 3:
                 Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);break;
         }
+        Redirect.getSingletonInstance().changeActivity(activityExecute);
 
     }
 }

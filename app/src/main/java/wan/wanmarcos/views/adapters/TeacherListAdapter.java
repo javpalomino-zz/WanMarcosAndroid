@@ -62,11 +62,11 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
         public TeacherHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            teacherName= (TextView) itemView.findViewById(R.id.teacher_name);
-            teacherRating=(RatingBar)itemView.findViewById(R.id.teacher_rating);
-            teacherImage=(ImageView)itemView.findViewById(R.id.teacher_image);
-            teacherCourses=(TextView)itemView.findViewById(R.id.teacher_description);
-            teacherAssumptions=(TextView)itemView.findViewById(R.id.teacher_faculty);
+            teacherName= (TextView) itemView.findViewById(R.id.teacher_item_name);
+            teacherRating=(RatingBar)itemView.findViewById(R.id.teacher_item_ratingbar);
+            teacherImage=(ImageView)itemView.findViewById(R.id.teacher_item_picture);
+            teacherCourses=(TextView)itemView.findViewById(R.id.teacher_item_courses);
+            teacherAssumptions=(TextView)itemView.findViewById(R.id.teacher_item_faculties);
             vista=itemView;
         }
 
@@ -76,13 +76,14 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
             teacherName.setText(elements.getName());
             teacherRating.setRating(elements.getRaiting());
 
-            teacherCourses.setText(Constants.tripleTab()+ elements.getFaculties());
-            teacherAssumptions.setText(Constants.doubleTab()+elements.getDescription());
+            teacherCourses.setText(vista.getContext().getString(R.string.teacher_courses)+ elements.getFaculties());
+            teacherAssumptions.setText(vista.getContext().getString(R.string.teacher_faculties)+elements.getDescription());
             Picasso.with(vista.getContext()).load(elements.getImageUrl()).transform(new CircleTransform()).into(teacherImage);
         }
 
         @Override
         public void onClick(View v) {
+
             itemAdapterListener.itemClicked(v,current);
         }
     }

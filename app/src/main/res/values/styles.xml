@@ -25,4 +25,38 @@
         <item name="colorAccent">@color/accentNewsColor</item>
     </style>
 
+    <style name="TeacherItemImage">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:contentDescription">:o</item>
+    </style>
+
+    <style name="TeacherItemName">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_toRightOf">@+id/teacher_item_picture</item>
+        <item name="android:layout_alignTop">@+id/teacher_item_picture</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <style name="TeacherItemCourses">
+        <item name="android:layout_below">@+id/teacher_item_name</item>
+        <item name="android:layout_toRightOf">@+id/teacher_item_picture</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+    <style name="TeacherItemFaculties">
+        <item name="android:layout_below">@+id/teacher_item_courses</item>
+        <item name="android:layout_toRightOf">@+id/teacher_item_picture</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

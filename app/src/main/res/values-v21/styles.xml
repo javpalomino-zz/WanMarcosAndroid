@@ -1,1 +1,10 @@
-<resources></resources>
+<resources>
+    <!--TEACHERITEM-->
+    <style name="TeacherItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:numStars">5</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_below">@+id/teacher_item_picture</item>
+        <item name="android:foregroundGravity">center</item>
+    </style>
+    <!--TEACHERITEM-->
+</resources>

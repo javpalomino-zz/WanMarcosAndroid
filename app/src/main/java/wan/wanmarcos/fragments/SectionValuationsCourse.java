@@ -8,23 +8,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.managers.ItemAdapterListener;
-import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.views.adapters.CourseListAdapter;
 import wan.wanmarcos.views.adapters.ValuationListAdapter;
 
 
 public class SectionValuationsCourse extends Fragment implements ItemAdapterListener<Valuation> {
-    private Communicator communicator;
+    private Redirection redirection;
     private RecyclerView recyclerView;
     private ValuationListAdapter valuationListAdapter;
     @Override
@@ -49,7 +46,7 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     }
 
     public void setUpElements(View view){
-        communicator=(Communicator) getActivity();
+        redirection =(Redirection) getActivity();
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
         valuationListAdapter=new ValuationListAdapter(getActivity(),getData());
         valuationListAdapter.setListener(this);
