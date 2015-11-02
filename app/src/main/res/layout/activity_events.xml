@@ -16,20 +16,11 @@
             android:id="@+id/app_bar"
             layout="@layout/app_bar"/>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/app_bar"
-            android:id="@+id/eventsContainer">
-
-            <fragment
-                android:id="@+id/event_list_fragment"
-                android:name="wan.wanmarcos.fragments.EventViewListFragment"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                tools:layout="@layout/fragment_events_list" />
-
-        </RelativeLayout>
+            android:id="@+id/eventsContainer"/>
 
 
     </RelativeLayout>

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,8 +43,10 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
         Event current = data.get(position);
         holder.title.setText(current.getName());
         holder.img.setImageResource(current.getIconId());
-        holder.dateAndTime.setText(current.getStartDate()+" "+current.getStartTime());
+        String startDateAndTime = current.CalendarToString(current.getStartDateTime());
+        holder.dateAndTime.setText(startDateAndTime);
     }
+
     public void setClickListener(ClickListener clickListener){
 
         this.clickListener=clickListener;
@@ -80,6 +83,11 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
             }
         }
 
+    }
+
+    public Event getItemAtPos(int pos)
+    {
+        return data.get(pos);
     }
 
 

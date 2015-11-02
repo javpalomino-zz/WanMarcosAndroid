@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="wan.wanmarcos.fragments.EventPageFragment">
+
+            <ImageView
+                android:id="@+id/eventPageImage"
+                android:layout_width="fill_parent"
+                android:layout_height="230dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/black"
+                android:src="@mipmap/wm17">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/eventPageReferencePlace"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="215dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:paddingLeft="20dp"
+                android:gravity="left"
+                android:text="Cerca A : Fisi"
+                android:textColor="@android:color/white"
+                android:textStyle="bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/eventPageStartLabel"
+                android:layout_below="@id/eventPageImage"
+                android:text="Inicio"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"/>
+                >
+            <TextView
+                android:id="@+id/eventPageStartDateAndTime"
+                android:layout_below="@id/eventPageImage"
+                android:layout_toRightOf="@id/eventPageStartLabel"
+                android:layout_toEndOf="@id/eventPageStartLabel"
+                android:text="Junio 15 , 2015 18:00 hrs."
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/eventPageEndLabel"
+                android:layout_below="@id/eventPageStartLabel"
+                android:text="Fin"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"/>
+            >
+            <TextView
+                android:id="@+id/eventPageEndDateAndTime"
+                android:layout_below="@id/eventPageStartDateAndTime"
+                android:layout_toRightOf="@id/eventPageStartLabel"
+                android:layout_toEndOf="@id/eventPageStartLabel"
+                android:text="Junio 15 , 2015 18:00 hrs."
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/eventPageDescription"
+                android:layout_below="@id/eventPageEndDateAndTime"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Descripcion"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/eventPageScheduleButton"
+                android:layout_below="@id/eventPageDescription"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="Descargar Cronograma del Evento"
+                android:textAllCaps="true"
+                />
 
 </RelativeLayout>

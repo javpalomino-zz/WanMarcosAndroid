@@ -1,21 +1,17 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import wan.wanmarcos.R;
@@ -32,8 +28,6 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
     private EventListAdapter eventListAdapter;
 
     private Button btnNewEvent;
-
-    private FragmentActivity myContext;
 
     public  EventViewListFragment(){
 
@@ -70,6 +64,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         addNewEventListener();
     }
 
+
+
     private void addNewEventListener()
     {
         btnNewEvent.setOnClickListener(new View.OnClickListener(){
@@ -87,6 +83,14 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
         int[] icons = {R.mipmap.wm17,R.mipmap.royalrumble,R.mipmap.summerslam,R.mipmap.survivorseries};
         String[] titles={"Wrestlemania","Royal Rumble","SummerSlam","Survivor Series"};
+        String[] description={"The showcase of inmortals","30 enter , just ONE leaves","The biggest Party Of the Summer","Who will be the soul survivir?"};
+        String[] places={"Skydome" , "Thunderdome "," Barclays Center","Madison Square Garden"};
+        int[] startYear={115,115,155,115};
+        int[] startMonth={3,0,7,10};
+        int[] startDay={1,25,23,22};
+        int[] startHour={17,18,18,18};
+        int[] startMinute={0,0,0,0};
+        int[] startSecond={0,0,0,0};
         String[] startDates={"April 1st , 2015" , "January 25th , 2015" , "August 23rd , 2015" , "November 22nd , 2015"};
         String[] startTimes={"6:00 pm","7:00 pm","7:00 pm","7:00 pm"};
 
@@ -95,8 +99,11 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
             Event current = new Event();
             current.setIconId(icons[i]);
             current.setName(titles[i]);
-            current.setStartDate(startDates[i]);
-            current.setStartTime(startTimes[i]);
+            current.setDescription(description[i]);
+            current.setReferencePlace(places[i]);
+            Calendar cal = new GregorianCalendar();
+            cal.set(startYear[i], startMonth[i], startDay[i], startHour[i], startMinute[i], startSecond[i]);
+            current.setStartDateTime(cal);
             data.add(current);
         }
         return data;
@@ -104,12 +111,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void itemClicked(View view, int position) {
-        switch (position){
-            case 0 :break;
-            case 1:break;
-            case 2:break;
-            case 3:break;
-        }
+        EventsActivity.getInstance().toEventPage(eventListAdapter.getItemAtPos(position));
 
     }
 

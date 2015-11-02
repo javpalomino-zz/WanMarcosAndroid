@@ -8,9 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.fragments.EventPageFragment;
+import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
-import wan.wanmarcos.fragments.RegisterFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
+import wan.wanmarcos.models.Event;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class EventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_events);
         instance=this;
         setUpNavDrawer();
+        addListFragment();
     }
 
     @Override
@@ -48,6 +51,21 @@ public class EventsActivity extends AppCompatActivity {
 
     }
 
+    private void addListFragment()
+    {
+        EventViewListFragment eventViewListFragment = new EventViewListFragment();
+        try {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.add(R.id.eventsContainer, eventViewListFragment);
+            transaction.commit();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void toNewEventForm()
     {
         SuggestedEventFragment suggestedEventFragment = new SuggestedEventFragment();
@@ -63,6 +81,26 @@ public class EventsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void toEventPage(Event selectedEvent)
+    {
+        EventPageFragment eventPageFragment = new EventPageFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("selectedEvent", selectedEvent);
+        eventPageFragment.setArguments(bundle);
+
+        try {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.replace(R.id.eventsContainer, eventPageFragment);
+            transaction.addToBackStack("eventViewListFragment");
+            transaction.commit();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static EventsActivity getInstance() {
