@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context="wan.wanmarcos.fragments.EventPageFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/eventPageImage"
                 android:layout_width="fill_parent"
@@ -39,7 +46,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"/>
-                >
+            >
             <TextView
                 android:id="@+id/eventPageStartDateAndTime"
                 android:layout_below="@id/eventPageImage"
@@ -81,9 +88,28 @@
                 android:text="Descripcion"
                 android:gravity="center"/>
 
+            <TextView
+                android:id="@+id/eventPageLinkLabel"
+                android:layout_below="@id/eventPageDescription"
+                android:text="Link"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"/>
+            >
+            <TextView
+                android:id="@+id/evnetPageLinkText"
+                android:layout_below="@id/eventPageDescription"
+                android:layout_toRightOf="@id/eventPageLinkLabel"
+                android:layout_toEndOf="@id/eventPageLinkLabel"
+                android:text="www.testpage.com"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"/>
             <Button
                 android:id="@+id/eventPageScheduleButton"
-                android:layout_below="@id/eventPageDescription"
+                android:layout_below="@id/eventPageLinkLabel"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
@@ -93,5 +119,10 @@
                 android:text="Descargar Cronograma del Evento"
                 android:textAllCaps="true"
                 />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
 
 </RelativeLayout>

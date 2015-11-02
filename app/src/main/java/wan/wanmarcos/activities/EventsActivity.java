@@ -36,7 +36,7 @@ public class EventsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         createdMenu=menu;
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+        //getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 

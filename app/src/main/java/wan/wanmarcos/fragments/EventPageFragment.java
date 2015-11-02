@@ -71,6 +71,7 @@ public class EventPageFragment extends Fragment{
         txtStart.setText(selectedEvent.CalendarToString(selectedEvent.getStartDateTime()));
         txtEnd.setText(selectedEvent.CalendarToString(selectedEvent.getFinishDateTime()));
         txtDescription.setText(selectedEvent.getDescription());
+        getActivity().setTitle(selectedEvent.getName());
     }
 
 

@@ -74,19 +74,45 @@ public class Event implements Parcelable{
         System.out.println("WRITING REFERENCE PLACE");
         dest.writeString(referencePlace);
         System.out.println("WRITING START");
-        dest.writeInt(startDateTime.get(Calendar.YEAR));
-        dest.writeInt(startDateTime.get(Calendar.MONTH));
-        dest.writeInt(startDateTime.get(Calendar.DAY_OF_MONTH));
-        dest.writeInt(startDateTime.get(Calendar.HOUR_OF_DAY));
-        dest.writeInt(startDateTime.get(Calendar.MINUTE));
-        dest.writeInt(startDateTime.get(Calendar.SECOND));
+        if(startDateTime!=null)
+        {
+            dest.writeInt(startDateTime.get(Calendar.YEAR));
+            dest.writeInt(startDateTime.get(Calendar.MONTH));
+            dest.writeInt(startDateTime.get(Calendar.DAY_OF_MONTH));
+            dest.writeInt(startDateTime.get(Calendar.HOUR_OF_DAY));
+            dest.writeInt(startDateTime.get(Calendar.MINUTE));
+            dest.writeInt(startDateTime.get(Calendar.SECOND));
+        }
+        else
+        {
+            dest.writeInt(0);
+            dest.writeInt(0);
+            dest.writeInt(1);
+            dest.writeInt(0);
+            dest.writeInt(0);
+            dest.writeInt(0);
+        }
+
         System.out.println("WRITING End");
-        dest.writeInt(finishDateTime.get(Calendar.YEAR));
-        dest.writeInt(finishDateTime.get(Calendar.MONTH));
-        dest.writeInt(finishDateTime.get(Calendar.DAY_OF_MONTH));
-        dest.writeInt(finishDateTime.get(Calendar.HOUR_OF_DAY));
-        dest.writeInt(finishDateTime.get(Calendar.MINUTE));
-        dest.writeInt(finishDateTime.get(Calendar.SECOND));
+        if(finishDateTime!=null)
+        {
+            dest.writeInt(finishDateTime.get(Calendar.YEAR));
+            dest.writeInt(finishDateTime.get(Calendar.MONTH));
+            dest.writeInt(finishDateTime.get(Calendar.DAY_OF_MONTH));
+            dest.writeInt(finishDateTime.get(Calendar.HOUR_OF_DAY));
+            dest.writeInt(finishDateTime.get(Calendar.MINUTE));
+            dest.writeInt(finishDateTime.get(Calendar.SECOND));
+        }
+        else
+        {
+            dest.writeInt(0);
+            dest.writeInt(0);
+            dest.writeInt(1);
+            dest.writeInt(0);
+            dest.writeInt(0);
+            dest.writeInt(0);
+        }
+
         System.out.println("WRITING description");
         dest.writeString(description);
         System.out.println("writing icon id");
