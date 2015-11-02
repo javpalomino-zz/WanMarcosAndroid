@@ -11,11 +11,11 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.utils.Constants;
 
 public class SectionTeacherProfile extends Fragment {
-    private Redirection redirection;
 
     public SectionTeacherProfile(){
 
@@ -36,9 +36,8 @@ public class SectionTeacherProfile extends Fragment {
         return view;
     }
     public void setUpElements(View view){
-        redirection =(Redirection)getActivity();
         ImageView imageView=(ImageView) view.findViewById(R.id.teacher_image);
-        //Picasso.with(view.getContext()).load(redirection.getStringInformation("imageurl")).into(imageView);
+        Picasso.with(view.getContext()).load(Redirect.getSingletonInstance().getInformation("teacherimage")).into(imageView);
     }
 
     @Override

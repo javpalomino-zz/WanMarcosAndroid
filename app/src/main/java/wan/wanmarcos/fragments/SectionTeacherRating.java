@@ -21,7 +21,6 @@ import wan.wanmarcos.views.adapters.RatingListAdapter;
 
 
 public class SectionTeacherRating extends Fragment implements ItemAdapterListener {
-    private Redirection redirection;
     private RecyclerView recyclerView;
     private RatingListAdapter ratingListAdapter;
 
@@ -46,7 +45,6 @@ public class SectionTeacherRating extends Fragment implements ItemAdapterListene
     }
 
     public void setUpElements(View view){
-        redirection =(Redirection) getActivity();
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
         ratingListAdapter=new RatingListAdapter(getActivity(),getData());
         ratingListAdapter.setListener(this);

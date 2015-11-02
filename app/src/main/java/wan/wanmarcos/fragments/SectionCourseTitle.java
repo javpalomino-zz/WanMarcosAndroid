@@ -12,7 +12,6 @@ import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.utils.Constants;
 
 public class SectionCourseTitle extends Fragment {
-    private Redirection redirection;
     public SectionCourseTitle(){
     }
 
@@ -29,7 +28,6 @@ public class SectionCourseTitle extends Fragment {
         return view;
     }
     public void setUpElements(View view){
-        redirection =(Redirection)getActivity();
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

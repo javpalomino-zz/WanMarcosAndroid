@@ -1,11 +1,14 @@
 package wan.wanmarcos.activities;
 
+import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +36,12 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        Redirect.getSingletonInstance().updateActivityStack();
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_home, menu);
@@ -55,5 +64,4 @@ public class TeacherActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

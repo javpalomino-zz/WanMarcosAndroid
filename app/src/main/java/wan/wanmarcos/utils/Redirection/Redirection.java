@@ -12,6 +12,7 @@ public interface Redirection {
     void changeActivity(String tag,Object data);
     void changeActivity(String tag);
     void changeFragment(Object data);
+    String getInformation(String key);
     /*void toListTeachers();
     void toShowEvents();
     void toProfileTeacher(Teacher teacher);

@@ -21,7 +21,6 @@ import wan.wanmarcos.views.adapters.ValuationListAdapter;
 
 
 public class SectionValuationsCourse extends Fragment implements ItemAdapterListener<Valuation> {
-    private Redirection redirection;
     private RecyclerView recyclerView;
     private ValuationListAdapter valuationListAdapter;
     @Override
@@ -46,7 +45,6 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     }
 
     public void setUpElements(View view){
-        redirection =(Redirection) getActivity();
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
         valuationListAdapter=new ValuationListAdapter(getActivity(),getData());
         valuationListAdapter.setListener(this);

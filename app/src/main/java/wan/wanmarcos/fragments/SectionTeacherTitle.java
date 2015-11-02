@@ -9,11 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.utils.Constants;
 
 public class SectionTeacherTitle extends Fragment {
-    private Redirection redirection;
 
     public SectionTeacherTitle() {
     }
@@ -32,7 +32,7 @@ public class SectionTeacherTitle extends Fragment {
     }
     public void setUpElements(View view){
         TextView textView=(TextView) view.findViewById(R.id.teacher_name);
-        //textView.setText(redirection.getStringInformation("teachername"));
+        textView.setText(Redirect.getSingletonInstance().getInformation("teachername"));
     }
 
 }
