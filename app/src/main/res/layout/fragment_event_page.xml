@@ -89,6 +89,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
+                android:elevation="2dp"
                 android:text="Descargar Cronograma del Evento"
                 android:textAllCaps="true"
                 />

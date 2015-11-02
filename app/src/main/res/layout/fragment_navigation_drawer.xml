@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#FFFF"
     android:orientation="vertical"
+    android:elevation="16dp"
     tools:context="wan.wanmarcos.fragments.NavigationDrawerFragment">
 
     <!-- TODO: Update blank fragment layout -->

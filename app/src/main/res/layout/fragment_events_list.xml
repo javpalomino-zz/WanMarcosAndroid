@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
     tools:context="wan.wanmarcos.fragments.EventViewListFragment">
 
     <RelativeLayout
@@ -28,6 +27,7 @@
             android:layout_alignParentBottom="true"
             android:text="Sugiérenos un Evento"
             android:textAllCaps="true"
+            android:elevation="6dp"
             android:background="@color/primaryNewsColor"
             android:textColor="@android:color/black"/>
 

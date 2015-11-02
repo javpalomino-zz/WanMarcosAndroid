@@ -17,6 +17,7 @@ tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
             android:layout_alignParentBottom="true"
             android:text="¡¡¡¡Sugiérelo!!!!"
             android:textAllCaps="true"
+            android:elevation="6dp"
             android:background="@color/primaryNewsColor"
             android:textColor="@android:color/black"/>
 

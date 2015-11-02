@@ -1,5 +1,7 @@
 package wan.wanmarcos.fragments;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -89,7 +91,7 @@ public class SuggestedEventFragment extends Fragment {
         btnDateStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDialog(v_Layout);
+                showStartDatePickerDialog(v_Layout);
             }
         });
     }
@@ -98,7 +100,7 @@ public class SuggestedEventFragment extends Fragment {
         btnDateEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDialog(v_Layout);
+                showEndDatePickerDialog(v_Layout);
             }
         });
     }
@@ -108,7 +110,7 @@ public class SuggestedEventFragment extends Fragment {
         btnTimeStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePickerDialog(v_Layout);
+                showStartTimePickerDialog(v_Layout);
             }
         });
     }
@@ -117,20 +119,68 @@ public class SuggestedEventFragment extends Fragment {
         btnTimeEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showTimePickerDialog(v_Layout);
+                showEndTimePickerDialog(v_Layout);
             }
         });
     }
 
 
-    public void showTimePickerDialog(View v) {
-        DialogFragment newFragment = new TimePickerFragment();
-        newFragment.show(getActivity().getSupportFragmentManager(), "timePicker");
+    public void showStartTimePickerDialog(View v) {
+        DialogFragment startTimeFragment = new TimePickerFragment(mStartTimeSetListener);
+        startTimeFragment.show(getActivity().getSupportFragmentManager(), "startTimePicker");
     }
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+
+    public void showStartDatePickerDialog(View v) {
+        DialogFragment startDateFragment = new DatePickerFragment(mStartDateSetListener);
+        startDateFragment.show(getActivity().getSupportFragmentManager(), "startDatePicker");
     }
+
+    public void showEndTimePickerDialog(View v) {
+        DialogFragment endTimeFragment = new TimePickerFragment(mEndTimeSetListener);
+        endTimeFragment.show(getActivity().getSupportFragmentManager(), "endTimePicker");
+    }
+
+    public void showEndDatePickerDialog(View v) {
+        DialogFragment endDateFragment = new DatePickerFragment(mEndDateSetListener);
+        endDateFragment.show(getActivity().getSupportFragmentManager(), "endDatePicker");
+    }
+
+    TimePickerDialog.OnTimeSetListener mStartTimeSetListener =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute)
+                {
+                    btnTimeStart.setText("Hora de Inicio : "+hourOfDay+":"+minute);
+                }
+            };
+
+
+    TimePickerDialog.OnTimeSetListener mEndTimeSetListener =
+            new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute)
+                {
+                    btnTimeEnd.setText("Hora de Fin : "+hourOfDay+":"+minute);
+                }
+            };
+
+    DatePickerDialog.OnDateSetListener mStartDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(android.widget.DatePicker view, int year, int month,int day)
+                {
+                    btnDateStart.setText("Fecha de Inicio : "+day+"/"+month+"/"+year);
+                }
+            };
+
+    DatePickerDialog.OnDateSetListener mEndDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(android.widget.DatePicker view, int year, int month,int day)
+                {
+                    btnDateEnd.setText("Fecha de Fin : "+day+"/"+month+"/"+year);
+                }
+            };
 
 
     private void addImageLoadListener()
