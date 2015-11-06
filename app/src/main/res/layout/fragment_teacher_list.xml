@@ -11,10 +11,11 @@
             android:iconifiedByDefault="false"
             android:id="@+id/searchViewTeachers">
     </SearchView>
-    <fragment
-            android:id="@+id/sub_fragment_teacher_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="wan.wanmarcos.fragments.SectionListTeachers"
-            tools:layout="@layout/generic_list" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sub_fragment_teacher_list"
+        tools:layout="@layout/generic_list" >
+    </FrameLayout>
+
 </LinearLayout>

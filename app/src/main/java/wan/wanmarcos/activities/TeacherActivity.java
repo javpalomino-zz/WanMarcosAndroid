@@ -2,13 +2,16 @@ package wan.wanmarcos.activities;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +22,6 @@ import wan.wanmarcos.utils.Redirection.Redirect;
 
 public class TeacherActivity extends AppCompatActivity {
 
-    private Redirect redirect;
     private Toolbar toolbar;
     NavigationDrawerFragment drawerFragment;
     @Override
@@ -36,9 +38,13 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
-        Redirect.getSingletonInstance().updateActivityStack();
-        super.onBackPressed();
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            Redirect.getSingletonInstance().updateActivityStack();
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 
     @Override
@@ -59,7 +65,7 @@ public class TeacherActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_settings : return true;
-            case R.id.logout : ;//logout();
+            case R.id.logout : //logout();
         }
 
         return super.onOptionsItemSelected(item);

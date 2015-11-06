@@ -1,17 +1,22 @@
+
 package wan.wanmarcos.utils.Redirection;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.FrameLayout;
+
 import java.util.Stack;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.SectionListTeachers;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
@@ -24,6 +29,8 @@ import wan.wanmarcos.utils.Constants;
  */
 public class Redirect implements Redirection {
     private Stack<String> mActivityStack;
+    private int mFragmentStack;
+    private boolean firstAction;
     private Boolean firstConfiguration;
     private int screenOrientation;
     private static Redirect singletonObject;
@@ -32,13 +39,14 @@ public class Redirect implements Redirection {
     private final String EVT_ACTIVITY="EVENTOS";
     private Bundle mdata;
     private Object mLock;
-    private Activity mActivity;
+    private AppCompatActivity mActivity;
     private Redirect(){
         mdata=new Bundle();
         mLock=new Object();
         mActivity=null;
         firstConfiguration=true;
         mActivityStack=new Stack<String>();
+        mFragmentStack=0;
     }
 
     public static synchronized Redirect getSingletonInstance(){
@@ -47,12 +55,13 @@ public class Redirect implements Redirection {
         }
         return singletonObject;
     }
-    public void setActivity(Activity activity){
+    public void setActivity(AppCompatActivity activity){
         mActivityStack.add(activity.getClass().getName());
         mActivity=activity;
         if(firstConfiguration){
             screenOrientation=mActivity.getResources().getConfiguration().orientation-1;
             firstConfiguration=false;
+            firstAction=true;
         }
     }
     @Override
@@ -80,7 +89,6 @@ public class Redirect implements Redirection {
     }
     @Override
     public void changeActivity(String tag) {
-        Log.d("DEBUG", "Activity");
         if(mActivity!=null){
             if(!tag.equals(mActivityStack.peek())){
 
@@ -110,6 +118,7 @@ public class Redirect implements Redirection {
         if(screenOrientation==mActivity.getResources().getConfiguration().orientation-1){
             if(mActivityStack.peek().equals(DOC_ACTIVITY)){
                 changeTeacherFragments(data);
+                mFragmentStack++;
             }
         }
         else{
@@ -129,7 +138,6 @@ public class Redirect implements Redirection {
     }
 
     private void changeTeacherFragments(Object object){
-        Log.d("D","D");
         Fragment fragment=null;
         if(object instanceof Teacher){
             fragment=new TeacherProfileFragment();
@@ -140,13 +148,20 @@ public class Redirect implements Redirection {
         else{
             fragment=new TeacherListFragment();
         }
+
         tooglingFragments(fragment);
     }
     private void tooglingFragments(Fragment fragment){
         try{
-            FragmentTransaction fragmentTransaction=mActivity.getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.home_fragment,fragment);
-            fragmentTransaction.addToBackStack(null);
+            FragmentTransaction fragmentTransaction=mActivity.getSupportFragmentManager().beginTransaction();
+            if(!firstConfiguration){
+                fragmentTransaction.replace(R.id.home_fragment, fragment);
+            }
+            else{
+                fragmentTransaction.add(R.id.home_fragment, fragment);
+                firstConfiguration=false;
+            }
+            fragmentTransaction.addToBackStack(fragment.getClass().getName());
             fragmentTransaction.commit();
 
         }
@@ -155,9 +170,18 @@ public class Redirect implements Redirection {
         }
 
     }
+    public boolean getFirst(){
+        return firstAction;
+    }
     public void updateActivityStack(){
+        if(mFragmentStack==0){
+            mActivityStack.pop();
+            mActivity.moveTaskToBack(true);
+        }
+        else{
+            mFragmentStack--;
+        }
 
-        mActivityStack.pop();
     }
     /*
     @Override

@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     NavigationDrawerFragment drawerFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("DEBUGGG",this.getClass().getName());
         super.onCreate(savedInstanceState);
         Redirect.getSingletonInstance().setActivity(this);
         setContentView(R.layout.activity_home);
@@ -64,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_settings : return true;
-            case R.id.logout : ;//logout();
+            case R.id.logout : logout();break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -74,8 +75,8 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor =  preferences.edit();
         editor.clear();
         editor.commit();
-        Intent login_activity = new Intent(this,MainActivity.class);
-        finish();
+        Intent login_activity = new Intent(getApplicationContext(),MainActivity.class);
+        login_activity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(login_activity);
     }
 

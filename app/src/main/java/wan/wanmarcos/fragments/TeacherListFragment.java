@@ -1,16 +1,19 @@
 package wan.wanmarcos.fragments;
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.utils.Constants;
-
+import wan.wanmarcos.utils.Redirection.Redirect;
 
 
 public class TeacherListFragment extends Fragment {
@@ -25,8 +28,18 @@ public class TeacherListFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Toast.makeText(getActivity(),Constants.DEVICE_DENSITY+"Density,"+Constants.DEVICE_HEIGHT2+",HEIGHT"+Constants.DEVICE_WIDTH2+",WIDTH",Toast.LENGTH_LONG).show();
-        return inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
+        View view=inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
+        FrameLayout childFragContainer = (FrameLayout) view.findViewById(R.id.sub_fragment_teacher_list);
+        FragmentManager fragmentManager=getChildFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        if(Redirect.getSingletonInstance().getFirst()){
+            fragmentTransaction.replace(childFragContainer.getId(),new SectionListTeachers());
+        }
+        else{
+            fragmentTransaction.add(childFragContainer.getId(),new SectionListTeachers());
+        }
+        fragmentTransaction.commit();
+        return view;
     }
 
     @Override
