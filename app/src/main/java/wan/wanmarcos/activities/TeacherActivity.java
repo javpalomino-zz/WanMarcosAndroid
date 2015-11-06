@@ -38,13 +38,15 @@ public class TeacherActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-            Redirect.getSingletonInstance().updateActivityStack();
-            onBackPressed();
-            return true;
-        }
-        return super.onKeyUp(keyCode, event);
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        Log.d("DEBUG",event.getKeyCode()+"evento");
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Redirect.getSingletonInstance().updateActivityStack();
+        super.onBackPressed();
     }
 
     @Override

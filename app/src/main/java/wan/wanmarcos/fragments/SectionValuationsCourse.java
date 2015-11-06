@@ -35,7 +35,7 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View layout=inflater.inflate(Constants.SECTION_LIST,container,false);
+        View layout=inflater.inflate(Constants.SECTION_GENERIC_LIST_LAYOUT,container,false);
         setUpElements(layout);
         addListeners();
         return layout;

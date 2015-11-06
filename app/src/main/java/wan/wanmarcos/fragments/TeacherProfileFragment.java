@@ -25,13 +25,13 @@ public class TeacherProfileFragment extends Fragment {
         FrameLayout childFragContainer = (FrameLayout) view.findViewById(R.id.sub_fragment_teacher_list);
         FragmentManager fragmentManager=getChildFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        if(Redirect.getSingletonInstance().getFirst()){
+        /*if(Redirect.getSingletonInstance().getFirst()){
             fragmentTransaction.replace(childFragContainer.getId(),new SectionListTeachers());
         }
         else{
             fragmentTransaction.add(childFragContainer.getId(),new SectionListTeachers());
         }
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
         return view;
     }
 }

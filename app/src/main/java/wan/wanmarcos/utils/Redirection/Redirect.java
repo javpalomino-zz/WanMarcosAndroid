@@ -40,13 +40,17 @@ public class Redirect implements Redirection {
     private Bundle mdata;
     private Object mLock;
     private AppCompatActivity mActivity;
+    private Fragment mActualFragment;
     private Redirect(){
         mdata=new Bundle();
         mLock=new Object();
+        firstAction=true;
         mActivity=null;
         firstConfiguration=true;
         mActivityStack=new Stack<String>();
+        mActivityStack.add(HOME_ACTIVITY);
         mFragmentStack=0;
+        mActualFragment=new Fragment();
     }
 
     public static synchronized Redirect getSingletonInstance(){
@@ -56,12 +60,10 @@ public class Redirect implements Redirection {
         return singletonObject;
     }
     public void setActivity(AppCompatActivity activity){
-        mActivityStack.add(activity.getClass().getName());
         mActivity=activity;
         if(firstConfiguration){
             screenOrientation=mActivity.getResources().getConfiguration().orientation-1;
-            firstConfiguration=false;
-            firstAction=true;
+            firstConfiguration=true;
         }
     }
     @Override
@@ -91,7 +93,9 @@ public class Redirect implements Redirection {
     public void changeActivity(String tag) {
         if(mActivity!=null){
             if(!tag.equals(mActivityStack.peek())){
-
+                firstConfiguration=true;
+                firstAction=false;
+                mActivityStack.add(tag);
                 Class activity = null;
 
                 if(tag.equals(DOC_ACTIVITY)){
@@ -106,7 +110,7 @@ public class Redirect implements Redirection {
                 Intent intent=new Intent(mActivity.getApplicationContext(),activity);
                 mActivity.startActivity(intent);
             }
-            else{
+            else if(firstAction){
                 changeFragment(null);
             }
         }
@@ -118,7 +122,6 @@ public class Redirect implements Redirection {
         if(screenOrientation==mActivity.getResources().getConfiguration().orientation-1){
             if(mActivityStack.peek().equals(DOC_ACTIVITY)){
                 changeTeacherFragments(data);
-                mFragmentStack++;
             }
         }
         else{
@@ -140,14 +143,17 @@ public class Redirect implements Redirection {
     private void changeTeacherFragments(Object object){
         Fragment fragment=null;
         if(object instanceof Teacher){
+            mFragmentStack++;
             fragment=new TeacherProfileFragment();
         }
         else if(object instanceof Course){
+            mFragmentStack++;
             fragment=new TeacherCourseProfileFragment();
         }
         else{
             fragment=new TeacherListFragment();
         }
+        mActualFragment=fragment;
 
         tooglingFragments(fragment);
     }
@@ -156,126 +162,37 @@ public class Redirect implements Redirection {
             FragmentTransaction fragmentTransaction=mActivity.getSupportFragmentManager().beginTransaction();
             if(!firstConfiguration){
                 fragmentTransaction.replace(R.id.home_fragment, fragment);
+                fragmentTransaction.addToBackStack(fragment.getClass().getName());
             }
+
             else{
                 fragmentTransaction.add(R.id.home_fragment, fragment);
                 firstConfiguration=false;
             }
-            fragmentTransaction.addToBackStack(fragment.getClass().getName());
             fragmentTransaction.commit();
-
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
     }
-    public boolean getFirst(){
-        return firstAction;
+    public void setContent(int id, Fragment fragment){
+        if(mActualFragment!=null){
+            FragmentManager fragmentManager=mActualFragment.getChildFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            fragmentTransaction.replace(id,fragment);
+            fragmentTransaction.commit();
+        }
     }
     public void updateActivityStack(){
         if(mFragmentStack==0){
+            Log.d("DEBUG","1");
             mActivityStack.pop();
-            mActivity.moveTaskToBack(true);
         }
         else{
+            Log.d("DEBUG","2");
             mFragmentStack--;
         }
 
     }
-    /*
-    @Override
-    public void toListTeachers() {
-
-        TeacherListFragment teacherListFragment= new TeacherListFragment();
-        try {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.event_new_fragment, teacherListFragment);
-            transaction.addToBackStack("teacherFragment");
-
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    /*
-    @Override
-    public void toShowEvents() {
-        EventNewsFragment eventNewsFragment=new EventNewsFragment();
-        try {
-            FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.event_new_fragment,eventNewsFragment);
-            fragmentTransaction.addToBackStack("events");
-            fragmentTransaction.commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void toProfileTeacher(Teacher teacher) {
-        TeacherProfileFragment profileFragment=new TeacherProfileFragment();
-        try {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.event_new_fragment, profileFragment);
-            transaction.addToBackStack("profilefragment");
-
-            transaction.commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void toTeacherCourseInformation(Course course) {
-        TeacherCourseProfileFragment teacherCourseProfileFragment=new TeacherCourseProfileFragment();
-        try{
-            FragmentTransaction transaction= getFragmentManager().beginTransaction();
-            transaction.replace(R.id.event_new_fragment, teacherCourseProfileFragment);
-            transaction.addToBackStack("profileteachercoursefragment");
-
-            transaction.commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        addCourseInformation(course);
-    }
-
-    @Override
-    public void addTeacherInformation(Teacher teacher) {
-        dataTeacher.putString("teachername", teacher.getName());
-        dataTeacher.putString("facultyname",teacher.getFaculties());
-        dataTeacher.putString("imageurl", teacher.getImageUrl());
-    }
-
-    @Override
-    public void addCourseInformation(Course course) {
-        dataTeacher.putString("coursename",course.getName());
-        dataTeacher.putFloat("courserating", course.getRating());
-    }
-
-    @Override
-    public float getFloatInformation(String key) {
-        return 0;
-    }
-
-    @Override
-    public int getIntInformation(String key) {
-        return 0;
-    }
-
-    @Override
-    public String getStringInformation(String key) {
-        if (dataTeacher.containsKey(key)) {
-            return dataTeacher.getString(key);
-        } else {
-            return null;
-        }
-    }
-    */
 }
