@@ -5,74 +5,97 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="2"
-        tools:context="wan.wanmarcos.activities.HomeActivity">
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar">
-    </include>
-    </LinearLayout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context="wan.wanmarcos.activities.HomeActivity"
-        android:orientation="vertical"
-        android:weightSum="2">
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pregunta_contactanos"
-            android:textSize="12pt"
-            android:gravity="center"
-        />
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/respuesta_contactanos"
-            android:textSize="12pt"
-            android:gravity="center"
-            android:lines="2"
-        />
-        <EditText
-            android:id="@+id/txtComment"
-            android:layout_width="fill_parent"
-            android:layout_height="300dp"
-            android:hint="@string/contac_messagueplaceholder"
-            android:inputType="textMultiLine"
-            android:singleLine="false"
-            android:gravity="top"
-            android:lines="20"
-        />
-        <RelativeLayout
-            android:id="@+id/InnerRelativeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" >
 
-            <Button
-                android:text="@string/btnEnviarFeed"
-                android:id="@+id/btnEnviarFeed"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
-            </Button>
-        </RelativeLayout>
-    </LinearLayout>
-    <fragment
-        android:id="@+id/fragment_navigation_drawer"
-        android:name="wan.wanmarcos.fragments.NavigationDrawerFragment"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:layout="@layout/fragment_navigation_drawer"
-        tools:layout="@layout/fragment_navigation_drawer" />
-</android.support.v4.widget.DrawerLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/bar_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="2"
+            tools:context="wan.wanmarcos.activities.HomeActivity">
+
+            <include
+                android:id="@+id/app_bar"
+                layout="@layout/app_bar">
+            </include>
+
+        </LinearLayout>
+
+        <Button
+            android:text="@string/btnEnviarFeed"
+            android:id="@+id/btnEnviarFeed"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+        </Button>
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/bar_container"
+            android:layout_above="@id/btnEnviarFeed">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                tools:context="wan.wanmarcos.activities.HomeActivity"
+                android:orientation="vertical"
+                android:weightSum="2">
+                <TextView
+                    android:id="@+id/activityheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:text="@string/pregunta_contactanos"
+                    android:textSize="12pt"
+                    android:gravity="center"
+                />
+
+                <TextView
+                    android:id="@+id/activitysubheader"
+                    android:layout_below="@id/activityheader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:text="@string/respuesta_contactanos"
+                    android:textSize="12pt"
+                    android:gravity="center"
+                    android:lines="2"
+                />
+
+                <EditText
+                    android:id="@+id/txtComment"
+                    android:layout_below="@id/activitysubheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:hint="@string/contac_messagueplaceholder"
+                    android:inputType="textMultiLine"
+                    android:singleLine="false"
+                    android:gravity="top"
+                    android:background="@drawable/contactanos_edittext"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="20dp"
+                    />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="wan.wanmarcos.fragments.NavigationDrawerFragment"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_navigation_drawer"
+            tools:layout="@layout/fragment_navigation_drawer" />
+        </android.support.v4.widget.DrawerLayout>
