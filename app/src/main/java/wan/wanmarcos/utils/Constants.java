@@ -16,7 +16,7 @@ public class Constants {
     public static final String SIGN_UP = "users";
     public static final String LOGIN = "authenticate";
     public static final String USER_INFO = "users/me";
-
+    public static final String SUGGESTIONS = "suggestions";
     public static final String PLATFORM = "Android";
 
     //SCREEN DEVICE CONSTANTS
