@@ -57,7 +57,7 @@ public class EventsActivity extends AppCompatActivity {
         try {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-            transaction.add(R.id.eventsContainer, eventViewListFragment);
+            transaction.replace(R.id.eventsContainer, eventViewListFragment);
             transaction.commit();
 
 
