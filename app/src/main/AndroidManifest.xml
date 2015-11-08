@@ -24,10 +24,14 @@
         <activity
             android:name=".activities.HomeActivity"
             android:label="@string/title_activity_home" >
-        </activity>
+         </activity>
         <activity android:name=".activities.EventsActivity"
             android:label="Eventos"
             android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".activities.PlacesActivity"
+            android:label="Lugares" >
         </activity>
 
         <meta-data

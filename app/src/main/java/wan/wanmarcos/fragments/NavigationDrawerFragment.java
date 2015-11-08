@@ -21,6 +21,7 @@ import java.util.List;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.activities.PlacesActivity;
 import wan.wanmarcos.models.NavDrawerLink;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -156,7 +157,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             case 1:
                 Toast.makeText(getActivity(), "A Docentes", Toast.LENGTH_SHORT);break;
             case 2:
-                Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
+                Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);
+            startActivity(new Intent(getActivity(), PlacesActivity.class));break;
             case 3:
                 Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);
                 startActivity(new Intent(getActivity(), EventsActivity.class));break;
