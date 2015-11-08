@@ -10,36 +10,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="2dp"
-        card_view:cardElevation="2dp"
+        card_view:cardElevation="5dp"
         card_view:cardPreventCornerOverlap="true"
         card_view:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/eventListImage"
-            android:layout_width="fill_parent"
-            android:layout_height="230dp"
-            android:background="@android:color/black"
-            android:src="@mipmap/wm17">
-        </ImageView>
+            <ImageView
+                android:id="@+id/eventListImage"
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/black"
+                android:src="@mipmap/wm17">
+            </ImageView>
 
-        <TextView
-            android:id="@+id/eventListTitle"
-            android:layout_width="fill_parent"
-            android:layout_height="20dp"
-            android:gravity="center"
-            android:text="Wrestlemania"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/eventListTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Wrestlemania"
+                android:textSize="25dp"
+                android:layout_below="@id/eventListImage"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                />
 
-        <TextView
-            android:id="@+id/eventListDateAndTime"
-            android:layout_width="fill_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="210dp"
-            android:gravity="center"
-            android:text="Sunday , March 30th 2015"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/eventListDateAndTime"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/eventListTitle"
+                android:paddingLeft="10dp"
+                android:layout_marginBottom="5dp"
+                android:textSize="15dp"
+                android:text="Sunday , March 30th "/>
+
+        </RelativeLayout>
+
+
     </android.support.v7.widget.CardView>
 
 
