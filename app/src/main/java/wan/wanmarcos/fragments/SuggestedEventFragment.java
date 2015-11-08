@@ -3,6 +3,7 @@ package wan.wanmarcos.fragments;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,10 +12,12 @@ import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.EventsActivity;
 
 /**
  * Created by Francisco on 1/11/2015.
@@ -37,6 +40,7 @@ public class SuggestedEventFragment extends Fragment {
     private Button btnSchedule;
     private EditText txtDescription;
     private Button btnSubmit;
+    FloatingActionButton sendFAB;
 
     private View v_Layout;
 
@@ -71,7 +75,8 @@ public class SuggestedEventFragment extends Fragment {
         btnImage= (Button) layout.findViewById(R.id.eventFormImage);
         btnSchedule= (Button) layout.findViewById(R.id.eventFormSchedule);
         txtDescription= (EditText) layout.findViewById(R.id.eventFormDescription);
-        btnSubmit= (Button) layout.findViewById(R.id.eventFormSubmit);
+        //btnSubmit= (Button) layout.findViewById(R.id.eventFormSubmit);
+        sendFAB = (FloatingActionButton)  layout.findViewById(R.id.sendFab);
 
     }
 
@@ -193,7 +198,12 @@ public class SuggestedEventFragment extends Fragment {
     }
     private void addSubmitListener()
     {
-        //
+        sendFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Enviando Sugerencia de Evento", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

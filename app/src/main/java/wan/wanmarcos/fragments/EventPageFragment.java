@@ -1,6 +1,7 @@
 package wan.wanmarcos.fragments;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.SQLOutput;
 import java.util.Calendar;
@@ -29,6 +31,7 @@ public class EventPageFragment extends Fragment{
     private TextView txtEnd;
     private TextView txtDescription;
     private Button btnSchedule;
+    FloatingActionButton downloadFAB;
 
 
     @Override
@@ -56,7 +59,8 @@ public class EventPageFragment extends Fragment{
         txtStart= (TextView) layout.findViewById(R.id.eventPageStartDateAndTime);
         txtEnd= (TextView) layout.findViewById(R.id.eventPageEndDateAndTime);
         txtDescription= (TextView) layout.findViewById(R.id.eventPageDescription);
-        btnSchedule= (Button) layout.findViewById(R.id.eventPageScheduleButton);
+        //btnSchedule= (Button) layout.findViewById(R.id.eventPageScheduleButton);
+        downloadFAB = (FloatingActionButton)  layout.findViewById(R.id.downloadProgram);
     }
 
     private void loadEvent()
@@ -67,7 +71,7 @@ public class EventPageFragment extends Fragment{
     private void fillData()
     {
         imageView.setImageResource(selectedEvent.getIconId());
-        txtReference.setText("Lugar de Referencia : "+selectedEvent.getReferencePlace());
+        txtReference.setText(selectedEvent.getReferencePlace());
         txtStart.setText(selectedEvent.CalendarToString(selectedEvent.getStartDateTime()));
         txtEnd.setText(selectedEvent.CalendarToString(selectedEvent.getFinishDateTime()));
         txtDescription.setText(selectedEvent.getDescription());
@@ -82,7 +86,12 @@ public class EventPageFragment extends Fragment{
 
     private void addScheduleDownloadListener()
     {
-
+        downloadFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Descargando Programa del Evento", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void setSelectedEvent(Event selectedEvent) {

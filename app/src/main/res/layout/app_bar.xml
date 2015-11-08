@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
-    android:background="@color/primaryNewsColor">
+    android:background="@color/primaryNewsColor"
+    android:theme="@style/ToolbarWhiteText">
 
 
 </android.support.v7.widget.Toolbar>

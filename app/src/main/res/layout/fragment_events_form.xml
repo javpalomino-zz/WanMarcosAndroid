@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="#FFFF"
-tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/eventFormSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true"
-            android:text="¡¡¡¡Sugiérelo!!!!"
-            android:textAllCaps="true"
-            android:elevation="6dp"
-            android:background="@color/primaryNewsColor"
-            android:textColor="@android:color/black"/>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFF"
+    tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
 
         <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_above="@id/eventFormSubmit">
+            android:layout_height="fill_parent">
 
             <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content" >
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
                 <TextView
                     android:id="@+id/eventFormHeader"
@@ -157,10 +144,14 @@ tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
             </RelativeLayout>
 
         </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sendFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@mipmap/ic_send_white_48dp" />
 
-
-
-    </RelativeLayout>
-
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

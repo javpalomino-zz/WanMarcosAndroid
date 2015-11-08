@@ -64,6 +64,7 @@ public class EventsActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        setTitle("Eventos");
     }
 
     public void toNewEventForm()

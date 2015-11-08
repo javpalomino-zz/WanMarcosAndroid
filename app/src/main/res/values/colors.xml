@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryNewsColor">#607D8B</color>
-    <color name="primaryNewsColorDark">#455A64</color>
-    <color name="accentNewsColor">#A5FF97</color>
+    <color name="primaryNewsColor">#2196F3</color>
+    <color name="primaryNewsColorDark">#1976D2</color>
+    <color name="accentNewsColor">#FFD740</color>
 </resources>

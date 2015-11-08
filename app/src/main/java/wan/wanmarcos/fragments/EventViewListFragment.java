@@ -1,5 +1,6 @@
 package wan.wanmarcos.fragments;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +30,9 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private Button btnNewEvent;
 
+    FloatingActionButton suggestFAB;
+
+
     public  EventViewListFragment(){
 
     }
@@ -56,7 +60,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         eventListAdapter.setClickListener(this);
         recyclerView.setAdapter(eventListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        btnNewEvent =(Button)layout.findViewById(R.id.newEventButton);
+       // btnNewEvent =(Button)layout.findViewById(R.id.newEventButton);
+        suggestFAB = (FloatingActionButton)  layout.findViewById(R.id.suggestFAB);
     }
 
     private void addListeners()
@@ -68,10 +73,17 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private void addNewEventListener()
     {
-        btnNewEvent.setOnClickListener(new View.OnClickListener(){
+        /*btnNewEvent.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view)
             {
+                EventsActivity.getInstance().toNewEventForm();
+            }
+        });*/
+
+        suggestFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 EventsActivity.getInstance().toNewEventForm();
             }
         });
