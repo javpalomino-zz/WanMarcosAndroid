@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.utils.Constants;
 
 public class SectionCourseTitle extends Fragment {
+    private TextView teacherName;
+    private TextView courseName;
+    private TextView facultyName;
     public SectionCourseTitle(){
     }
 
@@ -28,15 +32,12 @@ public class SectionCourseTitle extends Fragment {
         return view;
     }
     public void setUpElements(View view){
-    }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        TextView teacherName=(TextView)view.findViewById(R.id.teacher_name);
-        //teacherName.setText(redirection.getStringInformation("teachername"));
-        //TextView courseName=(TextView)view.findViewById(R.id.course_name);
-        //courseName.setText(redirection.getStringInformation("coursename"));
-        //TextView facultyName=(TextView) view.findViewById(R.id.faculty_name);
-        //facultyName.setText(redirection.getStringInformation("facultyname"));
+        teacherName=(TextView)view.findViewById(R.id.teacher_name);
+        teacherName.setText(Redirect.getSingletonInstance().getInformation("teachername"));
+        courseName=(TextView)view.findViewById(R.id.course_name);
+        courseName.setText(Redirect.getSingletonInstance().getInformation("coursename"));
+        facultyName=(TextView)view.findViewById(R.id.faculty_name);
+        facultyName.setText(Redirect.getSingletonInstance().getInformation("coursefaculty"));
     }
 
 }

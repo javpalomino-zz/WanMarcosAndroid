@@ -1,6 +1,5 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_teacher_profile"
@@ -8,21 +7,14 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:name="wan.wanmarcos.fragments.SectionTeacherProfile"
-        tools:layout="@layout/generic_teacher_profile"
-        android:id="@+id/sub_fragment_profile"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp">>
+        android:id="@+id/sub_fragment_teacher_profile">
 
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="wan.wanmarcos.fragments.SectionTeacherCourses"
-        tools:layout="@layout/generic_list"
-        android:id="@+id/sub_fragment_courses">
+        android:id="@+id/sub_fragment_course_list">
 
     </FrameLayout>
 </LinearLayout>

@@ -22,16 +22,8 @@ public class TeacherProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(Constants.FRAGMENT_PROFILE_TEACHER_LAYOUT, container, false);
-        FrameLayout childFragContainer = (FrameLayout) view.findViewById(R.id.sub_fragment_teacher_list);
-        FragmentManager fragmentManager=getChildFragmentManager();
-        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        /*if(Redirect.getSingletonInstance().getFirst()){
-            fragmentTransaction.replace(childFragContainer.getId(),new SectionListTeachers());
-        }
-        else{
-            fragmentTransaction.add(childFragContainer.getId(),new SectionListTeachers());
-        }
-        fragmentTransaction.commit();*/
+        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_TEACHER_ID,new SectionTeacherProfile());
+        Redirect.getSingletonInstance().setContent(this,Constants.COURSE_LIST_ID,new SectionTeacherCourses());
         return view;
     }
 }

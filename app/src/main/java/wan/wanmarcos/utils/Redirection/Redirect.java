@@ -1,7 +1,9 @@
 
 package wan.wanmarcos.utils.Redirection;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,14 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.FrameLayout;
 
 import java.util.Stack;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
-import wan.wanmarcos.fragments.SectionListTeachers;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
@@ -40,7 +40,6 @@ public class Redirect implements Redirection {
     private Bundle mdata;
     private Object mLock;
     private AppCompatActivity mActivity;
-    private Fragment mActualFragment;
     private Redirect(){
         mdata=new Bundle();
         mLock=new Object();
@@ -50,7 +49,6 @@ public class Redirect implements Redirection {
         mActivityStack=new Stack<String>();
         mActivityStack.add(HOME_ACTIVITY);
         mFragmentStack=0;
-        mActualFragment=new Fragment();
     }
 
     public static synchronized Redirect getSingletonInstance(){
@@ -89,6 +87,7 @@ public class Redirect implements Redirection {
         mdata.putString("coursefaculty", course.getFaculty());
 
     }
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void changeActivity(String tag) {
         if(mActivity!=null){
@@ -110,16 +109,22 @@ public class Redirect implements Redirection {
                 Intent intent=new Intent(mActivity.getApplicationContext(),activity);
                 mActivity.startActivity(intent);
             }
-            else if(firstAction){
-                changeFragment(null);
+            else if(!firstAction){
+                reload();
             }
         }
     }
-
+    private void reload(){
+        int max=mFragmentStack;
+        for(int i=0;i<max;i++){
+            mActivity.onBackPressed();
+        }
+    }
     @Override
     public void changeFragment(Object data) {
         storeData(data);
         if(screenOrientation==mActivity.getResources().getConfiguration().orientation-1){
+            firstAction=false;
             if(mActivityStack.peek().equals(DOC_ACTIVITY)){
                 changeTeacherFragments(data);
             }
@@ -151,10 +156,10 @@ public class Redirect implements Redirection {
             fragment=new TeacherCourseProfileFragment();
         }
         else{
+            mFragmentStack=0;
+            firstAction=true;
             fragment=new TeacherListFragment();
         }
-        mActualFragment=fragment;
-
         tooglingFragments(fragment);
     }
     private void tooglingFragments(Fragment fragment){
@@ -176,21 +181,17 @@ public class Redirect implements Redirection {
         }
 
     }
-    public void setContent(int id, Fragment fragment){
-        if(mActualFragment!=null){
-            FragmentManager fragmentManager=mActualFragment.getChildFragmentManager();
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            fragmentTransaction.replace(id,fragment);
-            fragmentTransaction.commit();
-        }
+    public void setContent(Fragment parent,int id, Fragment fragment){
+        FragmentManager fragmentManager=parent.getChildFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(id,fragment);
+        fragmentTransaction.commit();
     }
     public void updateActivityStack(){
         if(mFragmentStack==0){
-            Log.d("DEBUG","1");
             mActivityStack.pop();
         }
         else{
-            Log.d("DEBUG","2");
             mFragmentStack--;
         }
 

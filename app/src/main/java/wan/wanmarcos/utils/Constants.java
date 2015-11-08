@@ -65,5 +65,16 @@ public class Constants {
     //IDS
     public static final int TEACHER_LIST_ID=R.id.sub_fragment_teacher_list;
 
+    public static final int PROFILE_TEACHER_ID=R.id.sub_fragment_teacher_profile;
+    public static final int PROFILE_TEACHER_TITLE=R.id.sub_fragment_teacher_title;
+    public static final int PROFILE_TEACHER_RATING=R.id.sub_fragment_teacher_rating;
+
+    public static final int COURSE_LIST_ID=R.id.sub_fragment_course_list;
+
+    public static final int PROFILE_CORUSE_ID=R.id.sub_fragment_course_profile;
+    public static final int PROFILE_COURSE_TITLE=R.id.sub_fragment_course_title;
+    public static final int PROFILE_COURSE_RATING=R.id.sub_fragment_course_rating;
+    public static final int VALUATION_LIST_ID=R.id.sub_fragment_valuations_course;
+
 
 }

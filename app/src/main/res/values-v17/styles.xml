@@ -119,6 +119,7 @@
     <!--START-->
     <!--TEACHER TITLE-->
     <style name="TitleTeacherNameItem">
+        <item name="android:gravity">center_horizontal</item>
             <item name="android:layout_centerHorizontal">true</item>
             <item name="android:layout_alignParentTop">true</item>
             <item name="android:layout_alignParentLeft">true</item>
@@ -128,6 +129,7 @@
     </style>
 
     <style name="TitleCourseNameItem">
+        <item name="android:gravity">center_horizontal</item>
             <item name="android:layout_below">@+id/teacher_name</item>
             <item name="android:layout_alignParentLeft">true</item>
             <item name="android:layout_alignParentStart">true</item>
@@ -137,6 +139,7 @@
     </style>
 
     <style name="TitleFacultyNameItem">
+        <item name="android:gravity">center_horizontal</item>
             <item name="android:layout_height">wrap_content</item>
             <item name="android:layout_below">@+id/course_name</item>
             <item name="android:layout_alignParentLeft">true</item>
@@ -159,10 +162,11 @@
     <style name="ProfileTeacherItemTitle">
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_toRightOf">@id/teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_alignTop">@id/teacher_image</item>
     </style>
     <style name="ProfileTeacherItemRatings">
-        <item name="android:layout_below">@id/fragment</item>
+        <item name="android:layout_below">@id/sub_fragment_teacher_title</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_toRightOf">@id/teacher_image</item>
         <item name="android:layout_alignBottom">@id/teacher_image</item>

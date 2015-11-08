@@ -11,6 +11,7 @@ import android.widget.TextView;
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Redirection.Redirect;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +26,8 @@ public class TeacherCourseProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_CORUSE_ID,new SectionCourseProfile());
+        Redirect.getSingletonInstance().setContent(this,Constants.VALUATION_LIST_ID,new SectionValuationsCourse());
         return inflater.inflate(Constants.FRAGMENT_TEACHER_COURSE_LAYOUT, container, false);
     }
 }

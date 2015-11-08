@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 
@@ -19,6 +20,7 @@ import wan.wanmarcos.utils.Redirection.Redirect;
 
 
 public class TeacherListFragment extends Fragment {
+    private SearchView searchView;
     public TeacherListFragment() {
         // Required empty public constructor
     }
@@ -31,7 +33,13 @@ public class TeacherListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
-        Redirect.getSingletonInstance().setContent(Constants.TEACHER_LIST_ID,new SectionListTeachers());
+        setUpElements(view);
+        Redirect.getSingletonInstance().setContent(this,Constants.TEACHER_LIST_ID, new SectionListTeachers());
         return view;
+    }
+    public void setUpElements(View view){
+        searchView=(SearchView)view.findViewById(R.id.searchViewTeachers);
+        searchView.setFocusable(false);
+
     }
 }

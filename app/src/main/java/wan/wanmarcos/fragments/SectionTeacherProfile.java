@@ -31,6 +31,8 @@ public class SectionTeacherProfile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_TEACHER_TITLE,new SectionTeacherTitle());
+        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_TEACHER_RATING,new SectionTeacherRating());
         View view=inflater.inflate(Constants.PROFILE_TEACHER_INFORMATION,container,false);
         setUpElements(view);
         return view;

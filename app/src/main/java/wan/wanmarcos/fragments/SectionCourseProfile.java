@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Redirection.Redirect;
 
 
 public class SectionCourseProfile extends Fragment {
-    private Course course;
 
     public SectionCourseProfile(){
 
@@ -27,6 +27,9 @@ public class SectionCourseProfile extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_COURSE_TITLE,new SectionCourseTitle());
+        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_COURSE_RATING,new SectionCourseRating());
         return inflater.inflate(Constants.PROFILE_COURSE_INFORMATION,container,false);
     }
 

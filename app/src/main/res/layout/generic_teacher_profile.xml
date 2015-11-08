@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="180dp"
     android:background="@drawable/borders"
     android:layout_width="match_parent">
@@ -10,21 +9,21 @@
         android:layout_height="150dp"
         android:id="@+id/teacher_image"
         style="@style/ProfileTeacherItemImage" />
-    <fragment
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:name="wan.wanmarcos.fragments.SectionTeacherTitle"
-        android:id="@+id/fragment"
-        tools:layout="@layout/generic_teacher_title"
-        style="@style/ProfileTeacherItemTitle"/>
+        android:id="@+id/sub_fragment_teacher_title"
+        style="@style/ProfileTeacherItemTitle">
 
-    <fragment
+    </FrameLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:name="wan.wanmarcos.fragments.SectionTeacherRating"
-        android:id="@+id/fragment2"
-        tools:layout="@layout/generic_list"
-        style="@style/ProfileTeacherItemRatings"/>
+        android:id="@+id/sub_fragment_teacher_rating"
+        style="@style/ProfileTeacherItemRatings">
+
+    </FrameLayout>
 
 
 

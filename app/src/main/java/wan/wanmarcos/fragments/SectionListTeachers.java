@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,7 @@ public class SectionListTeachers extends Fragment implements ItemAdapterListener
 
     private RecyclerView recyclerView;
     private TeacherListAdapter teacherListAdapter;
+    private SearchView searchView;
 
     public static SectionListTeachers newInstance(){
         SectionListTeachers sectionListTeachers=new SectionListTeachers();
