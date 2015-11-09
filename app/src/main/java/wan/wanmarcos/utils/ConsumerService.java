@@ -2,6 +2,8 @@ package wan.wanmarcos.utils;
 
 import com.google.gson.JsonElement;
 
+import java.util.Calendar;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.http.Field;
@@ -35,6 +37,17 @@ public interface ConsumerService {
 
     @GET(Constants.USER_INFO)
     void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);
+
+    /*@GET(Constants.GET_EVENTS)
+    void getEvents(@Header("Autorization") String authorization , Callback<JsonElement> callback);*/
+
+    @FormUrlEncoded
+    @POST(Constants.SUGGEST_EVENT)
+    Call<JsonElement> suggetEvent(@Field("name") String event_name,
+                                  @Field("description") String event_description,
+                                  @Field("starts_at")long event_startCal,
+                                  @Field("ends_at")long event_endCal,
+                                  @Field("website") String event_link);
 
 
 }

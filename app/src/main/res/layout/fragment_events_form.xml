@@ -28,6 +28,7 @@
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:gravity="center"
+                    android:textSize="20dp"
                     />
 
                 <EditText
@@ -68,7 +69,9 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="Dinos la Fecha de Inicio del Evento"
-                    android:layout_below="@+id/eventFormCategory" />
+                    android:layout_below="@+id/eventFormCategory"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
                 <Button
                     android:id="@+id/eventFormStartTimeButton"
                     android:layout_width="fill_parent"
@@ -77,7 +80,9 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="Dinos la Hora de Inicio del Evento"
-                    android:layout_below="@+id/eventFormStartDateButton" />
+                    android:layout_below="@+id/eventFormStartDateButton"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
                 <Button
                     android:id="@+id/eventFormEndDateButton"
                     android:layout_width="fill_parent"
@@ -86,7 +91,9 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="Dinos la Fecha de Fin del Evento"
-                    android:layout_below="@+id/eventFormStartTimeButton" />
+                    android:layout_below="@+id/eventFormStartTimeButton"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
                 <Button
                     android:id="@+id/eventFormEndTimeButton"
                     android:layout_width="fill_parent"
@@ -95,7 +102,9 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="Dinos la Hora de Fin del Evento"
-                    android:layout_below="@+id/eventFormEndDateButton" />
+                    android:layout_below="@+id/eventFormEndDateButton"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
 
 
 
@@ -117,7 +126,9 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="Danos una imagen de referencia"
-                    android:layout_below="@+id/eventFormLink" />
+                    android:layout_below="@+id/eventFormLink"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
 
                 <Button
                     android:id="@+id/eventFormSchedule"
@@ -127,7 +138,9 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:text="Envianos el cronograma del evento"
-                    android:layout_below="@+id/eventFormImage" />
+                    android:layout_below="@+id/eventFormImage"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
 
                 <EditText
                     android:id="@+id/eventFormDescription"

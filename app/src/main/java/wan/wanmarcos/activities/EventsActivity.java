@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.inputmethod.InputMethodManager;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.EventPageFragment;
@@ -51,13 +52,13 @@ public class EventsActivity extends AppCompatActivity {
 
     }
 
-    private void addListFragment()
+    public void addListFragment()
     {
         EventViewListFragment eventViewListFragment = new EventViewListFragment();
         try {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-            transaction.add(R.id.eventsContainer, eventViewListFragment);
+            transaction.replace(R.id.eventsContainer, eventViewListFragment);
             transaction.commit();
 
 
@@ -99,6 +100,28 @@ public class EventsActivity extends AppCompatActivity {
             transaction.commit();
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void toListFragmentFromForm()
+    {
+        EventViewListFragment eventViewListFragment = new EventViewListFragment();
+        try{
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            transaction.replace(R.id.eventsContainer, eventViewListFragment);
+            transaction.addToBackStack("suggestedEventFragment");
+            transaction.commit();
+        }catch (Exception e)
+        {
+
+        }
+
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {
             e.printStackTrace();
         }

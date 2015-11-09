@@ -17,6 +17,7 @@ public class Event implements Parcelable{
     private Calendar startDateTime;
     private Calendar finishDateTime;
     private String description;
+    private String eventLink;
     private int iconId;
 
     public Event() {
@@ -117,6 +118,7 @@ public class Event implements Parcelable{
         dest.writeString(description);
         System.out.println("writing icon id");
         dest.writeInt(iconId);
+        dest.writeString(eventLink);
     }
 
     private void readFromParcel(Parcel in) {
@@ -138,6 +140,7 @@ public class Event implements Parcelable{
         description=in.readString();
         System.out.println("Reading icon id");
         iconId=in.readInt();
+        eventLink=in.readString();
     }
 
     public static final Parcelable.Creator CREATOR =
@@ -158,18 +161,18 @@ public class Event implements Parcelable{
         {
             switch (cal.get(Calendar.MONTH))
             {
-                case 0 : str=str+"January";break;
-                case 1 : str=str+"February";break;
-                case 2 : str=str+"March";break;
-                case 3 : str=str+"April";break;
-                case 4 : str=str+"May";break;
-                case 5 : str=str+"June";break;
-                case 6 : str=str+"July";break;
-                case 7 : str=str+"August";break;
-                case 8 : str=str+"September";break;
-                case 9 : str=str+"October";break;
-                case 10 : str=str+"November";break;
-                case 11 : str=str+"December";break;
+                case 0 : str=str+"Enero";break;
+                case 1 : str=str+"Febrero";break;
+                case 2 : str=str+"Marzo";break;
+                case 3 : str=str+"Abril";break;
+                case 4 : str=str+"Mayo";break;
+                case 5 : str=str+"Junio";break;
+                case 6 : str=str+"Julio";break;
+                case 7 : str=str+"Agosto";break;
+                case 8 : str=str+"Setiembre";break;
+                case 9 : str=str+"Octubre";break;
+                case 10 : str=str+"Noviembre";break;
+                case 11 : str=str+"Diciembre";break;
             }
             str = str + " "+cal.get(Calendar.DAY_OF_MONTH)+" , "+(cal.get(Calendar.YEAR)+ 1900) +" "+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+" hs";
         }
@@ -241,5 +244,13 @@ public class Event implements Parcelable{
 
     public void setFinishDateTime(Calendar finishDateTime) {
         this.finishDateTime = finishDateTime;
+    }
+
+    public String getEventLink() {
+        return eventLink;
+    }
+
+    public void setEventLink(String eventLink) {
+        this.eventLink = eventLink;
     }
 }
