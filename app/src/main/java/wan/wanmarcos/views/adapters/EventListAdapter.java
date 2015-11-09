@@ -1,8 +1,11 @@
 package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,12 +40,14 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
     public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =  inflater.inflate(R.layout.event_list_item, parent, false);
         EventListViewHolder holder = new EventListViewHolder(view);
+        Bitmap bitmap = ((BitmapDrawable)holder.img.getDrawable()).getBitmap();
+        Palette p = Palette.from(bitmap).generate();
+        holder.img.setBackgroundColor(p.getVibrantColor(0x0000000));
         return holder;
     }
 
     @Override
     public void onBindViewHolder(EventListViewHolder holder, int position) {
-        System.out.println("se llamo al onBindViewHolder de ELA");
         Event current = getData().get(position);
         holder.title.setText(current.getName());
         Picasso.with(context)

@@ -1,8 +1,11 @@
 package wan.wanmarcos.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.graphics.Palette;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,6 +85,9 @@ public class EventPageFragment extends Fragment{
         txtEnd.setText(selectedEvent.CalendarToString(selectedEvent.getFinishDateTime()));
         txtDescription.setText(selectedEvent.getDescription());
         txtLink.setText(selectedEvent.getEventLink());
+        Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        Palette p = Palette.from(bitmap).generate();
+       imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
         getActivity().setTitle(selectedEvent.getName());
     }
 
