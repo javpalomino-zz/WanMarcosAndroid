@@ -54,12 +54,6 @@ public class Constants {
     public static final int COURSE_TITLE=R.layout.generic_course_title;
     //Generic things
     public static final int SECTION_GENERIC_LIST_LAYOUT=R.layout.generic_list;
-    public static String tripleTab(){
-        return "\t\t\t\t\t\t\t\t\t";
-    }
-    public static String doubleTab(){
-        return "\t\t\t\t\t\t\t\t\t\t\t\t";
-    }
 
 
     //IDS
