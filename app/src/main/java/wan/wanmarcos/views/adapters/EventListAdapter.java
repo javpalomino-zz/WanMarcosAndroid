@@ -1,6 +1,8 @@
 package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +24,7 @@ import wan.wanmarcos.models.Event;
  */
 public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.EventListViewHolder>{
     private LayoutInflater inflater;
-    private List<Event> data = Collections.emptyList();
+    private List<Event> data = new ArrayList<>();
     private Context context;
     private ClickListener clickListener;
 
@@ -103,6 +106,22 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
 
     public interface ClickListener{
         public void itemClicked(View view,int position);
+    }
+    public void addAll(final List<Event>  events) {
+        final int currentCount = data.size();
+        synchronized(data) {
+            data.addAll(events);
+        }
+        if (Looper.getMainLooper() == Looper.myLooper()) {
+            notifyItemRangeInserted(currentCount, events.size());
+        } else {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyItemRangeInserted(currentCount, events.size());
+                }
+            });
+        }
     }
 
 

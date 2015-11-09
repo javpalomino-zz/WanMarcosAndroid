@@ -1,6 +1,7 @@
 package wan.wanmarcos.fragments;
 
 
+import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -82,7 +83,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         recyclerView = (RecyclerView) layout.findViewById(R.id.eventList);
         eventListAdapter = new EventListAdapter(getActivity());
         eventListAdapter.setClickListener(this);
-        eventListAdapter.setData(getInitialData());
+        getInitialData();
         recyclerView.setAdapter(eventListAdapter);
         mLayoutManager=new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -117,11 +118,9 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         });
     }
 
-    public List<Event> getInitialData()
+    public void getInitialData()
     {
-        List<Event> data=new ArrayList<>();
-        data = getEvents(data);
-        return data;
+        getEvents();
     }
 
     @Override
@@ -169,22 +168,20 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private void addNewElementsToList()
     {
-        Toast.makeText(getActivity(), "Cargando Mas Elementos", Toast.LENGTH_SHORT).show();
-        eventListAdapter.setData(getEvents(eventListAdapter.getData()));
+        getEvents();
     }
 
-    private List<Event> getEvents(final List<Event> eventsList)
+    private List<Event> getEvents()
     {
-        System.out.println("Asignando CALL");
+        System.out.println("iNITIAL ITEM COUNT = " + eventListAdapter.getItemCount());
+        final List<Event> eventsList=new ArrayList<>();;
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(token, "", currentPage, 10);
-        System.out.println("Enquequeing");
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has("events")) {
                     JsonArray jsonArray = responseBody.getAsJsonArray("events");
-                    System.out.println(jsonArray.size());
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
                         Event current = new Event();
@@ -208,13 +205,16 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
                     }
                 }
+                System.out.println("EventList Size = " + eventsList.size());
+                eventListAdapter.addAll(eventsList);
+                System.out.println("FINAL ITEM COUNT = " + eventListAdapter.getItemCount());
             }
 
             @Override
             public void onFailure(Throwable t) {
             }
         });
-        eventListAdapter.notifyDataSetChanged();
+
         currentPage++;
         return eventsList;
     }

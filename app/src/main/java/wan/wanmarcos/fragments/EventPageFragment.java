@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.sql.SQLOutput;
 import java.util.Calendar;
 
@@ -30,6 +32,7 @@ public class EventPageFragment extends Fragment{
     private TextView txtStart;
     private TextView txtEnd;
     private TextView txtDescription;
+    private TextView txtLink;
     private Button btnSchedule;
     FloatingActionButton downloadFAB;
 
@@ -60,6 +63,7 @@ public class EventPageFragment extends Fragment{
         txtEnd= (TextView) layout.findViewById(R.id.eventPageEndDateAndTime);
         txtDescription= (TextView) layout.findViewById(R.id.eventPageDescription);
         //btnSchedule= (Button) layout.findViewById(R.id.eventPageScheduleButton);
+        txtLink=(TextView)layout.findViewById(R.id.evnetPageLinkText);
         downloadFAB = (FloatingActionButton)  layout.findViewById(R.id.downloadProgram);
     }
 
@@ -70,11 +74,14 @@ public class EventPageFragment extends Fragment{
 
     private void fillData()
     {
-        imageView.setImageResource(selectedEvent.getIconId());
+        Picasso.with(getContext())
+                .load(selectedEvent.getImgUrl())
+                .into(imageView);
         txtReference.setText(selectedEvent.getReferencePlace());
         txtStart.setText(selectedEvent.CalendarToString(selectedEvent.getStartDateTime()));
         txtEnd.setText(selectedEvent.CalendarToString(selectedEvent.getFinishDateTime()));
         txtDescription.setText(selectedEvent.getDescription());
+        txtLink.setText(selectedEvent.getEventLink());
         getActivity().setTitle(selectedEvent.getName());
     }
 
