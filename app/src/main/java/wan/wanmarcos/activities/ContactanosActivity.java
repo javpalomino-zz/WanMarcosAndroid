@@ -23,6 +23,7 @@ import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.models.User;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Modal;
 import wan.wanmarcos.utils.RestClient;
@@ -54,8 +55,8 @@ public class ContactanosActivity extends AppCompatActivity{
         btnEnviarFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Call<JsonElement> suggestion = restClient.getConsumerService().suggestions("Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDY5MzA4NjUiLCJleHAiOiIxNDQ2OTM0NDY1IiwibmJmIjoiMTQ0NjkzMDg2NSIsImp0aSI6IjQzMzAyNTJmOWRiMTk4ZTY0NWMzZTQxN2RhYTQ1ODY5In0.7PHMeq-81bTd6_Hz1_lZopKEeZ4tw6uFuFpb7HkvpqY","olibolicamaronconcoli");
+                post_response_messague += User.getToken();
+                Call<JsonElement> suggestion = restClient.getConsumerService().suggestions(User.getToken(),"olibolicamaronconcoli");
                 suggestion.enqueue(new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Response<JsonElement> response) {
@@ -65,6 +66,7 @@ public class ContactanosActivity extends AppCompatActivity{
                                 JsonObject responseBody = response.body().getAsJsonObject();
                                 post_response_messague +="/nBody: "+responseBody.toString();
                             }else{
+                                txtComment.setText(response.errorBody().string());
                                 JSONObject responseBody = new JSONObject(response.errorBody().string());
                                 post_response_messague += responseBody.toString();
                             }

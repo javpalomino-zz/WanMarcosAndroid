@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+        MainActivity.setContext(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

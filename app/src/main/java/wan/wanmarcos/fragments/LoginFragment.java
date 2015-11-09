@@ -136,30 +136,20 @@ public class LoginFragment extends Fragment {
             @Override
             public void onResponse(Response<JsonElement> response) {
                 try {
-                    String message = "";
-                    if(response.isSuccess()){
+                    if (response.isSuccess()) {
                         JsonObject responseBody = response.body().getAsJsonObject();
-                        lblError.setText(responseBody.toString());
-                        if(responseBody.has("token")){
-
+                        if (responseBody.has("token")) {
                             String token = responseBody.get("token").getAsString();
                             setPreferences(token);
                             changeToHome();
+                        } else {
 
-                        }else{
-                            if(responseBody.has("error")){
-                                Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
-                                lblError.setText(error.toString());
-                            }else{
-
-                            }
                         }
-                    }else{
+                    } else {
                         JSONObject responseBody = new JSONObject(response.errorBody().string());
-                        message +=responseBody.getJSONObject("error").getString("message");
-                        message += responseBody.getString("error");
+                        String message = responseBody.getJSONObject("error").getString("message");
+                        lblError.setText(message);
                     }
-                    lblError.setText(message);
                 }catch(Throwable e){
                     lblError.setText(e.toString());
                 }
