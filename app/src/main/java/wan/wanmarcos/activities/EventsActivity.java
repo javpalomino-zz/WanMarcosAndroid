@@ -25,7 +25,7 @@ public class EventsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        System.out.println("Se llamo al OnCreate de EventActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
         instance=this;

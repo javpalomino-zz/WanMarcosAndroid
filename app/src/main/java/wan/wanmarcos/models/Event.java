@@ -19,6 +19,7 @@ public class Event implements Parcelable{
     private String description;
     private String eventLink;
     private int iconId;
+    private int eventId;
 
     public Event() {
 
@@ -119,6 +120,7 @@ public class Event implements Parcelable{
         System.out.println("writing icon id");
         dest.writeInt(iconId);
         dest.writeString(eventLink);
+        dest.writeInt(eventId);
     }
 
     private void readFromParcel(Parcel in) {
@@ -141,6 +143,7 @@ public class Event implements Parcelable{
         System.out.println("Reading icon id");
         iconId=in.readInt();
         eventLink=in.readString();
+        eventId=in.readInt();
     }
 
     public static final Parcelable.Creator CREATOR =
@@ -174,7 +177,7 @@ public class Event implements Parcelable{
                 case 10 : str=str+"Noviembre";break;
                 case 11 : str=str+"Diciembre";break;
             }
-            str = str + " "+cal.get(Calendar.DAY_OF_MONTH)+" , "+(cal.get(Calendar.YEAR)+ 1900) +" "+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+" hs";
+            str = str + " "+cal.get(Calendar.DAY_OF_MONTH)+" , "+(cal.get(Calendar.YEAR)) +" "+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+" hs";
         }
         else
         {
@@ -252,5 +255,13 @@ public class Event implements Parcelable{
 
     public void setEventLink(String eventLink) {
         this.eventLink = eventLink;
+    }
+
+    public int getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 }

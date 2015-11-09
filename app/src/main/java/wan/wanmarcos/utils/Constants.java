@@ -15,6 +15,5 @@ public class Constants {
     public static final String PLATFORM = "Android";
     public static final String PREFERENCES = "WanMarcos_preferences";
 
-    //public static final String GET_EVENTS = "events";
-    public static final String SUGGEST_EVENT = "events";
+    public static final String EVENTS = "events";
 }

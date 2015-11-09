@@ -38,11 +38,14 @@ public interface ConsumerService {
     @GET(Constants.USER_INFO)
     void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);
 
-    /*@GET(Constants.GET_EVENTS)
-    void getEvents(@Header("Autorization") String authorization , Callback<JsonElement> callback);*/
+    @GET(Constants.EVENTS)
+    Call<JsonElement> getEvents(@Header("Authorization") String authorization ,
+                                @Query("search_text") String search_text,
+                                @Query("page") int page,
+                                @Query("per_page") int per_page);
 
     @FormUrlEncoded
-    @POST(Constants.SUGGEST_EVENT)
+    @POST(Constants.EVENTS)
     Call<JsonElement> suggetEvent(@Field("name") String event_name,
                                   @Field("description") String event_description,
                                   @Field("starts_at")long event_startCal,

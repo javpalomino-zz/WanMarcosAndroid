@@ -20,17 +20,6 @@
                 android:scrollbars="vertical"
                 >
             </android.support.v7.widget.RecyclerView>
-
-           <!-- <Button
-                android:id="@+id/newEventButton"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:text="Sugiérenos un Evento"
-                android:textAllCaps="true"
-                android:elevation="6dp"
-                android:background="@color/accentNewsColor"
-                android:textColor="#FFFFFF"/>-->
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton

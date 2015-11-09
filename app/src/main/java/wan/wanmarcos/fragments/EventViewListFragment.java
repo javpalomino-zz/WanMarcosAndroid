@@ -1,5 +1,6 @@
 package wan.wanmarcos.fragments;
 
+
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -8,22 +9,42 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.utils.Builder;
+import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.views.adapters.EventListAdapter;
 
 /**
  * Created by postgrado on 17/10/15.
  */
 public class EventViewListFragment extends Fragment implements EventListAdapter.ClickListener{
+
+    private RestClient restClient;
+    private Builder builder;
+    private String token = "Bearer {eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcwNDQ5OTYiLCJleHAiOiIxNDU1Njg0OTk2IiwibmJmIjoiMTQ0NzA0NDk5NiIsImp0aSI6IjU1NzgxZTZlMjdhNWE2MzY4MzJiYTkyMWVhNGE1MzQyIn0.BTfVAF4vNoTnFq7jDU4r_JrDKRO4MC4h28SOXPBty3I}";
+
+    private boolean userScrolled = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
+
+    private LinearLayoutManager mLayoutManager;
 
     private RecyclerView recyclerView;
     private EventListAdapter eventListAdapter;
@@ -32,20 +53,23 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     FloatingActionButton suggestFAB;
 
+    private int currentPage=1;
+
 
     public  EventViewListFragment(){
-
+        restClient = new RestClient();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        System.out.println("Se llamo al onCreate de EventViewListFragment");
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        System.out.println("se llamo al onCreateView de EvENT List Fragment");
         // Inflate the layout for this fragment
         View layout =inflater.inflate(R.layout.fragment_events_list, container, false);
         setUpElements(layout);
@@ -56,17 +80,20 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
     private void setUpElements(View layout)
     {
         recyclerView = (RecyclerView) layout.findViewById(R.id.eventList);
-        eventListAdapter = new EventListAdapter(getActivity(),getData());
+        eventListAdapter = new EventListAdapter(getActivity());
         eventListAdapter.setClickListener(this);
+        eventListAdapter.setData(getInitialData());
         recyclerView.setAdapter(eventListAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-       // btnNewEvent =(Button)layout.findViewById(R.id.newEventButton);
+        mLayoutManager=new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(mLayoutManager);
         suggestFAB = (FloatingActionButton)  layout.findViewById(R.id.suggestFAB);
+        builder = new Builder();
     }
 
     private void addListeners()
     {
         addNewEventListener();
+        addScrollBottomListener();
     }
 
 
@@ -85,46 +112,110 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
             @Override
             public void onClick(View view) {
                 EventsActivity.getInstance().toNewEventForm();
+                currentPage=1;
             }
         });
     }
 
-    public static List<Event> getData()
+    public List<Event> getInitialData()
     {
         List<Event> data=new ArrayList<>();
-
-        int[] icons = {R.mipmap.wm17,R.mipmap.royalrumble,R.mipmap.summerslam,R.mipmap.survivorseries};
-        String[] titles={"Wrestlemania","Royal Rumble","SummerSlam","Survivor Series"};
-        String[] description={"The showcase of inmortals","30 enter , just ONE leaves","The biggest Party Of the Summer","Who will be the soul survivir?"};
-        String[] places={"Skydome" , "Thunderdome "," Barclays Center","Madison Square Garden"};
-        int[] startYear={115,115,155,115};
-        int[] startMonth={3,0,7,10};
-        int[] startDay={1,25,23,22};
-        int[] startHour={17,18,18,18};
-        int[] startMinute={0,0,0,0};
-        int[] startSecond={0,0,0,0};
-        String[] startDates={"April 1st , 2015" , "January 25th , 2015" , "August 23rd , 2015" , "November 22nd , 2015"};
-        String[] startTimes={"6:00 pm","7:00 pm","7:00 pm","7:00 pm"};
-
-        for (int i=0;i<icons.length && i<titles.length;i++)
-        {
-            Event current = new Event();
-            current.setIconId(icons[i]);
-            current.setName(titles[i]);
-            current.setDescription(description[i]);
-            current.setReferencePlace(places[i]);
-            Calendar cal = new GregorianCalendar();
-            cal.set(startYear[i], startMonth[i], startDay[i], startHour[i], startMinute[i], startSecond[i]);
-            current.setStartDateTime(cal);
-            data.add(current);
-        }
+        data = getEvents(data);
         return data;
     }
 
     @Override
     public void itemClicked(View view, int position) {
         EventsActivity.getInstance().toEventPage(eventListAdapter.getItemAtPos(position));
+        currentPage=1;
+
+    }
+    private void addScrollBottomListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                    userScrolled = true;
+
+                }
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx,
+                                   int dy) {
+
+                super.onScrolled(recyclerView, dx, dy);
+                // Here get the child count, item count and visibleitems
+                // from layout manager
+
+                visibleItemCount = mLayoutManager.getChildCount();
+                totalItemCount = mLayoutManager.getItemCount();
+                pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+                if (userScrolled && (visibleItemCount + pastVisiblesItems) == totalItemCount) {
+                    userScrolled = false;
+
+                    addNewElementsToList();
+                }
+
+            }
+
+        });
 
     }
 
+    private void addNewElementsToList()
+    {
+        Toast.makeText(getActivity(), "Cargando Mas Elementos", Toast.LENGTH_SHORT).show();
+        eventListAdapter.setData(getEvents(eventListAdapter.getData()));
+    }
+
+    private List<Event> getEvents(final List<Event> eventsList)
+    {
+        System.out.println("Asignando CALL");
+        Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(token, "", currentPage, 10);
+        System.out.println("Enquequeing");
+        eventPage.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Response<JsonElement> response) {
+                JsonObject responseBody = response.body().getAsJsonObject();
+                if (responseBody.has("events")) {
+                    JsonArray jsonArray = responseBody.getAsJsonArray("events");
+                    System.out.println(jsonArray.size());
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
+                        Event current = new Event();
+                        current.setEventId(storedObject.get("id").getAsInt());
+                        current.setName(storedObject.get("title").getAsString());
+                        Calendar startCal = new GregorianCalendar();
+                        startCal.setTimeInMillis((storedObject.get("starts_at").getAsLong()) * 1000);
+                        current.setStartDateTime(startCal);
+                        Calendar endCal = new GregorianCalendar();
+                        endCal.setTimeInMillis((storedObject.get("ends_at").getAsLong()) * 1000);
+                        current.setFinishDateTime(endCal);
+                        current.setImgUrl(storedObject.get("image").getAsString());
+                        eventsList.add(current);
+                    }
+                } else {
+                    if (responseBody.has("error")) {
+                        System.out.println("ERROR");
+                        wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
+                        Toast.makeText(getActivity(), "Error : " + error.toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+            }
+        });
+        eventListAdapter.notifyDataSetChanged();
+        currentPage++;
+        return eventsList;
+    }
 }
