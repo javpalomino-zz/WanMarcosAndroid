@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -132,19 +134,24 @@ public class LoginFragment extends Fragment {
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
-                JsonObject responseBody = response.body().getAsJsonObject();
-                if(responseBody.has("token")){
-                    String token = responseBody.get("token").getAsString();
-                    setPreferences(token);
-                    changeToHome();
+                try {
+                    if (response.isSuccess()) {
+                        JsonObject responseBody = response.body().getAsJsonObject();
+                        if (responseBody.has("token")) {
+                            String token = responseBody.get("token").getAsString();
+                            setPreferences(token);
+                            changeToHome();
+                        } else {
 
-                }else{
-                    if(responseBody.has("error")){
-                        Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
-                        lblError.setText(error.toString());
-                    }else{
-
+                        }
+                    } else {
+                        JSONObject responseBody = new JSONObject(response.errorBody().string());
+                        String message = responseBody.getJSONObject("error").getString("message");
+                        lblError.setText(message);
                     }
+                }
+                catch(Throwable e) {
+                    lblError.setText("Error: " + e.toString());
                 }
             }
 

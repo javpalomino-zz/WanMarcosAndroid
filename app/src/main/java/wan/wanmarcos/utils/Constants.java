@@ -11,6 +11,8 @@ public class Constants {
     public static final String SIGN_UP = "users";
     public static final String LOGIN = "authenticate";
     public static final String USER_INFO = "users/me";
+    public static final String REFRESH = "users/me";
+    public static final String HEADER = "Bearer ";
 
     public static final String PLATFORM = "Android";
     public static final String PREFERENCES = "WanMarcos_preferences";

@@ -36,5 +36,7 @@ public interface ConsumerService {
     @GET(Constants.USER_INFO)
     void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);
 
+    @POST(Constants.REFRESH)
+    Call<JsonElement> resfreshToken(@Header("Authorization") String authorization);
 
 }

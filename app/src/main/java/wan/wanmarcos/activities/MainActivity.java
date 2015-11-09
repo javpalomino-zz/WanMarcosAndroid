@@ -15,12 +15,12 @@ import wan.wanmarcos.fragments.RegisterFragment;
 import wan.wanmarcos.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static Context context;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        context = getApplicationContext();
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
@@ -62,5 +62,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static Context getContext(){
+        return context;
     }
 }
