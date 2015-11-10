@@ -27,7 +27,7 @@
 
         <activity android:name=".activities.EventsActivity"
             android:label="Eventos"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name=".activities.ContactanosActivity"

@@ -161,7 +161,6 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             case 3:
                 Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);
                 startActivity(new Intent(getActivity(), EventsActivity.class));break;
-                Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);break;
             case 4: break;
             case 5: ((Communicator)getActivity()).toContactanosActivity();break;
         }
