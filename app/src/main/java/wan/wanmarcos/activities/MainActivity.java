@@ -16,7 +16,7 @@ import wan.wanmarcos.fragments.RegisterFragment;
 import wan.wanmarcos.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static Context context;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         Constants.DEVICE_HEIGHT2=metrics.heightPixels/Constants.DEVICE_DENSITY;
         Constants.DEVICE_WIDTH2=metrics.widthPixels/Constants.DEVICE_DENSITY;
-
+        context = getApplicationContext();
         setContentView(R.layout.activity_main);
 
         sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
@@ -70,5 +70,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static Context getContext(){
+        return context;
+    }
+    public static void setContext(Context newContext){
+        context = newContext;
     }
 }

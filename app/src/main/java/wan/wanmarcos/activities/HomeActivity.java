@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Redirect.getSingletonInstance().setActivity(this);
         setContentView(R.layout.activity_home);
+        MainActivity.setContext(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -64,12 +65,113 @@ public class HomeActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id){
-            case R.id.action_settings : return true;
             case R.id.logout : logout();break;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void toListTeachers() {
+
+        TeacherListFragment teacherListFragment= new TeacherListFragment();
+        try {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.event_new_fragment, teacherListFragment);
+            transaction.addToBackStack("teacherFragment");
+
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void toShowEvents() {
+        EventNewsFragment eventNewsFragment=new EventNewsFragment();
+        try {
+            FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.event_new_fragment,eventNewsFragment);
+            fragmentTransaction.addToBackStack("events");
+            fragmentTransaction.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void toProfileTeacher(Teacher teacher) {
+        TeacherProfileFragment profileFragment=new TeacherProfileFragment();
+        try {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.event_new_fragment, profileFragment);
+            transaction.addToBackStack("profilefragment");
+
+            transaction.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void toTeacherCourseInformation(Course course) {
+        TeacherCourseProfileFragment teacherCourseProfileFragment=new TeacherCourseProfileFragment();
+        try{
+            FragmentTransaction transaction= getFragmentManager().beginTransaction();
+            transaction.replace(R.id.event_new_fragment, teacherCourseProfileFragment);
+            transaction.addToBackStack("profileteachercoursefragment");
+
+            transaction.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        addCourseInformation(course);
+    }
+
+    @Override
+    public void addTeacherInformation(Teacher teacher) {
+        dataTeacher.putString("teachername", teacher.getName());
+        dataTeacher.putString("facultyname",teacher.getFaculties());
+        dataTeacher.putString("imageurl", teacher.getImageUrl());
+    }
+
+    @Override
+    public void addCourseInformation(Course course) {
+        dataTeacher.putString("coursename",course.getName());
+        dataTeacher.putFloat("courserating", course.getRating());
+    }
+
+    @Override
+    public float getFloatInformation(String key) {
+        return 0;
+    }
+
+    @Override
+    public int getIntInformation(String key) {
+        return 0;
+    }
+
+    @Override
+    public String getStringInformation(String key) {
+        if (dataTeacher.containsKey(key)) {
+            return dataTeacher.getString(key);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public void toContactanosActivity() {
+        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        this.finish();
+        startActivity(contactanos_activity);
+    }
+
     private void logout(){
         SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =  preferences.edit();
@@ -80,4 +182,9 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(login_activity);
     }
 
+    private void Contactanos(){
+        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        this.finish();
+        startActivity(contactanos_activity);
+    }
 }

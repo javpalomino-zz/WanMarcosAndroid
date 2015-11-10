@@ -2,6 +2,7 @@ package wan.wanmarcos.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,10 +19,16 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import wan.wanmarcos.R;
+<<<<<<< HEAD
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.Redirection.Redirection;
+=======
+import wan.wanmarcos.activities.EventsActivity;
+import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.managers.Communicator;
+>>>>>>> dev
 import wan.wanmarcos.models.NavDrawerLink;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -79,8 +86,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     public static List<NavDrawerLink> getData()
     {
         List<NavDrawerLink> data=new ArrayList<>();
-        int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
-        String[] titles={"Noticias","Docentes","Lugares","Eventos"};
+        int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+        String[] titles={"Noticias","Docentes","Lugares","Eventos","Mi Perfil","Contáctanos"};
         for (int i=0;i<icons.length && i<titles.length;i++)
         {
             NavDrawerLink current = new NavDrawerLink();
@@ -154,14 +161,18 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
 
         switch (position){
             case 0 :
-                Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);break;
+                Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);
+                startActivity(new Intent(getActivity(), HomeActivity.class)) ;break;
             case 1:
                 activityExecute=Constants.TEACHER_ACTIVITY;break;
 
             case 2:
                 Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
             case 3:
-                Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);break;
+                Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);
+                startActivity(new Intent(getActivity(), EventsActivity.class));break;
+            case 4: break;
+            case 5: ((Communicator)getActivity()).toContactanosActivity();break;
         }
         Redirect.getSingletonInstance().changeActivity(activityExecute);
 

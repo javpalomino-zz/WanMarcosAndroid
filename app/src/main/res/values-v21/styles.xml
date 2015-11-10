@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--TEACHERITEM-->
     <style name="TeacherItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
@@ -7,4 +8,5 @@
         <item name="android:foregroundGravity">center</item>
     </style>
     <!--TEACHERITEM-->
+
 </resources>

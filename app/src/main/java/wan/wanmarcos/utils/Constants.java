@@ -24,6 +24,10 @@ public class Constants {
     public static final String SIGN_UP = "users";
     public static final String LOGIN = "authenticate";
     public static final String USER_INFO = "users/me";
+    public static final String SUGGESTIONS = "suggestions";
+    public static final String REFRESH = "refresh";
+
+    public static final String HEADER = "Bearer ";
 
     public static final String PLATFORM = "Android";
     public static final String TEACHERS ="professors" ;
@@ -72,5 +76,11 @@ public class Constants {
     public static final int PROFILE_COURSE_RATING=R.id.sub_fragment_course_rating;
     public static final int VALUATION_LIST_ID=R.id.sub_fragment_valuations_course;
 
+
+    public static final String EVENTS = "events";
+    //MODALS
+    public static String MODAL_TITLE_CONTACTANOS = "Contáctanos";
+    public static String MODAL_MESSAGE_CONTACTANOS = "Gracias por darnos tu opinión";
+    public static String MODAL_BUTTON_DENADA = "De Nada";
 
 }

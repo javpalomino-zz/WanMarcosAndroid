@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFF"
-    tools:context="com.example.mox.myapplication.NavigationDrawerFragment">
+    android:orientation="vertical"
+    android:elevation="16dp"
+    tools:context="wan.wanmarcos.fragments.NavigationDrawerFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -29,4 +31,5 @@
         android:layout_below="@+id/containerDrawerImage">
 
     </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

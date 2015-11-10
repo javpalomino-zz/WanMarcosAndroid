@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:id="@+id/eventFormHeader"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/lblHeaderFormEvent"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    />
+
+                <EditText
+                    android:id="@+id/eventFormName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="@string/eventNameFormPlaceholder"
+                    android:layout_below="@+id/eventFormHeader" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/eventFormPlace"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="@string/eventPlaceFormPlaceholder"
+                    android:layout_below="@+id/eventFormName" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/eventFormCategory"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="@string/eventCategoryFormPlaceholder"
+                    android:layout_below="@+id/eventFormPlace" />
+
+                <Button
+                    android:id="@+id/eventFormStartDateButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/btnEventStartDateForm"
+                    android:layout_below="@+id/eventFormCategory"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
+                <Button
+                    android:id="@+id/eventFormStartTimeButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/btnEventStartTimeForm"
+                    android:layout_below="@+id/eventFormStartDateButton"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
+                <Button
+                    android:id="@+id/eventFormEndDateButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/btnEventEndDateForm"
+                    android:layout_below="@+id/eventFormStartTimeButton"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
+                <Button
+                    android:id="@+id/eventFormEndTimeButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/btnEventEndTimeForm"
+                    android:layout_below="@+id/eventFormEndDateButton"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
+
+
+
+                <EditText
+                    android:id="@+id/eventFormLink"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:hint="@string/eventLinkFormPlaceholder"
+                    android:layout_below="@+id/eventFormEndTimeButton" />
+
+                <Button
+                    android:id="@+id/eventFormImage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/btnEventImageForm"
+                    android:layout_below="@+id/eventFormLink"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
+
+                <Button
+                    android:id="@+id/eventFormSchedule"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/btnEventScheduleForm"
+                    android:layout_below="@+id/eventFormImage"
+                    android:background="@color/accentNewsColor"
+                    android:textColor="@color/buttonTextNewsColor"/>
+
+                <EditText
+                    android:id="@+id/eventFormDescription"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/eventDescriptionFormPlaceholder"
+                    android:gravity="top"
+                    android:layout_below="@+id/eventFormSchedule" />
+
+            </RelativeLayout>
+
+        </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/sendFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@mipmap/ic_send_white_48dp" />
+
+</android.support.design.widget.CoordinatorLayout>

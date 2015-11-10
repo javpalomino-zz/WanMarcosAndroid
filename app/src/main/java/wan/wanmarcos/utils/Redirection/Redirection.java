@@ -21,5 +21,10 @@ public interface Redirection {
     void addCourseInformation(Course course);
     float getFloatInformation(String key);
     int getIntInformation(String key);
+<<<<<<< HEAD:app/src/main/java/wan/wanmarcos/utils/Redirection/Redirection.java
     String getStringInformation(String key);*/
+=======
+    String getStringInformation(String key);
+    void toContactanosActivity();
+>>>>>>> dev:app/src/main/java/wan/wanmarcos/managers/Communicator.java
 }

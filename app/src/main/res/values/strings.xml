@@ -12,20 +12,63 @@
     <string name="lblLastName">Apellidos</string>
     <string name="lblEmail">Email</string>
     <string name="lblPassword">Password</string>
+    <string name="lblReferencePlaceEvent">Lugar De Referencia</string>
+    <string name="lblStartEvent">Inicio</string>
+    <string name="lblEndEvent">Fin</string>
+    <string name="lblDescriptionEvent">Descripción</string>
+    <string name="lblLinkEvent">Link</string>
+    <string name="lblHeaderFormEvent">Cuéntanos acerca del evento</string>
+    <string name="lblTellUsAboutYou">¡ Cuéntanos sobre ti !</string>
+    <string name="lblWelcome">¡ Bienvenido !</string>
+    <string name="lblRegisterFirstName">¿Cuál es tu nombre?</string>
+    <string name="lblRegisterLastName">¿Cuales son tus apellidos?</string>
+    <string name="lblRegisterEmail">¿Cuál es tu email?</string>
+    <string name="lblRegisterPassword">¿Cuál sería tu contraseña?</string>
+
     <!--PlaceHolders-->
 
     <string name="firstNamePlaceholder">Carlos Alejandro</string>
     <string name="lastNamePlaceholder">Zerga Morales</string>
     <string name="emailPlaceholder">username@domain.com</string>
     <string name="passwordPlaceholder">**************</string>
+    <string name="eventTitlePlaceholder">Nombre de Evento</string>
+    <string name="eventDatePlaceholder">Enero 1 , 2015 00:00 hs.</string>
+    <string name="eventReferencePlaceText">Lugar de Referencia de Evento</string>
+    <string name="eventDescriptionPlaceholer">Descripcion de Evento de Prueba</string>
+    <string name="eventLinkPlaceholder">www.testpage.com</string>
+    <string name="eventNameFormPlaceholder">¿Cómo se llama el evento?</string>
+    <string name="eventPlaceFormPlaceholder">¿Dónde es el evento?</string>
+    <string name="eventCategoryFormPlaceholder">Dale una categoría al evento</string>
+    <string name="eventLinkFormPlaceholder">Danos un link de referencia</string>
+    <string name="eventDescriptionFormPlaceholder">Cuéntanos un poco acerca del Evento</string>
+    <string name="contac_messagueplaceholder">Solo dilo</string>
 
     <!--Buttons-->
-    <string name="btnRegister">SignUp</string>
-    <string name="btnLogIn">Login</string>
-    <string name="btnForgotPassword">Forgot Password</string>
+    <string name="btnRegister">¿No Tienes Una Cuenta? Registrate.</string>
+    <string name="btnRegisterForm">Registrarme</string>
+    <string name="btnLogIn">INGRESAR</string>
+    <string name="btnForgotPassword">¿Olvidaste Tu Contraseña?</string>
     <string name="btnLogout">Cerrar Sesión</string>
+    <string name="btnEventStartDateForm">Dinos la Fecha de Inicio del Evento</string>
+    <string name="btnEventEndDateForm">Dinos la Fecha de Fin del Evento</string>
+    <string name="btnEventStartTimeForm">Dinos la Hora de Inicio del Evento</string>
+    <string name="btnEventEndTimeForm">Dinos la Hora de Fin del Evento</string>
+    <string name="btnEventImageForm">Danos una imágen de Referencia</string>
+    <string name="btnEventScheduleForm">Evíanos el programa del evento</string>
+    <string name="btnEnviarFeed">Enviar Feddback</string>
+    <string name="btnDeNada">De Nada</string>
     <!--Titles-->
     <string name="title_activity_home">Inicio</string>
+    <string name="title_activity_contactanos">ContactanosActivity</string>
+
+    <!--Titles-->
+    <string name="title_contactanos">Contactanos</string>
+
+    <!--TextViews-->
+    <string name="pregunta_contactanos">¿Tiene algo que decirnos?</string>
+    <string name="respuesta_contactanos">Nos gustaría mucho escucharla</string>
+    <string name="popup_messague_contactanos">Gracias por decirnos lo que piensas</string>
+
 
     <!--Space-->
     <string name="raiting">Puntaje</string>
