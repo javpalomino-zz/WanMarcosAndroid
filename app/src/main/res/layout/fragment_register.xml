@@ -1,78 +1,117 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="wan.wanmarcos.fragments.RegisterFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/loginBackgroundColor"
+    tools:context="wan.wanmarcos.fragments.RegisterFragment">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        <RelativeLayout
+            android:id="@+id/main_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            style="@style/CenterVerticalLayout"
-            android:orientation="vertical">
+            <ImageView
+            android:id="@+id/appLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:src="@mipmap/wanmarcoswhite"/>
 
             <TextView
+                android:id="@+id/registerHeaderLablel"
+                android:layout_below="@id/appLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lblFirstName"
-            />
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/loginLinkTextColor"
+                android:layout_centerHorizontal="true"
+                android:text="@string/lblTellUsAboutYou"/>
+
+            <!--<View
+                android:id="@+id/registerHeaderDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/loginLinkTextColor"
+                android:layout_below="@id/registerHeaderLablel"
+                android:layout_marginBottom="20dp"/>-->
 
             <EditText
                 android:id="@+id/first_name"
+                android:layout_below="@id/registerHeaderLablel"
                 style="@style/FormField"
-                android:hint="@string/firstNamePlaceholder"
-            />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lblLastName"
-            />
+                android:hint="@string/lblRegisterFirstName"
+                android:theme="@style/ToolbarWhiteText"
+                android:background="@color/loginInputFieldBackgroundColor"
+                android:gravity="center_vertical"
+                android:layout_height="50dp"
+                android:drawableLeft="@mipmap/ic_account_circle_white_24dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"/>
 
             <EditText
                 android:id="@+id/last_name"
+                android:layout_below="@id/first_name"
                 style="@style/FormField"
-                android:hint="@string/lastNamePlaceholder"
-            />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lblEmail"
-            />
+                android:hint="@string/lblRegisterLastName"
+                android:theme="@style/ToolbarWhiteText"
+                android:background="@color/loginInputFieldBackgroundColor"
+                android:gravity="center_vertical"
+                android:layout_height="50dp"
+                android:drawableLeft="@mipmap/ic_supervisor_account_white_24dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp" />
 
             <EditText
                 android:id="@+id/email"
+                android:layout_below="@id/last_name"
                 style="@style/FormField"
+                android:hint="@string/lblRegisterEmail"
+                android:theme="@style/ToolbarWhiteText"
+                android:background="@color/loginInputFieldBackgroundColor"
+                android:gravity="center_vertical"
+                android:layout_height="50dp"
                 android:inputType="textEmailAddress"
-                android:hint="@string/emailPlaceholder"
-            />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lblPassword"
-            />
+                android:drawableLeft="@mipmap/ic_email_white_24dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp" />
 
             <EditText
                 android:id="@+id/password"
+                android:layout_below="@id/email"
                 style="@style/FormField"
+                android:hint="@string/lblRegisterPassword"
                 android:inputType="textPassword"
-                android:hint="@string/passwordPlaceholder"
-            />
+                android:theme="@style/ToolbarWhiteText"
+                android:background="@color/loginInputFieldBackgroundColor"
+                android:gravity="center_vertical"
+                android:layout_height="50dp"
+                android:drawableLeft="@mipmap/ic_lock_white_24dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"/>
 
             <Button
                 android:id="@+id/signUp"
+                android:layout_below="@id/password"
                 style="@style/FormField"
-                android:text="@string/btnRegister"/>
+                android:gravity="center"
+                android:layout_height="55dp"
+                android:background="@color/registerButtonBackgroundColor"
+                android:textColor="@color/loginButtonTextColor"
+                android:textStyle="normal"
+                android:textSize="20dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/btnRegisterForm" />
 
             <TextView
                 android:id="@+id/error"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-            />
-        </LinearLayout>
-
-    </ScrollView>
+                android:text="" />
+        </RelativeLayout>
 
 </FrameLayout>

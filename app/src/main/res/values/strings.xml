@@ -18,6 +18,12 @@
     <string name="lblDescriptionEvent">Descripción</string>
     <string name="lblLinkEvent">Link</string>
     <string name="lblHeaderFormEvent">Cuéntanos acerca del evento</string>
+    <string name="lblTellUsAboutYou">¡ Cuéntanos sobre ti !</string>
+    <string name="lblWelcome">¡ Bienvenido !</string>
+    <string name="lblRegisterFirstName">¿Cuál es tu nombre?</string>
+    <string name="lblRegisterLastName">¿Cuales son tus apellidos?</string>
+    <string name="lblRegisterEmail">¿Cuál es tu email?</string>
+    <string name="lblRegisterPassword">¿Cuál sería tu contraseña?</string>
 
     <!--PlaceHolders-->
 
@@ -39,6 +45,7 @@
 
     <!--Buttons-->
     <string name="btnRegister">¿No Tienes Una Cuenta? Registrate.</string>
+    <string name="btnRegisterForm">Registrarme</string>
     <string name="btnLogIn">INGRESAR</string>
     <string name="btnForgotPassword">¿Olvidaste Tu Contraseña?</string>
     <string name="btnLogout">Cerrar Sesión</string>

@@ -9,6 +9,7 @@
     
     <color name="loginBackgroundColor">#000000</color>
     <color name="loginButtonBackgroundColor">#1db954</color>
+    <color name="registerButtonBackgroundColor">#3a5897</color>
     <color name="loginInputFieldBackgroundColor">#1A2026</color>
     <color name="loginInputFieldBackgroundColorLight">#E5DFD9</color>
     <color name="loginButtonTextColor">#FFFFFF</color>

@@ -19,7 +19,7 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="80dp"
-                android:src="@mipmap/wanmarcoslightgray"/>
+                android:src="@mipmap/wanmarcoswhite"/>
 
             <TextView
                 android:id="@+id/loginHeaderLabel"
@@ -31,7 +31,7 @@
                 android:layout_marginBottom="20dp"
                 android:textColor="@color/loginLinkTextColor"
                 android:layout_centerHorizontal="true"
-                android:text="Bienvenido."/>
+                android:text="@string/lblWelcome"/>
 
             <EditText
                 android:id="@+id/email"
