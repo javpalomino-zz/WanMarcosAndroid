@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Wanmarcos</string>
     <string name="title_activity_main">MainActivity</string>
@@ -34,6 +35,7 @@
     <string name="eventCategoryFormPlaceholder">Dale una categoría al evento</string>
     <string name="eventLinkFormPlaceholder">Danos un link de referencia</string>
     <string name="eventDescriptionFormPlaceholder">Cuéntanos un poco acerca del Evento</string>
+    <string name="contac_messagueplaceholder">Solo dilo</string>
 
     <!--Buttons-->
     <string name="btnRegister">SignUp</string>
@@ -46,10 +48,35 @@
     <string name="btnEventEndTimeForm">Dinos la Hora de Fin del Evento</string>
     <string name="btnEventImageForm">Danos una imágen de Referencia</string>
     <string name="btnEventScheduleForm">Evíanos el programa del evento</string>
+    <string name="btnEnviarFeed">Enviar Feddback</string>
+    <string name="btnDeNada">De Nada</string>
     <!--Titles-->
     <string name="title_activity_home">Inicio</string>
+    <string name="title_activity_contactanos">ContactanosActivity</string>
+
+    <!--Titles-->
+    <string name="title_contactanos">Contactanos</string>
+
+    <!--TextViews-->
+    <string name="pregunta_contactanos">¿Tiene algo que decirnos?</string>
+    <string name="respuesta_contactanos">Nos gustaría mucho escucharla</string>
+    <string name="popup_messague_contactanos">Gracias por decirnos lo que piensas</string>
+
+
+    <!--Space-->
+    <string name="raiting">Puntaje</string>
+    <string name="teacher_places">Universidades:</string>
+    <string name="teacher_capabilities">Capacidades:</string>
+
+    <string name="course_name">Nombre del Curso:</string>
+    <string name="course_valoration">Valoracion: </string>
+    <string name="course_faculties">Facultad: </string>
+    <string name="teacher_ped">Cursos que dicta: </string>
+    
+    <string name="Tab">\t</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
 
 </resources>

@@ -51,6 +51,12 @@ public interface ConsumerService {
                                   @Field("starts_at")long event_startCal,
                                   @Field("ends_at")long event_endCal,
                                   @Field("website") String event_link);
+    @FormUrlEncoded
+    @POST(Constants.SUGGESTIONS)
+    Call<JsonElement> suggestions(@Header("Authorization") String authorization,@Field("message") String message);
+
+    @POST(Constants.REFRESH)
+    Call<JsonElement> resfreshToken(@Header("Authorization") String authorization);
 
 
 }

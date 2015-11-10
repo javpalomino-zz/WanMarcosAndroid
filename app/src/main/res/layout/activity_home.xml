@@ -21,11 +21,10 @@
 
         </include>
 
-        <fragment
+        <FrameLayout
             android:id="@+id/event_new_fragment"
-            android:name="wan.wanmarcos.fragments.EventNewsFragment"
-            android:layout_width="fill_parent"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             />
 

@@ -18,9 +18,12 @@ import android.widget.TextView;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.models.Error;
@@ -47,7 +50,6 @@ public class LoginFragment extends Fragment {
     private SharedPreferences preferences;
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
-
         return fragment;
     }
 
@@ -127,30 +129,34 @@ public class LoginFragment extends Fragment {
     }
 
     private void postLogIn(){
+
         Call<JsonElement> logInUser= restClient.getConsumerService().login(email, password,device_token, Constants.PLATFORM);
         String token;
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
-                JsonObject responseBody = response.body().getAsJsonObject();
-                if(responseBody.has("token")){
-                    String token = responseBody.get("token").getAsString();
-                    setPreferences(token);
-                    changeToHome();
+                try {
+                    if (response.isSuccess()) {
+                        JsonObject responseBody = response.body().getAsJsonObject();
+                        if (responseBody.has("token")) {
+                            String token = responseBody.get("token").getAsString();
+                            setPreferences(token);
+                            changeToHome();
+                        } else {
 
-                }else{
-                    if(responseBody.has("error")){
-                        Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
-                        lblError.setText(error.toString());
-                    }else{
-
+                        }
+                    } else {
+                        JSONObject responseBody = new JSONObject(response.errorBody().string());
+                        String message = responseBody.getJSONObject("error").getString("message");
+                        lblError.setText(message);
                     }
+                }catch(Throwable e){
+                    lblError.setText(e.toString());
                 }
             }
-
             @Override
             public void onFailure(Throwable t) {
-
+                lblError.setText(t.toString());
             }
         });
     }

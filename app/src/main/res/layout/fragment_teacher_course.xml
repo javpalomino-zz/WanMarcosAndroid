@@ -1,0 +1,24 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_teacher_course_profile">
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/sub_fragment_course_profile"
+        android:name="wan.wanmarcos.fragments.SectionCourseProfile"
+        tools:layout="@layout/generic_course_profile">
+
+    </fragment>
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sub_fragment_course_profile"
+        android:id="@+id/sub_fragment_valuations_course"
+        android:name="wan.wanmarcos.fragments.SectionValuationsCourse"
+        tools:layout="@layout/generic_list">
+
+    </fragment>
+</RelativeLayout>
