@@ -75,6 +75,7 @@ public class SectionListTeachers extends Fragment implements ItemAdapterListener
 
     @Override
     public void itemClicked(View view, Teacher object) {
+
         communicator.toProfileTeacher(object);
     }
 }

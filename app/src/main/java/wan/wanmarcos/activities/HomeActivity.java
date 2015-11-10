@@ -37,6 +37,7 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+        MainActivity.setContext(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -62,8 +63,8 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
 
         //noinspection SimplifiableIfStatement
         switch (id){
-            case R.id.action_settings : return true;
-            case R.id.logout : logout();
+            case R.id.action_settings : Contactanos();break;
+            case R.id.logout : logout(); break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -162,6 +163,14 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
             return null;
         }
     }
+
+    @Override
+    public void toContactanosActivity() {
+        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        this.finish();
+        startActivity(contactanos_activity);
+    }
+
     private void logout(){
         SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =  preferences.edit();
@@ -170,5 +179,11 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         Intent login_activity = new Intent(this,MainActivity.class);
         finish();
         startActivity(login_activity);
+    }
+
+    private void Contactanos(){
+        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
+        this.finish();
+        startActivity(contactanos_activity);
     }
 }
