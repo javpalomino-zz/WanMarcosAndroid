@@ -5,6 +5,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.inputmethod.InputMethodManager;
 
@@ -14,6 +15,7 @@ import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.utils.Redirection.Redirect;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -21,15 +23,15 @@ public class EventsActivity extends AppCompatActivity {
     NavigationDrawerFragment drawerFragment;
     Menu createdMenu;
 
-    private static EventsActivity instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("ACTIVITY", "");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        instance=this;
+        Redirect.getSingletonInstance().setActivity(this,R.id.home_fragment);
+        Redirect.getSingletonInstance().changeFragment(null);
         setUpNavDrawer();
-        addListFragment();
     }
 
     @Override
@@ -50,6 +52,12 @@ public class EventsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Redirect.getSingletonInstance().updateActivityStack();
+        super.onBackPressed();
+    }
+    /*
     public void addListFragment()
     {
         EventViewListFragment eventViewListFragment = new EventViewListFragment();
@@ -84,7 +92,7 @@ public class EventsActivity extends AppCompatActivity {
         }
 
     }
-
+    /*
     public void toEventPage(Event selectedEvent)
     {
         EventPageFragment eventPageFragment = new EventPageFragment();
@@ -104,8 +112,8 @@ public class EventsActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
+    }*/
+    /*
     public void toListFragmentFromForm()
     {
         EventViewListFragment eventViewListFragment = new EventViewListFragment();
@@ -128,9 +136,5 @@ public class EventsActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static EventsActivity getInstance() {
-            return instance;
-    }
+    }*/
 }

@@ -1,8 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="wan.wanmarcos.fragments.TeacherListFragment"
+    android:layout_height="wrap_content"
     android:id="@+id/fragment_teacher_list"
     android:orientation="vertical">
     <SearchView
@@ -11,10 +10,9 @@
             android:iconifiedByDefault="false"
             android:id="@+id/searchViewTeachers">
     </SearchView>
-    <fragment
-            android:id="@+id/sub_fragment_teacher_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="wan.wanmarcos.fragments.SectionListTeachers"
-            tools:layout="@layout/generic_list" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/sub_fragment_teacher_list">
+    </FrameLayout>
 </LinearLayout>

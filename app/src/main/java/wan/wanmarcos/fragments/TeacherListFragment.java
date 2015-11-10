@@ -1,42 +1,53 @@
 package wan.wanmarcos.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.FrameLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 
-import java.util.ArrayList;
-
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
-import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
-
+import wan.wanmarcos.utils.Redirection.Redirect;
 
 
 public class TeacherListFragment extends Fragment {
+    private SearchView searchView;
     public TeacherListFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("DEbuG","dad");
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Toast.makeText(getActivity(),Constants.DEVICE_DENSITY+"Density,"+Constants.DEVICE_HEIGHT2+",HEIGHT"+Constants.DEVICE_WIDTH2+",WIDTH",Toast.LENGTH_LONG).show();
-        return inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
+        View view=inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
+        setUpElements(view);
+        Redirect.getSingletonInstance().setContent(this, Constants.TEACHER_LIST_ID, new SectionListTeachers());
+        return view;
     }
+    public void setUpElements(View view){
+        searchView=(SearchView)view.findViewById(R.id.searchViewTeachers);
+        searchView.setFocusable(false);
 
+    }
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onResume() {
+        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
+        super.onResume();
     }
-
 }

@@ -1,7 +1,6 @@
 package wan.wanmarcos.activities;
 
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 
 
@@ -13,10 +12,10 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.R;
 
@@ -24,18 +23,20 @@ import wan.wanmarcos.fragments.EventNewsFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.models.Teacher;
 
-public class HomeActivity extends AppCompatActivity implements Communicator{
+public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     NavigationDrawerFragment drawerFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("DEBUGGG",this.getClass().getName());
         super.onCreate(savedInstanceState);
-
+        Redirect.getSingletonInstance().setActivity(this,R.id.event_new_fragment);
         setContentView(R.layout.activity_home);
         MainActivity.setContext(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -43,7 +44,7 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        toShowEvents();
+        //toShowEvents();
     }
 
     @Override
@@ -63,109 +64,13 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
 
         //noinspection SimplifiableIfStatement
         switch (id){
-
             case R.id.logout : logout();break;
-
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void toListTeachers() {
 
-        TeacherListFragment teacherListFragment= new TeacherListFragment();
-        try {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.event_new_fragment, teacherListFragment);
-            transaction.addToBackStack("teacherFragment");
-
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void toShowEvents() {
-        EventNewsFragment eventNewsFragment=new EventNewsFragment();
-        try {
-            FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.event_new_fragment,eventNewsFragment);
-            fragmentTransaction.addToBackStack("events");
-            fragmentTransaction.commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void toProfileTeacher(Teacher teacher) {
-        TeacherProfileFragment profileFragment=new TeacherProfileFragment();
-        try {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.event_new_fragment, profileFragment);
-            transaction.addToBackStack("profilefragment");
-
-            transaction.commit();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Override
-    public void toTeacherCourseInformation(Course course) {
-        TeacherCourseProfileFragment teacherCourseProfileFragment=new TeacherCourseProfileFragment();
-        try{
-            FragmentTransaction transaction= getFragmentManager().beginTransaction();
-            transaction.replace(R.id.event_new_fragment, teacherCourseProfileFragment);
-            transaction.addToBackStack("profileteachercoursefragment");
-
-            transaction.commit();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        addCourseInformation(course);
-    }
-
-    @Override
-    public void addTeacherInformation(Teacher teacher) {
-        dataTeacher.putString("teachername", teacher.getName());
-        dataTeacher.putString("facultyname",teacher.getFaculties());
-        dataTeacher.putString("imageurl", teacher.getImageUrl());
-    }
-
-    @Override
-    public void addCourseInformation(Course course) {
-        dataTeacher.putString("coursename",course.getName());
-        dataTeacher.putFloat("courserating", course.getRating());
-    }
-
-    @Override
-    public float getFloatInformation(String key) {
-        return 0;
-    }
-
-    @Override
-    public int getIntInformation(String key) {
-        return 0;
-    }
-
-    @Override
-    public String getStringInformation(String key) {
-        if (dataTeacher.containsKey(key)) {
-            return dataTeacher.getString(key);
-        } else {
-            return null;
-        }
-    }
-
-    @Override
     public void toContactanosActivity() {
         Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
         this.finish();
@@ -177,8 +82,8 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
         SharedPreferences.Editor editor =  preferences.edit();
         editor.clear();
         editor.commit();
-        Intent login_activity = new Intent(this,MainActivity.class);
-        finish();
+        Intent login_activity = new Intent(getApplicationContext(),MainActivity.class);
+        login_activity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(login_activity);
     }
 

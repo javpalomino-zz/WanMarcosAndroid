@@ -1,4 +1,4 @@
-package wan.wanmarcos.managers;
+package wan.wanmarcos.utils.Redirection;
 
 import android.os.Bundle;
 
@@ -8,9 +8,13 @@ import wan.wanmarcos.models.Teacher;
 /**
  * Created by carlos-pc on 09/10/15.
  */
-public interface Communicator {
-    Bundle dataTeacher = new Bundle();
-    void toListTeachers();
+public interface Redirection {
+    void changeActivity(String tag,Object data);
+    void changeActivity(String tag);
+    void changeFragment(Object data);
+    void toContactanosActivity();
+    String getInformation(String key);
+    /*void toListTeachers();
     void toShowEvents();
     void toProfileTeacher(Teacher teacher);
     void toTeacherCourseInformation(Course course);
@@ -18,6 +22,6 @@ public interface Communicator {
     void addCourseInformation(Course course);
     float getFloatInformation(String key);
     int getIntInformation(String key);
-    String getStringInformation(String key);
-    void toContactanosActivity();
+<<<<<<< HEAD:app/src/main/java/wan/wanmarcos/utils/Redirection/Redirection.java
+    String getStringInformation(String key);*/
 }

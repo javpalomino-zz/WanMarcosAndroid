@@ -1,6 +1,6 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,23 +8,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.managers.ItemAdapterListener;
-import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.views.adapters.CourseListAdapter;
 import wan.wanmarcos.views.adapters.ValuationListAdapter;
 
 
 public class SectionValuationsCourse extends Fragment implements ItemAdapterListener<Valuation> {
-    private Communicator communicator;
     private RecyclerView recyclerView;
     private ValuationListAdapter valuationListAdapter;
     @Override
@@ -39,7 +35,7 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View layout=inflater.inflate(Constants.SECTION_LIST,container,false);
+        View layout=inflater.inflate(Constants.SECTION_GENERIC_LIST_LAYOUT,container,false);
         setUpElements(layout);
         addListeners();
         return layout;
@@ -49,9 +45,8 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     }
 
     public void setUpElements(View view){
-        communicator=(Communicator) getActivity();
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
-        valuationListAdapter=new ValuationListAdapter(getActivity(),getData());
+        valuationListAdapter=new ValuationListAdapter(getActivity(),getData(""));
         valuationListAdapter.setListener(this);
         recyclerView.setAdapter(valuationListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -63,7 +58,7 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     }
 
     @Override
-    public List<Valuation> getData() {
+    public List<Valuation> getData(String data) {
         List<Valuation> valuations=new ArrayList();
         valuations.add(new Valuation("Carlos","http://lorempixel.com/350/230/","El curso es muy aburrido",(float)1.0));
         valuations.add(new Valuation("Miguel","http://lorempixel.com/350/230/","El curso paltea",(float)1.0));

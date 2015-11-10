@@ -29,6 +29,7 @@ import wan.wanmarcos.models.*;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.DateAndTimeDealer;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
 
 /**
@@ -266,8 +267,7 @@ public class SuggestedEventFragment extends Fragment {
                 if (responseBody.has("name")) {
                     String name = responseBody.get("name").getAsString();
                     Toast.makeText(getActivity(), "Tu Evento : "+name+" ha sido sugerido correctamente.", Toast.LENGTH_SHORT).show();
-                    EventsActivity.getInstance().toListFragmentFromForm();
-
+                    Redirect.getSingletonInstance().reload();
                 } else {
                     if (responseBody.has("error")) {
                         wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
