@@ -8,6 +8,7 @@
     <color name="eventDetailDividerColor">#DBDBDB</color>
     
     <color name="loginBackgroundColor">#000000</color>
+    <color name="loginBackgroundColorLight">#ffffff</color>
     <color name="loginButtonBackgroundColor">#1db954</color>
     <color name="registerButtonBackgroundColor">#3a5897</color>
     <color name="loginInputFieldBackgroundColor">#1A2026</color>

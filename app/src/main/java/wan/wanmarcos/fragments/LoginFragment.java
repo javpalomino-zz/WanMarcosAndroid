@@ -13,7 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -37,6 +39,7 @@ public class LoginFragment extends Fragment {
     private RestClient restClient;
 
     private Button btnLogIn;
+    private ImageView logoImg;
     private TextView btnRegister;
     private TextView btnForgotPassword;
     private EditText txtEmail;
@@ -69,6 +72,7 @@ public class LoginFragment extends Fragment {
     private View setUpElements(LayoutInflater inflater, ViewGroup container){
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         builder = new Builder();
+        logoImg = (ImageView)view.findViewById(R.id.appLogo);
         btnLogIn =  (Button)view.findViewById(R.id.logIn);
         btnRegister =(TextView)view.findViewById(R.id.signUp);
         btnForgotPassword = (TextView)view.findViewById(R.id.forgotPassword);
@@ -149,15 +153,15 @@ public class LoginFragment extends Fragment {
                     } else {
                         JSONObject responseBody = new JSONObject(response.errorBody().string());
                         String message = responseBody.getJSONObject("error").getString("message");
-                        lblError.setText(message);
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
                     }
                 }catch(Throwable e){
-                    lblError.setText(e.toString());
+                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Throwable t) {
-                lblError.setText(t.toString());
+                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }

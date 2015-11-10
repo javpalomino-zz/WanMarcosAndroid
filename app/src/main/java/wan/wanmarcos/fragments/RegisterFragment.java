@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -108,7 +109,7 @@ public class RegisterFragment extends Fragment {
 
                             if(responseBody.has("user")){
                                 User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
-                                txtError.setText(user.toString());
+                                Toast.makeText(getActivity(), user.toString(), Toast.LENGTH_SHORT).show();
                             }
                             Intent intent = new Intent();
                             intent.setClass(getActivity(), HomeActivity.class);
@@ -117,10 +118,10 @@ public class RegisterFragment extends Fragment {
                         else{
                             if(responseBody.has("error")){
                                 Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
-                                txtError.setText(error.toString());
+                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                txtError.setText("unknow error");
+                                Toast.makeText(getActivity(), "unkown error", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

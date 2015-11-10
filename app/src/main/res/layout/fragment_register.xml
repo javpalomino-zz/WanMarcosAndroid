@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/loginBackgroundColor"
+    android:background="@color/loginBackgroundColorLight"
     tools:context="wan.wanmarcos.fragments.RegisterFragment">
 
         <RelativeLayout
@@ -10,7 +10,9 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true">
 
             <ImageView
             android:id="@+id/appLogo"
@@ -18,7 +20,7 @@
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
-            android:src="@mipmap/wanmarcoswhite"/>
+            android:src="@mipmap/wanmarcosblack"/>
 
             <TextView
                 android:id="@+id/registerHeaderLablel"
@@ -28,28 +30,19 @@
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:textColor="@color/loginLinkTextColor"
+                android:textColor="@color/loginLinkTextColorLight"
                 android:layout_centerHorizontal="true"
                 android:text="@string/lblTellUsAboutYou"/>
-
-            <!--<View
-                android:id="@+id/registerHeaderDivider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/loginLinkTextColor"
-                android:layout_below="@id/registerHeaderLablel"
-                android:layout_marginBottom="20dp"/>-->
 
             <EditText
                 android:id="@+id/first_name"
                 android:layout_below="@id/registerHeaderLablel"
                 style="@style/FormField"
                 android:hint="@string/lblRegisterFirstName"
-                android:theme="@style/ToolbarWhiteText"
-                android:background="@color/loginInputFieldBackgroundColor"
+                android:background="@color/loginInputFieldBackgroundColorLight"
                 android:gravity="center_vertical"
                 android:layout_height="50dp"
-                android:drawableLeft="@mipmap/ic_account_circle_white_24dp"
+                android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
                 android:paddingLeft="10dp"
                 android:drawablePadding="10dp"/>
 
@@ -58,11 +51,10 @@
                 android:layout_below="@id/first_name"
                 style="@style/FormField"
                 android:hint="@string/lblRegisterLastName"
-                android:theme="@style/ToolbarWhiteText"
-                android:background="@color/loginInputFieldBackgroundColor"
+                android:background="@color/loginInputFieldBackgroundColorLight"
                 android:gravity="center_vertical"
                 android:layout_height="50dp"
-                android:drawableLeft="@mipmap/ic_supervisor_account_white_24dp"
+                android:drawableLeft="@mipmap/ic_supervisor_account_black_24dp"
                 android:paddingLeft="10dp"
                 android:drawablePadding="10dp" />
 
@@ -71,12 +63,11 @@
                 android:layout_below="@id/last_name"
                 style="@style/FormField"
                 android:hint="@string/lblRegisterEmail"
-                android:theme="@style/ToolbarWhiteText"
-                android:background="@color/loginInputFieldBackgroundColor"
+                android:background="@color/loginInputFieldBackgroundColorLight"
                 android:gravity="center_vertical"
                 android:layout_height="50dp"
                 android:inputType="textEmailAddress"
-                android:drawableLeft="@mipmap/ic_email_white_24dp"
+                android:drawableLeft="@mipmap/ic_email_black_24dp"
                 android:paddingLeft="10dp"
                 android:drawablePadding="10dp" />
 
@@ -86,11 +77,10 @@
                 style="@style/FormField"
                 android:hint="@string/lblRegisterPassword"
                 android:inputType="textPassword"
-                android:theme="@style/ToolbarWhiteText"
-                android:background="@color/loginInputFieldBackgroundColor"
+                android:background="@color/loginInputFieldBackgroundColorLight"
                 android:gravity="center_vertical"
                 android:layout_height="50dp"
-                android:drawableLeft="@mipmap/ic_lock_white_24dp"
+                android:drawableLeft="@mipmap/ic_lock_black_24dp"
                 android:paddingLeft="10dp"
                 android:drawablePadding="10dp"/>
 
