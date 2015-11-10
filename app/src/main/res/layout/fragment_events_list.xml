@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true"
-                android:indeterminateDrawable="@drawable/progressEvents"
+                android:indeterminateDrawable="@drawable/progress_events"
                 />
         </RelativeLayout>
 
