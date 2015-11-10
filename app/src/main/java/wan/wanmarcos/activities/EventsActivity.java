@@ -25,7 +25,6 @@ public class EventsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Se llamo al OnCreate de EventActivity");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
         instance=this;
@@ -37,7 +36,6 @@ public class EventsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         createdMenu=menu;
-        //getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 
@@ -62,7 +60,8 @@ public class EventsActivity extends AppCompatActivity {
             transaction.commit();
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
         setTitle("Eventos");
@@ -79,7 +78,8 @@ public class EventsActivity extends AppCompatActivity {
             transaction.commit();
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -100,7 +100,8 @@ public class EventsActivity extends AppCompatActivity {
             transaction.commit();
 
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -114,15 +115,17 @@ public class EventsActivity extends AppCompatActivity {
             transaction.replace(R.id.eventsContainer, eventViewListFragment);
             transaction.addToBackStack("suggestedEventFragment");
             transaction.commit();
-        }catch (Exception e)
+        }
+        catch (Exception e)
         {
-
+            e.printStackTrace();
         }
 
         try {
             InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

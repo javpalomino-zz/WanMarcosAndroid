@@ -11,6 +11,14 @@ import java.util.Calendar;
  */
 public class Event implements Parcelable{
 
+    private final String[] MONTHS_ARRAY = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"};
+    private final int DEFAULT_YEAR = 0;
+    private final int DEFAULT_MONTH = 0;
+    private final int DEFAULT_DAY_OF_MONTH = 1;
+    private final int DEFAULT_HOUR = 0;
+    private final int DEFAULT_MINUTE = 0;
+    private final int DEFAULT_SECOND = 0;
+
     private String name;
     private String imgUrl;
     private String referencePlace;
@@ -65,17 +73,9 @@ public class Event implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
-        // We just need to write each field into the
-        // parcel. When we read from parcel, they
-        // will come back in the same order
-        System.out.println("WRITING NAME");
         dest.writeString(name);
-        System.out.println("WRITING IMG URL");
         dest.writeString(imgUrl);
-        System.out.println("WRITING REFERENCE PLACE");
         dest.writeString(referencePlace);
-        System.out.println("WRITING START");
         if(startDateTime!=null)
         {
             dest.writeInt(startDateTime.get(Calendar.YEAR));
@@ -87,15 +87,8 @@ public class Event implements Parcelable{
         }
         else
         {
-            dest.writeInt(0);
-            dest.writeInt(0);
-            dest.writeInt(1);
-            dest.writeInt(0);
-            dest.writeInt(0);
-            dest.writeInt(0);
+            writeDefaultDateTime(dest);
         }
-
-        System.out.println("WRITING End");
         if(finishDateTime!=null)
         {
             dest.writeInt(finishDateTime.get(Calendar.YEAR));
@@ -107,40 +100,21 @@ public class Event implements Parcelable{
         }
         else
         {
-            dest.writeInt(0);
-            dest.writeInt(0);
-            dest.writeInt(1);
-            dest.writeInt(0);
-            dest.writeInt(0);
-            dest.writeInt(0);
+            writeDefaultDateTime(dest);
         }
-
-        System.out.println("WRITING description");
         dest.writeString(description);
-        System.out.println("writing icon id");
         dest.writeInt(iconId);
         dest.writeString(eventLink);
         dest.writeInt(eventId);
     }
 
     private void readFromParcel(Parcel in) {
-
-        // We just need to read back each
-        // field in the order that it was
-        // written to the parcel
-        System.out.println("Reading Name");
         name = in.readString();
-        System.out.println("Reading img url");
         imgUrl=in.readString();
-        System.out.println("Reading place");
         referencePlace=in.readString();
-        System.out.println("Reading start");
         startDateTime.set(in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt());
-        System.out.println("Reading end");
         finishDateTime.set(in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt());
-        System.out.println("reading description");
         description=in.readString();
-        System.out.println("Reading icon id");
         iconId=in.readInt();
         eventLink=in.readString();
         eventId=in.readInt();
@@ -157,26 +131,22 @@ public class Event implements Parcelable{
                 }
             };
 
+    public void writeDefaultDateTime(Parcel dest)
+    {
+        dest.writeInt(DEFAULT_YEAR);
+        dest.writeInt(DEFAULT_MONTH);
+        dest.writeInt(DEFAULT_DAY_OF_MONTH);
+        dest.writeInt(DEFAULT_HOUR);
+        dest.writeInt(DEFAULT_MINUTE);
+        dest.writeInt(DEFAULT_SECOND);
+    }
+
     public String CalendarToString(Calendar cal)
     {
         String str="";
         if(cal!=null)
         {
-            switch (cal.get(Calendar.MONTH))
-            {
-                case 0 : str=str+"Enero";break;
-                case 1 : str=str+"Febrero";break;
-                case 2 : str=str+"Marzo";break;
-                case 3 : str=str+"Abril";break;
-                case 4 : str=str+"Mayo";break;
-                case 5 : str=str+"Junio";break;
-                case 6 : str=str+"Julio";break;
-                case 7 : str=str+"Agosto";break;
-                case 8 : str=str+"Setiembre";break;
-                case 9 : str=str+"Octubre";break;
-                case 10 : str=str+"Noviembre";break;
-                case 11 : str=str+"Diciembre";break;
-            }
+            str=str+MONTHS_ARRAY[cal.get(Calendar.MONTH)];
             str = str + " "+cal.get(Calendar.DAY_OF_MONTH)+" , "+(cal.get(Calendar.YEAR)) +" "+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+" hs";
         }
         else

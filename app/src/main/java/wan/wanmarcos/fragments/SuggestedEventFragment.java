@@ -28,6 +28,7 @@ import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.*;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.DateAndTimeDealer;
 import wan.wanmarcos.utils.RestClient;
 
 /**
@@ -60,6 +61,8 @@ public class SuggestedEventFragment extends Fragment {
 
     private View v_Layout;
 
+    private DateAndTimeDealer dateAndTimeDealer;
+
     public SuggestedEventFragment() {
         restClient = new RestClient();
     }
@@ -68,6 +71,7 @@ public class SuggestedEventFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        dateAndTimeDealer=new DateAndTimeDealer();
 
     }
 
@@ -94,7 +98,6 @@ public class SuggestedEventFragment extends Fragment {
         btnImage = (Button) layout.findViewById(R.id.eventFormImage);
         btnSchedule = (Button) layout.findViewById(R.id.eventFormSchedule);
         txtDescription = (EditText) layout.findViewById(R.id.eventFormDescription);
-        //btnSubmit= (Button) layout.findViewById(R.id.eventFormSubmit);
         sendFAB = (FloatingActionButton) layout.findViewById(R.id.sendFab);
         builder = new Builder();
 
@@ -172,7 +175,6 @@ public class SuggestedEventFragment extends Fragment {
                 @Override
                 public void onTimeSet(android.widget.TimePicker view, int hourOfDay, int minute) {
                     btnTimeStart.setText("Hora de Inicio : " + hourOfDay + ":" + minute);
-                    System.out.println("Hora de Inicio : " + hourOfDay + ":" + minute);
                     timeStart = new GregorianCalendar();
                     timeStart.set(Calendar.HOUR_OF_DAY, hourOfDay);
                     timeStart.set(Calendar.MINUTE, minute);
@@ -198,7 +200,6 @@ public class SuggestedEventFragment extends Fragment {
                 @Override
                 public void onDateSet(android.widget.DatePicker view, int year, int month, int day) {
                     btnDateStart.setText("Fecha de Inicio : " + day + "/" + month + "/" + year);
-                    System.out.println("Fecha de Inicio : " + day + "/" + month + "/" + year);
                     dateStart = new GregorianCalendar();
                     dateStart.set(Calendar.YEAR, year);
                     dateStart.set(Calendar.MONTH, month);
@@ -222,11 +223,11 @@ public class SuggestedEventFragment extends Fragment {
 
 
     private void addImageLoadListener() {
-        //
+        //TO DO
     }
 
     private void addScheduleLoadListener() {
-        //
+        //TO DO
     }
 
     private void addSubmitListener() {
@@ -255,24 +256,22 @@ public class SuggestedEventFragment extends Fragment {
 
     private void postEvent() {
         Call<JsonElement> sugEvent = restClient.getConsumerService().suggetEvent(eventToPost.getName(), eventToPost.getDescription(),
-                eventToPost.getStartDateTime().getTimeInMillis()/1000, eventToPost.getFinishDateTime().getTimeInMillis()/1000, eventToPost.getEventLink());
+                dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getStartDateTime()),
+                dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getFinishDateTime()),
+                eventToPost.getEventLink());
         sugEvent.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has("name")) {
-                    System.out.println("THERE IS A NAME IN THERE");
                     String name = responseBody.get("name").getAsString();
                     Toast.makeText(getActivity(), "Tu Evento : "+name+" ha sido sugerido correctamente.", Toast.LENGTH_SHORT).show();
                     EventsActivity.getInstance().toListFragmentFromForm();
 
                 } else {
                     if (responseBody.has("error")) {
-                        System.out.println("ERROR");
                         wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
                         Toast.makeText(getActivity(), "Error : "+error.toString(), Toast.LENGTH_SHORT).show();
-                    } else {
-
                     }
                 }
             }

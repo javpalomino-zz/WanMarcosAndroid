@@ -20,6 +20,7 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -30,6 +31,7 @@ import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.Event;
 import wan.wanmarcos.utils.Builder;
+import wan.wanmarcos.utils.DateAndTimeDealer;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.views.adapters.EventListAdapter;
 
@@ -54,6 +56,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     FloatingActionButton suggestFAB;
 
+    DateAndTimeDealer dateAndTimeDealer;
+
     private int currentPage=1;
 
 
@@ -63,14 +67,13 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        System.out.println("Se llamo al onCreate de EventViewListFragment");
         super.onCreate(savedInstanceState);
+        dateAndTimeDealer=new DateAndTimeDealer();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("se llamo al onCreateView de EvENT List Fragment");
         // Inflate the layout for this fragment
         View layout =inflater.inflate(R.layout.fragment_events_list, container, false);
         setUpElements(layout);
@@ -101,14 +104,6 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private void addNewEventListener()
     {
-        /*btnNewEvent.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view)
-            {
-                EventsActivity.getInstance().toNewEventForm();
-            }
-        });*/
-
         suggestFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,9 +143,6 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
                                    int dy) {
 
                 super.onScrolled(recyclerView, dx, dy);
-                // Here get the child count, item count and visibleitems
-                // from layout manager
-
                 visibleItemCount = mLayoutManager.getChildCount();
                 totalItemCount = mLayoutManager.getItemCount();
                 pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
@@ -173,7 +165,6 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private List<Event> getEvents()
     {
-        System.out.println("iNITIAL ITEM COUNT = " + eventListAdapter.getItemCount());
         final List<Event> eventsList=new ArrayList<>();;
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(token, "", currentPage, 10);
         eventPage.enqueue(new Callback<JsonElement>() {
@@ -187,27 +178,20 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
                         Event current = new Event();
                         current.setEventId(storedObject.get("id").getAsInt());
                         current.setName(storedObject.get("title").getAsString());
-                        Calendar startCal = new GregorianCalendar();
-                        startCal.setTimeInMillis((storedObject.get("starts_at").getAsLong()) * 1000);
+                        Calendar startCal = dateAndTimeDealer.getInstance().turnMilisIntoCalendar((storedObject.get("starts_at").getAsLong()));
                         current.setStartDateTime(startCal);
-                        Calendar endCal = new GregorianCalendar();
-                        endCal.setTimeInMillis((storedObject.get("ends_at").getAsLong()) * 1000);
+                        Calendar endCal = dateAndTimeDealer.getInstance().turnMilisIntoCalendar((storedObject.get("ends_at").getAsLong()));
                         current.setFinishDateTime(endCal);
                         current.setImgUrl(storedObject.get("image").getAsString());
                         eventsList.add(current);
                     }
                 } else {
                     if (responseBody.has("error")) {
-                        System.out.println("ERROR");
                         wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
                         Toast.makeText(getActivity(), "Error : " + error.toString(), Toast.LENGTH_SHORT).show();
-                    } else {
-
                     }
                 }
-                System.out.println("EventList Size = " + eventsList.size());
                 eventListAdapter.addAll(eventsList);
-                System.out.println("FINAL ITEM COUNT = " + eventListAdapter.getItemCount());
             }
 
             @Override

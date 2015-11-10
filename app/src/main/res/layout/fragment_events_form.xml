@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@android:color/white"
     tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
 
         <ScrollView
@@ -24,7 +24,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Cuéntanos acerca del evento"
+                    android:text="@string/lblHeaderFormEvent"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -38,7 +38,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:hint="¿Cómo se llama el evento?"
+                    android:hint="@string/eventNameFormPlaceholder"
                     android:layout_below="@+id/eventFormHeader" />
 
                 <AutoCompleteTextView
@@ -48,7 +48,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:hint="¿Dónde es el evento"
+                    android:hint="@string/eventPlaceFormPlaceholder"
                     android:layout_below="@+id/eventFormName" />
 
                 <AutoCompleteTextView
@@ -58,7 +58,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:hint="Dale una categoría al evento"
+                    android:hint="@string/eventCategoryFormPlaceholder"
                     android:layout_below="@+id/eventFormPlace" />
 
                 <Button
@@ -68,7 +68,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Dinos la Fecha de Inicio del Evento"
+                    android:text="@string/btnEventStartDateForm"
                     android:layout_below="@+id/eventFormCategory"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"/>
@@ -79,7 +79,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Dinos la Hora de Inicio del Evento"
+                    android:text="@string/btnEventStartTimeForm"
                     android:layout_below="@+id/eventFormStartDateButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"/>
@@ -90,7 +90,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Dinos la Fecha de Fin del Evento"
+                    android:text="@string/btnEventEndDateForm"
                     android:layout_below="@+id/eventFormStartTimeButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"/>
@@ -101,7 +101,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Dinos la Hora de Fin del Evento"
+                    android:text="@string/btnEventEndTimeForm"
                     android:layout_below="@+id/eventFormEndDateButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"/>
@@ -115,7 +115,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:hint="Link de Referencia"
+                    android:hint="@string/eventLinkFormPlaceholder"
                     android:layout_below="@+id/eventFormEndTimeButton" />
 
                 <Button
@@ -125,7 +125,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Danos una imagen de referencia"
+                    android:text="@string/btnEventImageForm"
                     android:layout_below="@+id/eventFormLink"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"/>
@@ -137,7 +137,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:text="Envianos el cronograma del evento"
+                    android:text="@string/btnEventScheduleForm"
                     android:layout_below="@+id/eventFormImage"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"/>
@@ -150,7 +150,7 @@
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
                     android:layout_marginBottom="10dp"
-                    android:hint="Cuéntanos un poco acerca del Evento"
+                    android:hint="@string/eventDescriptionFormPlaceholder"
                     android:gravity="top"
                     android:layout_below="@+id/eventFormSchedule" />
 

@@ -29,7 +29,7 @@
                 android:id="@+id/eventListTitle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Wrestlemania"
+                android:text="@string/eventTitlePlaceholder"
                 android:textSize="25dp"
                 android:layout_below="@id/eventListImage"
                 android:paddingLeft="10dp"
@@ -45,7 +45,7 @@
                 android:paddingLeft="10dp"
                 android:layout_marginBottom="5dp"
                 android:textSize="15dp"
-                android:text="Sunday , March 30th "/>
+                android:text="@string/eventDatePlaceholder"/>
 
         </RelativeLayout>
 

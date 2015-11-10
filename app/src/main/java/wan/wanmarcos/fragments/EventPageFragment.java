@@ -65,7 +65,6 @@ public class EventPageFragment extends Fragment{
         txtStart= (TextView) layout.findViewById(R.id.eventPageStartDateAndTime);
         txtEnd= (TextView) layout.findViewById(R.id.eventPageEndDateAndTime);
         txtDescription= (TextView) layout.findViewById(R.id.eventPageDescription);
-        //btnSchedule= (Button) layout.findViewById(R.id.eventPageScheduleButton);
         txtLink=(TextView)layout.findViewById(R.id.evnetPageLinkText);
         downloadFAB = (FloatingActionButton)  layout.findViewById(R.id.downloadProgram);
     }

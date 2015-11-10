@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFF"
+    android:background="@android:color/white"
     tools:context="wan.wanmarcos.fragments.EventPageFragment">
 
     <ScrollView
@@ -29,95 +29,95 @@
             <TextView
                 android:id="@+id/eventPagePlaceLablel"
                 android:layout_below="@id/eventPageImage"
-                android:text="Lugar De Referencia"
+                android:text="@string/lblReferencePlaceEvent"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:textSize="15dp"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPagePlaceLablel" />
             <TextView
                 android:id="@+id/eventPageReferencePlace"
                 android:layout_below="@id/eventPageImage"
                 android:layout_toRightOf="@id/eventPagePlaceLablel"
                 android:layout_toEndOf="@id/eventPagePlaceLablel"
-                android:text="Skydome Texax"
+                android:text="@string/eventReferencePlaceText"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPageReferencePlace" />
 
             <TextView
                 android:id="@+id/eventPageStartLabel"
                 android:layout_below="@id/eventPagePlaceLablel"
-                android:text="Inicio"
+                android:text="@string/lblStartEvent"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPageReferencePlace" />
             <TextView
                 android:id="@+id/eventPageStartDateAndTime"
                 android:layout_below="@id/eventPagePlaceLablel"
                 android:layout_toRightOf="@id/eventPageStartLabel"
                 android:layout_toEndOf="@id/eventPageStartLabel"
-                android:text="Junio 15 , 2015 18:00 hrs."
+                android:text="@string/eventDatePlaceholder"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#DBDBDB"
+            android:background="@color/eventDetailDividerColor"
             android:layout_alignBottom="@id/eventPageStartDateAndTime" />
             <TextView
                 android:id="@+id/eventPageEndLabel"
                 android:layout_below="@id/eventPageStartLabel"
-                android:text="Fin"
+                android:text="@string/lblEndEvent"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPageEndLabel" />
             <TextView
                 android:id="@+id/eventPageEndDateAndTime"
                 android:layout_below="@id/eventPageStartDateAndTime"
                 android:layout_toRightOf="@id/eventPageStartLabel"
                 android:layout_toEndOf="@id/eventPageStartLabel"
-                android:text="Junio 15 , 2015 18:00 hrs."
+                android:text="@string/eventDatePlaceholder"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:textSize="15dp"
                 android:gravity="center"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPageEndDateAndTime" />
 
             <TextView
@@ -125,45 +125,45 @@
                 android:layout_below="@id/eventPageEndDateAndTime"
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
-                android:text="Descripcion"
+                android:text="@string/eventDescriptionPlaceholer"
                 android:textSize="15dp"
                 android:gravity="center"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPageDescription" />
 
             <TextView
                 android:id="@+id/eventPageLinkLabel"
                 android:layout_below="@id/eventPageDescription"
-                android:text="Link"
+                android:text="@string/lblLinkEvent"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:textSize="15dp"
                 android:gravity="center"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/eventPageLinkLabel" />
             <TextView
                 android:id="@+id/evnetPageLinkText"
                 android:layout_below="@id/eventPageDescription"
                 android:layout_toRightOf="@id/eventPageLinkLabel"
                 android:layout_toEndOf="@id/eventPageLinkLabel"
-                android:text="www.testpage.com"
+                android:text="@string/eventLinkPlaceholder"
                 android:textSize="15dp"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:background="#F2F2F2"/>
+                android:background="@color/eventDeatilGridBackgroundColor"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DBDBDB"
+                android:background="@color/eventDetailDividerColor"
                 android:layout_alignBottom="@id/evnetPageLinkText" />
 
         </RelativeLayout>

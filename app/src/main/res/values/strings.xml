@@ -11,18 +11,41 @@
     <string name="lblLastName">Apellidos</string>
     <string name="lblEmail">Email</string>
     <string name="lblPassword">Password</string>
+    <string name="lblReferencePlaceEvent">Lugar De Referencia</string>
+    <string name="lblStartEvent">Inicio</string>
+    <string name="lblEndEvent">Fin</string>
+    <string name="lblDescriptionEvent">Descripción</string>
+    <string name="lblLinkEvent">Link</string>
+    <string name="lblHeaderFormEvent">Cuéntanos acerca del evento</string>
+
     <!--PlaceHolders-->
 
     <string name="firstNamePlaceholder">Carlos Alejandro</string>
     <string name="lastNamePlaceholder">Zerga Morales</string>
     <string name="emailPlaceholder">username@domain.com</string>
     <string name="passwordPlaceholder">**************</string>
+    <string name="eventTitlePlaceholder">Nombre de Evento</string>
+    <string name="eventDatePlaceholder">Enero 1 , 2015 00:00 hs.</string>
+    <string name="eventReferencePlaceText">Lugar de Referencia de Evento</string>
+    <string name="eventDescriptionPlaceholer">Descripcion de Evento de Prueba</string>
+    <string name="eventLinkPlaceholder">www.testpage.com</string>
+    <string name="eventNameFormPlaceholder">¿Cómo se llama el evento?</string>
+    <string name="eventPlaceFormPlaceholder">¿Dónde es el evento?</string>
+    <string name="eventCategoryFormPlaceholder">Dale una categoría al evento</string>
+    <string name="eventLinkFormPlaceholder">Danos un link de referencia</string>
+    <string name="eventDescriptionFormPlaceholder">Cuéntanos un poco acerca del Evento</string>
 
     <!--Buttons-->
     <string name="btnRegister">SignUp</string>
     <string name="btnLogIn">Login</string>
     <string name="btnForgotPassword">Forgot Password</string>
     <string name="btnLogout">Cerrar Sesión</string>
+    <string name="btnEventStartDateForm">Dinos la Fecha de Inicio del Evento</string>
+    <string name="btnEventEndDateForm">Dinos la Fecha de Fin del Evento</string>
+    <string name="btnEventStartTimeForm">Dinos la Hora de Inicio del Evento</string>
+    <string name="btnEventEndTimeForm">Dinos la Hora de Fin del Evento</string>
+    <string name="btnEventImageForm">Danos una imágen de Referencia</string>
+    <string name="btnEventScheduleForm">Evíanos el programa del evento</string>
     <!--Titles-->
     <string name="title_activity_home">Inicio</string>
 
