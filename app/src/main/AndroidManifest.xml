@@ -24,6 +24,11 @@
             android:name=".activities.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+
+        <activity android:name=".activities.EventsActivity"
+            android:label="Eventos"
+            android:windowSoftInputMode="adjustResize"/>
+
         <activity
             android:name=".activities.ContactanosActivity"
             android:windowSoftInputMode="adjustResize"

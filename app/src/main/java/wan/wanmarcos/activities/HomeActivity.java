@@ -63,8 +63,9 @@ public class HomeActivity extends AppCompatActivity implements Communicator{
 
         //noinspection SimplifiableIfStatement
         switch (id){
-            case R.id.action_settings : Contactanos();break;
-            case R.id.logout : logout(); break;
+
+            case R.id.logout : logout();break;
+
         }
 
         return super.onOptionsItemSelected(item);

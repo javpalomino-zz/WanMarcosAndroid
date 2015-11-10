@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryNewsColor">#607D8B</color>
-    <color name="primaryNewsColorDark">#455A64</color>
-    <color name="accentNewsColor">#A5FF97</color>
+    <color name="primaryNewsColor">#2196F3</color>
+    <color name="primaryNewsColorDark">#1976D2</color>
+    <color name="accentNewsColor">#FFD740</color>
+    <color name="buttonTextNewsColor">#000000</color>
+    <color name="eventDeatilGridBackgroundColor">#F2F2F2</color>
+    <color name="eventDetailDividerColor">#DBDBDB</color>
+    
+    <color name="loginBackgroundColor">#000000</color>
+    <color name="loginButtonBackgroundColor">#1db954</color>
+    <color name="registerButtonBackgroundColor">#3a5897</color>
+    <color name="loginInputFieldBackgroundColor">#1A2026</color>
+    <color name="loginInputFieldBackgroundColorLight">#E5DFD9</color>
+    <color name="loginButtonTextColor">#FFFFFF</color>
+    <color name="loginButtonTextColorLight">#000000</color>
+    <color name="loginLinkTextColor">#919497</color>
+    <color name="loginLinkTextColorLight">#6E6B68</color>
 </resources>

@@ -31,4 +31,7 @@
         <item name="colorAccent">@color/accentNewsColor</item>
     </style>
 
+    <style name="ToolbarWhiteText" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
 </resources>
