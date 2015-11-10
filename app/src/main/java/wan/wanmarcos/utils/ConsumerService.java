@@ -39,7 +39,7 @@ public interface ConsumerService {
     @FormUrlEncoded
     @POST(Constants.SUGGESTIONS)
     Call<JsonElement> suggestions(@Header("Authorization") String authorization,@Field("message") String message);
-    @FormUrlEncoded
+
     @POST(Constants.REFRESH)
     Call<JsonElement> resfreshToken(@Header("Authorization") String authorization);
 

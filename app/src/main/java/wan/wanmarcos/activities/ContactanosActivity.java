@@ -2,6 +2,7 @@ package wan.wanmarcos.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -38,11 +39,11 @@ public class ContactanosActivity extends AppCompatActivity{
     NavigationDrawerFragment drawerFragment;
 
    public ContactanosActivity(){
-        restClient = new RestClient();
         post_response_messague = "\n";
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restClient = new RestClient(this);
         setContentView(R.layout.activity_contactanos);
         modal = new Modal(this);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -55,8 +56,14 @@ public class ContactanosActivity extends AppCompatActivity{
         btnEnviarFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                post_response_messague += User.getToken();
-                Call<JsonElement> suggestion = restClient.getConsumerService().suggestions(User.getToken(),"olibolicamaronconcoli");
+
+                SharedPreferences prefs = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE);
+                String token = Constants.HEADER+prefs.getString("token", null);
+
+                post_response_messague = token;
+
+                Call<JsonElement> suggestion = restClient.getConsumerService().suggestions(token,"olibolicamaronconcoli");
+                
                 suggestion.enqueue(new Callback<JsonElement>() {
                     @Override
                     public void onResponse(Response<JsonElement> response) {
@@ -80,6 +87,7 @@ public class ContactanosActivity extends AppCompatActivity{
                         post_response_messague += "/nFail: "+t.toString();
                     }
                 });
+                
                 PopUp();
             }
         });
