@@ -96,11 +96,16 @@ public class ContactanosActivity extends AppCompatActivity{
             }
         });
     }
-
     private void PopUp(){
         modal.buildModal(Constants.MODAL_TITLE_CONTACTANOS,
                         Constants.MODAL_MESSAGE_CONTACTANOS+"\nresponse: "+post_response_messague,
                         Constants.MODAL_BUTTON_DENADA,true);
         modal.showModal();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Redirect.getSingletonInstance().updateActivityStack();
+        super.onBackPressed();
     }
 }
