@@ -24,6 +24,7 @@ import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.models.Session;
 import wan.wanmarcos.models.User;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Modal;
@@ -34,9 +35,12 @@ public class ContactanosActivity extends AppCompatActivity{
     private Button btnEnviarFeed;
     private EditText txtComment;
     private Modal modal;
-    private RestClient restClient;
     private String post_response_messague;
     NavigationDrawerFragment drawerFragment;
+
+    private RestClient restClient;
+    SharedPreferences preferences;
+    Session session;
 
    public ContactanosActivity(){
         post_response_messague = "\n";
@@ -44,6 +48,9 @@ public class ContactanosActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         restClient = new RestClient(this);
+        preferences = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE);
+        session = Session.getSession(preferences);
+
         setContentView(R.layout.activity_contactanos);
         modal = new Modal(this);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
@@ -57,12 +64,9 @@ public class ContactanosActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
 
-                SharedPreferences prefs = getSharedPreferences(Constants.PREFERENCES, MODE_PRIVATE);
-                String token = Constants.HEADER+prefs.getString("token", null);
+                post_response_messague = session.getToken();
 
-                post_response_messague = token;
-
-                Call<JsonElement> suggestion = restClient.getConsumerService().suggestions(token,"olibolicamaronconcoli");
+                Call<JsonElement> suggestion = restClient.getConsumerService().suggestions(Constants.HEADER+session.getToken(),"olibolicamaronconcoli");
                 
                 suggestion.enqueue(new Callback<JsonElement>() {
                     @Override

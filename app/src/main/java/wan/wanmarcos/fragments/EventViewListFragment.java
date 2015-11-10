@@ -1,6 +1,8 @@
 package wan.wanmarcos.fragments;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -30,8 +32,11 @@ import retrofit.Callback;
 import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
+import wan.wanmarcos.activities.MainActivity;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.models.Session;
 import wan.wanmarcos.utils.Builder;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.DateAndTimeDealer;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.views.adapters.EventListAdapter;
@@ -41,9 +46,13 @@ import wan.wanmarcos.views.adapters.EventListAdapter;
  */
 public class EventViewListFragment extends Fragment implements EventListAdapter.ClickListener{
 
-    private RestClient restClient;
+    RestClient restClient;
+    SharedPreferences preferences;
+    Session session;
+
     private Builder builder;
-    private String token = "Bearer {eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcwNDQ5OTYiLCJleHAiOiIxNDU1Njg0OTk2IiwibmJmIjoiMTQ0NzA0NDk5NiIsImp0aSI6IjU1NzgxZTZlMjdhNWE2MzY4MzJiYTkyMWVhNGE1MzQyIn0.BTfVAF4vNoTnFq7jDU4r_JrDKRO4MC4h28SOXPBty3I}";
+
+    private Boolean received = true;
 
     private boolean userScrolled = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
@@ -65,13 +74,16 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
 
     public  EventViewListFragment(){
-        restClient = new RestClient();
+
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dateAndTimeDealer=new DateAndTimeDealer();
+        restClient = new RestClient(getActivity());
+        preferences = getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        session = Session.getSession(preferences);
     }
 
     @Override
@@ -119,6 +131,9 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     public void getInitialData()
     {
+        if(received == false)return;
+        received = false;
+        System.out.println("Initial Data");
         getEvents();
     }
 
@@ -164,13 +179,16 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private void addNewElementsToList()
     {
+        if(received == false)return;
+        received = false;
+        System.out.println("Lazy loading: " +currentPage);
         getEvents();
     }
 
-    private List<Event> getEvents()
+    private void getEvents()
     {
         final List<Event> eventsList=new ArrayList<>();;
-        Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(token, "", currentPage, 10);
+        Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, 10);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
@@ -197,14 +215,14 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
                     }
                 }
                 eventListAdapter.addAll(eventsList);
+                received = true;
+                System.out.println("RECEIVED!!: "+currentPage);
+                currentPage++;
             }
 
             @Override
             public void onFailure(Throwable t) {
             }
         });
-
-        currentPage++;
-        return eventsList;
     }
 }
