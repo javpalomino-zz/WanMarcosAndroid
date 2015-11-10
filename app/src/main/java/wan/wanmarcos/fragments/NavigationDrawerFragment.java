@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -167,6 +169,6 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                 activityExecute=Constants.CONTACT_ACTIVITY;break;
         }
         Redirect.getSingletonInstance().changeActivity(activityExecute);
-
+        mDrawerLayout.closeDrawers();
     }
 }
