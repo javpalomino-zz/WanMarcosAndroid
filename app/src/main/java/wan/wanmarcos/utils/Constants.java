@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.ContactanosActivity;
+import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 
@@ -14,6 +16,8 @@ public class Constants {
     //ACTIVITIES
     public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
     public static final String HOME_ACTIVITY= HomeActivity.class.getName();
+    public static final String EVENT_ACTIVITY= EventsActivity.class.getName();
+    public static final String CONTACT_ACTIVITY= ContactanosActivity.class.getName();
     public static final String PREFERENCES = "WanMarcos_preferences";
 
 

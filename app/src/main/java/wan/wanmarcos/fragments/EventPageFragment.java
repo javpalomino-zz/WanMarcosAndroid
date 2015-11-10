@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import java.util.Calendar;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.utils.Redirection.Redirect;
 
 /**
  * Created by Francisco on 2/11/2015.
@@ -28,7 +30,6 @@ import wan.wanmarcos.models.Event;
 public class EventPageFragment extends Fragment{
 
 
-    private Event selectedEvent;
 
     private ImageView imageView;
     private TextView txtReference;
@@ -53,7 +54,6 @@ public class EventPageFragment extends Fragment{
         View layout =inflater.inflate(R.layout.fragment_event_page, container, false);
         setUpElements(layout);
         addListeners();
-        loadEvent();
         fillData();
         return layout;
     }
@@ -69,25 +69,20 @@ public class EventPageFragment extends Fragment{
         downloadFAB = (FloatingActionButton)  layout.findViewById(R.id.downloadProgram);
     }
 
-    private void loadEvent()
-    {
-        selectedEvent = getArguments().getParcelable("selectedEvent");
-    }
-
     private void fillData()
     {
         Picasso.with(getContext())
-                .load(selectedEvent.getImgUrl())
+                .load(Redirect.getSingletonInstance().getInformation("eventimage"))
                 .into(imageView);
-        txtReference.setText(selectedEvent.getReferencePlace());
-        txtStart.setText(selectedEvent.CalendarToString(selectedEvent.getStartDateTime()));
-        txtEnd.setText(selectedEvent.CalendarToString(selectedEvent.getFinishDateTime()));
-        txtDescription.setText(selectedEvent.getDescription());
-        txtLink.setText(selectedEvent.getEventLink());
+        txtReference.setText(Redirect.getSingletonInstance().getInformation("eventreference"));
+        txtStart.setText(Redirect.getSingletonInstance().getInformation("eventdatestart"));
+        txtEnd.setText(Redirect.getSingletonInstance().getInformation("eventdateend"));
+        txtDescription.setText(Redirect.getSingletonInstance().getInformation("eventdescription"));
+        txtLink.setText(Redirect.getSingletonInstance().getInformation("eventlink"));
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         Palette p = Palette.from(bitmap).generate();
        imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
-        getActivity().setTitle(selectedEvent.getName());
+        getActivity().setTitle(Redirect.getSingletonInstance().getInformation("eventname"));
     }
 
 
@@ -106,7 +101,9 @@ public class EventPageFragment extends Fragment{
         });
     }
 
-    public void setSelectedEvent(Event selectedEvent) {
-        this.selectedEvent = selectedEvent;
+    @Override
+    public void onResume() {
+        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
+        super.onResume();
     }
 }

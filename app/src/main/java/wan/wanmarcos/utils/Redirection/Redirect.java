@@ -12,15 +12,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.Objects;
 import java.util.Stack;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.activities.ContactanosActivity;
+import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EventPageFragment;
+import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
 import wan.wanmarcos.models.Course;
+import wan.wanmarcos.models.Event;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 
@@ -36,7 +43,7 @@ public class Redirect implements Redirection {
     private static Redirect singletonObject;
     private final String DOC_ACTIVITY= Constants.TEACHER_ACTIVITY;
     private final String HOME_ACTIVITY= Constants.HOME_ACTIVITY;
-    private final String EVT_ACTIVITY="EVENTOS";
+    private final String EVT_ACTIVITY=Constants.EVENT_ACTIVITY;
     private Bundle mdata;
     private Object mLock;
     private AppCompatActivity mActivity;
@@ -57,7 +64,7 @@ public class Redirect implements Redirection {
         }
         return singletonObject;
     }
-    public void setActivity(AppCompatActivity activity){
+    public void setActivity(AppCompatActivity activity,int id){
         mActivity=activity;
         if(firstConfiguration){
             screenOrientation=mActivity.getResources().getConfiguration().orientation-1;
@@ -76,7 +83,19 @@ public class Redirect implements Redirection {
             else if(data instanceof Course){
                 storeCourseData((Course)data);
             }
+            else if(data instanceof Event){
+                storeEventData((Event)data);
+            }
         }
+    }
+    private void storeEventData(Event event){
+        mdata.putString("eventimage",event.getImgUrl());
+        mdata.putString("eventreference",event.getReferencePlace());
+        mdata.putString("eventdatestart",event.CalendarToString(event.getStartDateTime()));
+        mdata.putString("eventdateend",event.CalendarToString(event.getFinishDateTime()));
+        mdata.putString("event_description",event.getDescription());
+        mdata.putString("eventlink",event.getEventLink());
+        mdata.putString("eventname",event.getName());
     }
     private void storeTeacherData(Teacher teacher){
         mdata.putString("teachername",teacher.getName());
@@ -103,8 +122,11 @@ public class Redirect implements Redirection {
                 else if(tag.equals(HOME_ACTIVITY)){
                     activity=HomeActivity.class;
                 }
-                else{
-                    activity=HomeActivity.class;
+                else if (tag.equals(Constants.EVENT_ACTIVITY)){
+                    activity=EventsActivity.class;
+                }
+                else if(tag.equals(Constants.CONTACT_ACTIVITY)){
+                    activity= ContactanosActivity.class;
                 }
                 Intent intent=new Intent(mActivity.getApplicationContext(),activity);
                 mActivity.startActivity(intent);
@@ -114,7 +136,7 @@ public class Redirect implements Redirection {
             }
         }
     }
-    private void reload(){
+    public void reload(){
         int max=mFragmentStack;
         for(int i=0;i<max;i++){
             mActivity.onBackPressed();
@@ -128,10 +150,18 @@ public class Redirect implements Redirection {
             if(mActivityStack.peek().equals(DOC_ACTIVITY)){
                 changeTeacherFragments(data);
             }
+            else if(mActivityStack.peek().equals(EVT_ACTIVITY)){
+                changeEventFragments(data);
+            }
         }
         else{
             screenOrientation=(screenOrientation==1)?0:1;
         }
+    }
+
+    @Override
+    public void toContactanosActivity() {
+
     }
 
     @Override
@@ -143,6 +173,23 @@ public class Redirect implements Redirection {
             return key;
         }
         return key;
+    }
+    private void changeEventFragments(Object object){
+        Fragment fragment=null;
+        if(object instanceof Event){
+            mFragmentStack++;
+            fragment=new EventPageFragment();
+        }
+        else if(object instanceof Object){
+            mFragmentStack++;
+            fragment=new SuggestedEventFragment();
+        }
+        else{
+            mFragmentStack=0;
+            firstAction=true;
+            fragment=new EventViewListFragment();
+        }
+        tooglingFragments(fragment);
     }
 
     private void changeTeacherFragments(Object object){
@@ -163,23 +210,27 @@ public class Redirect implements Redirection {
         tooglingFragments(fragment);
     }
     private void tooglingFragments(Fragment fragment){
+        int homeFragment=getContainer();
         try{
             FragmentTransaction fragmentTransaction=mActivity.getSupportFragmentManager().beginTransaction();
             if(!firstConfiguration){
-                fragmentTransaction.replace(R.id.home_fragment, fragment);
+                fragmentTransaction.replace(homeFragment, fragment);
                 fragmentTransaction.addToBackStack(fragment.getClass().getName());
             }
 
             else{
-                fragmentTransaction.add(R.id.home_fragment, fragment);
+                fragmentTransaction.add(homeFragment, fragment);
                 firstConfiguration=false;
             }
-            fragmentTransaction.commit();
+            fragmentTransaction.commitAllowingStateLoss();
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+    private int getContainer(){
+        return R.id.home_fragment;
     }
     public void setContent(Fragment parent,int id, Fragment fragment){
         FragmentManager fragmentManager=parent.getChildFragmentManager();

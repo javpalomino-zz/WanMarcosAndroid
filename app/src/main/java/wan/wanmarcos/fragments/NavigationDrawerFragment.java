@@ -19,16 +19,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import wan.wanmarcos.R;
-<<<<<<< HEAD
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
-import wan.wanmarcos.utils.Redirection.Redirection;
-=======
 import wan.wanmarcos.activities.EventsActivity;
-import wan.wanmarcos.activities.HomeActivity;
-import wan.wanmarcos.managers.Communicator;
->>>>>>> dev
 import wan.wanmarcos.models.NavDrawerLink;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -161,18 +155,16 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
 
         switch (position){
             case 0 :
-                Toast.makeText(getActivity(), "A Noticias", Toast.LENGTH_SHORT);
-                startActivity(new Intent(getActivity(), HomeActivity.class)) ;break;
+                activityExecute=Constants.HOME_ACTIVITY; break;
             case 1:
                 activityExecute=Constants.TEACHER_ACTIVITY;break;
 
-            case 2:
-                Toast.makeText(getActivity(),"A Lugares",Toast.LENGTH_SHORT);break;
+            case 2:break;
             case 3:
-                Toast.makeText(getActivity(),"A Eventos",Toast.LENGTH_SHORT);
-                startActivity(new Intent(getActivity(), EventsActivity.class));break;
+                activityExecute=Constants.EVENT_ACTIVITY; break;
             case 4: break;
-            case 5: ((Communicator)getActivity()).toContactanosActivity();break;
+            case 5:
+                activityExecute=Constants.CONTACT_ACTIVITY;break;
         }
         Redirect.getSingletonInstance().changeActivity(activityExecute);
 

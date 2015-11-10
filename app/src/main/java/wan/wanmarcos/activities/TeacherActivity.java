@@ -20,14 +20,14 @@ public class TeacherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.d("ACTIVITY","");
         setContentView(R.layout.activity_teacher);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        Redirect.getSingletonInstance().setActivity(this);
+        Redirect.getSingletonInstance().setActivity(this,R.id.home_fragment);
         Redirect.getSingletonInstance().changeFragment(null);
     }
 

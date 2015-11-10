@@ -12,6 +12,7 @@ public interface Redirection {
     void changeActivity(String tag,Object data);
     void changeActivity(String tag);
     void changeFragment(Object data);
+    void toContactanosActivity();
     String getInformation(String key);
     /*void toListTeachers();
     void toShowEvents();
@@ -23,8 +24,4 @@ public interface Redirection {
     int getIntInformation(String key);
 <<<<<<< HEAD:app/src/main/java/wan/wanmarcos/utils/Redirection/Redirection.java
     String getStringInformation(String key);*/
-=======
-    String getStringInformation(String key);
-    void toContactanosActivity();
->>>>>>> dev:app/src/main/java/wan/wanmarcos/managers/Communicator.java
 }

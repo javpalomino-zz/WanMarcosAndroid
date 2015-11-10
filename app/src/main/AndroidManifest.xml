@@ -34,11 +34,13 @@
             android:theme="@style/AppTheme"/>
 
         <activity android:name=".activities.EventsActivity"
+            android:launchMode="singleTask"
             android:label="Eventos"
             android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name=".activities.ContactanosActivity"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"
             android:label="@string/title_contactanos" >
         </activity>
