@@ -38,9 +38,9 @@
     <string name="contac_messagueplaceholder">Solo dilo</string>
 
     <!--Buttons-->
-    <string name="btnRegister">SignUp</string>
-    <string name="btnLogIn">Login</string>
-    <string name="btnForgotPassword">Forgot Password</string>
+    <string name="btnRegister">¿No Tienes Una Cuenta? Registrate.</string>
+    <string name="btnLogIn">INGRESAR</string>
+    <string name="btnForgotPassword">¿Olvidaste Tu Contraseña?</string>
     <string name="btnLogout">Cerrar Sesión</string>
     <string name="btnEventStartDateForm">Dinos la Fecha de Inicio del Evento</string>
     <string name="btnEventEndDateForm">Dinos la Fecha de Fin del Evento</string>

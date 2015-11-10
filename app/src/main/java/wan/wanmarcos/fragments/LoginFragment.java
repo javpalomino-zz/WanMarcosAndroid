@@ -36,8 +36,8 @@ public class LoginFragment extends Fragment {
     private RestClient restClient;
 
     private Button btnLogIn;
-    private Button btnRegister;
-    private Button btnForgotPassword;
+    private TextView btnRegister;
+    private TextView btnForgotPassword;
     private EditText txtEmail;
     private EditText txtPassword;
     private TextView lblError;
@@ -69,8 +69,8 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         builder = new Builder();
         btnLogIn =  (Button)view.findViewById(R.id.logIn);
-        btnRegister =(Button)view.findViewById(R.id.signUp);
-        btnForgotPassword = (Button)view.findViewById(R.id.forgotPassword);
+        btnRegister =(TextView)view.findViewById(R.id.signUp);
+        btnForgotPassword = (TextView)view.findViewById(R.id.forgotPassword);
         txtEmail = (EditText)view.findViewById(R.id.email);
         txtPassword = (EditText)view.findViewById(R.id.password);
         lblError = (TextView)view.findViewById(R.id.error);
