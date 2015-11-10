@@ -45,7 +45,7 @@ public class SectionCourseRating extends Fragment implements ItemAdapterListener
 
     public void setUpElements(View view){
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
-        ratingListAdapter=new RatingListAdapter(getActivity(),getData());
+        ratingListAdapter=new RatingListAdapter(getActivity(),getData(""));
         ratingListAdapter.setListener(this);
         recyclerView.setAdapter(ratingListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -58,7 +58,7 @@ public class SectionCourseRating extends Fragment implements ItemAdapterListener
     }
 
     @Override
-    public List getData() {
+    public List getData(String data) {
         List<Rating> ratingList=new ArrayList();
         ratingList.add(new Rating((float)1.0,"LEL"));
         ratingList.add(new Rating((float)3.0,"LOL"));

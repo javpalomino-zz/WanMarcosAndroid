@@ -46,7 +46,7 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
 
     public void setUpElements(View view){
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
-        valuationListAdapter=new ValuationListAdapter(getActivity(),getData());
+        valuationListAdapter=new ValuationListAdapter(getActivity(),getData(""));
         valuationListAdapter.setListener(this);
         recyclerView.setAdapter(valuationListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -58,7 +58,7 @@ public class SectionValuationsCourse extends Fragment implements ItemAdapterList
     }
 
     @Override
-    public List<Valuation> getData() {
+    public List<Valuation> getData(String data) {
         List<Valuation> valuations=new ArrayList();
         valuations.add(new Valuation("Carlos","http://lorempixel.com/350/230/","El curso es muy aburrido",(float)1.0));
         valuations.add(new Valuation("Miguel","http://lorempixel.com/350/230/","El curso paltea",(float)1.0));

@@ -54,7 +54,7 @@ public class SectionTeacherCourses extends Fragment implements ItemAdapterListen
     }
 
     @Override
-    public List<Course> getData() {
+    public List<Course> getData(String data) {
         List <Course> courseList=new ArrayList();
         courseList.add(new Course("Matematica",(float)4.0,"FISI"));
         courseList.add(new Course("Letras",(float)3.4,"FIEE"));
@@ -64,7 +64,7 @@ public class SectionTeacherCourses extends Fragment implements ItemAdapterListen
 
     public void setUpElements(View view) {
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
-        courseListAdapter=new CourseListAdapter(getActivity(),getData());
+        courseListAdapter=new CourseListAdapter(getActivity(),getData(""));
         courseListAdapter.setListener(this);
         recyclerView.setAdapter(courseListAdapter);
         recyclerView.addItemDecoration(new RecyclerViewDivider(getActivity()));

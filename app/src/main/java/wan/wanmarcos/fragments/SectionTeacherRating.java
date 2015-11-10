@@ -46,7 +46,7 @@ public class SectionTeacherRating extends Fragment implements ItemAdapterListene
 
     public void setUpElements(View view){
         recyclerView=(RecyclerView) view.findViewById(R.id.generic_listView);
-        ratingListAdapter=new RatingListAdapter(getActivity(),getData());
+        ratingListAdapter=new RatingListAdapter(getActivity(),getData(""));
         ratingListAdapter.setListener(this);
         recyclerView.setAdapter(ratingListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -59,7 +59,7 @@ public class SectionTeacherRating extends Fragment implements ItemAdapterListene
     }
 
     @Override
-    public List<Rating> getData() {
+    public List<Rating> getData(String data) {
         List<Rating> ratingList=new ArrayList<>();
         ratingList.add(new Rating((float)4.0,"Desempeño"));
         ratingList.add(new Rating((float)3.0,"Entusiasmo"));

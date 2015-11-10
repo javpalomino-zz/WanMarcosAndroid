@@ -26,6 +26,7 @@ public class Constants {
     public static final String USER_INFO = "users/me";
 
     public static final String PLATFORM = "Android";
+    public static final String TEACHERS ="professors" ;
 
     //SCREEN DEVICE CONSTANTS
     public static float DEVICE_WIDTH=0;
@@ -33,6 +34,7 @@ public class Constants {
     public static float DEVICE_HEIGHT=0;
     public static float DEVICE_HEIGHT2=0;
     public static float DEVICE_DENSITY=0;
+    public static final int CANTIDAD=5;
 
 
     //LAYOUTS
