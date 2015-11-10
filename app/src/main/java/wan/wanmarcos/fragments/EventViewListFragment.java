@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private int currentPage=1;
 
+    private View mLayout;
+
 
     public  EventViewListFragment(){
         restClient = new RestClient();
@@ -78,6 +81,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         View layout =inflater.inflate(R.layout.fragment_events_list, container, false);
         setUpElements(layout);
         addListeners();
+        mLayout=layout;
         return layout;
     }
 
@@ -172,6 +176,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
             public void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has("events")) {
+                    mLayout.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                     JsonArray jsonArray = responseBody.getAsJsonArray("events");
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
