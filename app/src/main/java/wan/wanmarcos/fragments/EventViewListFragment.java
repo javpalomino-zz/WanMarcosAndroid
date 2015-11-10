@@ -7,6 +7,7 @@ import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -38,6 +39,7 @@ import wan.wanmarcos.models.Session;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.DateAndTimeDealer;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.views.adapters.EventListAdapter;
 
@@ -123,8 +125,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         suggestFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventsActivity.getInstance().toNewEventForm();
-                currentPage=1;
+                Redirect.getSingletonInstance().changeFragment(new Object());
+                currentPage = 1;
             }
         });
     }
@@ -139,9 +141,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void itemClicked(View view, int position) {
-        EventsActivity.getInstance().toEventPage(eventListAdapter.getItemAtPos(position));
+        Redirect.getSingletonInstance().changeFragment(eventListAdapter.getItemAtPos(position));
         currentPage=1;
-
     }
     private void addScrollBottomListener() {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -224,5 +225,11 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
             public void onFailure(Throwable t) {
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
+        super.onResume();
     }
 }

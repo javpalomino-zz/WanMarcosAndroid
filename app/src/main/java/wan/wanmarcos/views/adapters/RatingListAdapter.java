@@ -30,7 +30,6 @@ public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.Ra
     private LayoutInflater layoutInflater;
     public RatingListAdapter(Context context,List<Rating> ratings){
         layoutInflater=LayoutInflater.from(context);
-        Log.d("D","Tamaño "+ratings.size());
         this.ratings=ratings;
 
     }

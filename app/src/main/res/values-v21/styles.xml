@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <!-- <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>-->
+    <!--TEACHERITEM-->
+    <style name="TeacherItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:numStars">5</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_below">@+id/teacher_item_picture</item>
+        <item name="android:foregroundGravity">center</item>
+    </style>
+    <!--TEACHERITEM-->
+
 </resources>

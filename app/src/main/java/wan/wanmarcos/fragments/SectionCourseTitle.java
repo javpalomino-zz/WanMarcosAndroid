@@ -1,21 +1,21 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.managers.Communicator;
+import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.utils.ConsumerService;
 
 public class SectionCourseTitle extends Fragment {
-    private Communicator communicator;
+    private TextView teacherName;
+    private TextView courseName;
+    private TextView facultyName;
     public SectionCourseTitle(){
     }
 
@@ -32,16 +32,12 @@ public class SectionCourseTitle extends Fragment {
         return view;
     }
     public void setUpElements(View view){
-        communicator=(Communicator)getActivity();
-    }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        TextView teacherName=(TextView)view.findViewById(R.id.teacher_name);
-        teacherName.setText(communicator.getStringInformation("teachername"));
-        TextView courseName=(TextView)view.findViewById(R.id.course_name);
-        courseName.setText(communicator.getStringInformation("coursename"));
-        TextView facultyName=(TextView) view.findViewById(R.id.faculty_name);
-        facultyName.setText(communicator.getStringInformation("facultyname"));
+        teacherName=(TextView)view.findViewById(R.id.teacher_name);
+        teacherName.setText(Redirect.getSingletonInstance().getInformation("teachername"));
+        courseName=(TextView)view.findViewById(R.id.course_name);
+        courseName.setText(Redirect.getSingletonInstance().getInformation("coursename"));
+        facultyName=(TextView)view.findViewById(R.id.faculty_name);
+        facultyName.setText(Redirect.getSingletonInstance().getInformation("coursefaculty"));
     }
 
 }

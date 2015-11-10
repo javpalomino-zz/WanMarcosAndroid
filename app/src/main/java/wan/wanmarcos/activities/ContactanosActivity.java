@@ -23,11 +23,11 @@ import retrofit.Callback;
 import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
-import wan.wanmarcos.managers.Communicator;
 import wan.wanmarcos.models.Session;
 import wan.wanmarcos.models.User;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Modal;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
 
 public class ContactanosActivity extends AppCompatActivity{
