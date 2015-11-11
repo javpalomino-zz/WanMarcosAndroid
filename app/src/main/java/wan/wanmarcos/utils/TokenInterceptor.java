@@ -1,7 +1,9 @@
 package wan.wanmarcos.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.squareup.okhttp.Interceptor;
@@ -30,29 +32,39 @@ public class TokenInterceptor implements Interceptor{
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        Request request = chain.request(), newRequest;
+        try{
+            Request request = chain.request(), newRequest;
 
-        session = Session.getSession(preferences);
+            session = Session.getSession(preferences);
 
-        Call<JsonElement> refresh =  restClient.getConsumerService().resfreshToken(Constants.HEADER + session.getToken());
-        retrofit.Response<JsonElement>  resp = refresh.execute();
-        if(resp.body()==null){
-            System.out.println(resp.errorBody().string());
+            Call<JsonElement> refresh =  restClient.getConsumerService().resfreshToken(Constants.HEADER + session.getToken());
+            retrofit.Response<JsonElement>  resp = refresh.execute();
+            if(resp.body()==null){
+                System.out.println(resp.errorBody().string());
+            }
+            String newToken = resp.body().getAsJsonObject().get("token").toString();
+
+            session.setToken(newToken);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("token",newToken);
+            editor.apply();
+
+
+
+            newRequest = request.newBuilder()
+                    .removeHeader("Authorization")
+                    .addHeader("Authorization", Constants.HEADER + newToken)
+                    .build();
+
+            return chain.proceed(newRequest);
+        }catch (Throwable e){
+            final Activity activity = (Activity) context;
+                    activity.runOnUiThread(new Runnable() {
+                public void run() {
+                    Toast.makeText(activity, "No hay conexión a internet", Toast.LENGTH_SHORT).show();
+                }
+            });
+            return null;
         }
-        String newToken = resp.body().getAsJsonObject().get("token").toString();
-
-        session.setToken(newToken);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("token",newToken);
-        editor.apply();
-
-
-
-        newRequest = request.newBuilder()
-                .removeHeader("Authorization")
-                .addHeader("Authorization", Constants.HEADER + newToken)
-                .build();
-
-        return chain.proceed(newRequest);
     }
 }
