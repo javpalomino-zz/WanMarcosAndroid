@@ -8,7 +8,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true">
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/bar_container"
@@ -24,20 +27,20 @@
             </include>
 
         </LinearLayout>
-
-        <Button
-            android:text="@string/btnEnviarFeed"
-            android:id="@+id/btnEnviarFeed"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-        </Button>
-
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:layout_below="@id/bar_container"
+            tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@id/bar_container"
-            android:layout_above="@id/btnEnviarFeed">
+            android:layout_below="@id/bar_container">
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -89,6 +92,17 @@
                     />
             </RelativeLayout>
         </ScrollView>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnEnviarFeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_margin="16dp"
+            android:clickable="true"
+            android:src="@mipmap/ic_send_white_48dp" />
+        </android.support.design.widget.CoordinatorLayout>
+
     </RelativeLayout>
         <fragment
             android:id="@+id/fragment_navigation_drawer"
