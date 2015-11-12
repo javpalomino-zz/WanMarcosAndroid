@@ -34,9 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     NavigationDrawerFragment drawerFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("DEBUGGG",this.getClass().getName());
         super.onCreate(savedInstanceState);
-        Redirect.getSingletonInstance().setActivity(this,R.id.event_new_fragment);
         setContentView(R.layout.activity_home);
         MainActivity.setContext(getApplicationContext());
         toolbar = (Toolbar) findViewById(R.id.app_bar);

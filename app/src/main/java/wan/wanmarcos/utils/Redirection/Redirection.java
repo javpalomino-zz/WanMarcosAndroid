@@ -1,6 +1,8 @@
 package wan.wanmarcos.utils.Redirection;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Teacher;
@@ -9,7 +11,9 @@ import wan.wanmarcos.models.Teacher;
  * Created by carlos-pc on 09/10/15.
  */
 public interface Redirection {
-    void changeActivity(String tag,Object data);
+    void showActivity(AppCompatActivity myPreviousActivity,Class myActivity);
+    void showFragment(AppCompatActivity myActivity,int containerID, Fragment fragmentView);
+    /*void changeActivity(String tag,Object data);
     void changeActivity(String tag);
     void changeFragment(Object data);
     void toContactanosActivity();

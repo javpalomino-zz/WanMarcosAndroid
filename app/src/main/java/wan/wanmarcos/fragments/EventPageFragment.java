@@ -71,6 +71,7 @@ public class EventPageFragment extends Fragment{
 
     private void fillData()
     {
+        /*
         Picasso.with(getContext())
                 .load(Redirect.getSingletonInstance().getInformation("eventimage"))
                 .into(imageView);
@@ -82,7 +83,7 @@ public class EventPageFragment extends Fragment{
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         Palette p = Palette.from(bitmap).generate();
        imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
-        getActivity().setTitle(Redirect.getSingletonInstance().getInformation("eventname"));
+        getActivity().setTitle(Redirect.getSingletonInstance().getInformation("eventname"));*/
     }
 
 
@@ -103,7 +104,7 @@ public class EventPageFragment extends Fragment{
 
     @Override
     public void onResume() {
-        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
+        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
         super.onResume();
     }
 }

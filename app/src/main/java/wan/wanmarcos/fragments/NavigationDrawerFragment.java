@@ -168,7 +168,7 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             case 5:
                 activityExecute=Constants.CONTACT_ACTIVITY;break;
         }
-        Redirect.getSingletonInstance().changeActivity(activityExecute);
         mDrawerLayout.closeDrawers();
+        Redirect.getSingelton().showActivity(this, activityExecute);
     }
 }

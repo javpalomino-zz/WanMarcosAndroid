@@ -21,13 +21,13 @@ public class TeacherProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(Constants.FRAGMENT_PROFILE_TEACHER_LAYOUT, container, false);
-        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_TEACHER_ID,new SectionTeacherProfile());
-        Redirect.getSingletonInstance().setContent(this,Constants.COURSE_LIST_ID,new SectionTeacherCourses());
+        //Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_TEACHER_ID,new SectionTeacherProfile());
+        //Redirect.getSingletonInstance().setContent(this,Constants.COURSE_LIST_ID,new SectionTeacherCourses());
         return view;
     }
     @Override
     public void onResume() {
-        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
+        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
         super.onResume();
     }
 }

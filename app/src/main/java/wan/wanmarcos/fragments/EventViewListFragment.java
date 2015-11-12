@@ -125,7 +125,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         suggestFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Redirect.getSingletonInstance().changeFragment(new Object());
+                //Redirect.getSingletonInstance().changeFragment(new Object());
                 currentPage = 1;
             }
         });
@@ -141,7 +141,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void itemClicked(View view, int position) {
-        Redirect.getSingletonInstance().changeFragment(eventListAdapter.getItemAtPos(position));
+        //Redirect.getSingletonInstance().changeFragment(eventListAdapter.getItemAtPos(position));
         currentPage=1;
     }
     private void addScrollBottomListener() {
@@ -229,7 +229,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void onResume() {
-        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
+        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
         super.onResume();
     }
 }

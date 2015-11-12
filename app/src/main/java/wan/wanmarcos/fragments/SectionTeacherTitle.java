@@ -32,7 +32,7 @@ public class SectionTeacherTitle extends Fragment {
     }
     public void setUpElements(View view){
         TextView textView=(TextView) view.findViewById(R.id.teacher_name);
-        textView.setText(Redirect.getSingletonInstance().getInformation("teachername"));
+        //textView.setText(Redirect.getSingletonInstance().getInformation("teachername"));
     }
 
 }

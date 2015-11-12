@@ -51,7 +51,7 @@ public class SectionTeacherCourses extends Fragment implements ItemAdapterListen
 
     @Override
     public void itemClicked(View view, Course object) {
-        Redirect.getSingletonInstance().changeFragment(object);
+        Redirect.getSingelton().showFragment(this,R.id.home_fragment,Constants.FRAGMENT_TEACHER_COURSE);
     }
 
     @Override

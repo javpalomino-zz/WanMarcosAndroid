@@ -128,7 +128,7 @@ public class ContactanosActivity extends AppCompatActivity{
 
     @Override
     public void onBackPressed() {
-        Redirect.getSingletonInstance().updateActivityStack();
+        ///Redirect.getSingletonInstance().updateActivityStack();
         super.onBackPressed();
     }
 }

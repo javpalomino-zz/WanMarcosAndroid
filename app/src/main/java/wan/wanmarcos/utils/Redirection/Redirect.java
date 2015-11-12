@@ -22,6 +22,7 @@ import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
@@ -35,6 +36,106 @@ import wan.wanmarcos.utils.Constants;
  * Created by postgrado on 31/10/15.
  */
 public class Redirect implements Redirection {
+    private boolean defaultConfiguration;
+    private AppCompatActivity homeActivity;
+    private static Redirect singeltonObject;
+    private Redirect(){
+        defaultConfiguration=true;
+    }
+
+    public static Redirect getSingelton(){
+        if(singeltonObject==null){
+            singeltonObject=new Redirect();
+        }
+        return singeltonObject;
+    }
+
+    public void showActivity(Fragment actualFragment, String name) {
+        showActivity((AppCompatActivity) actualFragment.getActivity(),name);
+    }
+    public void showActivity(AppCompatActivity myPreviousActivity,String name){
+        Class activity=getActivityClass(name);
+        if(!activity.getName().equals(Object.class.getName())){
+            showActivity(myPreviousActivity,activity);
+        }
+    }
+
+    @Override
+    public void showActivity(AppCompatActivity myPreviousActivity,Class myActivity) {
+        Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),myActivity);
+        if(!myPreviousActivity.getClass().getName().equals(Constants.HOME_ACTIVITY)){
+            myPreviousActivity.finish();
+        }
+        myPreviousActivity.startActivity(myNewView);
+    }
+
+    private Class getActivityClass(String name){
+        if(name.equals(Constants.HOME_ACTIVITY)){
+            return HomeActivity.class;
+        }
+        else if(name.equals(Constants.EVENT_ACTIVITY)){
+            return EventsActivity.class;
+        }
+        else if(name.equals(Constants.TEACHER_ACTIVITY)){
+            return TeacherActivity.class;
+        }
+        else if(name.equals(Constants.CONTACT_ACTIVITY)){
+            return ContactanosActivity.class;
+        }
+        else{
+            return Object.class;
+        }
+    }
+    private Fragment getFragment(String name){
+        if(name.equals(Constants.FRAGMENT_LIST_TEACHER)){
+            return new TeacherListFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_PROFILE_TEACHER)){
+            return new TeacherProfileFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_TEACHER_COURSE)){
+            return new TeacherCourseProfileFragment();
+        }
+        else{
+            return new Fragment();
+        }
+    }
+    public void showFragment(Fragment myFragment,int containerID,String fragmentName){
+        showFragment((AppCompatActivity) myFragment.getActivity(),containerID,fragmentName);
+    }
+    public void showFragment(AppCompatActivity myActivity,int containerID,String fragmentName){
+        Fragment myFragment=getFragment(fragmentName);
+        if(!myFragment.getClass().getName().equals(Fragment.class.getName())){
+            showFragment(myActivity,containerID,myFragment);
+        }
+    }
+
+    public void showFragment(AppCompatActivity myActivity, int containerID, Fragment fragmentView) {
+        try{
+            FragmentTransaction fragmentTransaction=myActivity.getSupportFragmentManager().beginTransaction();
+            if(!defaultConfiguration){
+                fragmentTransaction.replace(containerID, fragmentView);
+                fragmentTransaction.addToBackStack(fragmentView.getClass().getName());
+            }
+
+            else{
+                fragmentTransaction.add(containerID, fragmentView);
+                defaultConfiguration=false;
+            }
+            fragmentTransaction.commitAllowingStateLoss();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void setContent(Fragment parent,int id, Fragment fragment){
+        FragmentManager fragmentManager=parent.getChildFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(id,fragment);
+        fragmentTransaction.commit();
+    }
+
+    /*
     private Stack<String> mActivityStack;
     private int mFragmentStack;
     private boolean firstAction;
@@ -246,5 +347,5 @@ public class Redirect implements Redirection {
             mFragmentStack--;
         }
 
-    }
+    }*/
 }

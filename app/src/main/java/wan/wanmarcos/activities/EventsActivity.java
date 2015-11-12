@@ -29,8 +29,8 @@ public class EventsActivity extends AppCompatActivity {
         Log.d("ACTIVITY", "");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        Redirect.getSingletonInstance().setActivity(this,R.id.home_fragment);
-        Redirect.getSingletonInstance().changeFragment(null);
+        //Redirect.getSingletonInstance().setActivity(this,R.id.home_fragment);
+        //Redirect.getSingletonInstance().changeFragment(null);
         setUpNavDrawer();
     }
 
@@ -54,7 +54,7 @@ public class EventsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Redirect.getSingletonInstance().updateActivityStack();
+        //Redirect.getSingletonInstance().updateActivityStack();
         super.onBackPressed();
     }
     /*

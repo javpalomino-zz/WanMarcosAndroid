@@ -28,8 +28,8 @@ public class SectionCourseProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_COURSE_TITLE,new SectionCourseTitle());
-        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_COURSE_RATING,new SectionCourseRating());
+        //Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_COURSE_TITLE,new SectionCourseTitle());
+        //Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_COURSE_RATING,new SectionCourseRating());
         return inflater.inflate(Constants.PROFILE_COURSE_INFORMATION,container,false);
     }
 

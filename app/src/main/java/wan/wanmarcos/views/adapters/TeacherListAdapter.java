@@ -2,6 +2,8 @@ package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -85,6 +87,22 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
         public void onClick(View v) {
 
             itemAdapterListener.itemClicked(v,current);
+        }
+    }
+    public void addAll(final List<Teacher> teacher) {
+        final int currentCount = teacher.size();
+        synchronized(teachers) {
+            teachers.addAll(teacher);
+        }
+        if (Looper.getMainLooper() == Looper.myLooper()) {
+            notifyItemRangeInserted(currentCount, teacher.size());
+        } else {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    notifyItemRangeInserted(currentCount, teacher.size());
+                }
+            });
         }
     }
 }

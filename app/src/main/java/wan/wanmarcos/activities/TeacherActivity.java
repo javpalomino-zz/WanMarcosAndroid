@@ -11,6 +11,7 @@ import android.view.View;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 
 public class TeacherActivity extends AppCompatActivity {
@@ -26,16 +27,8 @@ public class TeacherActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        Redirect.getSingletonInstance().setActivity(this,R.id.home_fragment);
-        Redirect.getSingletonInstance().changeFragment(null);
+        Redirect.getSingelton().showFragment(this,R.id.home_fragment, Constants.FRAGMENT_LIST_TEACHER);
     }
-
-    @Override
-    public void onBackPressed() {
-        Redirect.getSingletonInstance().updateActivityStack();
-        super.onBackPressed();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

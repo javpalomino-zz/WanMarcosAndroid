@@ -32,12 +32,12 @@ public class SectionCourseTitle extends Fragment {
         return view;
     }
     public void setUpElements(View view){
-        teacherName=(TextView)view.findViewById(R.id.teacher_name);
+        /*teacherName=(TextView)view.findViewById(R.id.teacher_name);
         teacherName.setText(Redirect.getSingletonInstance().getInformation("teachername"));
         courseName=(TextView)view.findViewById(R.id.course_name);
         courseName.setText(Redirect.getSingletonInstance().getInformation("coursename"));
         facultyName=(TextView)view.findViewById(R.id.faculty_name);
-        facultyName.setText(Redirect.getSingletonInstance().getInformation("coursefaculty"));
+        facultyName.setText(Redirect.getSingletonInstance().getInformation("coursefaculty"));*/
     }
 
 }

@@ -8,16 +8,28 @@ import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
+import wan.wanmarcos.fragments.TeacherListFragment;
+import wan.wanmarcos.fragments.TeacherProfileFragment;
 
 /**
  * Created by javier on 25/09/15.
  */
 public class Constants {
+    public static final String NOT_FOUND="Busqueda no exitosa";
     //ACTIVITIES
     public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
     public static final String HOME_ACTIVITY= HomeActivity.class.getName();
     public static final String EVENT_ACTIVITY= EventsActivity.class.getName();
     public static final String CONTACT_ACTIVITY= ContactanosActivity.class.getName();
+
+    public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
+    public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
+    public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
+
+    public static final String FRAGMENT_LIST_EVENT= EventViewListFragment.class.getName();
+
     public static final String PREFERENCES = "WanMarcos_preferences";
 
 
@@ -68,17 +80,6 @@ public class Constants {
 
     //IDS
     public static final int TEACHER_LIST_ID=R.id.sub_fragment_teacher_list;
-
-    public static final int PROFILE_TEACHER_ID=R.id.sub_fragment_teacher_profile;
-    public static final int PROFILE_TEACHER_TITLE=R.id.sub_fragment_teacher_title;
-    public static final int PROFILE_TEACHER_RATING=R.id.sub_fragment_teacher_rating;
-
-    public static final int COURSE_LIST_ID=R.id.sub_fragment_course_list;
-
-    public static final int PROFILE_CORUSE_ID=R.id.sub_fragment_course_profile;
-    public static final int PROFILE_COURSE_TITLE=R.id.sub_fragment_course_title;
-    public static final int PROFILE_COURSE_RATING=R.id.sub_fragment_course_rating;
-    public static final int VALUATION_LIST_ID=R.id.sub_fragment_valuations_course;
 
 
     public static final String EVENTS = "events";
