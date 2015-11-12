@@ -154,22 +154,28 @@
     <!--PROFILE TEACHER-->
     <!--START-->
     <style name="ProfileTeacherItemImage">
-        <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+
     </style>
-    <style name="ProfileTeacherItemTitle">
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_toRightOf">@id/teacher_image</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:layout_alignTop">@id/teacher_image</item>
+    <style name="ProfileTeacherItemName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
     </style>
     <style name="ProfileTeacherItemRatings">
-        <item name="android:layout_below">@id/sub_fragment_teacher_title</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_toRightOf">@id/teacher_image</item>
-        <item name="android:layout_alignBottom">@id/teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@+id/profile_teacher_mame</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
+        <item name="android:layout_toEndOf">@id/profile_teacher_image</item>
+        <item name="android:layout_alignBottom">@id/profile_teacher_image</item>
+
+    </style>
+    <style name="ProfileTeacherItemCourse">
+        <item name="android:layout_below">@id/profile_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentRight">true</item>
 
     </style>
     <!--PROFILE TEACHER-->
@@ -189,8 +195,12 @@
             <item name="android:layout_marginLeft">10dp</item>
             <item name="android:layout_marginRight">10dp</item>
             <item name="android:layout_marginTop">10dp</item>
-            <item name="android:layout_alignBottom">@+id/fragment2</item>
     </style>
+
+    <style name="ProfileTeacherItemRating">ProfileTeacherItemRating</style>
+
+    <style name="ProfileTeacherItemFaculty">ProfileTeacherItemFaculty</style>
+
 
     <!--START-->
     <!--VALUATION ITEM-->

@@ -52,33 +52,16 @@ public class Constants {
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     //Sections inside fragment
-    public static final int PROFILE_TEACHER_INFORMATION=R.layout.generic_teacher_profile;
-    public static final int PROFILE_COURSE_INFORMATION=R.layout.generic_course_profile;
 
     //Items
     public static final int TEACHER_NEW_ITEM=R.layout.teacher_new_item;
     public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
-    public static final int TEACHER_TITLE=R.layout.generic_teacher_title;
-    public static final int COURSE_TITLE=R.layout.generic_course_title;
     //Generic things
-    public static final int SECTION_GENERIC_LIST_LAYOUT=R.layout.generic_list;
 
 
     //IDS
-    public static final int TEACHER_LIST_ID=R.id.sub_fragment_teacher_list;
-
-    public static final int PROFILE_TEACHER_ID=R.id.sub_fragment_teacher_profile;
-    public static final int PROFILE_TEACHER_TITLE=R.id.sub_fragment_teacher_title;
-    public static final int PROFILE_TEACHER_RATING=R.id.sub_fragment_teacher_rating;
-
-    public static final int COURSE_LIST_ID=R.id.sub_fragment_course_list;
-
-    public static final int PROFILE_CORUSE_ID=R.id.sub_fragment_course_profile;
-    public static final int PROFILE_COURSE_TITLE=R.id.sub_fragment_course_title;
-    public static final int PROFILE_COURSE_RATING=R.id.sub_fragment_course_rating;
-    public static final int VALUATION_LIST_ID=R.id.sub_fragment_valuations_course;
 
 
     public static final String EVENTS = "events";

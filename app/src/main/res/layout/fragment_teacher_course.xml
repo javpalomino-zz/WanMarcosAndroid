@@ -1,18 +1,41 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/fragment_teacher_course_profile">
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:id="@+id/sub_fragment_course_profile">
 
-    </FrameLayout>
-    <FrameLayout
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:id="@+id/teacher_image"
+        style="@style/ProfileTeacherItemImage" />
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sub_fragment_valuations_course">
-    </FrameLayout>
-</LinearLayout>
+        android:id="@+id/teacher_name"
+        style="@style/ProfileTeacherItemName" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/course_name"
+        style="@style/ProfileTeacherItemCourse" />
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/faculty_name"
+        style="@style/ProfileTeacherItemFaculty" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rating_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/coruse_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

@@ -10,9 +10,9 @@
             android:iconifiedByDefault="false"
             android:id="@+id/searchViewTeachers">
     </SearchView>
-    <FrameLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/teacher_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/sub_fragment_teacher_list">
-    </FrameLayout>
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

@@ -83,7 +83,6 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
 
         @Override
         public void onClick(View v) {
-
             itemAdapterListener.itemClicked(v,current);
         }
     }

@@ -28,11 +28,17 @@ public class TeacherCourseProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_CORUSE_ID,new SectionCourseProfile());
-        Redirect.getSingletonInstance().setContent(this,Constants.VALUATION_LIST_ID,new SectionValuationsCourse());
-        return inflater.inflate(Constants.FRAGMENT_TEACHER_COURSE_LAYOUT, container, false);
+        View view=inflater.inflate(Constants.FRAGMENT_TEACHER_COURSE_LAYOUT, container, false);
+        setUpElements();
+        addListeners();
+        return view;
     }
+    public void setUpElements(){
 
+    }
+    public void addListeners(){
+
+    }
     @Override
     public void onResume() {
         Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
