@@ -45,7 +45,7 @@
 
     <style name="CourseItemFaculty">
         <item name="android:gravity">center</item>
-        <item name="android:layout_below">@+id/course_name</item>
+        <item name="android:layout_below">@+id/profile_course_course_name</item>
         <item name="android:layout_marginLeft">15dp</item>
         <item name="android:layout_marginRight">15dp</item>
         <item name="android:layout_marginTop">5dp</item>
@@ -116,64 +116,35 @@
     <!--END-->
 
 
-    <!--START-->
-    <!--TEACHER TITLE-->
-    <style name="TitleTeacherNameItem">
-        <item name="android:gravity">center_horizontal</item>
-            <item name="android:layout_centerHorizontal">true</item>
-            <item name="android:layout_alignParentTop">true</item>
-            <item name="android:layout_alignParentLeft">true</item>
-            <item name="android:layout_alignParentStart">true</item>
-            <item name="android:layout_alignParentRight">true</item>
-            <item name="android:layout_alignParentEnd">true</item>
-    </style>
-
-    <style name="TitleCourseNameItem">
-        <item name="android:gravity">center_horizontal</item>
-            <item name="android:layout_below">@+id/teacher_name</item>
-            <item name="android:layout_alignParentLeft">true</item>
-            <item name="android:layout_alignParentStart">true</item>
-            <item name="android:layout_centerHorizontal">true</item>
-            <item name="android:layout_alignParentRight">true</item>
-            <item name="android:layout_alignParentEnd">true</item>
-    </style>
-
-    <style name="TitleFacultyNameItem">
-        <item name="android:gravity">center_horizontal</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:layout_below">@+id/course_name</item>
-            <item name="android:layout_alignParentLeft">true</item>
-            <item name="android:layout_alignParentStart">true</item>
-            <item name="android:layout_alignParentRight">true</item>
-            <item name="android:layout_alignParentEnd">true</item>
-    </style>
-
-    <!--TEACHER TITLE-->
-    <!--END-->
-
     <!--PROFILE TEACHER-->
     <!--START-->
     <style name="ProfileTeacherItemImage">
-        <item name="android:layout_alignParentTop">true</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_marginLeft">15dp</item>
-        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+
     </style>
-    <style name="ProfileTeacherItemTitle">
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_toRightOf">@id/teacher_image</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:layout_alignTop">@id/teacher_image</item>
+    <style name="ProfileTeacherItemName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
     </style>
     <style name="ProfileTeacherItemRatings">
-        <item name="android:layout_below">@id/sub_fragment_teacher_title</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_toRightOf">@id/teacher_image</item>
-        <item name="android:layout_alignBottom">@id/teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@+id/profile_teacher_mame</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
+        <item name="android:layout_toEndOf">@id/profile_teacher_image</item>
+        <item name="android:layout_alignBottom">@id/profile_teacher_image</item>
+
+    </style>
+    <style name="ProfileTeacherItemCourse">
+        <item name="android:layout_below">@id/profile_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentRight">true</item>
 
     </style>
     <!--PROFILE TEACHER-->
-    <!--START-->
+    <!--END-->
 
     <style name="GenericListItem">
             <item name="android:layout_alignParentTop">true</item>
@@ -189,13 +160,54 @@
             <item name="android:layout_marginLeft">10dp</item>
             <item name="android:layout_marginRight">10dp</item>
             <item name="android:layout_marginTop">10dp</item>
-            <item name="android:layout_alignBottom">@+id/fragment2</item>
     </style>
 
+
+
     <!--START-->
-    <!--VALUATION ITEM-->
+    <!--COURSE PROFILE -->
 
+    <style name="ProfileCourseItemComments">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_below">@id/profile_course_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
 
-    <!--VALUATION ITEM-->
+    <style name="ProfileCourseItemRating">
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@id/profile_course_faculty_name</item>
+        <item name="android:layout_above">@id/comments_list</item>
+    </style>
+
+    <style name="ProfileCourseItemFacultyName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_below">@id/profile_course_course_name</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
+    <style name="ProfileCourseItemCourseName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_below">@id/profile_course_teacher_name</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="ProfileCourseItemTeacherName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="ProfileCourseItemImage">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+
+    <!--COURSE PROFILE -->
     <!--END-->
 </resources>

@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="16dp"
-        android:id="@+id/course_name"
+        android:id="@+id/profile_course_course_name"
         style="@style/CourseItemName" />
 
     <TextView
