@@ -20,6 +20,8 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -87,9 +89,9 @@ public class LoginFragment extends Fragment {
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(received == false){
+                if (received == false) {
                     return;
-                }else {
+                } else {
                     getFields();
                     postLogIn();
                 }
@@ -133,7 +135,7 @@ public class LoginFragment extends Fragment {
 
     private void postLogIn(){
         received = false;
-        Call<JsonElement> logInUser= restClient.getConsumerService().login(email, password,device_token, Constants.PLATFORM);
+        Call<JsonElement> logInUser = restClient.getConsumerService().login(email, password, device_token, Constants.PLATFORM);
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
@@ -144,31 +146,44 @@ public class LoginFragment extends Fragment {
                             String token = responseBody.get("token").getAsString();
                             setPreferences(token);
                             changeToHome();
-                            received=true;
+                            received = true;
                         }
                     } else {
-                        JSONObject responseBodyError = new JSONObject(response.errorBody().string());
-                        String message = "";
-                        if(response.code()==500){
-                            message="Error del Servidor. Vuelva a intentar más tarde";
+                        ConvertResponse error = new ConvertResponse(response);
+                        String message=error.getMessage();
+                        if(error.getKeys()!=null){
+                            setErrorFields(error.getKeys(), message);
                         }else{
-                            message=ConvertResponse.getMessageAutenticate(responseBodyError);
+                            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
-                        received=true;
+                        received = true;
                     }
-                }catch(Throwable e){
-                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
-                    received=true;
+                } catch (Throwable e) {
+                    Toast.makeText(getActivity(),"Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    received = true;
                 }
+
             }
+
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getActivity(), t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Conexion No Disponible", Toast.LENGTH_SHORT).show();
+                received = true;
             }
         });
     }
-
+    private void setErrorFields(ArrayList<String> keys,String message){
+        String[] messageField = message.split("/");
+        for(int i=0;i<keys.size();i++){
+            if(keys.get(i).equals("email")){
+                txtEmail.setError(messageField[i]);
+            }else{
+                if(keys.get(i).equals("password")){
+                    txtPassword.setError(messageField[i]);
+                }
+            }
+        }
+    }
     private void setPreferences(String token){
         preferences = this.getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
