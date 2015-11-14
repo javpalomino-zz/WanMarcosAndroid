@@ -25,6 +25,7 @@ import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.CourseListAdapter;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.widgets.CircleTransform;
@@ -53,9 +54,9 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     @Override
     public void setUpElements(View view) {
         teacherName=(TextView)view.findViewById(R.id.profile_teacher_mame);
+        teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
         teacherImage=(ImageView)view.findViewById(R.id.profile_teacher_image);
-        Picasso.with(getActivity()).load("http://lorempixel.com/300/300/").transform(new CircleTransform()).into(teacherImage);
-        teacherName.setText("CARLOS");
+        Picasso.with(getActivity()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
         recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
         courseListAdapter=new CourseListAdapter(getActivity(),getData(""));
@@ -74,6 +75,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
 
     @Override
     public void itemClicked(View view, Course object) {
+        Storage.getSingelton().storage(object,this);
         Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_TEACHER_COURSE);
     }
 

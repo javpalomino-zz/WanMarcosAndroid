@@ -25,6 +25,7 @@ import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.adapters.ValuationListAdapter;
 
@@ -57,7 +58,9 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     @Override
     public void setUpElements(View view) {
         teacherName=(TextView)view.findViewById(R.id.profile_course_teacher_name);
+        teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
         courseName=(TextView)view.findViewById(R.id.profile_course_course_name);
+        courseName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_COURSE_NAME));
         facultyName=(TextView)view.findViewById(R.id.profile_course_faculty_name);
         teacherImage=(ImageView)view.findViewById(R.id.profile_course_teacher_image);
         recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);

@@ -35,11 +35,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token",null);
         if(token != null){
-            //Redirect.getSingelton().showActivity(this,HomeActivity.class);
-            Intent home_activity = new Intent(this, HomeActivity.class);
-            finish();
-            startActivity(home_activity);
-
+            Redirect.getSingelton().showActivity(this,HomeActivity.class);
         }else{
             if(findViewById(R.id.fragment_container) != null){
                 if(savedInstanceState != null){

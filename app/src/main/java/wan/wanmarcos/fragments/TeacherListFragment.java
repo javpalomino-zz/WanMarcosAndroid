@@ -27,6 +27,7 @@ import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.TeacherListAdapter;
 
 
@@ -62,6 +63,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     @Override
     public void itemClicked(View view, Teacher object) {
+        Storage.getSingelton().storage(object,this);
         Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_PROFILE_TEACHER);
     }
 
