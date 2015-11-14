@@ -41,6 +41,7 @@ import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.DateAndTimeDealer;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.EventListAdapter;
 
 /**
@@ -141,6 +142,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void itemClicked(View view, int position) {
+        Storage.getSingelton().storage(eventListAdapter.getItemAtPos(position),this);
         Redirect.getSingelton().showFragment(EventViewListFragment.this,Constants.EVENT_CONTAINER,Constants.FRAGMENT_DETAIL_EVENT);
         currentPage=1;
     }

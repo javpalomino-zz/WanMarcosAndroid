@@ -23,6 +23,7 @@ import java.util.Calendar;
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Event;
 import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Storage;
 
 /**
  * Created by Francisco on 2/11/2015.
@@ -71,19 +72,18 @@ public class EventPageFragment extends Fragment{
 
     private void fillData()
     {
-        /*
         Picasso.with(getContext())
-                .load(Redirect.getSingletonInstance().getInformation("eventimage"))
+                .load(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_IMAGE))
                 .into(imageView);
-        txtReference.setText(Redirect.getSingletonInstance().getInformation("eventreference"));
-        txtStart.setText(Redirect.getSingletonInstance().getInformation("eventdatestart"));
-        txtEnd.setText(Redirect.getSingletonInstance().getInformation("eventdateend"));
-        txtDescription.setText(Redirect.getSingletonInstance().getInformation("eventdescription"));
-        txtLink.setText(Redirect.getSingletonInstance().getInformation("eventlink"));
+        txtReference.setText(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_REFERENCE));
+        txtStart.setText(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_START_DATE));
+        txtEnd.setText(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_FINISH_DATE));
+        txtDescription.setText(Storage.getSingelton().getInfo(this, Storage.KEY_EVENT_DESCRIPTION));
+        txtLink.setText(Storage.getSingelton().getInfo(this, Storage.KEY_EVENT_LINK));
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
         Palette p = Palette.from(bitmap).generate();
        imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
-        getActivity().setTitle(Redirect.getSingletonInstance().getInformation("eventname"));*/
+        //getActivity().setTitle(Redirect.getSingletonInstance().getInformation("eventname"));
     }
 
 
