@@ -62,8 +62,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     @Override
     public void itemClicked(View view, Teacher object) {
-        //TODO
-        // Redirect.getSingelton().
+        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_PROFILE_TEACHER);
     }
 
     public List<Teacher> getData(String search_text){

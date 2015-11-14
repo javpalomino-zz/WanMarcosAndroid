@@ -15,6 +15,7 @@ import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 
 public class EventsActivity extends AppCompatActivity {
@@ -29,8 +30,7 @@ public class EventsActivity extends AppCompatActivity {
         Log.d("ACTIVITY", "");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
-        //Redirect.getSingletonInstance().setActivity(this,R.id.home_fragment);
-        //Redirect.getSingletonInstance().changeFragment(null);
+        Redirect.getSingelton().showFragment(this, Constants.EVENT_CONTAINER,Constants.FRAGMENT_LIST_EVENT);
         setUpNavDrawer();
     }
 
@@ -44,18 +44,9 @@ public class EventsActivity extends AppCompatActivity {
     public void setUpNavDrawer(){
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        //Redirect.getSingletonInstance().updateActivityStack();
-        super.onBackPressed();
     }
     /*
     public void addListFragment()

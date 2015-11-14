@@ -8,7 +8,9 @@ import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
@@ -17,6 +19,9 @@ import wan.wanmarcos.fragments.TeacherProfileFragment;
  * Created by javier on 25/09/15.
  */
 public class Constants {
+
+    public static final int TEACHER_CONTAINER=R.id.home_fragment;
+    public static final int EVENT_CONTAINER=R.id.home_fragment;
     public static final String NOT_FOUND="Busqueda no exitosa";
     //ACTIVITIES
     public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
@@ -29,6 +34,10 @@ public class Constants {
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
 
     public static final String FRAGMENT_LIST_EVENT= EventViewListFragment.class.getName();
+    public static final String FRAGMENT_SUGGEST_EVENT = SuggestedEventFragment.class.getName();
+    public static final String FRAGMENT_DETAIL_EVENT= EventPageFragment.class.getName();
+
+
 
     public static final String PREFERENCES = "WanMarcos_preferences";
 

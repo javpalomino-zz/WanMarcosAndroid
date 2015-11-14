@@ -75,12 +75,6 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
 
     }
     @Override
-    public void onResume() {
-        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
-        super.onResume();
-    }
-
-    @Override
     public void itemClicked(View view, Valuation object) {
         //
     }

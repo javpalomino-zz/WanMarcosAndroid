@@ -27,7 +27,7 @@ public class TeacherActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        Redirect.getSingelton().showFragment(this,R.id.home_fragment, Constants.FRAGMENT_LIST_TEACHER);
+        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER, Constants.FRAGMENT_LIST_TEACHER);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

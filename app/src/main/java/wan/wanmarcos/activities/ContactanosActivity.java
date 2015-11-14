@@ -125,10 +125,4 @@ public class ContactanosActivity extends AppCompatActivity{
                         Constants.MODAL_BUTTON_DENADA,true);
         modal.showModal();
     }
-
-    @Override
-    public void onBackPressed() {
-        ///Redirect.getSingletonInstance().updateActivityStack();
-        super.onBackPressed();
-    }
 }

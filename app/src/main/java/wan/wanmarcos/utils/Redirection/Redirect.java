@@ -56,7 +56,7 @@ public class Redirect implements Redirection {
     public void showActivity(AppCompatActivity myPreviousActivity,String name){
         Class activity=getActivityClass(name);
         if(!activity.getName().equals(Object.class.getName())){
-            showActivity(myPreviousActivity,activity);
+            showActivity(myPreviousActivity, activity);
         }
     }
 
@@ -95,6 +95,16 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.FRAGMENT_TEACHER_COURSE)){
             return new TeacherCourseProfileFragment();
+        }
+
+        else if(name.equals(Constants.FRAGMENT_LIST_EVENT)){
+            return new EventViewListFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_DETAIL_EVENT)){
+            return new EventPageFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_SUGGEST_EVENT)){
+            return new SuggestedEventFragment();
         }
         else{
             return new Fragment();

@@ -49,11 +49,6 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
         addListeners();
         return view;
     }
-    @Override
-    public void onResume() {
-        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
-        super.onResume();
-    }
 
     @Override
     public void setUpElements(View view) {
@@ -79,8 +74,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
 
     @Override
     public void itemClicked(View view, Course object) {
-        //TODO
-        // Redirect.getSingletonInstance().changeFragment(object);
+        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_TEACHER_COURSE);
     }
 
     public List<Rating> getStaticData(){
