@@ -1,11 +1,9 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -25,19 +23,16 @@ import org.json.JSONObject;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
-import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
-import wan.wanmarcos.models.Error;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.ConvertResponse;
 import wan.wanmarcos.utils.RestClient;
 
 
 public class LoginFragment extends Fragment {
     private RestClient restClient;
-
     private Button btnLogIn;
     private ImageView logoImg;
     private TextView btnRegister;
@@ -45,12 +40,11 @@ public class LoginFragment extends Fragment {
     private EditText txtEmail;
     private EditText txtPassword;
     private TextView lblError;
-
     private String email;
     private String password;
     private Builder builder;
     private String device_token = "xxxxxxxxxxx";
-
+    private Boolean received=true;
     private SharedPreferences preferences;
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
@@ -93,8 +87,12 @@ public class LoginFragment extends Fragment {
 
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                getFields();
-                postLogIn();
+                if(received == false){
+                    return;
+                }else {
+                    getFields();
+                    postLogIn();
+                }
             }
         });
     }
@@ -134,9 +132,8 @@ public class LoginFragment extends Fragment {
     }
 
     private void postLogIn(){
-
+        received = false;
         Call<JsonElement> logInUser= restClient.getConsumerService().login(email, password,device_token, Constants.PLATFORM);
-        String token;
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
@@ -147,16 +144,22 @@ public class LoginFragment extends Fragment {
                             String token = responseBody.get("token").getAsString();
                             setPreferences(token);
                             changeToHome();
-                        } else {
-
+                            received=true;
                         }
                     } else {
-                        JSONObject responseBody = new JSONObject(response.errorBody().string());
-                        String message = responseBody.getJSONObject("error").getString("message");
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                        JSONObject responseBodyError = new JSONObject(response.errorBody().string());
+                        String message = "";
+                        if(response.code()==500){
+                            message="Error del Servidor. Vuelva a intentar más tarde";
+                        }else{
+                            message=ConvertResponse.getMessageAutenticate(responseBodyError);
+                        }
+                        Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+                        received=true;
                     }
                 }catch(Throwable e){
                     Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                    received=true;
                 }
             }
             @Override
