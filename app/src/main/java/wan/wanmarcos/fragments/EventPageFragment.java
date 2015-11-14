@@ -101,10 +101,4 @@ public class EventPageFragment extends Fragment{
             }
         });
     }
-
-    @Override
-    public void onResume() {
-        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
-        super.onResume();
-    }
 }

@@ -226,10 +226,4 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
             }
         });
     }
-
-    @Override
-    public void onResume() {
-        //Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
-        super.onResume();
-    }
 }

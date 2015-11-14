@@ -3,6 +3,7 @@ package wan.wanmarcos.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class Storage {
     public static String KEY_TEACHER_NAME="teachername";
     public static String KEY_COURSE_NAME="coursename";
     public static String KEY_TEACHER_IMAGE="teacherimage";
+    public static String KEY_FACULTY_NAME="facultyname";
     private static Storage singeltonObject;
     private Storage(){
 
@@ -46,6 +48,7 @@ public class Storage {
     private void storageCourse(Object course,SharedPreferences mySharedPreferences){
         Course courseItem=(Course)course;
         saveData(courseItem.getName(),KEY_COURSE_NAME,mySharedPreferences);
+        saveData(courseItem.getFaculty(),KEY_FACULTY_NAME,mySharedPreferences);
     }
     private void storageTeacher(Object teacher,SharedPreferences mySharedPreferences){
         Teacher teacherItem=(Teacher) teacher;
@@ -54,11 +57,17 @@ public class Storage {
     }
     private void saveData(String value,String keyValue,SharedPreferences mySharedPreferences){
         SharedPreferences.Editor editor=mySharedPreferences.edit();
-        editor.putString(keyValue,value);
+        editor.putString(keyValue, value);
         editor.commit();
     }
     public String getInfo(Fragment myFragmet,String key){
         SharedPreferences myPreferences=myFragmet.getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         return myPreferences.getString(key,Constants.NOT_FOUND);
+    }
+    public void clearData(AppCompatActivity myFragment){
+        SharedPreferences preferences = myFragment.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor =  preferences.edit();
+        editor.clear();
+        editor.commit();
     }
 }

@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,7 @@ import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.adapters.ValuationListAdapter;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,7 +65,9 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         courseName=(TextView)view.findViewById(R.id.profile_course_course_name);
         courseName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_COURSE_NAME));
         facultyName=(TextView)view.findViewById(R.id.profile_course_faculty_name);
+        facultyName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_FACULTY_NAME));
         teacherImage=(ImageView)view.findViewById(R.id.profile_course_teacher_image);
+        Picasso.with(view.getContext()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);
         recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
         ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());

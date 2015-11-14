@@ -28,6 +28,7 @@ import wan.wanmarcos.utils.Redirection.Redirection;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.models.Teacher;
+import wan.wanmarcos.utils.Storage;
 
 public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -42,7 +43,6 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        //toShowEvents();
     }
 
     @Override
@@ -62,32 +62,9 @@ public class HomeActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id){
-            case R.id.logout : logout();break;
+            case R.id.logout : Redirect.getSingelton().logOut(this); break;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    public void toContactanosActivity() {
-        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
-        this.finish();
-        startActivity(contactanos_activity);
-    }
-
-    private void logout(){
-        SharedPreferences preferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =  preferences.edit();
-        editor.clear();
-        editor.commit();
-        Intent login_activity = new Intent(getApplicationContext(),MainActivity.class);
-        login_activity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(login_activity);
-    }
-
-    private void Contactanos(){
-        Intent contactanos_activity = new Intent(this,ContactanosActivity.class);
-        this.finish();
-        startActivity(contactanos_activity);
     }
 }

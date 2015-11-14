@@ -23,6 +23,7 @@ import wan.wanmarcos.models.*;
 import wan.wanmarcos.models.Error;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
 
 
@@ -111,9 +112,7 @@ public class RegisterFragment extends Fragment {
                                 User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
                                 Toast.makeText(getActivity(), user.toString(), Toast.LENGTH_SHORT).show();
                             }
-                            Intent intent = new Intent();
-                            intent.setClass(getActivity(), HomeActivity.class);
-                            startActivity(intent);
+                            Redirect.getSingelton().showActivity(RegisterFragment.this,Constants.HOME_ACTIVITY);
                         }
                         else{
                             if(responseBody.has("error")){
