@@ -62,8 +62,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             itemView.setOnClickListener(this);
             courseName= (TextView) itemView.findViewById(R.id.profile_course_course_name);
             courseFaculty=(TextView) itemView.findViewById(R.id.course_faculty);
-            courseRating=(RatingBar) itemView.findViewById(R.id.course_rating);
-            courseMark=(TextView) itemView.findViewById(R.id.course_mark);
+            //courseRating=(RatingBar) itemView.findViewById(R.id.course_rating);
+            //courseMark=(TextView) itemView.findViewById(R.id.course_mark);
             vista=itemView;
         }
 
@@ -77,8 +77,8 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             current=elements;
             courseName.setText(elements.getName());
             courseFaculty.setText(elements.getFaculty());
-            courseMark.setText(elements.getRating()+"");
-            courseRating.setRating(elements.getRating());
+            //courseMark.setText(elements.getRating()+"");
+            //courseRating.setRating(elements.getRating());
         }
     }
 }

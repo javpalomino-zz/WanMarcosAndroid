@@ -69,10 +69,10 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     public List<Teacher> getData(String search_text){
         List<Teacher> teachers=new ArrayList<>();
-        teachers.add(new Teacher("Carlos",14,new ArrayList<String>(),"Carpe Diem","http://lorempixel.com/300/300/"));
-        teachers.add(new Teacher("Juan",4,new ArrayList<String>(),"Carpe ","http://lorempixel.com/300/300/"));
-        teachers.add(new Teacher("Pablo",5,new ArrayList<String>(),"Carpe dasd","http://lorempixel.com/300/300/"));
-        teachers.add(new Teacher("Miguel",11,new ArrayList<String>(),"Diem","http://lorempixel.com/300/300/"));
+        teachers.add(new Teacher("Joseph Simpe Laura",14,new ArrayList<String>(),"Carpe Diem","http://lorempixel.com/300/300/"));
+        teachers.add(new Teacher("Frank Escobedo Baylon",4,new ArrayList<String>(),"Carpe ","http://lorempixel.com/300/300/"));
+        teachers.add(new Teacher("Santiago Moquillaza Enriquez",5,new ArrayList<String>(),"Carpe dasd","http://lorempixel.com/300/300/"));
+        teachers.add(new Teacher("Miguel Garay Bosteza",11,new ArrayList<String>(),"Diem","http://lorempixel.com/300/300/"));
         teachers.add(new Teacher("Zoraida",48,new ArrayList<String>(),"Gosta de Fazer","http://lorempixel.com/300/300/"));
         teachers.add(new Teacher("Zen",20,new ArrayList<String>(),"Desejo","http://lorempixel.com/300/300/"));
         return teachers;

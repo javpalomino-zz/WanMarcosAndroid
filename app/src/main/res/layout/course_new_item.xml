@@ -1,36 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
-    android:layout_height="70dp"
-    android:layout_marginLeft="30dp"
-    android:background="@drawable/borders">
-    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_teacher"
         android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:id="@+id/profile_course_course_name"
-        style="@style/CourseItemName" />
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="5dp"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:id="@+id/course_faculty"
-        style="@style/CourseItemFaculty" />
+            <RelativeLayout
+                android:id="@+id/text_details_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:text="@string/course_valoration"
-        style="@style/CouseItemLabel" />
+                <TextView
+                    android:id="@+id/list_course_label"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:text="Curso  "/>
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:id="@+id/course_rating"
-        style="@style/CouseItemRatingBar" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_course_course_name"
+                    android:textSize="15dp"
+                    android:layout_margin="5dp"
+                    android:text="NOMBRE DE CURSO POR DEFECTO"
+                    android:layout_toRightOf="@id/list_course_label"/>
+                <!--style="@style/CourseItemName" -->
 
-    <TextView
-        android:layout_width="30dp"
-        android:layout_height="16dp"
-        android:id="@+id/course_mark"
-        style="@style/CourseItemMark" />
+                <TextView
+                    android:id="@+id/list_faculty_label"
+                    android:layout_below="@id/list_course_label"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:text="Facultad  "/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_margin="5dp"
+                    android:layout_toRightOf="@id/list_faculty_label"
+                    android:layout_below="@id/profile_course_course_name"
+                    android:id="@+id/course_faculty"
+                    android:text="NOMBRE DE DEFECTO DE FACULTAD"/>
+                <!--style="@style/CourseItemFaculty" -->
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/profile_course_rating_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_details_container"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_teacher_rating"
+                    android:textColor="@android:color/black"
+                    android:textSize="15dp"
+                    android:text="4.5"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:layout_centerVertical="true"/>
+                <ImageView
+                    android:id="@+id/teacher_profile_star_drawable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:layout_toRightOf="@id/profile_teacher_rating"
+                    android:src="@mipmap/ic_grade_black_24dp"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+
 </RelativeLayout>
