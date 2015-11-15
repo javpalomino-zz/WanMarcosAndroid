@@ -1,37 +1,60 @@
 package wan.wanmarcos.models;
 
+import android.util.Log;
+
+import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by carlos-pc on 06/10/15.
  */
 public class Teacher {
-    private String name;
+    private int id;
+    private String firstName;
+    private String lastName;
     private int raiting;
     private List<String> faculties;
     private String description;
     private String imageUrl;
 
-    public Teacher(String name, int raiting, List<String> faculties, String description, String imageUrl) {
-        this.name = name;
+    public Teacher(JsonObject object){
+        this.id=object.get("id").getAsInt();
+        this.firstName=object.get("first_name").getAsString();
+        this.lastName=object.get("last_name").getAsString();
+        this.imageUrl=object.get("image").getAsString();
+        this.faculties=new ArrayList<>();
+    }
+
+    public Teacher(int id, String firstName, String lastName, int raiting, List<String> faculties, String description, String imageUrl) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.raiting = raiting;
         this.faculties = faculties;
         this.description = description;
         this.imageUrl = imageUrl;
     }
-    public Teacher(Teacher old, String imageUrl) {
-        this.imageUrl = imageUrl;
-        this.name = old.getName();
-        this.raiting = old.getRaiting();
-        this.faculties = old.faculties;
-        this.description = old.getDescription();
-    }
-    public String getName() {
-        return name;
+
+    public String getName(){
+        return lastName+firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getRaiting() {
@@ -45,6 +68,7 @@ public class Teacher {
     public String getFaculties() {
         String fac="";
         int i=faculties.size();
+        Log.d("D", i + "");
         if(i>0){
             fac=fac+faculties.get(0).toString();
             for(int j=1;j<i;j++){
@@ -72,5 +96,13 @@ public class Teacher {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -94,7 +94,6 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         ratings.add(new Rating((float) 3.0,"desarrollo"));
         return ratings;
     }
-    @Override
     public List<Valuation> getData(String data) {
         List<Valuation> valuations=new ArrayList<>();
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));

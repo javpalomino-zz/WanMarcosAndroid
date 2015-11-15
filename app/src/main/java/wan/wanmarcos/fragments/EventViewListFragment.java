@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -190,7 +191,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private void getEvents()
     {
-        final List<Event> eventsList=new ArrayList<>();;
+        final List<Event> eventsList=new ArrayList<>();
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, 10);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override

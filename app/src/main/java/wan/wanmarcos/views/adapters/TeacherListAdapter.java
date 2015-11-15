@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,11 +26,12 @@ import wan.wanmarcos.views.widgets.CircleTransform;
 
 public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.TeacherHolder> {
     private LayoutInflater inflater;
-    private List<Teacher> teachers= Collections.emptyList();
+    private List<Teacher> teachers= new ArrayList<>();
     private ItemAdapterListener itemAdapterListener;
-    public TeacherListAdapter(Context context,List<Teacher> teachers){
+    private Object mLock;
+
+    public TeacherListAdapter(Context context){
         inflater= LayoutInflater.from(context);
-        this.teachers=teachers;
     }
     @Override
     public TeacherHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,6 +53,11 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
     @Override
     public int getItemCount() {
         return teachers.size();
+    }
+
+    public synchronized void add(Teacher teacher){
+            teachers.add(0,teacher);
+            notifyItemInserted(0);
     }
 
     public class  TeacherHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Teacher>,View.OnClickListener{

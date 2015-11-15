@@ -88,7 +88,6 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
         return ratings;
     }
 
-    @Override
     public List<Course> getData(String data) {
         List<Course> courses=new ArrayList<>();
         courses.add(new Course("Matematica", (float) 4.0,"FISI"));
