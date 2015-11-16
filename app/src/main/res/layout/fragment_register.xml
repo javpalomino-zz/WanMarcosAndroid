@@ -5,6 +5,10 @@
     android:background="@color/loginBackgroundColorLight"
     tools:context="wan.wanmarcos.fragments.RegisterFragment">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
         <RelativeLayout
             android:id="@+id/main_content"
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,12 +19,12 @@
             android:focusableInTouchMode="true">
 
             <ImageView
-            android:id="@+id/appLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="70dp"
-            android:src="@mipmap/wanmarcosblack"/>
+                android:id="@+id/appLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:src="@mipmap/wanmarcosblack"/>
 
             <TextView
                 android:id="@+id/registerHeaderLablel"
@@ -70,7 +74,7 @@
                 android:layout_height="50dp"
                 android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
                 android:paddingLeft="10dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:drawablePadding="10dp"/>
 
             <EditText
@@ -95,7 +99,7 @@
                 android:textColor="@color/loginButtonTextColor"
                 android:textStyle="normal"
                 android:textSize="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/btnRegisterForm" />
 
             <TextView
@@ -104,5 +108,9 @@
                 android:layout_height="wrap_content"
                 android:text="" />
         </RelativeLayout>
+
+    </ScrollView>
+
+
 
 </FrameLayout>
