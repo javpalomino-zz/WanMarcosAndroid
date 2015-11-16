@@ -208,6 +208,20 @@
         <item name="android:layout_alignParentTop">true</item>
     </style>
 
+    <style name="popup_comment_text">popup_comment_text</style>
+
+    <style name="popup_comment_teacher">popup_comment_teacher</style>
+
+    <style name="popup_comment_course">popup_comment_course</style>
+
+    <style name="popup_comment_faculty">popup_comment_faculty</style>
+
+    <style name="popup_comment_rating">popup_comment_rating</style>
+
+    <style name="popup_comment_valuation">popup_comment_valuation</style>
+
+    <style name="popup_comment_post">popup_comment_post</style>
+
     <!--COURSE PROFILE -->
     <!--END-->
 </resources>

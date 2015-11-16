@@ -72,6 +72,7 @@ public class Constants {
     public static final int FRAGMENT_LIST_TEACHER_LAYOUT= R.layout.fragment_teacher_list;
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
+    public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT=R.layout.fragment_post_comment;
     //Sections inside fragment
 
     //Items

@@ -1,6 +1,9 @@
 package wan.wanmarcos.fragments;
 
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +49,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     private ValuationListAdapter valuationListAdapter;
     private RecyclerView recyclerViewRating;
     private RecyclerView recyclerViewComments;
+    private FloatingActionButton floatingActionButton;
 
     public TeacherCourseProfileFragment() {
         // Required empty public constructor
@@ -78,10 +83,16 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         recyclerViewRating.setAdapter(ratingListAdapter);
         recyclerViewComments.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerViewRating.setLayoutManager(new LinearLayoutManager(getActivity()));
+        floatingActionButton=(FloatingActionButton)view.findViewById(R.id.profile_course_floating_button);
     }
 
     public void addListeners(){
-
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO
+            }
+        });
     }
     @Override
     public void itemClicked(View view, Valuation object) {

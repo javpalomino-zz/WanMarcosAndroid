@@ -6,7 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="popup_comment_welcome_text">Danos tu opinion acerca de:</string>
+    <string name="popup_comment_edit_text">¿Algo mas que nos quieras decir?</string>
+    <string name="popup_comment_button">Envianos tu opinion</string>
     <!--Fields-->
     <string name="lblFirstName">Nombres</string>
     <string name="lblLastName">Apellidos</string>
