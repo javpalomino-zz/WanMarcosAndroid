@@ -95,6 +95,11 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
             itemAdapterListener.itemClicked(v,current);
         }
     }
+    public void removeAll(){
+        int size=getItemCount();
+        teachers=new ArrayList<>();
+        notifyItemRangeRemoved(0,size);
+    }
     public void addAll(final List<Teacher> teacher) {
         final int currentCount = teacher.size();
         synchronized(teachers) {

@@ -46,20 +46,28 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
     private LinearLayoutManager layoutManagerRecyclerView;
     private RestClient restClient;
     private int currentPage;
+    private String actualSerach;
+    String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
 
     public TeacherListFragment() {
         // Required empty public constructor
+        actualSerach="";
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("da","create");
         super.onCreate(savedInstanceState);
         restClient = new RestClient(getActivity());
         currentPage=1;
+        teacherListAdapter=new TeacherListAdapter(getActivity());
+        teacherListAdapter.setListener(this);
+        getTeacherData(actualSerach);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d("da", "createview");
         View view=inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
         setUpElements(view);
         addListeners();
@@ -78,10 +86,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
                 }
                 if(changeState){
                     if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition()==teacherListAdapter.getItemCount()-1&&layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition()>0){
-                        getTeacherData("");
-                    }
-                    else if(layoutManagerRecyclerView.findFirstCompletelyVisibleItemPosition()==0&&layoutManagerRecyclerView.findFirstCompletelyVisibleItemPosition()>=0){
-                        Log.d("TOP","TOP");
+                        getTeacherData(actualSerach);
                     }
                 }
             }
@@ -89,11 +94,16 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                actualSerach=query;
+                teacherListAdapter.removeAll();
+                currentPage=1;
+                getTeacherData(query);
+                return  true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //TODO
                 return false;
             }
         });
@@ -103,9 +113,6 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
         layoutManagerRecyclerView=new LinearLayoutManager(getActivity());
         searchView=(SearchView)view.findViewById(R.id.searchViewTeachers);
         searchView.setFocusable(false);
-        teacherListAdapter=new TeacherListAdapter(getActivity());
-        teacherListAdapter.setListener(this);
-        getTeacherData("");
         recyclerViewTeachers=(RecyclerView)view.findViewById(R.id.teacher_list);
         recyclerViewTeachers.setAdapter(teacherListAdapter);
         recyclerViewTeachers.setLayoutManager(layoutManagerRecyclerView);
@@ -119,7 +126,6 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     public void getTeacherData(String search_text){
         final List<Teacher>teachers=new ArrayList<>();
-        String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
         Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,5);
         teacherPage.enqueue(new Callback<JsonElement>() {
             @Override
@@ -132,8 +138,6 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
                         Teacher current = new Teacher(storedObject);
                         teachers.add(current);
                     }
-                } else {
-                    Log.d("da", "Fail");
                 }
                 teacherListAdapter.addAll(teachers);
             }

@@ -68,7 +68,6 @@ public class Teacher {
     public String getFaculties() {
         String fac="";
         int i=faculties.size();
-        Log.d("D", i + "");
         if(i>0){
             fac=fac+faculties.get(0).toString();
             for(int j=1;j<i;j++){
