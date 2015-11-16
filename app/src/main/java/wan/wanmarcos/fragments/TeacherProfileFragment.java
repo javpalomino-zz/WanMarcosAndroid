@@ -68,7 +68,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
         teacherImage=(ImageView)view.findViewById(R.id.profile_teacher_image);
         Picasso.with(getActivity()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
-        recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
+        //recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
         courseListAdapter=new CourseListAdapter(getActivity(),getData(""));
         courseListAdapter.setListener(this);
         ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
@@ -101,7 +101,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     @Override
     public List<Course> getData(String data) {
         List<Course> courses=new ArrayList<>();
-        courses.add(new Course("Matematica", (float) 4.0,"FISI"));
+        courses.add(new Course("Matematica ", (float) 4.0,"FISI"));
         courses.add(new Course("Fisica", (float) 4.0,"FISI"));
         courses.add(new Course("Matematica", (float) 4.0,"FISI"));
         courses.add(new Course("Matematica", (float) 4.0,"FISI"));
