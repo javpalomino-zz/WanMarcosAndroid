@@ -3,6 +3,7 @@ package wan.wanmarcos.fragments;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -80,8 +81,10 @@ public class EventPageFragment extends Fragment{
         txtDescription.setText(Redirect.getSingletonInstance().getInformation("eventdescription"));
         txtLink.setText(Redirect.getSingletonInstance().getInformation("eventlink"));
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-        Palette p = Palette.from(bitmap).generate();
-       imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
+        if(bitmap!=null){
+            Palette p = Palette.from(bitmap).generate();
+            imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
+        }
         getActivity().setTitle(Redirect.getSingletonInstance().getInformation("eventname"));
     }
 
