@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             android:src="@mipmap/wanmarcosblack"/>
 
             <TextView
@@ -35,8 +35,34 @@
                 android:text="@string/lblTellUsAboutYou"/>
 
             <EditText
-                android:id="@+id/first_name"
+                android:id="@+id/email"
                 android:layout_below="@id/registerHeaderLablel"
+                style="@style/FormField"
+                android:hint="@string/lblRegisterEmail"
+                android:background="@color/registerImportantFieldBackgroundLight"
+                android:gravity="center_vertical"
+                android:layout_height="50dp"
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@mipmap/ic_email_black_24dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_below="@id/email"
+                style="@style/FormField"
+                android:hint="@string/lblRegisterPassword"
+                android:inputType="textPassword"
+                android:background="@color/registerImportantFieldBackgroundLight"
+                android:gravity="center_vertical"
+                android:layout_height="50dp"
+                android:drawableLeft="@mipmap/ic_lock_black_24dp"
+                android:paddingLeft="10dp"
+                android:drawablePadding="10dp"/>
+
+            <EditText
+                android:id="@+id/first_name"
+                android:layout_below="@id/password"
                 style="@style/FormField"
                 android:hint="@string/lblRegisterFirstName"
                 android:background="@color/loginInputFieldBackgroundColorLight"
@@ -44,6 +70,7 @@
                 android:layout_height="50dp"
                 android:drawableLeft="@mipmap/ic_account_circle_black_24dp"
                 android:paddingLeft="10dp"
+                android:layout_marginTop="25dp"
                 android:drawablePadding="10dp"/>
 
             <EditText
@@ -58,35 +85,9 @@
                 android:paddingLeft="10dp"
                 android:drawablePadding="10dp" />
 
-            <EditText
-                android:id="@+id/email"
-                android:layout_below="@id/last_name"
-                style="@style/FormField"
-                android:hint="@string/lblRegisterEmail"
-                android:background="@color/loginInputFieldBackgroundColorLight"
-                android:gravity="center_vertical"
-                android:layout_height="50dp"
-                android:inputType="textEmailAddress"
-                android:drawableLeft="@mipmap/ic_email_black_24dp"
-                android:paddingLeft="10dp"
-                android:drawablePadding="10dp" />
-
-            <EditText
-                android:id="@+id/password"
-                android:layout_below="@id/email"
-                style="@style/FormField"
-                android:hint="@string/lblRegisterPassword"
-                android:inputType="textPassword"
-                android:background="@color/loginInputFieldBackgroundColorLight"
-                android:gravity="center_vertical"
-                android:layout_height="50dp"
-                android:drawableLeft="@mipmap/ic_lock_black_24dp"
-                android:paddingLeft="10dp"
-                android:drawablePadding="10dp"/>
-
             <Button
                 android:id="@+id/signUp"
-                android:layout_below="@id/password"
+                android:layout_below="@id/last_name"
                 style="@style/FormField"
                 android:gravity="center"
                 android:layout_height="55dp"

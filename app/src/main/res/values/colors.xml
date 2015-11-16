@@ -12,7 +12,8 @@
     <color name="loginButtonBackgroundColor">#1db954</color>
     <color name="registerButtonBackgroundColor">#3a5897</color>
     <color name="loginInputFieldBackgroundColor">#1A2026</color>
-    <color name="loginInputFieldBackgroundColorLight">#E5DFD9</color>
+    <color name="loginInputFieldBackgroundColorLight">#C4C4C4</color>
+    <color name="registerImportantFieldBackgroundLight">#A3A3A3</color>
     <color name="loginButtonTextColor">#FFFFFF</color>
     <color name="loginButtonTextColorLight">#000000</color>
     <color name="loginLinkTextColor">#919497</color>
