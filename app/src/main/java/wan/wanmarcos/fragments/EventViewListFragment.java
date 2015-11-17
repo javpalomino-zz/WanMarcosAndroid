@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.DateAndTimeDealer;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.EventListAdapter;
 
 /**
@@ -125,7 +127,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         suggestFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Redirect.getSingletonInstance().changeFragment(new Object());
+                Redirect.getSingelton().showFragment(EventViewListFragment.this,Constants.EVENT_CONTAINER,Constants.FRAGMENT_SUGGEST_EVENT);
                 currentPage = 1;
             }
         });
@@ -141,7 +143,8 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     @Override
     public void itemClicked(View view, int position) {
-        Redirect.getSingletonInstance().changeFragment(eventListAdapter.getItemAtPos(position));
+        Storage.getSingelton().storage(eventListAdapter.getItemAtPos(position),this);
+        Redirect.getSingelton().showFragment(EventViewListFragment.this,Constants.EVENT_CONTAINER,Constants.FRAGMENT_DETAIL_EVENT);
         currentPage=1;
     }
     private void addScrollBottomListener() {
@@ -188,7 +191,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
 
     private void getEvents()
     {
-        final List<Event> eventsList=new ArrayList<>();;
+        final List<Event> eventsList=new ArrayList<>();
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, 10);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
@@ -225,11 +228,5 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
             public void onFailure(Throwable t) {
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
-        super.onResume();
     }
 }

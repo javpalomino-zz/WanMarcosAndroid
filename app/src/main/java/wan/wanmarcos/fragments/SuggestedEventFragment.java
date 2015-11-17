@@ -267,7 +267,6 @@ public class SuggestedEventFragment extends Fragment {
                 if (responseBody.has("name")) {
                     String name = responseBody.get("name").getAsString();
                     Toast.makeText(getActivity(), "Tu Evento : "+name+" ha sido sugerido correctamente.", Toast.LENGTH_SHORT).show();
-                    Redirect.getSingletonInstance().reload();
                 } else {
                     if (responseBody.has("error")) {
                         wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());

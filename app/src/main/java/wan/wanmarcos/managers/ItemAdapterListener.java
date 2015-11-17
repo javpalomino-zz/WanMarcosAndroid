@@ -9,5 +9,4 @@ import java.util.List;
  */
 public interface ItemAdapterListener<T> {
     void itemClicked(View view,T object);
-    List<T> getData(String data);
 }

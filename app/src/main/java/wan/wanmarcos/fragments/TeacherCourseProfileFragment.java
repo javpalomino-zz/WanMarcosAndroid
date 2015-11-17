@@ -1,25 +1,52 @@
 package wan.wanmarcos.fragments;
 
 
+import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.FragmentsMethods;
+import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Course;
+import wan.wanmarcos.models.Rating;
+import wan.wanmarcos.models.Teacher;
+import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.Storage;
+import wan.wanmarcos.views.adapters.RatingListAdapter;
+import wan.wanmarcos.views.adapters.ValuationListAdapter;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherCourseProfileFragment extends Fragment {
-
+public class TeacherCourseProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Valuation> {
+    private TextView teacherName;
+    private TextView courseName;
+    private TextView facultyName;
+    private ImageView teacherImage;
+    private RatingListAdapter ratingListAdapter;
+    private ValuationListAdapter valuationListAdapter;
+    private RecyclerView recyclerViewRating;
+    private RecyclerView recyclerViewComments;
+    private ImageView teacherCardBackground;
 
     public TeacherCourseProfileFragment() {
         // Required empty public constructor
@@ -28,14 +55,59 @@ public class TeacherCourseProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Redirect.getSingletonInstance().setContent(this,Constants.PROFILE_CORUSE_ID,new SectionCourseProfile());
-        Redirect.getSingletonInstance().setContent(this,Constants.VALUATION_LIST_ID,new SectionValuationsCourse());
-        return inflater.inflate(Constants.FRAGMENT_TEACHER_COURSE_LAYOUT, container, false);
+        View view=inflater.inflate(Constants.FRAGMENT_TEACHER_COURSE_LAYOUT, container, false);
+        setUpElements(view);
+        addListeners();
+        return view;
     }
 
     @Override
-    public void onResume() {
-        Redirect.getSingletonInstance().setActivity((AppCompatActivity) getActivity(), R.id.home_fragment);
-        super.onResume();
+    public void setUpElements(View view) {
+        teacherCardBackground= (ImageView) view.findViewById(R.id.teacher_course_card_background);
+        Picasso.with(getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        teacherName=(TextView)view.findViewById(R.id.profile_course_teacher_name);
+        teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
+        courseName=(TextView)view.findViewById(R.id.profile_course_course_name);
+        courseName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_COURSE_NAME));
+        facultyName=(TextView)view.findViewById(R.id.profile_course_faculty_name);
+        facultyName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_FACULTY_NAME));
+        teacherImage=(ImageView)view.findViewById(R.id.profile_course_teacher_image);
+        Picasso.with(view.getContext()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
+        recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);
+       //recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
+        ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
+        valuationListAdapter=new ValuationListAdapter(getActivity(),getData(""));
+        valuationListAdapter.setListener(this);
+        recyclerViewComments.setAdapter(valuationListAdapter);
+        //recyclerViewRating.setAdapter(ratingListAdapter);
+        recyclerViewComments.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerViewRating.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+
+    public void addListeners(){
+
+    }
+    @Override
+    public void itemClicked(View view, Valuation object) {
+        //
+    }
+    public List<Rating> getStaticData(){
+        List<Rating> ratings=new ArrayList<>();
+        ratings.add(new Rating((float) 4.0,"tecnica"));
+        ratings.add(new Rating((float) 2.5,"salud"));
+        ratings.add(new Rating((float) 1.3,"conmosion"));
+        ratings.add(new Rating((float) 3.0,"desarrollo"));
+        return ratings;
+    }
+    public List<Valuation> getData(String data) {
+        List<Valuation> valuations=new ArrayList<>();
+        valuations.add(new Valuation("Carlos","d","Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.",14));
+        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        return  valuations;
+
     }
 }

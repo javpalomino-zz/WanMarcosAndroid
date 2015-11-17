@@ -26,6 +26,7 @@ import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.NavDrawerLink;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
 /**
@@ -168,7 +169,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             case 5:
                 activityExecute=Constants.CONTACT_ACTIVITY;break;
         }
-        Redirect.getSingletonInstance().changeActivity(activityExecute);
         mDrawerLayout.closeDrawers();
+        Storage.getSingelton().clearActivityData(this);
+        Redirect.getSingelton().showActivity(this, activityExecute);
     }
 }

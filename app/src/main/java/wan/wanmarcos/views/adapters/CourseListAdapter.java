@@ -1,16 +1,17 @@
 package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,8 +20,6 @@ import wan.wanmarcos.R;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.managers.ViewHolderSetters;
 import wan.wanmarcos.models.Course;
-import wan.wanmarcos.models.Rating;
-import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 
 /**
@@ -63,13 +62,15 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
         private TextView courseMark;
         private View vista;
         private Course current;
+        private ImageView initialLetterImage;
         public CourseHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            courseName= (TextView) itemView.findViewById(R.id.course_name);
+            courseName= (TextView) itemView.findViewById(R.id.profile_course_course_name);
             courseFaculty=(TextView) itemView.findViewById(R.id.course_faculty);
-            courseRating=(RatingBar) itemView.findViewById(R.id.course_rating);
-            courseMark=(TextView) itemView.findViewById(R.id.course_mark);
+            initialLetterImage=(ImageView) itemView.findViewById(R.id.letterImageBackground);
+            //courseRating=(RatingBar) itemView.findViewById(R.id.course_rating);
+            //courseMark=(TextView) itemView.findViewById(R.id.course_mark);
             vista=itemView;
         }
 
@@ -83,8 +84,13 @@ public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.Co
             current=elements;
             courseName.setText(elements.getName());
             courseFaculty.setText(elements.getFaculty());
-            courseMark.setText(elements.getRating()+"");
-            courseRating.setRating(elements.getRating());
+            ColorGenerator generator = ColorGenerator.MATERIAL;
+            int color = generator.getColor(courseName.getText().charAt(0));
+            TextDrawable.IBuilder builder = TextDrawable.builder().round();
+            TextDrawable textDrawable = builder.build(courseName.getText().toString().charAt(0)+"", color);
+            initialLetterImage.setImageDrawable(textDrawable);
+            //courseMark.setText(elements.getRating()+"");
+            //courseRating.setRating(elements.getRating());
         }
     }
 }
