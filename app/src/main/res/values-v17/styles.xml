@@ -64,12 +64,12 @@
         <item name="android:layout_marginLeft">15dp</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
-    <style name="CouseItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+    <!--<style name="CouseItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
         <item name="android:layout_below">@+id/course_faculty</item>
         <item name="android:layout_toLeftOf">@id/course_mark</item>
         <item name="android:layout_marginTop">5dp</item>
 
-    </style>
+    </style>-->
 
     <!--Course Item-->
     <!--END-->

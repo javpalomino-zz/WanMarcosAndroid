@@ -1,8 +1,11 @@
 package wan.wanmarcos.fragments;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,6 +42,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     private RecyclerView recyclerViewTeacherCourses;
     private RatingListAdapter ratingListAdapter;
     private CourseListAdapter courseListAdapter;
+    private ImageView teacherCardBackground;
 
     public TeacherProfileFragment(){
 
@@ -53,17 +57,23 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
 
     @Override
     public void setUpElements(View view) {
+
+        teacherCardBackground= (ImageView) view.findViewById(R.id.teacher_card_background);
+        Picasso.with(getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        //Bitmap bitmap = ((BitmapDrawable)teacherCardBackground.getDrawable()).getBitmap();
+        //Palette p = Palette.from(bitmap).generate();
+        //teacherCardBackground.setBackgroundColor(p.getVibrantColor(0x0000000));
         teacherName=(TextView)view.findViewById(R.id.profile_teacher_mame);
         teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
         teacherImage=(ImageView)view.findViewById(R.id.profile_teacher_image);
         Picasso.with(getActivity()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
-        recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
+        //recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
         courseListAdapter=new CourseListAdapter(getActivity(),getData(""));
         courseListAdapter.setListener(this);
         ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
-        recyclerviewTeacherRatings.setAdapter(ratingListAdapter);
-        recyclerviewTeacherRatings.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerviewTeacherRatings.setAdapter(ratingListAdapter);
+        //recyclerviewTeacherRatings.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerViewTeacherCourses.setAdapter(courseListAdapter);
         recyclerViewTeacherCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -90,7 +100,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
 
     public List<Course> getData(String data) {
         List<Course> courses=new ArrayList<>();
-        courses.add(new Course("Matematica", (float) 4.0,"FISI"));
+        courses.add(new Course("Matematica ", (float) 4.0,"FISI"));
         courses.add(new Course("Fisica", (float) 4.0,"FISI"));
         courses.add(new Course("Matematica", (float) 4.0,"FISI"));
         courses.add(new Course("Matematica", (float) 4.0,"FISI"));

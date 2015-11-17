@@ -1,6 +1,7 @@
 package wan.wanmarcos.fragments;
 
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -45,6 +46,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     private ValuationListAdapter valuationListAdapter;
     private RecyclerView recyclerViewRating;
     private RecyclerView recyclerViewComments;
+    private ImageView teacherCardBackground;
 
     public TeacherCourseProfileFragment() {
         // Required empty public constructor
@@ -61,6 +63,8 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
 
     @Override
     public void setUpElements(View view) {
+        teacherCardBackground= (ImageView) view.findViewById(R.id.teacher_course_card_background);
+        Picasso.with(getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
         teacherName=(TextView)view.findViewById(R.id.profile_course_teacher_name);
         teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
         courseName=(TextView)view.findViewById(R.id.profile_course_course_name);
@@ -70,14 +74,14 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         teacherImage=(ImageView)view.findViewById(R.id.profile_course_teacher_image);
         Picasso.with(view.getContext()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);
-        recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
+       //recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
         ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
         valuationListAdapter=new ValuationListAdapter(getActivity(),getData(""));
         valuationListAdapter.setListener(this);
         recyclerViewComments.setAdapter(valuationListAdapter);
-        recyclerViewRating.setAdapter(ratingListAdapter);
+        //recyclerViewRating.setAdapter(ratingListAdapter);
         recyclerViewComments.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerViewRating.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerViewRating.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     public void addListeners(){
@@ -97,7 +101,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     }
     public List<Valuation> getData(String data) {
         List<Valuation> valuations=new ArrayList<>();
-        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos","d","Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));

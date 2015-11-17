@@ -1,31 +1,107 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/fragment_teacher_profile"
-    android:orientation="vertical">
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:id="@+id/profile_teacher_image"
-        style="@style/ProfileTeacherItemImage" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/profile_teacher_mame"
-        style="@style/ProfileTeacherItemName"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rating_list"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/ProfileTeacherItemRatings">
-    </android.support.v7.widget.RecyclerView>
+        android:id="@+id/fragment_teacher_profile">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/course_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/ProfileTeacherItemCourse">
-    </android.support.v7.widget.RecyclerView>
-</RelativeLayout>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_teacher_profile"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="5dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:cardUseCompatPadding="true">
+
+            <ImageView
+                android:id="@+id/teacher_card_background"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/profile_teacher_image"
+                    android:layout_centerHorizontal="true"
+                    />
+                <!--style="@style/ProfileTeacherItemImage" -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_teacher_mame"
+                    android:layout_below="@id/profile_teacher_image"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp"
+                    android:text="Frank Escobedo Bailon"
+                    android:gravity="center"
+                    android:maxLines="2"/>
+                <!--style="@style/ProfileTeacherItemName"-->
+
+                <RelativeLayout
+                    android:id="@+id/profile_rating_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/profile_teacher_mame">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/profile_teacher_rating"
+                        android:textColor="@android:color/white"
+                        android:textSize="20dp"
+                        android:text="4.5"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:layout_centerHorizontal="true"/>
+                    <ImageView
+                        android:id="@+id/teacher_profile_star_drawable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_toRightOf="@id/profile_teacher_rating"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/ic_grade_white_24dp"/>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/profile_courses_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_view_teacher_profile"
+            android:layout_margin="5dp"
+            android:textSize="15dp"
+            android:text="Cursos Que Dicta"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/eventDetailDividerColor"
+            android:layout_toRightOf="@id/profile_courses_label"
+            android:layout_below="@id/card_view_teacher_profile"
+            android:layout_marginTop="15dp"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/course_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/profile_courses_label"
+            style="@style/ProfileTeacherItemCourse">
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>

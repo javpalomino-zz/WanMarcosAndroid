@@ -56,7 +56,6 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("da","create");
         super.onCreate(savedInstanceState);
         restClient = new RestClient(getActivity());
         currentPage=1;
@@ -67,7 +66,6 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("da", "createview");
         View view=inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
         setUpElements(view);
         addListeners();
@@ -123,6 +121,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
         Storage.getSingelton().storage(object,this);
         Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_PROFILE_TEACHER);
     }
+
 
     public void getTeacherData(String search_text){
         final List<Teacher>teachers=new ArrayList<>();
