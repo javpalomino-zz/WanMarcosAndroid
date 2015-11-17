@@ -5,6 +5,10 @@
     android:background="@color/loginBackgroundColorLight"
     tools:context="wan.wanmarcos.fragments.LoginFragment">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
         <RelativeLayout
             android:id="@+id/main_content"
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -104,5 +108,9 @@
                 android:text="" />
 
         </RelativeLayout>
+
+    </ScrollView>
+
+
 
 </FrameLayout>

@@ -30,6 +30,7 @@ public class Storage {
     public static String KEY_EVENT_START_DATE="eventstartdate";
     public static String KEY_EVENT_FINISH_DATE="eventfinishdate";
     public static String KEY_EVENT_REFERENCE="eventreference";
+    public static String KEY_EVENT_NAME="eventname";
     private static Storage singeltonObject;
     private Storage(){
 

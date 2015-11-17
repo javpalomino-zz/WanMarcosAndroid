@@ -1,36 +1,58 @@
 package wan.wanmarcos.utils;
-
+import com.google.gson.JsonElement;
 import org.json.JSONObject;
-
+import java.util.ArrayList;
 import java.util.Iterator;
+import retrofit.Response;
 
 /**
  * Created by MOX-PC on 12/11/2015.
  */
 public class ConvertResponse {
-    public static String getMessageAutenticate(JSONObject response){
+    private Response<JsonElement> response;
+    private JSONObject reason;
+    private ArrayList<String> keys;
+    private String message;
+    public ConvertResponse(Response<JsonElement> _response){
+        response = _response;
+        message = "";
+    }
+    private void setErrorBody(){
         try {
-            if(response.getJSONObject("error").getInt("code")==1) {
-                boolean email = response.getJSONObject("error").getJSONObject("reason").has("email");
-                boolean password = response.getJSONObject("error").getJSONObject("reason").has("password");
-                if (email && password) {
-                    return response.getJSONObject("error").getString("suggestion");
-                } else {
-                    if (email) {
-                        return response.getJSONObject("error").getJSONObject("reason").getString("email");
-                    } else {
-                        if (password) {
-                            return response.getJSONObject("error").getJSONObject("reason").getString("password");
-                        } else {
-                            return response.getJSONObject("error").getString("message");
-                        }
-                    }
-                }
+            JSONObject errorBody = new JSONObject(response.errorBody().string());
+            if(errorBody.getJSONObject("error").getInt("code")==2){
+                message = errorBody.getJSONObject("error").getJSONArray("reason").getString(0);
             }else{
-                return response.getJSONObject("error").getString("reason");
+                reason = errorBody.getJSONObject("error").getJSONObject("reason");
             }
         }catch(Throwable e){
-               return "Entro al catch: "+e.getMessage().toString();
+            message += e.getMessage()+"\n";
         }
+    }
+    public String getMessage(){
+        setErrorBody();
+        if(response.code()==500){
+            message="Error del Servidor. Vuelva a intentar más tarde";
+        }else{
+            try{
+                if(reason!=null) {
+                    keys = new ArrayList<String>();
+                    Iterator<String> iterator = reason.keys();
+                    while (iterator.hasNext()) {
+                        String key = iterator.next();
+                        message += reason.getJSONArray(key).getString(0)+"/";
+                        keys.add(key.toString());
+                    }
+                }
+                return message;
+            }catch (Throwable e){
+                message = "Error : "+e.getMessage();
+                return message;
+            }
+        }
+        return message;
+    }
+    public ArrayList<String> getKeys(){
+        return keys;
     }
 }
