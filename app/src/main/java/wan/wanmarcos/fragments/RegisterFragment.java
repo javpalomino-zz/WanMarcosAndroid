@@ -14,6 +14,10 @@ import android.widget.Toast;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -23,30 +27,27 @@ import wan.wanmarcos.models.*;
 import wan.wanmarcos.models.Error;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.ConvertResponse;
 import wan.wanmarcos.utils.RestClient;
 
 
 public class RegisterFragment extends Fragment {
 
     View view;
-
     private RestClient restClient;
     private Button btnRegister;
-
     private TextView txtError;
-
     private EditText txtEmail;
     private EditText txtPassword;
     private EditText txtFirstName;
     private EditText txtLastName;
-
     private String email;
     private String password;
     private String first_name;
     private String last_name;
     private String device_token = "xxxxx";
-
     private Builder builder = new Builder();
+    private boolean received = true;
 
     public static RegisterFragment newInstance() {
         RegisterFragment fragment = new RegisterFragment();
@@ -63,11 +64,8 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_register, container, false);
-
         setUpElements();
         addListeners();
-
-
         return view;
     }
 
@@ -85,53 +83,87 @@ public class RegisterFragment extends Fragment {
 
 
     private void addSignUpListener(){
-        btnRegister.setOnClickListener(new View.OnClickListener(){
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                email = txtEmail.getText().toString();
-                first_name = txtFirstName.getText().toString();
-                last_name = txtLastName.getText().toString();
-                password = txtPassword.getText().toString();
-
-                Call<JsonElement> signUpUser = restClient.getConsumerService()
-                        .signUp(
-                                email, password,
-                                first_name, last_name,
-                                device_token, Constants.PLATFORM);
-
-                signUpUser.enqueue(new Callback<JsonElement>() {
-                    @Override
-                    public void onResponse(Response<JsonElement> response) {
-                        JsonObject responseBody = response.body().getAsJsonObject();
-
-                        if(responseBody.has("token")){
-                            Session session = builder.buildSession(responseBody);
-
-                            if(responseBody.has("user")){
-                                User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
-                                Toast.makeText(getActivity(), user.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                            Intent intent = new Intent();
-                            intent.setClass(getActivity(), HomeActivity.class);
-                            startActivity(intent);
-                        }
-                        else{
-                            if(responseBody.has("error")){
-                                Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
-                                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(getActivity(), "unkown error", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-
-                    }
-                });
+            public void onClick(View view) {
+                if (received == false) {
+                    return;
+                } else {
+                    getFields();
+                    postSignUp();
+                }
             }
         });
+    }
+    public void getFields(){
+        email = txtEmail.getText().toString();
+        first_name = txtFirstName.getText().toString();
+        last_name = txtLastName.getText().toString();
+        password = txtPassword.getText().toString();
+    }
+    public void postSignUp(){
+        received=false;
+        Call<JsonElement> signUpUser = restClient.getConsumerService()
+                .signUp(
+                        email, password,
+                        first_name, last_name,
+                        device_token, Constants.PLATFORM);
+
+        signUpUser.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Response<JsonElement> response) {
+                try {
+                    if(response.isSuccess()){
+                        JsonObject responseBody = response.body().getAsJsonObject();
+                        Session session = builder.buildSession(responseBody);
+                        User user = builder.buildUser(responseBody.get("user").getAsJsonObject());
+                        received=true;
+                        Intent intent = new Intent();
+                        intent.setClass(getActivity(), HomeActivity.class);
+                        startActivity(intent);
+
+                    }else{
+                        ConvertResponse error = new ConvertResponse(response);
+                        String message=error.getMessage();
+                        if(error.getKeys()!=null){
+                            setErrorFields(error.getKeys(), message);
+                        }else{
+                            Toast.makeText(getActivity(),message, Toast.LENGTH_SHORT).show();
+                        }
+
+                        received = true;
+                    }
+                }catch (Throwable e){
+                    Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+                    received=true;
+                }
+            }
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getActivity(),"Conexión No Disponible.", Toast.LENGTH_SHORT).show();
+                received=true;
+            }
+        });
+    }
+    private void setErrorFields(ArrayList<String> keys,String message){
+        String[] messageField = message.split("/");
+        String prueba="";
+        for(int i=0;i<keys.size();i++){
+            if(keys.get(i).equals("first_name")){
+                txtFirstName.setError(messageField[i]);
+            }else{
+                if(keys.get(i).equals("last_name")){
+                    txtLastName.setError(messageField[i]);
+                }else{
+                    if(keys.get(i).equals("email")){
+                        txtEmail.setError(messageField[i]);
+                    }else{
+                        if(keys.get(i).equals("password")){
+                            txtPassword.setError(messageField[i]);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
