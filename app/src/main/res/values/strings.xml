@@ -44,7 +44,7 @@
     <string name="contac_messagueplaceholder">Solo dilo</string>
 
     <!--Buttons-->
-    <string name="btnRegister">¿No Tienes Una Cuenta? Registrate.</string>
+    <string name="btnRegister"><u>¿No Tienes Una Cuenta? Registrate.</u></string>
     <string name="btnRegisterForm">Registrarme</string>
     <string name="btnLogIn">INGRESAR</string>
     <string name="btnForgotPassword">¿Olvidaste Tu Contraseña?</string>
