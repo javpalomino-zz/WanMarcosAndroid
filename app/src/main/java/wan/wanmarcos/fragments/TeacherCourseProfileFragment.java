@@ -38,15 +38,9 @@ import wan.wanmarcos.views.widgets.CircleTransform;
  * A simple {@link Fragment} subclass.
  */
 public class TeacherCourseProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Valuation> {
-    private TextView teacherName;
-    private TextView courseName;
-    private TextView facultyName;
-    private ImageView teacherImage;
-    private RatingListAdapter ratingListAdapter;
+
     private ValuationListAdapter valuationListAdapter;
-    private RecyclerView recyclerViewRating;
     private RecyclerView recyclerViewComments;
-    private ImageView teacherCardBackground;
 
     public TeacherCourseProfileFragment() {
         // Required empty public constructor
@@ -63,20 +57,9 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
 
     @Override
     public void setUpElements(View view) {
-        teacherCardBackground= (ImageView) view.findViewById(R.id.teacher_course_card_background);
-        Picasso.with(getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
-        teacherName=(TextView)view.findViewById(R.id.profile_course_teacher_name);
-        teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
-        courseName=(TextView)view.findViewById(R.id.profile_course_course_name);
-        courseName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_COURSE_NAME));
-        facultyName=(TextView)view.findViewById(R.id.profile_course_faculty_name);
-        facultyName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_FACULTY_NAME));
-        teacherImage=(ImageView)view.findViewById(R.id.profile_course_teacher_image);
-        Picasso.with(view.getContext()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);
        //recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
-        ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
-        valuationListAdapter=new ValuationListAdapter(getActivity(),getData(""));
+        valuationListAdapter=new ValuationListAdapter(this,getActivity(),getData(""));
         valuationListAdapter.setListener(this);
         recyclerViewComments.setAdapter(valuationListAdapter);
         //recyclerViewRating.setAdapter(ratingListAdapter);

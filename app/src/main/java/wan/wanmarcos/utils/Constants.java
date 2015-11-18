@@ -1,8 +1,5 @@
 package wan.wanmarcos.utils;
 
-import android.content.Context;
-import android.view.View;
-
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
@@ -79,6 +76,8 @@ public class Constants {
     public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
+    public static final int PROFILE_TEACHER=R.layout.detail_teacher;
+    public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
     //Generic things
 
 

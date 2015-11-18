@@ -2,7 +2,9 @@ package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
 import android.media.Image;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,47 +14,107 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.squareup.picasso.Picasso;
 
 import java.util.Collections;
 import java.util.List;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.fragments.TeacherProfileFragment;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.managers.ViewHolderSetters;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Storage;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * Created by carlos-pc on 09/10/15.
  */
-public class CourseListAdapter extends RecyclerView.Adapter<CourseListAdapter.CourseHolder>{
+public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_ITEM = 1;
     private List<Course>courses= Collections.emptyList();
     private ItemAdapterListener itemAdapterListener;
     private LayoutInflater layoutInflater;
-    public CourseListAdapter(Context context,List<Course> courses){
+    private Context context;
+    private Fragment mFragment;
+
+    public CourseListAdapter(Fragment myFragment,Context context,List<Course> courses){
         layoutInflater=LayoutInflater.from(context);
         this.courses=courses;
+        this.context=context;
+        mFragment=myFragment;
 
     }
     @Override
-    public CourseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=layoutInflater.inflate(Constants.COURSE_NEW_ITEM,parent,false);
-        CourseHolder courseHolder=new CourseHolder(view);
-        return courseHolder;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType==TYPE_HEADER){
+            View view=layoutInflater.inflate(Constants.COURSE_NEW_ITEM,parent,false);
+            CourseHolder courseHolder=new CourseHolder(view);
+            return courseHolder;
+        }
+        else if(viewType==TYPE_ITEM){
+            View view=layoutInflater.inflate(Constants.PROFILE_TEACHER,parent,false);
+            CourseHeaderHolder courseHeaderHolder=new CourseHeaderHolder(view);
+            return courseHeaderHolder;
+        }
+        return null;
+
     }
 
     @Override
-    public void onBindViewHolder(CourseHolder holder, int position) {
-        Course course=courses.get(position);
-        holder.setElements(course);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Log.d("D", courses.size() + "-" + position);
+
+        if (holder instanceof CourseHolder) {
+            Course course=courses.get(position-1);
+            ((CourseHolder)holder).setElements(course);
+        } else if (holder instanceof CourseHeaderHolder) {
+            ((CourseHeaderHolder)holder).setElements();
+        }
     }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        if (isPositionHeader(position))
+            return TYPE_ITEM;
+
+        return TYPE_HEADER;
+    }
+
+    private boolean isPositionHeader(int position) {
+        return position == 0;
+    }
+
 
     @Override
     public int getItemCount() {
-        return courses.size();
+        return courses.size()+1;
     }
     public void setListener(ItemAdapterListener listener){
         this.itemAdapterListener =listener;
+    }
+
+    public class CourseHeaderHolder extends RecyclerView.ViewHolder {
+        private ImageView teacherImage;
+        private TextView teacherName;
+        private TextView ratingTeacher;
+        private ImageView teacherCardBackground;
+        public CourseHeaderHolder(View itemView) {
+            super(itemView);
+            teacherCardBackground=(ImageView)itemView.findViewById(R.id.teacher_card_background);
+            teacherImage=(ImageView)itemView.findViewById(R.id.profile_teacher_image);
+            teacherName=(TextView)itemView.findViewById(R.id.profile_teacher_mame);
+            ratingTeacher=(TextView)itemView.findViewById(R.id.profile_teacher_rating);
+        }
+        public void setElements(){
+            Picasso.with(mFragment.getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+            teacherName.setText(Storage.getSingelton().getInfo(mFragment,Storage.KEY_TEACHER_NAME));
+            ratingTeacher.setText(Storage.getSingelton().getInfo(mFragment,Storage.KEY_TEACHER_RATING));
+            Picasso.with(itemView.getContext()).load(Storage.getSingelton().getInfo(mFragment,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
+        }
     }
 
     public class CourseHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Course>,View.OnClickListener{

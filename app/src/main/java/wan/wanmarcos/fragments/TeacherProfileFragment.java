@@ -57,19 +57,9 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
 
     @Override
     public void setUpElements(View view) {
-
-        teacherCardBackground= (ImageView) view.findViewById(R.id.teacher_card_background);
-        Picasso.with(getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
-        //Bitmap bitmap = ((BitmapDrawable)teacherCardBackground.getDrawable()).getBitmap();
-        //Palette p = Palette.from(bitmap).generate();
-        //teacherCardBackground.setBackgroundColor(p.getVibrantColor(0x0000000));
-        teacherName=(TextView)view.findViewById(R.id.profile_teacher_mame);
-        teacherName.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
-        teacherImage=(ImageView)view.findViewById(R.id.profile_teacher_image);
-        Picasso.with(getActivity()).load(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
         //recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
-        courseListAdapter=new CourseListAdapter(getActivity(),getData(""));
+        courseListAdapter=new CourseListAdapter(this,getActivity(),getData(""));
         courseListAdapter.setListener(this);
         ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
         //recyclerviewTeacherRatings.setAdapter(ratingListAdapter);
