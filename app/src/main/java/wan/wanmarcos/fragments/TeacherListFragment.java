@@ -3,12 +3,8 @@ package wan.wanmarcos.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +43,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
     private RestClient restClient;
     private int currentPage;
     private String actualSerach;
+    private static final String JSON_TEACHER="professors";
     String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
 
     public TeacherListFragment() {
@@ -119,26 +116,24 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
     @Override
     public void itemClicked(View view, Teacher object) {
         Storage.getSingelton().storage(object,this);
-        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_PROFILE_TEACHER);
+        Redirect.getSingelton().showFragment(this, Constants.TEACHER_CONTAINER, Constants.FRAGMENT_PROFILE_TEACHER);
     }
 
 
     public void getTeacherData(String search_text){
-        final List<Teacher>teachers=new ArrayList<>();
-        Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,5);
+        Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,Constants.CANTIDAD);
         teacherPage.enqueue(new Callback<JsonElement>() {
             @Override
             public synchronized void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
-                if (responseBody.has("professors")) {
-                    JsonArray jsonArray = responseBody.getAsJsonArray("professors");
+                if (responseBody.has(JSON_TEACHER)) {
+                    JsonArray jsonArray = responseBody.getAsJsonArray(JSON_TEACHER);
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
                         Teacher current = new Teacher(storedObject);
-                        teachers.add(current);
+                        teacherListAdapter.add(current);
                     }
                 }
-                teacherListAdapter.addAll(teachers);
             }
 
             @Override

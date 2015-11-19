@@ -120,8 +120,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class CourseHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Course>,View.OnClickListener{
         private TextView courseName;
         private TextView courseFaculty;
-        private RatingBar courseRating;
-        private TextView courseMark;
         private View vista;
         private Course current;
         private ImageView initialLetterImage;
