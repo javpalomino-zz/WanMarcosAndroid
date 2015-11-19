@@ -12,14 +12,15 @@
     </style>
 
     <style name="RatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
-            <item name="android:layout_marginLeft">10dp</item>
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:layout_alignParentTop">true</item>
-            <item name="android:layout_toRightOf">@id/rating_type</item>
-            <item name="android:numStars">5</item>
-            <item name="android:layout_toEndOf">@id/rating_type</item>
-            <item name="android:layout_alignBottom">@id/rating_type</item>
+        <item name="android:isIndicator">false</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/rating_type</item>
+        <item name="android:numStars">5</item>
+        <item name="android:layout_toEndOf">@id/rating_type</item>
+        <item name="android:layout_alignBottom">@id/rating_type</item>
     </style>
 
     <style name="RatingMark">

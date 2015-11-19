@@ -3,6 +3,7 @@ package wan.wanmarcos.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -129,6 +130,11 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
     public void itemClicked(View view, Teacher object) {
         Storage.getSingelton().storage(object,this);
         Redirect.getSingelton().showFragment(this, Constants.TEACHER_CONTAINER, Constants.FRAGMENT_PROFILE_TEACHER);
+    }
+
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
+
     }
 
 

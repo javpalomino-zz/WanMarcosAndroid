@@ -5,6 +5,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +42,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
 
     private ValuationListAdapter valuationListAdapter;
     private RecyclerView recyclerViewComments;
+    private FloatingActionButton floatingActionButton;
 
     public TeacherCourseProfileFragment() {
         // Required empty public constructor
@@ -74,12 +76,20 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     public void itemClicked(View view, Valuation object) {
         //
     }
+
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
+        FragmentManager fm = getFragmentManager();
+        TeacherPopupComment editNameDialog = new TeacherPopupComment();
+        editNameDialog.show(fm, "fragment_edit_name");
+    }
+
     public List<Rating> getStaticData(){
         List<Rating> ratings=new ArrayList<>();
         ratings.add(new Rating((float) 4.0,"tecnica"));
         ratings.add(new Rating((float) 2.5,"salud"));
-        ratings.add(new Rating((float) 1.3,"conmosion"));
-        ratings.add(new Rating((float) 3.0,"desarrollo"));
+        ratings.add(new Rating((float) 1.3, "conmosion"));
+        ratings.add(new Rating((float) 3.0, "desarrollo"));
         return ratings;
     }
     public List<Valuation> getData(String data) {
@@ -88,8 +98,8 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos", "d", "Curso Boni", 14));
+        valuations.add(new Valuation("Carlos", "d", "Curso Boni", 14));
         return  valuations;
 
     }

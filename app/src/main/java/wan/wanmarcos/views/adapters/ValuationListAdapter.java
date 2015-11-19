@@ -1,6 +1,7 @@
 package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +24,7 @@ import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.managers.ViewHolderSetters;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
@@ -54,7 +56,6 @@ public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d("D",valuations.size()+"-"+position);
         if (holder instanceof ValuationHolder) {
             Valuation valuation=valuations.get(position-1);
             ((ValuationHolder)holder).setElements(valuation);
@@ -95,6 +96,7 @@ public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView facultyName;
         private ImageView teacherImage;
         private ImageView teacherCardBackground;
+        private FloatingActionButton floatingActionButton;
         public ValuationHeaderHolder(View itemView) {
             super(itemView);
             teacherCardBackground= (ImageView) itemView.findViewById(R.id.teacher_course_card_background);
@@ -102,6 +104,7 @@ public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.View
             courseName=(TextView)itemView.findViewById(R.id.profile_course_course_name);
             facultyName=(TextView)itemView.findViewById(R.id.profile_course_faculty_name);
             teacherImage=(ImageView)itemView.findViewById(R.id.profile_course_teacher_image);
+            floatingActionButton=(FloatingActionButton)itemView.findViewById(R.id.addComment);
         }
 
         public void setElements() {
@@ -110,6 +113,17 @@ public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.View
             facultyName.setText(Storage.getSingelton().getInfo(mFragment, Storage.KEY_FACULTY_NAME));
             teacherName.setText(Storage.getSingelton().getInfo(mFragment,Storage.KEY_TEACHER_NAME));
             courseName.setText(Storage.getSingelton().getInfo(mFragment,Storage.KEY_COURSE_NAME));
+            addListeners();
+        }
+        public void addListeners(){
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("d","d");
+                    itemAdapterListener.addClicked(Constants.FRAGMENT_PROFILE_TEACHER);
+
+                }
+            });
         }
     }
 

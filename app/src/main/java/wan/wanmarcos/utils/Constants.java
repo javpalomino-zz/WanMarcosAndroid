@@ -10,6 +10,7 @@ import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
+import wan.wanmarcos.fragments.TeacherPopupComment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
 
 /**
@@ -31,6 +32,7 @@ public class Constants {
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
+    public static final String FRAGMENT_TEACHER_COMMENT= TeacherPopupComment.class.getName();
 
     public static final String FRAGMENT_LIST_EVENT= EventViewListFragment.class.getName();
     public static final String FRAGMENT_SUGGEST_EVENT = SuggestedEventFragment.class.getName();
@@ -71,6 +73,7 @@ public class Constants {
     public static final int FRAGMENT_LIST_TEACHER_LAYOUT= R.layout.fragment_teacher_list;
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
+    public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
     //Sections inside fragment
 
     //Items

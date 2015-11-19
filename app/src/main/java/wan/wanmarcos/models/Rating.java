@@ -11,6 +11,9 @@ public class Rating {
         this.rating = rating;
         this.type = type;
     }
+    public Rating(String type){
+        this(0,type);
+    }
 
     public float getRating() {
         return rating;

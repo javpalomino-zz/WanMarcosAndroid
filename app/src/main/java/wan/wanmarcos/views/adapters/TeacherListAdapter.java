@@ -28,7 +28,6 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
     private LayoutInflater inflater;
     private List<Teacher> teachers= new ArrayList<>();
     private ItemAdapterListener itemAdapterListener;
-    private Object mLock;
 
     public TeacherListAdapter(Context context){
         inflater= LayoutInflater.from(context);
