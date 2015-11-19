@@ -17,6 +17,8 @@ import wan.wanmarcos.fragments.TeacherProfileFragment;
  */
 public class Constants {
 
+    public static final String EMPTY_STRING="";
+
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
     public static final String NOT_FOUND="Busqueda no exitosa";

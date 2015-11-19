@@ -65,7 +65,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d("D", courses.size() + "-" + position);
 
         if (holder instanceof CourseHolder) {
             Course course=courses.get(position-1);

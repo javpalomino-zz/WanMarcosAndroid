@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     public TeacherListFragment() {
         // Required empty public constructor
-        actualSerach="";
+        actualSerach=Constants.EMPTY_STRING;
     }
 
     @Override
@@ -71,29 +72,36 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     public void addListeners() {
         recyclerViewTeachers.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int state=0;
-            private boolean changeState=false;
+            private int state = 0;
+            private int i = 0;
+            private boolean changeState = false;
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(newState!=state){
-                    changeState=true;
-                    state=newState;
-                }
-                if(changeState){
-                    if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition()==teacherListAdapter.getItemCount()-1&&layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition()>0){
-                        getTeacherData(actualSerach);
+                if (newState != state) {
+                    changeState = true;
+                    if (changeState ) {
+                        if(state==0){
+                            if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() == teacherListAdapter.getItemCount() - 1 && layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() > 0) {
+                                getTeacherData(actualSerach);
+                            }
+                        }
                     }
+                    state = newState;
                 }
             }
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            String previousQuery=Constants.EMPTY_STRING;
             @Override
             public boolean onQueryTextSubmit(String query) {
-                actualSerach=query;
-                teacherListAdapter.removeAll();
-                currentPage=1;
-                getTeacherData(query);
-                return  true;
+                if(!previousQuery.equals(query)){
+                    resetAdapter(query);
+                    getTeacherData(query);
+                    previousQuery=query;
+
+                }
+                return true;
             }
 
             @Override
@@ -103,7 +111,11 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
             }
         });
     }
-
+    private void resetAdapter(String query){
+        actualSerach=query;
+        teacherListAdapter.removeAll();
+        currentPage=1;
+    }
     public void setUpElements(View view){
         layoutManagerRecyclerView=new LinearLayoutManager(getActivity());
         searchView=(SearchView)view.findViewById(R.id.searchViewTeachers);
