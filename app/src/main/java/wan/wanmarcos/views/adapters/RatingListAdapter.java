@@ -76,8 +76,9 @@ public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.Ra
             ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                 @Override
                 public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                    if(fromUser){
+                    if(fromUser) {
                         ratingMark.setText(String.valueOf(rating));
+                        current.setRating(rating    );
                     }
                 }
             });

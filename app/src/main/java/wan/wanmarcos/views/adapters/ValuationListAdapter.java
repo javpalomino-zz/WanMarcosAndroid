@@ -22,6 +22,7 @@ import java.util.List;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.managers.ViewHolderSetters;
+import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
@@ -53,7 +54,11 @@ public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         return null;
     }
-
+    public void addTop(String comment){
+        Valuation teacher=new Valuation("Luis","",comment,4);
+        valuations.add(0,teacher);
+        notifyItemInserted(0);
+    }
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ValuationHolder) {

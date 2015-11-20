@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Course;
@@ -38,7 +39,7 @@ import wan.wanmarcos.views.widgets.CircleTransform;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherCourseProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Valuation> {
+public class TeacherCourseProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Valuation>,Click {
 
     private ValuationListAdapter valuationListAdapter;
     private RecyclerView recyclerViewComments;
@@ -81,6 +82,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     public void addClicked(String fragmentProfileTeacher) {
         FragmentManager fm = getFragmentManager();
         TeacherPopupComment editNameDialog = new TeacherPopupComment();
+        editNameDialog.setListener(this);
         editNameDialog.show(fm, "fragment_edit_name");
     }
 
@@ -102,5 +104,10 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         valuations.add(new Valuation("Carlos", "d", "Curso Boni", 14));
         return  valuations;
 
+    }
+
+    @Override
+    public void click(String comment) {
+        valuationListAdapter.addTop(comment);
     }
 }

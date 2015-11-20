@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.utils.Constants;
@@ -30,6 +30,7 @@ public class TeacherPopupComment extends DialogFragment implements FragmentsMeth
     private RatingListAdapter ratingListAdapter;
     private EditText comment;
     private Button button;
+    private Click onClickListener;
     public TeacherPopupComment() {
         // Empty constructor required for DialogFragment
     }
@@ -60,28 +61,31 @@ public class TeacherPopupComment extends DialogFragment implements FragmentsMeth
         getRatingData();
     }
     public void getRatingData(){
-        ratingListAdapter.add(new Rating("dsad"));
+
+        ratingListAdapter.add(new Rating("Desempeño:"));
+        ratingListAdapter.add(new Rating("Empeño: "));
+        ratingListAdapter.add(new Rating("Entusiasmo: "));
     }
     @Override
     public void addListeners() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validaciones()){
-                    dismiss();
+                if(validations()){
+                    onClickListener.click(comment.getText().toString());
                 }
             }
         });
     }
-    private boolean validaciones(){
+    private boolean validations(){
         if(!comment.getText().toString().equals(Constants.EMPTY_STRING)){
-            if(validacionRating()){
+            if(validationRating()){
                 return true;
             }
         }
         return false;
     }
-    private boolean validacionRating(){
+    private boolean validationRating(){
         int dim=ratingListAdapter.getItemCount();
         for(int i=0;i<dim;i++){
             if(!ratingListAdapter.isChanged(i)){
@@ -89,5 +93,8 @@ public class TeacherPopupComment extends DialogFragment implements FragmentsMeth
             }
         }
         return true;
+    }
+    public void setListener(Click listener){
+        onClickListener=listener;
     }
 }
