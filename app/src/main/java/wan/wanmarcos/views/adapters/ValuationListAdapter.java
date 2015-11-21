@@ -124,7 +124,6 @@ public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.View
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("d","d");
                     itemAdapterListener.addClicked(Constants.FRAGMENT_PROFILE_TEACHER);
 
                 }
