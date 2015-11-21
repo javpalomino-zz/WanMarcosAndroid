@@ -1,22 +1,16 @@
 package wan.wanmarcos.fragments;
 
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +19,10 @@ import wan.wanmarcos.R;
 import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
-import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Rating;
-import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.utils.Redirection.Redirect;
-import wan.wanmarcos.utils.Storage;
-import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.adapters.ValuationListAdapter;
-import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * A simple {@link Fragment} subclass.
