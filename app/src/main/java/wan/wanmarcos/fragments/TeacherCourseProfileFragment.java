@@ -109,5 +109,22 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     @Override
     public void click(String comment) {
         valuationListAdapter.addTop(comment);
+        reScroll();
+    }
+
+
+    public void reScroll(){
+        recyclerViewComments.scrollToPosition(0);
+    }
+    @Override
+    public void onResume() {
+        Log.d("D","resume");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d("D","pause");
+        super.onPause();
     }
 }

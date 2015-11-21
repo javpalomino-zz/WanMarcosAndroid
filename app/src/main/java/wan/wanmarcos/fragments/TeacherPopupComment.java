@@ -73,6 +73,7 @@ public class TeacherPopupComment extends DialogFragment implements FragmentsMeth
             public void onClick(View v) {
                 if(validations()){
                     onClickListener.click(comment.getText().toString());
+                    dismiss();
                 }
             }
         });
