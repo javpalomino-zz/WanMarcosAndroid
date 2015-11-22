@@ -1,14 +1,13 @@
-
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/fragment_teacher_course_profile">
+    android:id="@+id/fragment_places_profile">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view_teacher_course_profile"
+        android:id="@+id/card_view_place_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="0dp"
@@ -17,7 +16,7 @@
         card_view:cardUseCompatPadding="true">
 
         <ImageView
-            android:id="@+id/teacher_course_card_background"
+            android:id="@+id/places_card_background"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             />
@@ -34,20 +33,20 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/profile_course_teacher_image"
+                android:id="@+id/profile_place_image"
                 android:layout_centerHorizontal="true"
                 />
             <!--style="@style/ProfileTeacherItemImage" -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/profile_course_teacher_name"
-                android:layout_below="@id/profile_course_teacher_image"
+                android:id="@+id/profile_place_name"
+                android:layout_below="@id/profile_place_image"
                 android:textColor="@android:color/white"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:textSize="25dp"
-                android:text="Frank Escobedo Bailon"
+                android:text="Nombre del lugar"
                 android:gravity="center"
                 android:maxLines="2"/>
             <!--style="@style/ProfileTeacherItemName"-->
@@ -58,12 +57,11 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:textSize="20dp"
-                android:text="Gestiacion"
+                android:text="Lugar de Referencia"
                 android:gravity="center"
                 android:maxLines="2"
-                android:id="@+id/profile_course_course_name"
-                android:layout_below="@id/profile_course_teacher_name"/>
-
+                android:id="@+id/profile_reference_place_name"
+                android:layout_below="@id/profile_place_name"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -71,38 +69,52 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:textSize="15dp"
-                android:text="Facultad de Ingee Informatica"
+                android:text="Conocido por "
                 android:gravity="center"
                 android:maxLines="2"
-                android:id="@+id/profile_course_faculty_name"
-                android:layout_below="@id/profile_course_course_name"/>
+                android:id="@+id/profile_place_description"
+                android:layout_below="@id/profile_reference_place_name"/>
 
             <RelativeLayout
-                android:id="@+id/profile_course_rating_container"
+                android:id="@+id/profile_place_rating_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@id/profile_course_faculty_name">
+                android:layout_below="@id/profile_place_description">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profile_course_teacher_rating"
+                    android:id="@+id/profile_place_rating"
                     android:textColor="@android:color/white"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:text="4.5"
                     android:gravity="center"
                     android:maxLines="1"
                     android:layout_centerHorizontal="true"/>
                 <ImageView
-                    android:id="@+id/teacher_profile_course_star_drawable"
+                    android:id="@+id/place_profile_star_drawable"
                     android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_toRightOf="@id/profile_course_teacher_rating"
+                    android:layout_height="15dp"
+                    android:layout_toRightOf="@id/profile_place_rating"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:src="@mipmap/ic_grade_white_24dp"/>
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/place_profile_map_buttom"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Ver Ubicacion en Mapa"
+                android:layout_below="@+id/profile_place_rating_container"
+                android:background="@color/accentNewsColor"
+                android:textColor="#ffffff"
+                android:layout_centerHorizontal="true"
+                android:drawableLeft="@mipmap/ic_room_white_24dp"/>
 
 
         </RelativeLayout>
@@ -114,7 +126,7 @@
         android:id="@+id/addComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/teacher_course_card_background"
+        app:layout_anchor="@id/places_card_background"
         app:layout_anchorGravity="right|bottom|end"
         android:layout_marginRight="16dp"
         android:clickable="true"

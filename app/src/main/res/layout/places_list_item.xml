@@ -40,27 +40,35 @@
                 android:layout_toEndOf="@id/teacher_item_picture">
 
                 <TextView
-                    android:id="@+id/teacher_item_name"
+                    android:id="@+id/place_item_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre De Profesor"
+                    android:text="Nombre de Lugar"
                     android:textSize="17dp"
                     android:textStyle="bold"
+                    android:maxLines="2"/>
+                <TextView
+                    android:id="@+id/place_reference_place"
+                    android:layout_below="@id/place_item_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lugar de Referencia"
+                    android:textSize="16dp"
                     android:maxLines="2"/>
 
                 <TextView
                     android:id="@+id/rating_number_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/teacher_item_name"
+                    android:layout_below="@id/place_reference_place"
                     android:textSize="15dp"
                     android:text="4.5"
                     android:layout_marginTop="2dp"/>
                 <ImageView
-                    android:id="@+id/teacher_star_drawable"
+                    android:id="@+id/place_star_drawable"
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"
-                    android:layout_below="@id/teacher_item_name"
+                    android:layout_below="@id/place_reference_place"
                     android:layout_toRightOf="@id/rating_number_label"
                     android:layout_marginTop="5dp"
                     android:src="@mipmap/ic_grade_black_24dp"/>
@@ -73,21 +81,30 @@
                     android:textSize="13dp"
                     android:textStyle="bold"
                     android:layout_marginTop="2dp"
-                    android:text="Cursos : "/>
+                    android:text="Conocido Por : "/>
 
                 <TextView
-                    android:id="@+id/teacher_item_courses"
+                    android:id="@+id/places_item_description"
                     android:layout_width="fill_parent"
                     android:textSize="13dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/courses_item_label"
-                    android:text="Matematica , FIsica  , QUimica , Religion , Personal Social"
+                    android:text="Pan con pollo , keke , galletas , gelatinas ."
                     android:maxLines="3"/>
+                <TextView
+                    android:id="@+id/places_item_distance"
+                    android:layout_below="@id/places_item_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textSize="13dp"
+                    android:text="a 350m."
+                    android:maxLines="1"/>
 
             </RelativeLayout>
 
 
-                <!--style="@style/TeacherItemCourses"-->
+            <!--style="@style/TeacherItemCourses"-->
 
         </RelativeLayout>
 

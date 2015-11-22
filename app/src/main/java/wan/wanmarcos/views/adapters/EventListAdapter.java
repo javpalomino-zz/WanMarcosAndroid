@@ -40,9 +40,6 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
     public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =  inflater.inflate(R.layout.event_list_item, parent, false);
         EventListViewHolder holder = new EventListViewHolder(view);
-        Bitmap bitmap = ((BitmapDrawable)holder.img.getDrawable()).getBitmap();
-        Palette p = Palette.from(bitmap).generate();
-        holder.img.setBackgroundColor(p.getVibrantColor(0x0000000));
         return holder;
     }
 
@@ -53,6 +50,12 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
         Picasso.with(context)
                 .load(current.getImgUrl())
                 .into(holder.img);
+        if(holder.img.getDrawable()!=null)
+        {
+            Bitmap bitmap = ((BitmapDrawable)holder.img.getDrawable()).getBitmap();
+            Palette p = Palette.from(bitmap).generate();
+            holder.img.setBackgroundColor(p.getVibrantColor(0x0000000));
+        }
         String startDateAndTime = current.CalendarToString(current.getStartDateTime())+" - "+current.CalendarToString(current.getFinishDateTime());
         holder.dateAndTime.setText(startDateAndTime);
     }

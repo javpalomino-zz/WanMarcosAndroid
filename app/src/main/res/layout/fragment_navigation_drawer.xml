@@ -8,27 +8,71 @@
     tools:context="wan.wanmarcos.fragments.NavigationDrawerFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:id="@+id/containerDrawerImage"
-
+    <RelativeLayout
+        android:id="@+id/containerProfile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="160dp">
 
         <ImageView
+            android:id="@+id/nav_drawer_profile_background"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:background="#2c2c2c"
-            android:src="@mipmap/testimage">
+            android:layout_height="match_parent"
+            android:src="@mipmap/testimage"/>
 
-        </ImageView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/nav_drawer_profile_details_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="16dp">
+
+                    <TextView
+                        android:id="@+id/nav_drawer_profile_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"
+                        android:textColor="#ffffff"
+                        android:text="Nombre de Usuario"
+                        />
+                    <TextView
+                        android:id="@+id/nav_drawer_profile_email"
+                        android:layout_below="@id/nav_drawer_profile_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2"
+                        android:textColor="#ffffff"
+                        android:text="usuario@wanmarcos.com"
+                        />
+
+                </RelativeLayout>
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="#FFFFFF"
+                    android:layout_above="@id/nav_drawer_profile_details_container"/>
+
+
+
+            </RelativeLayout>
+
+
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/drawerList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/containerDrawerImage">
+        android:layout_below="@+id/containerProfile">
 
     </android.support.v7.widget.RecyclerView>
 

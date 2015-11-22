@@ -1,18 +1,17 @@
-<RelativeLayout
-    android:id="@+id/main_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="wan.wanmarcos.fragments.EventPageFragment">
-
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/comments_list"
+    <RelativeLayout
+        android:id="@+id/main_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/course_comments_label"
-        style="@style/ProfileCourseItemComments">
-    </android.support.v7.widget.RecyclerView>
+        tools:context="wan.wanmarcos.fragments.EventPageFragment">
 
-</RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/comments_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/card_view_teacher_course_profile"
+            style="@style/ProfileCourseItemComments">
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
