@@ -83,7 +83,7 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     public static List<NavDrawerLink> getData()
     {
         List<NavDrawerLink> data=new ArrayList<>();
-        int[] icons = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
+        int[] icons = {R.mipmap.ic_view_list_black_48dp,R.mipmap.ic_school_black_48dp,R.mipmap.ic_map_black_48dp,R.mipmap.ic_event_note_black_48dp,R.mipmap.ic_account_circle_black_48dp,R.mipmap.ic_comment_black_48dp};
         String[] titles={"Noticias","Docentes","Lugares","Eventos","Mi Perfil","Contáctanos"};
         for (int i=0;i<icons.length && i<titles.length;i++)
         {

@@ -22,8 +22,8 @@
             android:layout_marginBottom="5dp">
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
                 android:id="@+id/teacher_item_picture"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -40,54 +40,37 @@
                 android:layout_toEndOf="@id/teacher_item_picture">
 
                 <TextView
-                    android:id="@+id/teacher_item_name"
+                    android:id="@+id/home_item_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre De Profesor"
+                    android:text="Nombre de Elemnto"
                     android:textSize="17dp"
                     android:textStyle="bold"
                     android:maxLines="2"/>
 
                 <TextView
-                    android:id="@+id/rating_number_label"
+                    android:id="@+id/home_item_description_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/teacher_item_name"
-                    android:textSize="15dp"
-                    android:text="4.5"
-                    android:layout_marginTop="2dp"/>
-                <ImageView
-                    android:id="@+id/teacher_star_drawable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:layout_below="@id/teacher_item_name"
-                    android:layout_toRightOf="@id/rating_number_label"
-                    android:layout_marginTop="5dp"
-                    android:src="@mipmap/ic_grade_black_24dp"/>
-
-                <TextView
-                    android:id="@+id/courses_item_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/rating_number_label"
+                    android:layout_below="@id/home_item_name"
                     android:textSize="13dp"
                     android:textStyle="bold"
                     android:layout_marginTop="2dp"
-                    android:text="Cursos : "/>
+                    android:text="Etiqueta de descripcion : "/>
 
                 <TextView
-                    android:id="@+id/teacher_item_courses"
+                    android:id="@+id/home_item_description"
                     android:layout_width="fill_parent"
                     android:textSize="13dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/courses_item_label"
-                    android:text="Matematica , FIsica  , QUimica , Religion , Personal Social"
+                    android:layout_below="@id/home_item_description_label"
+                    android:text="Descripcion del elemento"
                     android:maxLines="3"/>
 
             </RelativeLayout>
 
 
-                <!--style="@style/TeacherItemCourses"-->
+            <!--style="@style/TeacherItemCourses"-->
 
         </RelativeLayout>
 

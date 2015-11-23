@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryNewsColor">#2196F3</color>
-    <color name="primaryNewsColorDark">#1976D2</color>
-    <color name="accentNewsColor">#FFD740</color>
+    <color name="primaryNewsColor">#3F51B5</color>
+    <color name="primaryNewsColorDark">#303F9F</color>
+    <color name="accentNewsColor">#F7B801</color>
     <color name="buttonTextNewsColor">#000000</color>
     <color name="eventDeatilGridBackgroundColor">#F2F2F2</color>
     <color name="eventDetailDividerColor">#DBDBDB</color>
