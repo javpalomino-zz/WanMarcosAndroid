@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -47,11 +45,12 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
     private RestClient restClient;
     private int currentPage;
     private String actualSerach;
+    private static final String JSON_TEACHER="professors";
     String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
 
     public TeacherListFragment() {
         // Required empty public constructor
-        actualSerach="";
+        actualSerach=Constants.EMPTY_STRING;
     }
 
     @Override
@@ -74,29 +73,36 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
 
     public void addListeners() {
         recyclerViewTeachers.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int state=0;
-            private boolean changeState=false;
+            private int state = 0;
+            private int i = 0;
+            private boolean changeState = false;
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if(newState!=state){
-                    changeState=true;
-                    state=newState;
-                }
-                if(changeState){
-                    if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition()==teacherListAdapter.getItemCount()-1&&layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition()>0){
-                        getTeacherData(actualSerach);
+                if (newState != state) {
+                    changeState = true;
+                    if (changeState ) {
+                        if(state==0){
+                            if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() == teacherListAdapter.getItemCount() - 1 && layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() > 0) {
+                                getTeacherData(actualSerach);
+                            }
+                        }
                     }
+                    state = newState;
                 }
             }
         });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            String previousQuery=Constants.EMPTY_STRING;
             @Override
             public boolean onQueryTextSubmit(String query) {
-                actualSerach=query;
-                teacherListAdapter.removeAll();
-                currentPage=1;
-                getTeacherData(query);
-                return  true;
+                if(!previousQuery.equals(query)){
+                    resetAdapter(query);
+                    getTeacherData(query);
+                    previousQuery=query;
+
+                }
+                return true;
             }
 
             @Override
@@ -106,7 +112,11 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
             }
         });
     }
-
+    private void resetAdapter(String query){
+        actualSerach=query;
+        teacherListAdapter.removeAll();
+        currentPage=1;
+    }
     public void setUpElements(View view){
         layoutManagerRecyclerView=new LinearLayoutManager(getActivity());
         searchView=(SearchView)view.findViewById(R.id.searchViewTeachers);
@@ -119,26 +129,29 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
     @Override
     public void itemClicked(View view, Teacher object) {
         Storage.getSingelton().storage(object,this);
-        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_PROFILE_TEACHER);
+        Redirect.getSingelton().showFragment(this, Constants.TEACHER_CONTAINER, Constants.FRAGMENT_PROFILE_TEACHER);
+    }
+
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
+
     }
 
 
     public void getTeacherData(String search_text){
-        final List<Teacher>teachers=new ArrayList<>();
-        Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,5);
+        Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,Constants.CANTIDAD);
         teacherPage.enqueue(new Callback<JsonElement>() {
             @Override
             public synchronized void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
-                if (responseBody.has("professors")) {
-                    JsonArray jsonArray = responseBody.getAsJsonArray("professors");
+                if (responseBody.has(JSON_TEACHER)) {
+                    JsonArray jsonArray = responseBody.getAsJsonArray(JSON_TEACHER);
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
                         Teacher current = new Teacher(storedObject);
-                        teachers.add(current);
+                        teacherListAdapter.add(current);
                     }
                 }
-                teacherListAdapter.addAll(teachers);
             }
 
             @Override

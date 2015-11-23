@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="teacher_comment_hint">¿Algo mas que nos quieras decir?</string>
+    <string name="teacher_comment_title">Danos tu opinion acerca de:</string>
+    <string name="teacher_comment_action">Enviar Opinion</string>
     <string name="app_name">Wanmarcos</string>
     <string name="title_activity_main">MainActivity</string>
 

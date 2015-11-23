@@ -1,46 +1,37 @@
 package wan.wanmarcos.fragments;
 
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
-import wan.wanmarcos.models.Course;
 import wan.wanmarcos.models.Rating;
-import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.utils.Redirection.Redirect;
-import wan.wanmarcos.utils.Storage;
-import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.adapters.ValuationListAdapter;
-import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TeacherCourseProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Valuation> {
+public class TeacherCourseProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Valuation>,Click {
 
     private ValuationListAdapter valuationListAdapter;
     private RecyclerView recyclerViewComments;
+    private FloatingActionButton floatingActionButton;
 
     public TeacherCourseProfileFragment() {
         // Required empty public constructor
@@ -74,12 +65,21 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     public void itemClicked(View view, Valuation object) {
         //
     }
+
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
+        FragmentManager fm = getFragmentManager();
+        TeacherPopupComment editNameDialog = new TeacherPopupComment();
+        editNameDialog.setListener(this);
+        editNameDialog.show(fm, "fragment_edit_name");
+    }
+
     public List<Rating> getStaticData(){
         List<Rating> ratings=new ArrayList<>();
         ratings.add(new Rating((float) 4.0,"tecnica"));
         ratings.add(new Rating((float) 2.5,"salud"));
-        ratings.add(new Rating((float) 1.3,"conmosion"));
-        ratings.add(new Rating((float) 3.0,"desarrollo"));
+        ratings.add(new Rating((float) 1.3, "conmosion"));
+        ratings.add(new Rating((float) 3.0, "desarrollo"));
         return ratings;
     }
     public List<Valuation> getData(String data) {
@@ -88,9 +88,31 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
         valuations.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuations.add(new Valuation("Carlos","d","Curso Boni",14));
+        valuations.add(new Valuation("Carlos", "d", "Curso Boni", 14));
+        valuations.add(new Valuation("Carlos", "d", "Curso Boni", 14));
         return  valuations;
 
+    }
+
+    @Override
+    public void click(String comment) {
+        valuationListAdapter.addTop(comment);
+        reScroll();
+    }
+
+
+    public void reScroll(){
+        recyclerViewComments.scrollToPosition(0);
+    }
+    @Override
+    public void onResume() {
+        Log.d("D","resume");
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d("D","pause");
+        super.onPause();
     }
 }

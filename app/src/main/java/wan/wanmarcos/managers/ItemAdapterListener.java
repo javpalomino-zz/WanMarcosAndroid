@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface ItemAdapterListener<T> {
     void itemClicked(View view,T object);
+
+    void addClicked(String fragmentProfileTeacher);
 }

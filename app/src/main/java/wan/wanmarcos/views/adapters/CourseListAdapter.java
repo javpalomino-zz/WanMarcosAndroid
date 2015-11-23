@@ -65,7 +65,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d("D", courses.size() + "-" + position);
 
         if (holder instanceof CourseHolder) {
             Course course=courses.get(position-1);
@@ -120,8 +119,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public class CourseHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Course>,View.OnClickListener{
         private TextView courseName;
         private TextView courseFaculty;
-        private RatingBar courseRating;
-        private TextView courseMark;
         private View vista;
         private Course current;
         private ImageView initialLetterImage;

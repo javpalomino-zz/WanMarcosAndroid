@@ -28,7 +28,6 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
     private LayoutInflater inflater;
     private List<Teacher> teachers= new ArrayList<>();
     private ItemAdapterListener itemAdapterListener;
-    private Object mLock;
 
     public TeacherListAdapter(Context context){
         inflater= LayoutInflater.from(context);
@@ -56,8 +55,8 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
     }
 
     public synchronized void add(Teacher teacher){
-            teachers.add(0,teacher);
-            notifyItemInserted(0);
+            teachers.add(getItemCount(),teacher);
+            notifyItemInserted(getItemCount());
     }
 
     public class  TeacherHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Teacher>,View.OnClickListener{
@@ -98,21 +97,5 @@ public class TeacherListAdapter extends RecyclerView.Adapter<TeacherListAdapter.
         int size=getItemCount();
         teachers=new ArrayList<>();
         notifyItemRangeRemoved(0,size);
-    }
-    public void addAll(final List<Teacher> teacher) {
-        final int currentCount = teacher.size();
-        synchronized(teachers) {
-            teachers.addAll(teacher);
-        }
-        if (Looper.getMainLooper() == Looper.myLooper()) {
-            notifyItemRangeInserted(currentCount, teacher.size());
-        } else {
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    notifyItemRangeInserted(currentCount, teacher.size());
-                }
-            });
-        }
     }
 }

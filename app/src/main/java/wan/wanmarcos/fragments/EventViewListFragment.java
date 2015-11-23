@@ -127,7 +127,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         suggestFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Redirect.getSingelton().showFragment(EventViewListFragment.this,Constants.EVENT_CONTAINER,Constants.FRAGMENT_SUGGEST_EVENT);
+                Redirect.getSingelton().showFragment(EventViewListFragment.this, Constants.EVENT_CONTAINER, Constants.FRAGMENT_SUGGEST_EVENT);
                 currentPage = 1;
             }
         });
@@ -192,7 +192,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
     private void getEvents()
     {
         final List<Event> eventsList=new ArrayList<>();
-        Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, 10);
+        Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, Constants.CANTIDAD);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
@@ -220,7 +220,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
                 }
                 eventListAdapter.addAll(eventsList);
                 received = true;
-                System.out.println("RECEIVED!!: "+currentPage);
+                System.out.println("RECEIVED!!: " + currentPage);
                 currentPage++;
             }
 

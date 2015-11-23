@@ -58,12 +58,8 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     @Override
     public void setUpElements(View view) {
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
-        //recyclerviewTeacherRatings=(RecyclerView)view.findViewById(R.id.rating_list);
         courseListAdapter=new CourseListAdapter(this,getActivity(),getData(""));
         courseListAdapter.setListener(this);
-        ratingListAdapter=new RatingListAdapter(getActivity(),getStaticData());
-        //recyclerviewTeacherRatings.setAdapter(ratingListAdapter);
-        //recyclerviewTeacherRatings.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerViewTeacherCourses.setAdapter(courseListAdapter);
         recyclerViewTeacherCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -79,14 +75,11 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
         Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_TEACHER_COURSE);
     }
 
-    public List<Rating> getStaticData(){
-        List<Rating> ratings=new ArrayList<>();
-        ratings.add(new Rating((float) 4.0,"tecnica"));
-        ratings.add(new Rating((float) 2.5,"salud"));
-        ratings.add(new Rating((float) 1.3,"conmosion"));
-        ratings.add(new Rating((float) 3.0,"desarrollo"));
-        return ratings;
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
+
     }
+
 
     public List<Course> getData(String data) {
         List<Course> courses=new ArrayList<>();
