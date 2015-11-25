@@ -90,4 +90,5 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="title_activity_teacher">Profesores</string>
+    <string name="title_activity_place">PlaceActivity</string>
 </resources>

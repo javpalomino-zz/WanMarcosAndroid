@@ -1,9 +1,12 @@
 package wan.wanmarcos.utils;
 
+import android.support.v4.app.Fragment;
+
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
@@ -22,17 +25,23 @@ public class Constants {
 
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
+    public static final int PLACE_CONTAINER=R.id.home_fragment;
     public static final String NOT_FOUND="Busqueda no exitosa";
     //ACTIVITIES
     public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
     public static final String HOME_ACTIVITY= HomeActivity.class.getName();
     public static final String EVENT_ACTIVITY= EventsActivity.class.getName();
     public static final String CONTACT_ACTIVITY= ContactanosActivity.class.getName();
+    public static final String PLACE_ACTIVITY= PlaceActivity.class.getName();
 
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COMMENT= TeacherPopupComment.class.getName();
+
+   //TODO
+    public static final String FRAGMENT_LIST_PLACE= Fragment.class.getName();
+
 
     public static final String FRAGMENT_LIST_EVENT= EventViewListFragment.class.getName();
     public static final String FRAGMENT_SUGGEST_EVENT = SuggestedEventFragment.class.getName();
@@ -74,6 +83,7 @@ public class Constants {
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
+    public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;
     //Sections inside fragment
 
     //Items
@@ -82,6 +92,7 @@ public class Constants {
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;
+    public static final int PLACE_NEW_ITEM=R.layout.place_new_item;
     public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
     //Generic things
 

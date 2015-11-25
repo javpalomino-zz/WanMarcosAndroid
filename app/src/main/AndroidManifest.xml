@@ -12,9 +12,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize"
-            android:label="@string/title_activity_main" >
+            android:windowSoftInputMode="adjustResize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,26 +23,31 @@
         </activity>
         <activity
             android:name=".activities.HomeActivity"
-            android:launchMode="singleTask"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+            android:launchMode="singleTask" >
         </activity>
         <activity
             android:name=".activities.TeacherActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:launchMode="singleTask"
             android:label="@string/title_activity_teacher"
-            android:theme="@style/AppTheme"/>
-
-        <activity android:name=".activities.EventsActivity"
             android:launchMode="singleTask"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities.EventsActivity"
             android:label="Eventos"
-            android:windowSoftInputMode="adjustResize"/>
-
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activities.ContactanosActivity"
+            android:label="@string/title_contactanos"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize"
-            android:label="@string/title_contactanos" >
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <activity
+            android:name=".activities.PlaceActivity"
+            android:label="@string/title_activity_place"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize"  >
         </activity>
     </application>
 
