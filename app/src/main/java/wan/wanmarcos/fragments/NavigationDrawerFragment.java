@@ -4,6 +4,7 @@ package wan.wanmarcos.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,7 +17,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +51,9 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
 
     private NavDrawerAdapter adapter;
     private View containerView;
+
+    private ImageView headerBackground;
+
     public NavigationDrawerFragment() {
         // Required empty public constructor
     }
@@ -78,6 +85,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        headerBackground = (ImageView)layout.findViewById(R.id.nav_drawer_profile_background);
+        Picasso.with(getActivity()).load(R.mipmap.testimage).fit().centerCrop().into(headerBackground);
     }
 
     public static List<NavDrawerLink> getData()

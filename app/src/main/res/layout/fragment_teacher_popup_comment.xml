@@ -1,40 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:gravity="center|center_horizontal"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/comment_header_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/teacher_comment_title"/>
+        card_view:cardUseCompatPadding="false"
+        card_view:cardPreventCornerOverlap="false">
+
+        <ImageView
+            android:id="@+id/comment_background_header"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/header_image_icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/header_image_icon">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teacher_comment_professor"
+                    android:layout_marginTop="5dp"
+                    android:textSize="20sp"
+                    android:text="Santiago Moquillaza Enriquez"
+                    android:textStyle="bold"
+                    android:maxLines="2"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teacher_comment_course"
+                    android:layout_below="@id/teacher_comment_professor"
+                    android:textSize="15sp"
+                    android:text="Analisis y diseño de Algoritmos para la programacion"
+                    android:textStyle="bold"
+                    android:maxLines="2"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/teacher_comment_faculty"
+                    android:layout_below="@id/teacher_comment_course"
+                    android:textSize="12sp"
+                    android:text="Facultad de Ingenieria de Sistemas E Informatica"
+                    android:maxLines="2"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/comment_header"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/teacher_comment_professor"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_comment_course"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/teacher_comment_faculty"/>
+        android:text="@string/teacher_comment_title"
+        android:layout_below="@id/comment_header_container"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+
     <android.support.v7.widget.RecyclerView
-        android:layout_height="50dp"
-        android:layout_width="match_parent"
-        android:id="@+id/teacher_comment_rating">
+        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/teacher_comment_rating"
+        android:layout_below="@id/comment_header"
+        android:gravity="center_horizontal">
     </android.support.v7.widget.RecyclerView>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/teacher_comment_hint"
-        android:id="@+id/teacher_comment_post"/>
+        android:id="@+id/teacher_comment_post"
+        android:layout_below="@id/teacher_comment_rating"
+        android:gravity="top"
+        android:lines="5"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"/>
     <Button
+        android:id="@+id/teacher_comment_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/teacher_comment_action"
-        android:text="@string/teacher_comment_action"/>
-</LinearLayout>
+        android:text="@string/teacher_comment_action"
+        android:background="@color/accentNewsColor"
+        android:textColor="@color/buttonTextNewsColor"
+        android:layout_below="@id/teacher_comment_post"/>
+</RelativeLayout>
