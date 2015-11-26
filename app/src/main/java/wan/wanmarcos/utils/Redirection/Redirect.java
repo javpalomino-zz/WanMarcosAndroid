@@ -29,6 +29,7 @@ import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.fragments.PlaceListFragment;
+import wan.wanmarcos.fragments.PlaceProfileFragment;
 import wan.wanmarcos.fragments.Place_SectionListFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
@@ -132,6 +133,9 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.FRAGMENT_LIST_PLACE)){
             return new PlaceListFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_PROFILE_PLACE)){
+            return new PlaceProfileFragment();
         }
         else{
             return new Fragment();

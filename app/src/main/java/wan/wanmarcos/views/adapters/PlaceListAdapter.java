@@ -2,6 +2,7 @@ package wan.wanmarcos.views.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wan.wanmarcos.R;
+import wan.wanmarcos.fragments.Place_SectionListFragment;
 import wan.wanmarcos.managers.ItemAdapterListener;
+import wan.wanmarcos.managers.ViewHolderSetters;
 import wan.wanmarcos.models.Place;
 import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
@@ -51,11 +54,15 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
         return places.size();
     }
     public synchronized void add(Place place){
-        places.add(getItemCount(),place);
+        places.add(getItemCount(), place);
         notifyItemInserted(getItemCount());
     }
 
-    public class PlaceHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public void setListener(ItemAdapterListener listener) {
+        this.itemAdapterListener = listener;
+    }
+
+    public class PlaceHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Place>,View.OnClickListener {
         private ImageView imageView;
         private TextView placeName;
         private TextView placeDistance;
@@ -63,10 +70,12 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
         private TextView placeReference;
         private TextView placeRating;
         private View vista;
+        private Place current;
 
         public PlaceHolder(View itemView) {
             super(itemView);
             vista=itemView;
+            itemView.setOnClickListener(this);
             imageView = (ImageView) itemView.findViewById(R.id.place_item_image);
             placeName = (TextView) itemView.findViewById(R.id.place_item_name);
             placeReference = (TextView) itemView.findViewById(R.id.place_reference_place);
@@ -76,7 +85,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
 
         }
         public void setElements(Place place){
-            placeDistance.setText("a "+place.getDistance()+"mts");
+            current=place;
+            placeDistance.setText("a "+place.getDistance()+" mts");
             placeName.setText(place.getPlaceName());
             placeReference.setText(place.getReferencePlace());
             placeDescription.setText(place.getReferences());
@@ -86,7 +96,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
 
         @Override
         public void onClick(View v) {
-
+            Log.d("D", "DASD");
+            itemAdapterListener.itemClicked(v,current);
         }
     }
 }

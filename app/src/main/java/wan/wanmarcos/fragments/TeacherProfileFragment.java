@@ -36,13 +36,8 @@ import wan.wanmarcos.views.widgets.CircleTransform;
 
 public class TeacherProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Course>{
 
-    private TextView teacherName;
-    private ImageView teacherImage;
-    private RecyclerView recyclerviewTeacherRatings;
     private RecyclerView recyclerViewTeacherCourses;
-    private RatingListAdapter ratingListAdapter;
     private CourseListAdapter courseListAdapter;
-    private ImageView teacherCardBackground;
 
     public TeacherProfileFragment(){
 

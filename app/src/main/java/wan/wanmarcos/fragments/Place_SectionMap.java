@@ -11,6 +11,11 @@ import wan.wanmarcos.R;
 
 
 public class Place_SectionMap extends Fragment {
+
+    public Place_SectionMap(){
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

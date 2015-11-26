@@ -10,6 +10,7 @@ import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.PlaceProfileFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
@@ -83,6 +84,7 @@ public class Constants {
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
     public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place_list;
+    public static final int FRAGMENT_PROFILE_PLACE_LAYOUT=R.layout.fragment_place_profile;
     //Sections inside fragment
 
     public static final int FRAGMENT_SECTION_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;
@@ -94,6 +96,7 @@ public class Constants {
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;
     public static final int PLACE_NEW_ITEM=R.layout.place_new_item;
     public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
+    public static final int DETAIL_PLACE=R.layout.detail_place;
     //Generic things
 
 
@@ -103,4 +106,5 @@ public class Constants {
     public static String MODAL_MESSAGE_CONTACTANOS = "Gracias por darnos tu opinión";
     public static String MODAL_BUTTON_DENADA = "De Nada";
 
+    public static String FRAGMENT_PROFILE_PLACE =PlaceProfileFragment.class.getName();
 }

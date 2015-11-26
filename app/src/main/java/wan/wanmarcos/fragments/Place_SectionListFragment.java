@@ -7,25 +7,33 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
+import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Place;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.views.adapters.PlaceListAdapter;
 
 
-public class Place_SectionListFragment extends Fragment implements FragmentsMethods{
+public class Place_SectionListFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Place> {
     private RecyclerView recyclerView;
     private PlaceListAdapter placeListAdapter;
 
+    public Place_SectionListFragment(){
+
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        placeListAdapter=new PlaceListAdapter(getActivity());
         super.onCreate(savedInstanceState);
+        placeListAdapter=new PlaceListAdapter(getActivity());
+        placeListAdapter.setListener(this);
+
     }
 
     @Override
@@ -44,8 +52,8 @@ public class Place_SectionListFragment extends Fragment implements FragmentsMeth
 
     @Override
     public void setUpElements(View view) {
-        recyclerView=(RecyclerView)view.findViewById(R.id.places_list);
         addPlaces();
+        recyclerView=(RecyclerView)view.findViewById(R.id.places_list);
         recyclerView.setAdapter(placeListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -61,6 +69,16 @@ public class Place_SectionListFragment extends Fragment implements FragmentsMeth
 
     @Override
     public void addListeners() {
+
+    }
+
+    @Override
+    public void itemClicked(View view, Place object) {
+        Redirect.getSingelton().showFragment(this,Constants.PLACE_CONTAINER,Constants.FRAGMENT_PROFILE_PLACE);
+    }
+
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
 
     }
 }

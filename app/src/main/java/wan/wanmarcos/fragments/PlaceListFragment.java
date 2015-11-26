@@ -12,12 +12,14 @@ import android.widget.Button;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
+import wan.wanmarcos.managers.ItemAdapterListener;
+import wan.wanmarcos.models.Place;
 import wan.wanmarcos.utils.Constants;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlaceListFragment extends Fragment implements FragmentsMethods{
+public class PlaceListFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Place>{
     private boolean flagList;
     private boolean flagMap;
     private Button buttonMap;
@@ -52,7 +54,7 @@ public class PlaceListFragment extends Fragment implements FragmentsMethods{
         ft.add(R.id.tabbedFragment,place_sectionListFragment,Place_SectionListFragment.class.getName());
         ft.add(R.id.tabbedFragment, place_sectionMap, Place_SectionMap.class.getName());
         ft.commit();
-        showList();
+        showMap();
     }
 
     @Override
@@ -89,6 +91,16 @@ public class PlaceListFragment extends Fragment implements FragmentsMethods{
             fm.commit();
             flagList=false;
         }
+    }
+
+    @Override
+    public void itemClicked(View view, Place object) {
+
+    }
+
+    @Override
+    public void addClicked(String fragmentProfileTeacher) {
+
     }
     //TODO
     //http://developer.android.com/intl/es/reference/android/support/v4/app/FragmentTabHost.html
