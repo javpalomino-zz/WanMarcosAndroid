@@ -81,7 +81,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.Plac
             placeReference.setText(place.getReferencePlace());
             placeDescription.setText(place.getReferences());
             placeRating.setText(String.valueOf(place.getRatingPlace()));
-            Picasso.with(vista.getContext()).load("").transform(new CircleTransform()).into(imageView);
+            Picasso.with(vista.getContext()).load("http://lorempixel.com/300/300/").transform(new CircleTransform()).into(imageView);
         }
 
         @Override

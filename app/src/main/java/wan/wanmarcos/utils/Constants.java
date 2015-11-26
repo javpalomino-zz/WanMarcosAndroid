@@ -25,7 +25,7 @@ public class Constants {
 
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
-    public static final int PLACE_CONTAINER=R.id.home_fragment;
+    public static final int PLACE_CONTAINER=R.id.places_fragment;
     public static final String NOT_FOUND="Busqueda no exitosa";
     //ACTIVITIES
     public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
@@ -39,7 +39,6 @@ public class Constants {
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COMMENT= TeacherPopupComment.class.getName();
 
-   //TODO
     public static final String FRAGMENT_LIST_PLACE= Fragment.class.getName();
 
 
@@ -83,9 +82,10 @@ public class Constants {
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
-    public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;
+    public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place_list;
     //Sections inside fragment
 
+    public static final int FRAGMENT_SECTION_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;
     //Items
     public static final int TEACHER_NEW_ITEM=R.layout.teacher_new_item;
     public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;

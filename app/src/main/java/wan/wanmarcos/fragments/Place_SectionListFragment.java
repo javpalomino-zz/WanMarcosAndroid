@@ -3,8 +3,8 @@ package wan.wanmarcos.fragments;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,7 +36,7 @@ public class Place_SectionListFragment extends Fragment implements FragmentsMeth
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(Constants.FRAGMENT_LIST_PLACE_LAYOUT, container, false);
+        View view=inflater.inflate(Constants.FRAGMENT_SECTION_LIST_PLACE_LAYOUT, container, false);
         setUpElements(view);
         addListeners();
         return view;

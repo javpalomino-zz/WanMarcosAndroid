@@ -23,10 +23,13 @@ import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.MainActivity;
+import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
+import wan.wanmarcos.fragments.PlaceListFragment;
+import wan.wanmarcos.fragments.Place_SectionListFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
@@ -100,6 +103,9 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.CONTACT_ACTIVITY)){
             return ContactanosActivity.class;
         }
+        else if(name.equals(Constants.PLACE_ACTIVITY)){
+            return PlaceActivity.class;
+        }
         else{
             return Object.class;
         }
@@ -123,6 +129,9 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.FRAGMENT_SUGGEST_EVENT)){
             return new SuggestedEventFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_LIST_PLACE)){
+            return new PlaceListFragment();
         }
         else{
             return new Fragment();
