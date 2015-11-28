@@ -7,7 +7,14 @@ public class Course {
     private String name;
     private float rating;
     private String Faculty;
+    private int id;
 
+    public Course(String name, float rating, String faculty, int id) {
+        this.name = name;
+        this.rating = rating;
+        Faculty = faculty;
+        this.id = id;
+    }
 
     public Course(String name, float rating, String faculty) {
         this.setName(name);
@@ -39,4 +46,11 @@ public class Course {
         Faculty = faculty;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

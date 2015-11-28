@@ -26,12 +26,40 @@ import wan.wanmarcos.managers.ViewHolderSetters;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Storage;
+import wan.wanmarcos.views.adapters.ViewHolders.CourseHeaderHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.CourseHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.CustomViewHolder;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * Created by carlos-pc on 09/10/15.
  */
-public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CourseListAdapter extends CustomDoubleAdapter<Course>{
+
+    public CourseListAdapter(Fragment fragment) {
+        super(fragment, Constants.COURSE_NEW_ITEM, Constants.PROFILE_TEACHER);
+    }
+
+    @Override
+    public CustomViewHolder getObject(View view) {
+        return new CourseHolder(view);
+    }
+
+    @Override
+    public CustomViewHolder getObjectHeader(View view) {
+        return new CourseHeaderHolder(view);
+    }
+
+    @Override
+    public int getContainerID() {
+        return Constants.TEACHER_CONTAINER;
+    }
+
+    @Override
+    public String getFragmentName() {
+        return Constants.FRAGMENT_TEACHER_COURSE;
+    }
+}/*{
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
     private List<Course>courses= Collections.emptyList();
@@ -152,4 +180,4 @@ public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             //courseRating.setRating(elements.getRating());
         }
     }
-}
+}*/

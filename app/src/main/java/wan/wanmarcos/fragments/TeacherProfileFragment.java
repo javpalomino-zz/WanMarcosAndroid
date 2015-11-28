@@ -53,8 +53,8 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     @Override
     public void setUpElements(View view) {
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
-        courseListAdapter=new CourseListAdapter(this,getActivity(),getData(""));
-        courseListAdapter.setListener(this);
+        courseListAdapter=new CourseListAdapter(this);
+        getData("d");
         recyclerViewTeacherCourses.setAdapter(courseListAdapter);
         recyclerViewTeacherCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -76,12 +76,10 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     }
 
 
-    public List<Course> getData(String data) {
-        List<Course> courses=new ArrayList<>();
-        courses.add(new Course("Matematica ", (float) 4.0,"FISI"));
-        courses.add(new Course("Fisica", (float) 4.0,"FISI"));
-        courses.add(new Course("Matematica", (float) 4.0,"FISI"));
-        courses.add(new Course("Matematica", (float) 4.0,"FISI"));
-        return courses;
+    public void getData(String data) {
+        courseListAdapter.add(new Course("Fisica", (float) 4.0,"FISI"));
+        courseListAdapter.add(new Course("Matematica", (float) 4.0,"FISI"));
+        courseListAdapter.add(new Course("holi", (float) 4.0,"FISI"));
+        courseListAdapter.add(new Course("holi", (float) 4.0,"FISI"));
     }
 }

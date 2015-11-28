@@ -50,8 +50,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     public void setUpElements(View view) {
         recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);
        //recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
-        valuationListAdapter=new ValuationListAdapter(this,getActivity(),getData(""));
-        valuationListAdapter.setListener(this);
+        valuationListAdapter=new ValuationListAdapter(this);
         recyclerViewComments.setAdapter(valuationListAdapter);
         //recyclerViewRating.setAdapter(ratingListAdapter);
         recyclerViewComments.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -96,7 +95,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
 
     @Override
     public void click(String comment) {
-        valuationListAdapter.addTop(comment);
+        //valuationListAdapter.addTop(comment);
         reScroll();
     }
 

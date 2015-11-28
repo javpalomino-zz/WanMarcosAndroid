@@ -58,8 +58,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
         super.onCreate(savedInstanceState);
         restClient = new RestClient(getActivity());
         currentPage=1;
-        teacherListAdapter=new TeacherListAdapter(getActivity());
-        teacherListAdapter.setListener(this);
+        teacherListAdapter=new TeacherListAdapter(this);
         getTeacherData(actualSerach);
     }
 
