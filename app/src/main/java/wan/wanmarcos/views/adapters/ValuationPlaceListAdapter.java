@@ -1,5 +1,6 @@
 package wan.wanmarcos.views.adapters;
 
+import android.content.Context;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +24,8 @@ import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.managers.ViewHolderSetters;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Storage;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * Created by soporte on 26/11/15.
@@ -31,8 +36,14 @@ public class ValuationPlaceListAdapter extends RecyclerView.Adapter<RecyclerView
     private static final int TYPE_HEADER = 0;
     private LayoutInflater inflater;
     private Fragment mFragment;
-    private List<Valuation> valuations= Collections.emptyList();
+    private List<Valuation> valuations= new ArrayList<>();
     private ItemAdapterListener itemAdapterListener;
+
+    public ValuationPlaceListAdapter(Fragment fragment,Context context){
+        mFragment=fragment;
+        inflater= LayoutInflater.from(context);
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType==TYPE_ITEM){
@@ -46,6 +57,10 @@ public class ValuationPlaceListAdapter extends RecyclerView.Adapter<RecyclerView
             return courseHeaderHolder;
         }
         return null;
+    }
+    public synchronized void add(Valuation teacher){
+        valuations.add(getItemCount(),teacher);
+        notifyItemInserted(getItemCount());
     }
 
     @Override
@@ -92,7 +107,10 @@ public class ValuationPlaceListAdapter extends RecyclerView.Adapter<RecyclerView
         }
 
         public void setElements() {
-            placeName.setText("ROAR");
+            Picasso.with(mFragment.getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(placeCardBackground);
+            Picasso.with(itemView.getContext()).load(Storage.getSingelton().getInfo(mFragment, Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(placeImage);
+            placeName.setText("Chio");
+
         }
         public void addListeners(){
             floatingActionButton.setOnClickListener(new View.OnClickListener() {
