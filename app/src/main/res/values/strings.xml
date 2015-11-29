@@ -71,7 +71,7 @@
     <string name="title_contactanos">Contactanos</string>
 
     <!--TextViews-->
-    <string name="pregunta_contactanos">¿Tiene algo que decirnos?</string>
+    <string name="pregunta_contactanos">¿Tienes algo que decirnos?</string>
     <string name="respuesta_contactanos">Nos gustaría mucho escucharlo</string>
     <string name="popup_messague_contactanos">Gracias por decirnos lo que piensas</string>
 

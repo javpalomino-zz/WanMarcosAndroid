@@ -19,32 +19,36 @@
 
             <ImageView
                 android:id="@+id/eventListImage"
+
                 android:layout_width="fill_parent"
                 android:layout_height="200dp"
                 android:background="@android:color/black"
+
                 android:src="@mipmap/wm17">
             </ImageView>
 
             <TextView
                 android:id="@+id/eventListTitle"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/eventTitlePlaceholder"
-                android:textSize="25dp"
-                android:layout_below="@id/eventListImage"
                 android:paddingLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
+
+                android:text="@string/eventTitlePlaceholder"
+                android:textSize="25sp"
+                android:layout_below="@id/eventListImage"
                 />
 
             <TextView
                 android:id="@+id/eventListDateAndTime"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/eventListTitle"
                 android:paddingLeft="10dp"
                 android:layout_marginBottom="5dp"
-                android:textSize="15dp"
+
+                android:layout_below="@id/eventListTitle"
+                android:textSize="15sp"
                 android:text="@string/eventDatePlaceholder"/>
 
         </RelativeLayout>

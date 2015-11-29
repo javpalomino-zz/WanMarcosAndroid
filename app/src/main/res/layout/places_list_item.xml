@@ -22,84 +22,97 @@
             android:layout_marginBottom="5dp">
 
             <ImageView
+                android:id="@+id/teacher_item_picture"
+
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:id="@+id/teacher_item_picture"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_centerVertical="true"/>
-            <!--style="@style/TeacherItemImage"-->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/teacher_item_picture"
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="7dp"
+
+                android:layout_toRightOf="@id/teacher_item_picture"
                 android:layout_toEndOf="@id/teacher_item_picture">
 
                 <TextView
                     android:id="@+id/place_item_name"
+
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="2"
+
                     android:text="Nombre de Lugar"
-                    android:textSize="17dp"
                     android:textStyle="bold"
-                    android:maxLines="2"/>
+                    android:textSize="17sp"/>
                 <TextView
                     android:id="@+id/place_reference_place"
                     android:layout_below="@id/place_item_name"
+
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lugar de Referencia"
-                    android:textSize="16dp"
-                    android:maxLines="2"/>
+                    android:maxLines="2"
+
+                    android:textSize="16sp"
+                    android:text="Lugar de Referencia"/>
 
                 <TextView
                     android:id="@+id/rating_number_label"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+
                     android:layout_below="@id/place_reference_place"
-                    android:textSize="15dp"
-                    android:text="4.5"
-                    android:layout_marginTop="2dp"/>
+                    android:textSize="15sp"
+                    android:text="4.5"/>
                 <ImageView
                     android:id="@+id/place_star_drawable"
+
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"
+                    android:layout_marginTop="5dp"
+
                     android:layout_below="@id/place_reference_place"
                     android:layout_toRightOf="@id/rating_number_label"
-                    android:layout_marginTop="5dp"
                     android:src="@mipmap/ic_grade_black_24dp"/>
 
                 <TextView
                     android:id="@+id/courses_item_label"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/rating_number_label"
-                    android:textSize="13dp"
-                    android:textStyle="bold"
                     android:layout_marginTop="2dp"
+
+                    android:layout_below="@id/rating_number_label"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
                     android:text="Conocido Por : "/>
 
                 <TextView
                     android:id="@+id/places_item_description"
                     android:layout_width="fill_parent"
-                    android:textSize="13dp"
                     android:layout_height="wrap_content"
+                    android:maxLines="3"
+
+                    android:textSize="13sp"
                     android:layout_below="@id/courses_item_label"
-                    android:text="Pan con pollo , keke , galletas , gelatinas ."
-                    android:maxLines="3"/>
+                    android:text="Pan con pollo , keke , galletas , gelatinas ."/>
                 <TextView
                     android:id="@+id/places_item_distance"
                     android:layout_below="@id/places_item_description"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
                     android:layout_alignParentRight="true"
-                    android:textSize="13dp"
-                    android:text="a 350m."
-                    android:maxLines="1"/>
+                    android:textSize="13sp"
+                    android:text="a 350m."/>
 
             </RelativeLayout>
 
