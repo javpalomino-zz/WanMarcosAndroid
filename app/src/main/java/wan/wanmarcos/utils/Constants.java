@@ -11,6 +11,7 @@ import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.HomeListNewsFragment;
 import wan.wanmarcos.fragments.PlaceProfileFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
@@ -28,6 +29,7 @@ public class Constants {
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
     public static final int PLACE_CONTAINER=R.id.places_fragment;
+    public static final int HOME_CONTAINER = R.id.home_fragment;
     public static final String NOT_FOUND="Busqueda no exitosa";
     //ACTIVITIES
     public static final String TEACHER_ACTIVITY= TeacherActivity.class.getName();
@@ -40,7 +42,7 @@ public class Constants {
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
-    public static final String FRAGMENT_TEACHER_COMMENT= PopupCommentFragment.class.getName();
+    public static final String FRAGMENT_LIST_NEWS =HomeListNewsFragment.class.getName();
 
     public static final String FRAGMENT_LIST_PLACE= Fragment.class.getName();
 
@@ -86,6 +88,7 @@ public class Constants {
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
     public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place_list;
+    public static final int FRAGMENT_LIST_NEWS_LAYOUT = R.layout.fragment_home_list;
     public static final int FRAGMENT_PROFILE_PLACE_LAYOUT=R.layout.fragment_place_profile;
     //Sections inside fragment
 
@@ -93,6 +96,7 @@ public class Constants {
     //Items
     public static final int TEACHER_NEW_ITEM=R.layout.teacher_new_item;
     public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;
+    public static final int HOME_NEW_ITEM=R.layout.home_new_item;
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;

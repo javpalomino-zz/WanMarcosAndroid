@@ -29,6 +29,7 @@ import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
+import wan.wanmarcos.fragments.HomeListNewsFragment;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.fragments.PlaceListFragment;
 import wan.wanmarcos.fragments.PlaceProfileFragment;
@@ -141,6 +142,9 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.FRAGMENT_PROFILE_PLACE)){
             return new PlaceProfileFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_LIST_NEWS)){
+            return new HomeListNewsFragment();
         }
         else{
             return new Fragment();
