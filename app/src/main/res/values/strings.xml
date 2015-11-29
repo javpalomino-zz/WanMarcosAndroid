@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="teacher_comment_hint">¿Algo mas que nos quieras decir?</string>
-    <string name="teacher_comment_title">Danos tu opinion acerca de:</string>
+    <string name="teacher_comment_title">¡ Danos tu opinion !</string>
     <string name="teacher_comment_action">Enviar Opinion</string>
     <string name="app_name">Wanmarcos</string>
     <string name="title_activity_main">MainActivity</string>
@@ -23,6 +23,8 @@
     <string name="lblHeaderFormEvent">Cuéntanos acerca del evento</string>
     <string name="lblTellUsAboutYou">¡ Cuéntanos sobre ti !</string>
     <string name="lblWelcome">¡ Bienvenido !</string>
+    <string name="lblForgotPassword">¿Olvidaste tu contraseña?</string>
+    <string name="lblForgotPasswordDescription">Por favor , ingresa la direccion de correo electronico asociada a la cuenta de la que quieres recuperar la contraseña.</string>
     <string name="lblRegisterFirstName">¿Cuál es tu nombre?</string>
     <string name="lblRegisterLastName">¿Cuales son tus apellidos?</string>
     <string name="lblRegisterEmail">¿Cuál es tu email?</string>
@@ -50,7 +52,8 @@
     <string name="btnRegister"><u>¿No Tienes Una Cuenta? Registrate.</u></string>
     <string name="btnRegisterForm">Registrarme</string>
     <string name="btnLogIn">INGRESAR</string>
-    <string name="btnForgotPassword">¿Olvidaste Tu Contraseña?</string>
+    <string name="btnForgotPassword"><u>¿Olvidaste Tu Contraseña?</u></string>
+    <string name="btnRetrievePassword">Recuperar Contraseña</string>
     <string name="btnLogout">Cerrar Sesión</string>
     <string name="btnEventStartDateForm">Dinos la Fecha de Inicio del Evento</string>
     <string name="btnEventEndDateForm">Dinos la Fecha de Fin del Evento</string>
@@ -68,8 +71,8 @@
     <string name="title_contactanos">Contactanos</string>
 
     <!--TextViews-->
-    <string name="pregunta_contactanos">¿Tiene algo que decirnos?</string>
-    <string name="respuesta_contactanos">Nos gustaría mucho escucharla</string>
+    <string name="pregunta_contactanos">¿Tienes algo que decirnos?</string>
+    <string name="respuesta_contactanos">Nos gustaría mucho escucharlo</string>
     <string name="popup_messague_contactanos">Gracias por decirnos lo que piensas</string>
 
 
@@ -90,5 +93,9 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="title_activity_teacher">Profesores</string>
+<<<<<<< HEAD
     <string name="title_activity_place">PlaceActivity</string>
+=======
+    <string name="title_activity_profile">Perfil</string>
+>>>>>>> dev
 </resources>

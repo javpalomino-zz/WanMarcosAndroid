@@ -40,36 +40,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/header_image_icon">
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="2"
                     android:layout_marginTop="5dp"
-                    android:textStyle="bold"
-                    android:maxLines="2"
 
-                    android:id="@+id/teacher_comment_professor"
+                    android:id="@+id/place_comment_name"
                     android:textSize="20sp"
-                    android:text="Santiago Moquillaza Enriquez"/>
+                    android:text="El rinconcito de Chio"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:maxLines="2"
+                    android:layout_marginTop="5dp"
 
-                    android:id="@+id/teacher_comment_course"
-                    android:layout_below="@id/teacher_comment_professor"
                     android:textSize="15sp"
-                    android:text="Analisis y diseño de Algoritmos para la programacion"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-
-                    android:id="@+id/teacher_comment_faculty"
-                    android:layout_below="@id/teacher_comment_course"
-                    android:textSize="12sp"
-                    android:text="Facultad de Ingenieria de Sistemas E Informatica"/>
+                    android:text="Cerca a : Facultad de Odontologia"
+                    android:id="@+id/place_comment_referencePlace"
+                    android:layout_below="@id/place_comment_name"/>
 
             </RelativeLayout>
         </RelativeLayout>
@@ -96,7 +87,6 @@
         android:layout_below="@id/comment_header"
         android:gravity="center_horizontal">
     </android.support.v7.widget.RecyclerView>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -110,9 +100,8 @@
         android:hint="@string/teacher_comment_hint"
         android:id="@+id/teacher_comment_post"
         android:layout_below="@id/teacher_comment_rating"/>
-
     <Button
-        android:id="@+id/teacher_comment_action"
+        android:id="@+id/places_comment_action"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

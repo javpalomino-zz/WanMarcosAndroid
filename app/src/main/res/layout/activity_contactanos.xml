@@ -54,26 +54,29 @@
                     android:id="@+id/activityheader"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
+
+                    android:layout_marginTop="20dp"
                     android:text="@string/pregunta_contactanos"
-                    android:textSize="12pt"
-                    android:gravity="center"
+                    android:textSize="25sp"
+
                 />
 
                 <TextView
                     android:id="@+id/activitysubheader"
                     android:layout_below="@id/activityheader"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:text="@string/respuesta_contactanos"
-                    android:textSize="12pt"
                     android:gravity="center"
+
                     android:lines="2"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/respuesta_contactanos"
+                    android:textSize="20sp"
                 />
 
                 <EditText

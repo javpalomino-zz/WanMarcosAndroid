@@ -14,7 +14,8 @@
         card_view:cardCornerRadius="0dp"
         card_view:cardElevation="5dp"
         card_view:cardPreventCornerOverlap="true"
-        card_view:cardUseCompatPadding="true">
+        card_view:cardUseCompatPadding="true"
+        >
 
         <ImageView
             android:id="@+id/teacher_course_card_background"
@@ -28,53 +29,60 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:background="#000000">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
-                android:id="@+id/profile_course_teacher_image"
                 android:layout_centerHorizontal="true"
+
+                android:id="@+id/profile_course_teacher_image"
+
                 />
             <!--style="@style/ProfileTeacherItemImage" -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:maxLines="2"
+
                 android:id="@+id/profile_course_teacher_name"
                 android:layout_below="@id/profile_course_teacher_image"
                 android:textColor="@android:color/white"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:text="Frank Escobedo Bailon"
-                android:gravity="center"
-                android:maxLines="2"/>
+                />
             <!--style="@style/ProfileTeacherItemName"-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:textSize="20dp"
-                android:text="Gestiacion"
                 android:gravity="center"
                 android:maxLines="2"
+
+                android:textSize="20sp"
+                android:text="Gestiacion"
                 android:id="@+id/profile_course_course_name"
+                android:textColor="@android:color/white"
                 android:layout_below="@id/profile_course_teacher_name"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:textSize="15dp"
-                android:text="Facultad de Ingee Informatica"
                 android:gravity="center"
                 android:maxLines="2"
+
+                android:textSize="15sp"
+                android:text="Facultad de Ingee Informatica"
                 android:id="@+id/profile_course_faculty_name"
+                android:textColor="@android:color/white"
                 android:layout_below="@id/profile_course_course_name"/>
 
             <RelativeLayout
@@ -87,20 +95,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profile_course_teacher_rating"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    android:text="4.5"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+
+                    android:id="@+id/profile_course_teacher_rating"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:text="4.5"
+                    />
                 <ImageView
                     android:id="@+id/teacher_profile_course_star_drawable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp"
-                    android:layout_toRightOf="@id/profile_course_teacher_rating"
+
+
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="20dp"
+                    android:layout_toRightOf="@id/profile_course_teacher_rating"
                     android:src="@mipmap/ic_grade_white_24dp"/>
             </RelativeLayout>
 
@@ -112,11 +125,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addComment"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/teacher_course_card_background"
         app:layout_anchorGravity="right|bottom|end"
         android:layout_marginRight="16dp"
         android:clickable="true"
-        android:src="@mipmap/ic_edit_white_24dp" />
+        android:src="@mipmap/ic_edit_white_24dp"
+
+        app:layout_anchor="@id/teacher_course_card_background"
+        />
 </android.support.design.widget.CoordinatorLayout>

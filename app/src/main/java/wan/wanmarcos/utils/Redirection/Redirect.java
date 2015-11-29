@@ -4,6 +4,7 @@ package wan.wanmarcos.utils.Redirection;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,7 +24,11 @@ import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.MainActivity;
+<<<<<<< HEAD
 import wan.wanmarcos.activities.PlaceActivity;
+=======
+import wan.wanmarcos.activities.ProfileActivity;
+>>>>>>> dev
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
@@ -104,12 +109,19 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.CONTACT_ACTIVITY)){
             return ContactanosActivity.class;
         }
+<<<<<<< HEAD
         else if(name.equals(Constants.PLACE_ACTIVITY)){
             return PlaceActivity.class;
         }
         else{
+=======
+        else if(name.equals(Constants.PROFILE_ACTIVITY)){
+            return ProfileActivity.class;
+        }else{
+>>>>>>> dev
             return Object.class;
         }
+
     }
     private Fragment getFragment(String name){
         if(name.equals(Constants.FRAGMENT_LIST_TEACHER)){

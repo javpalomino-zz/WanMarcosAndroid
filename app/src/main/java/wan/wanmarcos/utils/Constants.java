@@ -7,6 +7,7 @@ import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.PlaceActivity;
+import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
@@ -34,6 +35,7 @@ public class Constants {
     public static final String EVENT_ACTIVITY= EventsActivity.class.getName();
     public static final String CONTACT_ACTIVITY= ContactanosActivity.class.getName();
     public static final String PLACE_ACTIVITY= PlaceActivity.class.getName();
+    public static final String PROFILE_ACTIVITY= ProfileActivity.class.getName();
 
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
