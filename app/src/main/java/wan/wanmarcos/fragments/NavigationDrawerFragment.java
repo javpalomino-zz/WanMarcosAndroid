@@ -174,7 +174,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             case 2:break;
             case 3:
                 activityExecute=Constants.EVENT_ACTIVITY; break;
-            case 4: break;
+            case 4:
+                activityExecute=Constants.PROFILE_ACTIVITY;break;
             case 5:
                 activityExecute=Constants.CONTACT_ACTIVITY;break;
         }
