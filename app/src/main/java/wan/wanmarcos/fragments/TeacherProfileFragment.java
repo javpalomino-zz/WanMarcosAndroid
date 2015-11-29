@@ -34,7 +34,7 @@ import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 
-public class TeacherProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Course>{
+public class TeacherProfileFragment extends Fragment implements FragmentsMethods{
 
     private RecyclerView recyclerViewTeacherCourses;
     private CourseListAdapter courseListAdapter;
@@ -63,19 +63,6 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     public void addListeners() {
 
     }
-
-    @Override
-    public void itemClicked(View view, Course object) {
-        Storage.getSingelton().storage(object,this);
-        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_TEACHER_COURSE);
-    }
-
-    @Override
-    public void addClicked(String fragmentProfileTeacher) {
-
-    }
-
-
     public void getData(String data) {
         courseListAdapter.add(new Course("Fisica", (float) 4.0,"FISI"));
         courseListAdapter.add(new Course("Matematica", (float) 4.0,"FISI"));

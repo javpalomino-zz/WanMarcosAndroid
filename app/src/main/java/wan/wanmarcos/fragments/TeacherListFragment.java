@@ -37,7 +37,7 @@ import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.TeacherListAdapter;
 
 
-public class TeacherListFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Teacher>{
+public class TeacherListFragment extends Fragment implements FragmentsMethods{
     private SearchView searchView;
     private TeacherListAdapter teacherListAdapter;
     private RecyclerView recyclerViewTeachers;
@@ -124,18 +124,6 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods,It
         recyclerViewTeachers.setAdapter(teacherListAdapter);
         recyclerViewTeachers.setLayoutManager(layoutManagerRecyclerView);
     }
-
-    @Override
-    public void itemClicked(View view, Teacher object) {
-        Storage.getSingelton().storage(object,this);
-        Redirect.getSingelton().showFragment(this, Constants.TEACHER_CONTAINER, Constants.FRAGMENT_PROFILE_TEACHER);
-    }
-
-    @Override
-    public void addClicked(String fragmentProfileTeacher) {
-
-    }
-
 
     public void getTeacherData(String search_text){
         Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,Constants.CANTIDAD);

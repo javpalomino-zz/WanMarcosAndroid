@@ -40,16 +40,6 @@
         <activity
             android:name=".activities.ContactanosActivity"
             android:label="@string/title_contactanos"
-<<<<<<< HEAD
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
-        <activity
-            android:name=".activities.PlaceActivity"
-            android:label="@string/title_activity_place"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize"  >
-=======
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" >
         </activity>
@@ -57,7 +47,12 @@
             android:name=".activities.ProfileActivity"
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" >
->>>>>>> dev
+        </activity>
+        <activity
+            android:name=".activities.PlaceActivity"
+            android:label="@string/title_activity_place"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize"  >
         </activity>
     </application>
 

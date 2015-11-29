@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/editpref_faculty_list_faculty_name"
-        android:layout_toLeftOf="@id/remove_faculty_button"
+        android:layout_toLeftOf="@+id/remove_faculty_button"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -19,7 +19,7 @@ import wan.wanmarcos.utils.Constants;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlaceListFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Place>{
+public class PlaceListFragment extends Fragment implements FragmentsMethods{
     private boolean flagList;
     private boolean flagMap;
     private Button buttonMap;
@@ -92,16 +92,4 @@ public class PlaceListFragment extends Fragment implements FragmentsMethods,Item
             flagList=false;
         }
     }
-
-    @Override
-    public void itemClicked(View view, Place object) {
-
-    }
-
-    @Override
-    public void addClicked(String fragmentProfileTeacher) {
-
-    }
-    //TODO
-    //http://developer.android.com/intl/es/reference/android/support/v4/app/FragmentTabHost.html
 }
