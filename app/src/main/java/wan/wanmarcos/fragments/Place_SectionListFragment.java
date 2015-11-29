@@ -31,9 +31,7 @@ public class Place_SectionListFragment extends Fragment implements FragmentsMeth
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        placeListAdapter=new PlaceListAdapter(getActivity());
-        placeListAdapter.setListener(this);
-
+        placeListAdapter=new PlaceListAdapter(this);
     }
 
     @Override

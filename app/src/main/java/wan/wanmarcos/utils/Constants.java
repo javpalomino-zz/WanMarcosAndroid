@@ -14,7 +14,7 @@ import wan.wanmarcos.fragments.PlaceProfileFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
-import wan.wanmarcos.fragments.TeacherPopupComment;
+import wan.wanmarcos.fragments.PopupCommentFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
 
 /**
@@ -38,7 +38,7 @@ public class Constants {
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
-    public static final String FRAGMENT_TEACHER_COMMENT= TeacherPopupComment.class.getName();
+    public static final String FRAGMENT_TEACHER_COMMENT= PopupCommentFragment.class.getName();
 
     public static final String FRAGMENT_LIST_PLACE= Fragment.class.getName();
 
@@ -95,6 +95,7 @@ public class Constants {
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;
     public static final int PLACE_NEW_ITEM=R.layout.place_new_item;
+    public static final int EVENT_NEW_ITEM=R.layout.event_new_item;
     public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
     public static final int DETAIL_PLACE=R.layout.detail_place;
     //Generic things

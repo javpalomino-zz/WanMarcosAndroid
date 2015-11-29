@@ -20,7 +20,6 @@ public class  TeacherHolder extends CustomViewHolder<Teacher> {
     private TextView teacherCourses;
     private View vista;
     private int current;
-    private RecyclerViewClickListener itemListAdapter;
 
     public TeacherHolder(View itemView) {
         super(itemView);
@@ -37,11 +36,10 @@ public class  TeacherHolder extends CustomViewHolder<Teacher> {
         teacherName.setText(elements.getName());
         Picasso.with(vista.getContext()).load(elements.getImageUrl()).transform(new CircleTransform()).into(teacherImage);
     }
-    public void setListener(RecyclerViewClickListener itemClick){
-        itemListAdapter=itemClick;
-    }
+
+
     @Override
     public void onClick(View v) {
-        itemListAdapter.recyclerViewListClicked(v,current);
+        recyclerViewClickListener.recyclerViewListClicked(v,current);
     }
 }

@@ -31,7 +31,7 @@ public class PlaceProfileFragment extends Fragment implements FragmentsMethods{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        valuationPlaceListAdapter=new ValuationPlaceListAdapter(this,getActivity());
+        valuationPlaceListAdapter=new ValuationPlaceListAdapter(this);
         getData();
 
     }

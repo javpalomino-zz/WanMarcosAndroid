@@ -81,13 +81,13 @@ public class EventPageFragment extends Fragment{
         txtEnd.setText(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_FINISH_DATE));
         txtDescription.setText(Storage.getSingelton().getInfo(this, Storage.KEY_EVENT_DESCRIPTION));
         txtLink.setText(Storage.getSingelton().getInfo(this, Storage.KEY_EVENT_LINK));
-        Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-
+        //Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        /*
         if(bitmap!=null){
             Palette p = Palette.from(bitmap).generate();
             imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
-        }
-        getActivity().setTitle(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_NAME));
+        }*/
+        getActivity().setTitle("D");
     }
 
 

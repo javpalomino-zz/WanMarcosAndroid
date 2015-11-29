@@ -15,7 +15,7 @@ import wan.wanmarcos.views.widgets.CircleTransform;
 /**
  * Created by soporte on 28/11/15.
  */
-public class CourseHeaderHolder extends CustomViewHolder<Course>{
+public class CourseHeaderHolder extends CustomHeaderViewHolder{
     private TextView teacherName;
     private TextView ratingTeacher;
     private ImageView teacherCardBackground;
@@ -31,15 +31,10 @@ public class CourseHeaderHolder extends CustomViewHolder<Course>{
     }
 
     @Override
-    public void setElements(Course object) {
+    public void setElements() {
         Picasso.with(view.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
         teacherName.setText("Carlos");
         ratingTeacher.setText("4.0");
         Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(teacherImage);
-    }
-
-    @Override
-    public void onClick(View v) {
-        //TODO
     }
 }

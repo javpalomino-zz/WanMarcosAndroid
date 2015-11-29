@@ -10,7 +10,8 @@ import wan.wanmarcos.views.adapters.RecyclerViewClickListener;
  * Created by soporte on 28/11/15.
  */
 public abstract class CustomViewHolder<T> extends RecyclerView.ViewHolder implements View.OnClickListener{
-    private RecyclerViewClickListener recyclerViewClickListener;
+
+    protected RecyclerViewClickListener recyclerViewClickListener;
 
     public CustomViewHolder(View itemView) {
         super(itemView);

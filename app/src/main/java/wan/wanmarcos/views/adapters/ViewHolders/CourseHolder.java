@@ -20,7 +20,6 @@ public class CourseHolder extends CustomViewHolder<Course> {
     private View vista;
     private int current;
     private ImageView initialLetterImage;
-    private RecyclerViewClickListener itemListAdapter;
 
     public CourseHolder(View itemView) {
         super(itemView);
@@ -45,6 +44,6 @@ public class CourseHolder extends CustomViewHolder<Course> {
 
     @Override
     public void onClick(View v) {
-        itemListAdapter.recyclerViewListClicked(v,current);
+        recyclerViewClickListener.recyclerViewListClicked(v,current);
     }
 }
