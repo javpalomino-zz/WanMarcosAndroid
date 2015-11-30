@@ -48,6 +48,12 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".activities.PlaceActivity"
+            android:label="@string/title_activity_place"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize"  >
+        </activity>
     </application>
 
 </manifest>

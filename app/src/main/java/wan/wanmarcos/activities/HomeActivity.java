@@ -43,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+        Redirect.getSingelton().showFragment(this, Constants.HOME_CONTAINER, Constants.FRAGMENT_LIST_NEWS);
     }
 
     @Override

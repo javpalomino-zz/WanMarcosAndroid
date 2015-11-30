@@ -1,7 +1,6 @@
 package wan.wanmarcos.views.adapters;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -42,7 +41,7 @@ public class EventNewsPagerAdapter extends PagerAdapter{
     public View instantiateItem(ViewGroup container, final int position){
         LayoutInflater inflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-        final View view = inflater.inflate(R.layout.event_new_item, container, false);
+        final View view = inflater.inflate(R.layout.event_new_item1, container, false);
 
         ImageView eventImage = (ImageView)view.findViewById(R.id.event_new_image);
         final TextView eventTitle = (TextView)view.findViewById(R.id.event_new_title);

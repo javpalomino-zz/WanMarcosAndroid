@@ -22,6 +22,7 @@ import wan.wanmarcos.utils.Constants;
 /**
  * Created by carlos-pc on 09/10/15.
  */
+//TODO
 public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.RatingHolder>{
     private List<Rating>ratings= new ArrayList<>();
     private LayoutInflater layoutInflater;

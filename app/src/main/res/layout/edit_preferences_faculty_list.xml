@@ -3,6 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/editpref_faculty_list_faculty_name"
+        android:layout_toLeftOf="@+id/remove_faculty_button"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="20dp"/>
+
 
     <ImageView
         android:id="@+id/remove_faculty_button"
@@ -13,14 +23,5 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:clickable="true"/>
-    <TextView
-        android:id="@+id/editpref_faculty_list_faculty_name"
-        android:layout_toLeftOf="@id/remove_faculty_button"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="20dp"/>
 
 </RelativeLayout>
