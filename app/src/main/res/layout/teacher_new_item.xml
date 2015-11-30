@@ -43,33 +43,23 @@
                 <TextView
                     android:id="@+id/teacher_item_name"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:maxLines="2"
+                   style="@style/TeacherCardTitleBold"
 
-                    android:text="Nombre De Profesor"
-                    android:textSize="17sp"/>
+                    android:text="Nombre De Profesor"/>
 
                 <TextView
                     android:id="@+id/rating_number_label"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
+                    style="@style/CardRatingLabelMedium"
 
                     android:layout_below="@id/teacher_item_name"
-                    android:textSize="15sp"
                     android:text="4.5"/>
                 <ImageView
                     android:id="@+id/teacher_star_drawable"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-
+                    style="@style/StarCourseStyleMedium"
+                    android:layout_marginTop="2dp"
                     android:layout_below="@id/teacher_item_name"
                     android:layout_toRightOf="@id/rating_number_label"
-                    android:layout_marginTop="5dp"
                     android:src="@mipmap/ic_grade_black_24dp"/>
 
                 <TextView

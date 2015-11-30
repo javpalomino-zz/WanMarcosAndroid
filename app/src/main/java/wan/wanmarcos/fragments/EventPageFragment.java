@@ -83,9 +83,9 @@ public class EventPageFragment extends Fragment{
         txtLink.setText(Storage.getSingelton().getInfo(this, Storage.KEY_EVENT_LINK));
         Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
 
-        if(bitmap!=null){
+        if(bitmap!=null) {
             Palette p = Palette.from(bitmap).generate();
-            imageView.setBackgroundColor( p.getVibrantColor(0x0000000));
+            imageView.setBackgroundColor(p.getVibrantColor(0x0000000));
         }
         getActivity().setTitle(Storage.getSingelton().getInfo(this,Storage.KEY_EVENT_NAME));
     }

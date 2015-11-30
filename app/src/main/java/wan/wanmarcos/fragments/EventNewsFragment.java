@@ -1,7 +1,5 @@
 package wan.wanmarcos.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,7 +13,6 @@ import java.util.List;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Event;
-import wan.wanmarcos.views.adapters.EventNewsPagerAdapter;
 
 
 public class EventNewsFragment extends Fragment {
@@ -51,7 +48,7 @@ public class EventNewsFragment extends Fragment {
         events.add(new Event("ACM ICPC","http://asmarterplanet.com/studentsfor/files/2013/05/ACM-Logo1.jpg"));
         events.add(new Event("Game Jam","http://www.gamejam.es/images/ggj_logo.png"));
 
-        eventNewsPager.setAdapter(new EventNewsPagerAdapter((FragmentActivity)getActivity(),events,this));
+        //eventNewsPager.setAdapter(new EventNewsPagerAdapter((FragmentActivity)getActivity(),events,this));
     }
 
     private void addListeners(){
