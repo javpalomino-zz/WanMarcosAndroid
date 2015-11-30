@@ -37,7 +37,7 @@
     <string name="emailPlaceholder">username@domain.com</string>
     <string name="passwordPlaceholder">**************</string>
     <string name="eventTitlePlaceholder">Nombre de Evento</string>
-    <string name="eventDatePlaceholder">Enero 1 , 2015 00:00 hs.</string>
+    <string name="eventDatePlaceholder">Diciembre 31 , 1999 23:59 hs.</string>
     <string name="eventReferencePlaceText">Lugar de Referencia de Evento</string>
     <string name="eventDescriptionPlaceholer">Descripcion de Evento de Prueba</string>
     <string name="eventLinkPlaceholder">www.testpage.com</string>
@@ -64,7 +64,7 @@
     <string name="btnEnviarFeed">Enviar Feddback</string>
     <string name="btnDeNada">De Nada</string>
     <!--Titles-->
-    <string name="title_activity_home">Inicio</string>
+    <string name="title_activity_home">Noticias</string>
     <string name="title_activity_contactanos">ContactanosActivity</string>
 
     <!--Titles-->
@@ -92,6 +92,7 @@
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="title_activity_teacher">Profesores</string>
+    <string name="title_activity_teacher">Docentes</string>
+    <string name="title_activity_place">PlaceActivity</string>
     <string name="title_activity_profile">Perfil</string>
 </resources>

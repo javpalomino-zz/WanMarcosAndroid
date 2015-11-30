@@ -9,17 +9,15 @@ import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.views.adapters.ViewHolders.CustomHeaderViewHolder;
 import wan.wanmarcos.views.adapters.ViewHolders.CustomViewHolder;
-import wan.wanmarcos.views.adapters.ViewHolders.ValuationCourseHeaderHolder;
 import wan.wanmarcos.views.adapters.ViewHolders.ValuationHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.ValuationPlaceHeaderHolder;
 
 /**
- * Created by postgrado on 17/10/15.
+ * Created by soporte on 26/11/15.
  */
-
-public class ValuationListAdapter extends CustomDoubleAdapter<Valuation> implements PopUpFragment{
-
-    public ValuationListAdapter(Fragment fragment) {
-        super(fragment, Constants.VALUATION_NEW_ITEM, Constants.DETAIL_COURSE_TEACHER);
+public class ValuationPlaceListAdapter extends CustomDoubleAdapter<Valuation> implements PopUpFragment{
+    public ValuationPlaceListAdapter(Fragment fragment) {
+        super(fragment, Constants.VALUATION_NEW_ITEM, Constants.DETAIL_PLACE);
     }
 
     @Override
@@ -29,14 +27,14 @@ public class ValuationListAdapter extends CustomDoubleAdapter<Valuation> impleme
 
     @Override
     public CustomHeaderViewHolder getObjectHeader(View view) {
-        ValuationCourseHeaderHolder valuationCourseHeaderHolder=new ValuationCourseHeaderHolder(view);
-        valuationCourseHeaderHolder.setListener(this);
-        return valuationCourseHeaderHolder;
+        ValuationPlaceHeaderHolder valuationPlaceHeaderHolder=new ValuationPlaceHeaderHolder(view);
+        valuationPlaceHeaderHolder.setListener(this);
+        return valuationPlaceHeaderHolder;
     }
 
     @Override
     public int getContainerID() {
-        return Constants.TEACHER_CONTAINER;
+        return Constants.PLACE_CONTAINER;
     }
 
     @Override

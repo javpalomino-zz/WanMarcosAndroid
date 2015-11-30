@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.app.Fragment;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,27 +22,37 @@ import java.util.List;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.views.adapters.ViewHolders.CustomViewHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.EventHolder;
 
 /**
  * Created by Francisco on 26/10/2015.
  */
-public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.EventListViewHolder>{
-    private LayoutInflater inflater;
-    private List<Event> data = new ArrayList<>();
-    private Context context;
-    private ClickListener clickListener;
 
-    public EventListAdapter(Context context){
-        inflater = LayoutInflater.from(context);
-        this.context=context;
+
+public class EventListAdapter extends CustomSimpleListAdapter<Event>{
+    public EventListAdapter(Fragment fragment) {
+        super(fragment, Constants.EVENT_NEW_ITEM);
     }
 
     @Override
-    public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =  inflater.inflate(R.layout.event_list_item, parent, false);
-        EventListViewHolder holder = new EventListViewHolder(view);
-        return holder;
+    public CustomViewHolder getObject(View view) {
+        return new EventHolder(view);
     }
+
+    @Override
+    public int getContainerID() {
+        return Constants.EVENT_CONTAINER;
+    }
+
+    @Override
+    public String getFragmentName() {
+        return Constants.FRAGMENT_DETAIL_EVENT;
+    }
+
+    /*
+
 
     @Override
     public void onBindViewHolder(EventListViewHolder holder, int position) {
@@ -60,26 +71,7 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
         holder.dateAndTime.setText(startDateAndTime);
     }
 
-    public void setClickListener(ClickListener clickListener){
-
-        this.clickListener=clickListener;
-    }
-
-    @Override
-    public int getItemCount() {
-
-        return getData().size();
-    }
-
-    public List<Event> getData() {
-        return data;
-    }
-
-    public void setData(List<Event> data) {
-        this.data = data;
-    }
-
-    class EventListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+       class EventListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView title;
         TextView dateAndTime;
@@ -88,10 +80,7 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
         public EventListViewHolder(View itemView) {
 
             super(itemView);
-            itemView.setOnClickListener(this);
-            title = (TextView) itemView.findViewById(R.id.eventListTitle);
-            img = (ImageView) itemView.findViewById(R.id.eventListImage);
-            dateAndTime =(TextView) itemView.findViewById(R.id.eventListDateAndTime);
+
         }
 
 
@@ -133,5 +122,5 @@ public class EventListAdapter extends  RecyclerView.Adapter<EventListAdapter.Eve
     }
 
 
-
+    */
 }

@@ -34,15 +34,10 @@ import wan.wanmarcos.views.adapters.RatingListAdapter;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 
-public class TeacherProfileFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Course>{
+public class TeacherProfileFragment extends Fragment implements FragmentsMethods{
 
-    private TextView teacherName;
-    private ImageView teacherImage;
-    private RecyclerView recyclerviewTeacherRatings;
     private RecyclerView recyclerViewTeacherCourses;
-    private RatingListAdapter ratingListAdapter;
     private CourseListAdapter courseListAdapter;
-    private ImageView teacherCardBackground;
 
     public TeacherProfileFragment(){
 
@@ -58,8 +53,8 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     @Override
     public void setUpElements(View view) {
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
-        courseListAdapter=new CourseListAdapter(this,getActivity(),getData(""));
-        courseListAdapter.setListener(this);
+        courseListAdapter=new CourseListAdapter(this);
+        getData("d");
         recyclerViewTeacherCourses.setAdapter(courseListAdapter);
         recyclerViewTeacherCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -68,25 +63,10 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     public void addListeners() {
 
     }
-
-    @Override
-    public void itemClicked(View view, Course object) {
-        Storage.getSingelton().storage(object,this);
-        Redirect.getSingelton().showFragment(this,Constants.TEACHER_CONTAINER,Constants.FRAGMENT_TEACHER_COURSE);
-    }
-
-    @Override
-    public void addClicked(String fragmentProfileTeacher) {
-
-    }
-
-
-    public List<Course> getData(String data) {
-        List<Course> courses=new ArrayList<>();
-        courses.add(new Course("Matematica ", (float) 4.0,"FISI"));
-        courses.add(new Course("Fisica", (float) 4.0,"FISI"));
-        courses.add(new Course("Matematica", (float) 4.0,"FISI"));
-        courses.add(new Course("Matematica", (float) 4.0,"FISI"));
-        return courses;
+    public void getData(String data) {
+        courseListAdapter.add(new Course("Fisica", (float) 4.0,"FISI"));
+        courseListAdapter.add(new Course("Matematica", (float) 4.0,"FISI"));
+        courseListAdapter.add(new Course("holi", (float) 4.0,"FISI"));
+        courseListAdapter.add(new Course("holi", (float) 4.0,"FISI"));
     }
 }

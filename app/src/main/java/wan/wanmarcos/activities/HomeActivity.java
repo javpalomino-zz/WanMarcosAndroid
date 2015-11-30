@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.R;
 
-import wan.wanmarcos.fragments.EventNewsFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
@@ -43,12 +42,13 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+        Redirect.getSingelton().showFragment(this, Constants.HOME_CONTAINER, Constants.FRAGMENT_LIST_NEWS);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+       // getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 

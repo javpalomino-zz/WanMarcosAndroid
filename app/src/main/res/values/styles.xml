@@ -251,7 +251,6 @@
     <style name="EventListImage">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/evetListItemImageHeight</item>
-        <item name="android:background">@android:color/black</item>
     </style>
 
     <style name="EventTitleBig">

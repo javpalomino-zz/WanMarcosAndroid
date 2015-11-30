@@ -86,8 +86,10 @@
 
                 style="@style/BottomRightFAB"
 
+
                 android:src="@mipmap/ic_send_white_48dp"
-                app:layout_anchorGravity="bottom|right|end" />
+                android:layout_gravity="bottom|right|end"
+                app:layout_anchorGravity="bottom|right|end"/>
         </android.support.design.widget.CoordinatorLayout>
 
     </RelativeLayout>

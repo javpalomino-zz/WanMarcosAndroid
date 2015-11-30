@@ -3,8 +3,14 @@ package wan.wanmarcos.models;
 import android.os.Parcelable;
 import android.os.Parcel;
 
-import java.security.PublicKey;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+
+import wan.wanmarcos.utils.DateAndTimeDealer;
 
 /**
  * Created by javier on 27/09/15.
@@ -23,43 +29,100 @@ public class Event implements Parcelable{
     private String imgUrl;
     private String referencePlace;
     private Calendar startDateTime;
+    private String startDateTimeString;
     private Calendar finishDateTime;
+    private String finishDateTimeString;
     private String description;
     private String eventLink;
+    private String scheduleLink;
     private int iconId;
     private int eventId;
 
     public Event() {
 
     }
+    public Event(JsonObject event){
+            if(!event.get("id").isJsonNull()){
+                setEventId(event.get("id").getAsInt());
+            }else{
+                setEventId(-1);
+            }
 
+            if(!event.get("title").isJsonNull()){
+                setName(event.get("title").getAsString());
+            }else{
+                setName("No indicado");
+            }
+            if(!event.get("starts_at").isJsonNull()){
+                setStartDateTimeString(unixToDate(event.get("starts_at").getAsLong()));
+            }else{
+                setStartDateTimeString("No indicado");
+            }
+
+            if(!event.get("starts_at").isJsonNull()){
+                setFinishDateTimeString(unixToDate(event.get("ends_at").getAsLong()));
+            }else{
+                setFinishDateTimeString("No indicado");
+            }
+
+            if(!event.get("image").isJsonNull()){
+                setImgUrl(event.get("image").getAsString());
+            }else{
+                setImgUrl("");
+            }
+
+            if(!event.get("description").isJsonNull()){
+                setDescription(event.get("description").getAsString());
+            }else{
+                setDescription("No indicado");
+            }
+
+            if(!event.get("website").isJsonNull()){
+                setEventLink(event.get("website").getAsString());
+            }else{
+                setEventLink("No indicado");
+            }
+
+            if(!event.get("place").isJsonNull()){
+                setReferencePlace(event.get("place").getAsString());
+            }else{
+                setReferencePlace("No indico");
+            }
+
+            if(!event.get("information").isJsonNull()){
+                setScheduleLink(event.get("information").getAsString());
+            }else{
+                setScheduleLink("");
+            }
+
+    }
     public Event(String name, String imgUrl) {
-        this.name = name;
-        this.imgUrl = imgUrl;
+        this.setName(name);
+        this.setImgUrl(imgUrl);
     }
 
     public Event(String name, Calendar startDateTime, int iconId) {
-        this.name = name;
-        this.startDateTime=startDateTime;
+        this.setName(name);
+        this.setStartDateTime(startDateTime);
         this.iconId = iconId;
     }
 
     public Event(String name, String referencePlace, Calendar startDateTime, Calendar finishDateTime,String description, int iconId) {
-        this.name = name;
-        this.referencePlace = referencePlace;
-        this.startDateTime=startDateTime;
-        this.finishDateTime=finishDateTime;
-        this.description = description;
+        this.setName(name);
+        this.setReferencePlace(referencePlace);
+        this.setStartDateTime(startDateTime);
+        this.setFinishDateTime(finishDateTime);
+        this.setDescription(description);
         this.iconId = iconId;
     }
 
     public Event(String name, String referencePlace, Calendar startDateTime, Calendar finishDateTime, String description, String imgUrl) {
-        this.name = name;
-        this.referencePlace = referencePlace;
-        this.startDateTime=startDateTime;
-        this.finishDateTime=finishDateTime;
-        this.description = description;
-        this.imgUrl = imgUrl;
+        this.setName(name);
+        this.setReferencePlace(referencePlace);
+        this.setStartDateTime(startDateTime);
+        this.setFinishDateTime(finishDateTime);
+        this.setDescription(description);
+        this.setImgUrl(imgUrl);
     }
 
     public Event(Parcel in) {
@@ -73,51 +136,51 @@ public class Event implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(imgUrl);
-        dest.writeString(referencePlace);
-        if(startDateTime!=null)
+        dest.writeString(getName());
+        dest.writeString(getImgUrl());
+        dest.writeString(getReferencePlace());
+        if(getStartDateTime() !=null)
         {
-            dest.writeInt(startDateTime.get(Calendar.YEAR));
-            dest.writeInt(startDateTime.get(Calendar.MONTH));
-            dest.writeInt(startDateTime.get(Calendar.DAY_OF_MONTH));
-            dest.writeInt(startDateTime.get(Calendar.HOUR_OF_DAY));
-            dest.writeInt(startDateTime.get(Calendar.MINUTE));
-            dest.writeInt(startDateTime.get(Calendar.SECOND));
+            dest.writeInt(getStartDateTime().get(Calendar.YEAR));
+            dest.writeInt(getStartDateTime().get(Calendar.MONTH));
+            dest.writeInt(getStartDateTime().get(Calendar.DAY_OF_MONTH));
+            dest.writeInt(getStartDateTime().get(Calendar.HOUR_OF_DAY));
+            dest.writeInt(getStartDateTime().get(Calendar.MINUTE));
+            dest.writeInt(getStartDateTime().get(Calendar.SECOND));
         }
         else
         {
             writeDefaultDateTime(dest);
         }
-        if(finishDateTime!=null)
+        if(getFinishDateTime() !=null)
         {
-            dest.writeInt(finishDateTime.get(Calendar.YEAR));
-            dest.writeInt(finishDateTime.get(Calendar.MONTH));
-            dest.writeInt(finishDateTime.get(Calendar.DAY_OF_MONTH));
-            dest.writeInt(finishDateTime.get(Calendar.HOUR_OF_DAY));
-            dest.writeInt(finishDateTime.get(Calendar.MINUTE));
-            dest.writeInt(finishDateTime.get(Calendar.SECOND));
+            dest.writeInt(getFinishDateTime().get(Calendar.YEAR));
+            dest.writeInt(getFinishDateTime().get(Calendar.MONTH));
+            dest.writeInt(getFinishDateTime().get(Calendar.DAY_OF_MONTH));
+            dest.writeInt(getFinishDateTime().get(Calendar.HOUR_OF_DAY));
+            dest.writeInt(getFinishDateTime().get(Calendar.MINUTE));
+            dest.writeInt(getFinishDateTime().get(Calendar.SECOND));
         }
         else
         {
             writeDefaultDateTime(dest);
         }
-        dest.writeString(description);
+        dest.writeString(getDescription());
         dest.writeInt(iconId);
-        dest.writeString(eventLink);
-        dest.writeInt(eventId);
+        dest.writeString(getEventLink());
+        dest.writeInt(getEventId());
     }
 
     private void readFromParcel(Parcel in) {
-        name = in.readString();
-        imgUrl=in.readString();
-        referencePlace=in.readString();
-        startDateTime.set(in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt());
-        finishDateTime.set(in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt());
-        description=in.readString();
+        setName(in.readString());
+        setImgUrl(in.readString());
+        setReferencePlace(in.readString());
+        getStartDateTime().set(in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt());
+        getFinishDateTime().set(in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readInt());
+        setDescription(in.readString());
         iconId=in.readInt();
-        eventLink=in.readString();
-        eventId=in.readInt();
+        setEventLink(in.readString());
+        setEventId(in.readInt());
     }
 
     public static final Parcelable.Creator CREATOR =
@@ -157,6 +220,11 @@ public class Event implements Parcelable{
         return str;
     }
 
+    private String unixToDate(long date){
+        DateAndTimeDealer dateAndTimeDealer =  new DateAndTimeDealer();
+        String convertedDate = CalendarToString(dateAndTimeDealer.getInstance().turnMilisIntoCalendar(date));
+        return convertedDate;
+    }
 
     public String getName() {
         return name;
@@ -233,5 +301,29 @@ public class Event implements Parcelable{
 
     public void setEventId(int eventId) {
         this.eventId = eventId;
+    }
+
+    public String getStartDateTimeString() {
+        return startDateTimeString;
+    }
+
+    public void setStartDateTimeString(String startDateTimeString) {
+        this.startDateTimeString = startDateTimeString;
+    }
+
+    public String getFinishDateTimeString() {
+        return finishDateTimeString;
+    }
+
+    public void setFinishDateTimeString(String finishDateTimeString) {
+        this.finishDateTimeString = finishDateTimeString;
+    }
+
+    public String getScheduleLink() {
+        return scheduleLink;
+    }
+
+    public void setScheduleLink(String scheduleLink) {
+        this.scheduleLink = scheduleLink;
     }
 }
