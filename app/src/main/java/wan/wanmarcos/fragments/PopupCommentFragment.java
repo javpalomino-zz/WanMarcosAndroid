@@ -1,5 +1,6 @@
 package wan.wanmarcos.fragments;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,9 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.Click;
@@ -19,6 +24,7 @@ import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.PopUpFragment;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * Created by soporte on 19/11/15.
@@ -30,6 +36,8 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
     private RecyclerView recyclerView;
     private RatingListAdapter ratingListAdapter;
     private EditText comment;
+    private ImageView backgroundHeader;
+    private ImageView imageIcon;
     private Button button;
     private PopUpFragment onClickListener;
     public PopupCommentFragment() {
@@ -47,6 +55,10 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
 
     @Override
     public void setUpElements(View view) {
+        backgroundHeader=(ImageView)view.findViewById(R.id.comment_background_header);
+        Picasso.with(getActivity()).load(R.mipmap.testimage).fit().centerCrop().into(backgroundHeader);
+        imageIcon=(ImageView)view.findViewById(R.id.header_image_icon);
+        Picasso.with(getActivity()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(imageIcon);
         teacher=(TextView)view.findViewById(R.id.teacher_comment_professor);
         teacher.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
         course=(TextView)view.findViewById(R.id.teacher_comment_course);
@@ -60,6 +72,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
         recyclerView.setAdapter(ratingListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getRatingData();
+        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     }
     public void getRatingData(){
 
