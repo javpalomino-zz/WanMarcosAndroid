@@ -70,17 +70,13 @@
 
     <TextView
         android:id="@+id/profile_courses_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_below="@id/card_view_teacher_profile"
-        android:layout_margin="5dp"
-        android:textSize="15sp"
+       style="@style/DividerLabelMedium"
         android:text="Cursos Que Dicta"/>
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/eventDetailDividerColor"
+        style="@style/DividerLineMedium"
+
         android:layout_toRightOf="@id/profile_courses_label"
         android:layout_below="@id/card_view_teacher_profile"
-        android:layout_marginTop="15dp"/>
+        />
 </RelativeLayout>

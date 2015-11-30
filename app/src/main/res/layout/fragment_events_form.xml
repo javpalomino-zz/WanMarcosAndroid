@@ -20,27 +20,16 @@
                 <TextView
                     android:id="@+id/eventFormHeader"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:textStyle="bold"
-                    android:gravity="center"
+                    style="@style/AddFacultyPopUpHeader"
 
                     android:text="@string/lblHeaderFormEvent"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
                     />
 
                 <EditText
                     android:id="@+id/eventFormName"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/AutoCompleteTextViewForm"
 
                     android:hint="@string/eventNameFormPlaceholder"
                     android:layout_below="@+id/eventFormHeader" />
@@ -48,11 +37,7 @@
                 <AutoCompleteTextView
                     android:id="@+id/eventFormPlace"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/AutoCompleteTextViewForm"
 
                     android:hint="@string/eventPlaceFormPlaceholder"
                     android:layout_below="@+id/eventFormName" />
@@ -60,11 +45,7 @@
                 <AutoCompleteTextView
                     android:id="@+id/eventFormCategory"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/AutoCompleteTextViewForm"
 
                     android:hint="@string/eventCategoryFormPlaceholder"
                     android:layout_below="@+id/eventFormPlace" />
@@ -72,11 +53,7 @@
                 <Button
                     android:id="@+id/eventFormStartDateButton"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/EventSubmitFormFieldButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"
 
@@ -85,11 +62,7 @@
                 <Button
                     android:id="@+id/eventFormStartTimeButton"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/EventSubmitFormFieldButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"
 
@@ -98,11 +71,7 @@
                 <Button
                     android:id="@+id/eventFormEndDateButton"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/EventSubmitFormFieldButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"
 
@@ -111,11 +80,7 @@
                 <Button
                     android:id="@+id/eventFormEndTimeButton"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/EventSubmitFormFieldButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"
 
@@ -127,11 +92,7 @@
                 <EditText
                     android:id="@+id/eventFormLink"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/AutoCompleteTextViewForm"
 
                     android:hint="@string/eventLinkFormPlaceholder"
                     android:layout_below="@+id/eventFormEndTimeButton" />
@@ -139,11 +100,7 @@
                 <Button
                     android:id="@+id/eventFormImage"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/EventSubmitFormFieldButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"
 
@@ -153,11 +110,7 @@
                 <Button
                     android:id="@+id/eventFormSchedule"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    style="@style/EventSubmitFormFieldButton"
                     android:background="@color/accentNewsColor"
                     android:textColor="@color/buttonTextNewsColor"
 
@@ -166,14 +119,8 @@
 
                 <EditText
                     android:id="@+id/eventFormDescription"
+                    style="@style/BigTextInputSubmitForm"
 
-                    android:layout_width="fill_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="top"
 
                     android:hint="@string/eventDescriptionFormPlaceholder"
                     android:layout_below="@+id/eventFormSchedule" />
@@ -184,12 +131,9 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/sendFab"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
+        style="@style/BottomRightFAB"
+        android:layout_gravity="bottom|right|end"
         app:layout_anchorGravity="bottom|right|end"
-        android:layout_margin="16dp"
-        android:clickable="true"
 
         android:src="@mipmap/ic_send_white_48dp" />
 
