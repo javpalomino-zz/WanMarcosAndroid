@@ -12,6 +12,7 @@ import android.view.View;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+        Redirect.getSingelton().showFragment(this, Constants.PROFILE_CONTAINER,Constants.FRAGMENT_PROFILE);
     }
 
     @Override

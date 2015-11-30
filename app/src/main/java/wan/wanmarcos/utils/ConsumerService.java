@@ -19,7 +19,6 @@ import retrofit.http.Query;
  */
 public interface ConsumerService {
 
-
     @GET(Constants.TEACHERS)
     Call<JsonElement> getTeachers(@Header("Authorization") String token,
                 @Query("search_text") String search_text,
@@ -44,7 +43,7 @@ public interface ConsumerService {
                 @Field("platform") String platform);
 
     @GET(Constants.USER_INFO)
-    void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);
+    Call<JsonElement> me(@Header("Authorization") String authorization);
 
     @GET(Constants.EVENTS)
     Call<JsonElement> getEvents(@Header("Authorization") String authorization ,

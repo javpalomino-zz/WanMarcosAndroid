@@ -13,6 +13,7 @@ import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.HomeListNewsFragment;
 import wan.wanmarcos.fragments.PlaceProfileFragment;
+import wan.wanmarcos.fragments.ProfileUserFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
@@ -27,6 +28,7 @@ public class Constants {
     public static final String EMPTY_STRING="";
 
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
+    public static final int PROFILE_CONTAINER=R.id.home_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
     public static final int PLACE_CONTAINER=R.id.places_fragment;
     public static final int HOME_CONTAINER = R.id.home_fragment;
@@ -43,6 +45,7 @@ public class Constants {
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
     public static final String FRAGMENT_LIST_NEWS =HomeListNewsFragment.class.getName();
+    public static final String FRAGMENT_PROFILE=ProfileUserFragment.class.getName();
 
     public static final String FRAGMENT_LIST_PLACE= Fragment.class.getName();
 
@@ -90,6 +93,7 @@ public class Constants {
     public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place_list;
     public static final int FRAGMENT_LIST_NEWS_LAYOUT = R.layout.fragment_home_list;
     public static final int FRAGMENT_PROFILE_PLACE_LAYOUT=R.layout.fragment_place_profile;
+    public static final int FRAGMENT_PROFILE_LAYOUT=R.layout.fragment_user_profile;
     //Sections inside fragment
 
     public static final int FRAGMENT_SECTION_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;

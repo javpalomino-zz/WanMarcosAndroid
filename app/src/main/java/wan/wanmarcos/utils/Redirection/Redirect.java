@@ -34,6 +34,7 @@ import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.fragments.PlaceListFragment;
 import wan.wanmarcos.fragments.PlaceProfileFragment;
 import wan.wanmarcos.fragments.Place_SectionListFragment;
+import wan.wanmarcos.fragments.ProfileUserFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
@@ -145,6 +146,9 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.FRAGMENT_LIST_NEWS)){
             return new HomeListNewsFragment();
+        }
+        else if(name.equals(Constants.FRAGMENT_PROFILE)){
+            return new ProfileUserFragment();
         }
         else{
             return new Fragment();
