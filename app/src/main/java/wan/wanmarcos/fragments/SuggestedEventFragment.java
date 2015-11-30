@@ -20,10 +20,17 @@ import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.RequestBody;
 
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import okio.BufferedSink;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -59,9 +66,10 @@ public class SuggestedEventFragment extends Fragment {
     private Button btnImage;
     private Button btnSchedule;
     private EditText txtDescription;
-    private Button btnSubmit;
     private static final int PICKFILE_RESULT_CODE=100;
     private static final int PICKIMAGE_RESULT_CODE=200;
+    private Uri imageUri;
+    private Uri scheduleUri;
     FloatingActionButton sendFAB;
 
     private Event eventToPost;
@@ -256,15 +264,18 @@ public class SuggestedEventFragment extends Fragment {
         switch(requestCode)
         {
             case PICKFILE_RESULT_CODE:
-                setNameOfFileinButton(data.getData(), btnSchedule);
+                scheduleUri = data.getData();
+                setNameOfFileInButton(data.getData(), btnSchedule);
                 break;
             case PICKIMAGE_RESULT_CODE:
-                setNameOfFileinButton(data.getData(),btnImage);
+                imageUri = data.getData();
+                setNameOfFileInButton(data.getData(),btnImage);
                 break;
         }
     }
 
-    private void setNameOfFileinButton(Uri uri,Button button){
+    private void setNameOfFileInButton(Uri uri,Button button){
+
         Cursor returnCursor = getActivity().getContentResolver().query(uri,null,null,null,null);
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
@@ -296,30 +307,48 @@ public class SuggestedEventFragment extends Fragment {
     }
 
     private void postEvent() {
-        Call<JsonElement> sugEvent = restClient.getConsumerService().suggetEvent(eventToPost.getName(), eventToPost.getDescription(),
-                dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getStartDateTime()),
-                dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getFinishDateTime()),
-                eventToPost.getEventLink());
-        sugEvent.enqueue(new Callback<JsonElement>() {
-            @Override
-            public void onResponse(Response<JsonElement> response) {
-                JsonObject responseBody = response.body().getAsJsonObject();
-                if (responseBody.has("name")) {
-                    String name = responseBody.get("name").getAsString();
-                    Toast.makeText(getActivity(), "Tu Evento : "+name+" ha sido sugerido correctamente.", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (responseBody.has("error")) {
-                        wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
-                        Toast.makeText(getActivity(), "Error : "+error.toString(), Toast.LENGTH_SHORT).show();
+        try {
+            File file = new File(imageUri.getPath());
+            RequestBody image = RequestBody.create(MediaType.parse("image/*"), file);
+            Call<JsonElement> sugEvent = restClient.getConsumerService().suggestEvent(
+                    eventToPost.getName() ,
+                    eventToPost.getDescription(),
+                    dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getStartDateTime()),
+                    dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getFinishDateTime()),
+                    eventToPost.getEventLink().toString(),
+                    image);
+            sugEvent.enqueue(new Callback<JsonElement>() {
+                @Override
+                public void onResponse(Response<JsonElement> response) {
+                    if (response.isSuccess()) {
+                        JsonObject responseBody = response.body().getAsJsonObject();
+                        if (responseBody.has("name")) {
+                            String name = responseBody.get("name").getAsString();
+                            Toast.makeText(getActivity(), "Tu Evento : " + name + " ha sido sugerido correctamente.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (responseBody.has("error")) {
+                                wan.wanmarcos.models.Error error = builder.buildError(responseBody.get("error").getAsJsonObject());
+                                Toast.makeText(getActivity(), "Error : " + error.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    } else {
+                        try {
+                            Toast.makeText(getActivity(), response.errorBody().string(), Toast.LENGTH_LONG).show();
+                        }catch (Throwable e){
+                            Toast.makeText(getActivity(),"el string de mierda", Toast.LENGTH_LONG).show();
+                        }
                     }
+
                 }
-            }
 
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG).show();
+                }
+            });
+        }catch (Throwable e){
+            Toast.makeText(getActivity(),e.toString(),Toast.LENGTH_LONG).show();
+        }
     }
 
 

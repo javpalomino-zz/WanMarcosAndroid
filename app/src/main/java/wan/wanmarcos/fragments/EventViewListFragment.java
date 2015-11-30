@@ -144,13 +144,11 @@ public class EventViewListFragment extends Fragment {
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                     userScrolled = true;
 
                 }
-
             }
 
             @Override

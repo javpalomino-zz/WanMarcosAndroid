@@ -1,6 +1,7 @@
 package wan.wanmarcos.utils;
 
 import com.google.gson.JsonElement;
+import com.squareup.okhttp.RequestBody;
 
 import java.util.Calendar;
 
@@ -10,7 +11,9 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
@@ -54,13 +57,14 @@ public interface ConsumerService {
     @GET(Constants.EVENTS_DETAIL)
     Call<JsonElement> getEventDetail(@Header("Authorization") String authorization ,
                                      @Path("id") int eventId);
-    @FormUrlEncoded
+    @Multipart
     @POST(Constants.EVENTS)
-    Call<JsonElement> suggetEvent(@Field("name") String event_name,
-                                  @Field("description") String event_description,
-                                  @Field("starts_at")long event_startCal,
-                                  @Field("ends_at")long event_endCal,
-                                  @Field("website") String event_link);
+    Call<JsonElement> suggestEvent(@Part("name") String event_name,
+                                   @Part("description") String event_description,
+                                   @Part("starts_at")long event_startCal,
+                                   @Part("ends_at")long event_endCal,
+                                   @Part("website")String event_link,
+                                   @Part("image\"; filename=\"1\" ")RequestBody image);
     @FormUrlEncoded
     @POST(Constants.SUGGESTIONS)
     Call<JsonElement> suggestions(@Header("Authorization") String authorization,@Field("message") String message);
