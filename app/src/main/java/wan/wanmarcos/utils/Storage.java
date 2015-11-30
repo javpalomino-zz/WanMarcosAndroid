@@ -24,6 +24,7 @@ public class Storage {
     public static String KEY_COURSE_NAME="coursename";
     public static String KEY_TEACHER_IMAGE="teacherimage";
     public static String KEY_FACULTY_NAME="facultyname";
+    public static String KEY_EVENT_ID="eventid";
     public static String KEY_EVENT_IMAGE="eventimage";
     public static String KEY_EVENT_DESCRIPTION="eventdescription";
     public static String KEY_EVENT_LINK="eventlink";
@@ -59,12 +60,7 @@ public class Storage {
     }
     private void storageEvent(Object event,SharedPreferences mySharedPreferences){
         Event eventItem=(Event)event;
-        saveData(eventItem.getReferencePlace(), KEY_EVENT_REFERENCE, mySharedPreferences);
-        saveData(eventItem.getImgUrl(),KEY_EVENT_IMAGE,mySharedPreferences);
-        saveData(eventItem.getDescription(),KEY_EVENT_DESCRIPTION,mySharedPreferences);
-        saveData(eventItem.getEventLink(),KEY_EVENT_LINK,mySharedPreferences);
-        saveData(eventItem.CalendarToString(eventItem.getStartDateTime()),KEY_EVENT_START_DATE,mySharedPreferences);
-        saveData(eventItem.CalendarToString(eventItem.getFinishDateTime()),KEY_EVENT_FINISH_DATE,mySharedPreferences);
+        saveData(Integer.toString(eventItem.getEventId()), KEY_EVENT_ID, mySharedPreferences);
     }
     private void storageCourse(Object course,SharedPreferences mySharedPreferences){
         Course courseItem=(Course)course;
