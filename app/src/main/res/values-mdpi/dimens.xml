@@ -5,4 +5,12 @@
     <dimen name="image_slide_height">200dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="navDrawerImageMargin_top">48dp</dimen>
+    <dimen name="applogoMarginTop">30dp</dimen>
+    <dimen name="loginButtonMarginBottom">20dp</dimen>
+    <dimen name="forgotPasswordLinkMarginBottom">10dp</dimen>
+    <dimen name="verticalViewHeaderVerticalMargin">10dp</dimen>
+    <dimen name="screenWideInputGatewayHeight">45dp</dimen>
+    <dimen name="screenWideInputGatewayTextSize">17sp</dimen>
+    <dimen name="eventPageHeight">190dp</dimen>
+    <dimen name="evetListItemImageHeight">200dp</dimen>
 </resources>

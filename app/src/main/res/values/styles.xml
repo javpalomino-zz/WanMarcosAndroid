@@ -250,7 +250,7 @@
 
     <style name="EventListImage">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_height">@dimen/evetListItemImageHeight</item>
         <item name="android:background">@android:color/black</item>
     </style>
 
@@ -299,7 +299,7 @@
 
     <style name="EventPageImage">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">230dp</item>
+        <item name="android:layout_height">@dimen/eventPageHeight</item>
         <item name="android:layout_marginBottom">15dp</item>
     </style>
 
@@ -351,7 +351,7 @@
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:src">@mipmap/wanmarcosblack</item>
-        <item name="android:layout_marginTop">80dp</item>
+       <!-- <item name="android:layout_marginTop">@dimen/applogoMarginTop</item>-->
     </style>
 
     <style name="GatewayViewHeader">
@@ -360,8 +360,8 @@
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
-        <item name="android:layout_marginBottom">20dp</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">@dimen/verticalViewHeaderVerticalMargin</item>
+        <item name="android:layout_marginTop">@dimen/verticalViewHeaderVerticalMargin</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/loginLinkTextColorLight</item>
@@ -374,6 +374,14 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    <style name="ScreenWideButtomGatewayLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_marginBottom">@dimen/loginButtonMarginBottom</item>
+    </style>
 
     <style name="ScrenWideInpuText">
         <item name="android:layout_width">match_parent</item>
@@ -381,6 +389,14 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:drawablePadding">10dp</item>
+    </style>
+    <style name="ScrenWideInpuTextGateway">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/screenWideInputGatewayHeight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textSize">@dimen/screenWideInputGatewayTextSize</item>
     </style>
 
     <style name="PopUpCommentHeaderImage">
