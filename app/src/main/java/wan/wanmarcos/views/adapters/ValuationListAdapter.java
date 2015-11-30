@@ -1,170 +1,59 @@
 package wan.wanmarcos.views.adapters;
 
-import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
-import com.squareup.picasso.Picasso;
-
-import java.util.Collections;
-import java.util.List;
-
-import wan.wanmarcos.R;
-import wan.wanmarcos.managers.ItemAdapterListener;
-import wan.wanmarcos.managers.ViewHolderSetters;
-import wan.wanmarcos.models.Rating;
+import wan.wanmarcos.fragments.PopupCommentFragment;
 import wan.wanmarcos.models.Valuation;
 import wan.wanmarcos.utils.Constants;
-import wan.wanmarcos.utils.Redirection.Redirect;
-import wan.wanmarcos.utils.Storage;
-import wan.wanmarcos.views.widgets.CircleTransform;
+import wan.wanmarcos.views.adapters.ViewHolders.CustomHeaderViewHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.CustomViewHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.ValuationCourseHeaderHolder;
+import wan.wanmarcos.views.adapters.ViewHolders.ValuationHolder;
 
 /**
  * Created by postgrado on 17/10/15.
  */
-public class ValuationListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private static final int TYPE_ITEM =1 ;
-    private static final int TYPE_HEADER = 0;
-    private LayoutInflater inflater;
-    private Fragment mFragment;
-    private List<Valuation> valuations= Collections.emptyList();
-    private ItemAdapterListener itemAdapterListener;
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType==TYPE_ITEM){
-            View view=inflater.inflate(Constants.VALUATION_NEW_ITEM,parent,false);
-            ValuationHolder courseHolder=new ValuationHolder(view);
-            return courseHolder;
-        }
-        else if(viewType==TYPE_HEADER){
-            View view=inflater.inflate(Constants.DETAIL_COURSE_TEACHER,parent,false);
-            ValuationHeaderHolder courseHeaderHolder=new ValuationHeaderHolder(view);
-            return courseHeaderHolder;
-        }
-        return null;
-    }
-    public void addTop(String comment){
-        Valuation teacher=new Valuation("Luis","",comment,4);
-        valuations.add(0,teacher);
-        notifyItemInserted(0);
-    }
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ValuationHolder) {
-            Valuation valuation=valuations.get(position-1);
-            ((ValuationHolder)holder).setElements(valuation);
-        } else if (holder instanceof ValuationHeaderHolder) {
-            ((ValuationHeaderHolder)holder).setElements();
-        }
-    }
+public class ValuationListAdapter extends CustomDoubleAdapter<Valuation> implements PopUpFragment{
 
-    public ValuationListAdapter(Fragment myFragment,Context context,List<Valuation> valuations){
-        inflater=LayoutInflater.from(context);
-        this.valuations=valuations;
-        mFragment=myFragment;
-
-    }
-    @Override
-    public int getItemViewType(int position) {
-        if (!isPositionHeader(position))
-            return TYPE_ITEM;
-
-        return TYPE_HEADER;
-    }
-
-    private boolean isPositionHeader(int position) {
-        return position == 0;
+    public ValuationListAdapter(Fragment fragment) {
+        super(fragment, Constants.VALUATION_NEW_ITEM, Constants.DETAIL_COURSE_TEACHER);
     }
 
     @Override
-    public int getItemCount() {
-        return valuations.size()+1;
+    public CustomViewHolder getObject(View view) {
+        return new ValuationHolder(view);
     }
 
-    public void setListener(ItemAdapterListener listener) {
-        itemAdapterListener= listener;
-    }
-    public class ValuationHeaderHolder extends RecyclerView.ViewHolder {
-        private TextView teacherName;
-        private TextView courseName;
-        private TextView facultyName;
-        private ImageView teacherImage;
-        private ImageView teacherCardBackground;
-        private FloatingActionButton floatingActionButton;
-        public ValuationHeaderHolder(View itemView) {
-            super(itemView);
-            teacherCardBackground= (ImageView) itemView.findViewById(R.id.teacher_course_card_background);
-            teacherName=(TextView)itemView.findViewById(R.id.profile_course_teacher_name);
-            courseName=(TextView)itemView.findViewById(R.id.profile_course_course_name);
-            facultyName=(TextView)itemView.findViewById(R.id.profile_course_faculty_name);
-            teacherImage=(ImageView)itemView.findViewById(R.id.profile_course_teacher_image);
-            floatingActionButton=(FloatingActionButton)itemView.findViewById(R.id.addComment);
-        }
-
-        public void setElements() {
-            Picasso.with(mFragment.getActivity()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
-            Picasso.with(itemView.getContext()).load(Storage.getSingelton().getInfo(mFragment, Storage.KEY_TEACHER_IMAGE)).transform(new CircleTransform()).into(teacherImage);
-            facultyName.setText(Storage.getSingelton().getInfo(mFragment, Storage.KEY_FACULTY_NAME));
-            teacherName.setText(Storage.getSingelton().getInfo(mFragment,Storage.KEY_TEACHER_NAME));
-            courseName.setText(Storage.getSingelton().getInfo(mFragment,Storage.KEY_COURSE_NAME));
-            addListeners();
-        }
-        public void addListeners(){
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    itemAdapterListener.addClicked(Constants.FRAGMENT_PROFILE_TEACHER);
-
-                }
-            });
-        }
+    @Override
+    public CustomHeaderViewHolder getObjectHeader(View view) {
+        ValuationCourseHeaderHolder valuationCourseHeaderHolder=new ValuationCourseHeaderHolder(view);
+        valuationCourseHeaderHolder.setListener(this);
+        return valuationCourseHeaderHolder;
     }
 
-    public class ValuationHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Valuation>,View.OnClickListener {
-        private Valuation valuation;
-        private View view;
-        private ImageView userImage;
-        private RatingBar userRate;
-        private TextView userValuation;
-        private TextView userName;
-        public ValuationHolder(View itemView) {
-            super(itemView);
-            userName=(TextView) itemView.findViewById(R.id.valuation_user_name);
-            userImage=(ImageView) itemView.findViewById(R.id.userImage);
-            userValuation=(TextView) itemView.findViewById(R.id.userComments);
-            //userRate=(RatingBar) itemView.findViewById(R.id.userRate);
-            view=itemView;
-        }
+    @Override
+    public int getContainerID() {
+        return Constants.TEACHER_CONTAINER;
+    }
 
-        @Override
-        public void onClick(View v) {
-            itemAdapterListener.itemClicked(v,getAdapterPosition());
-        }
+    @Override
+    public String getFragmentName() {
+        return "";
+    }
 
-        @Override
-        public void setElements(Valuation elements) {
-            valuation=elements;
+    @Override
+    public void popUp() {
+        FragmentManager fm = getFragment().getFragmentManager();
+        PopupCommentFragment editNameDialog = new PopupCommentFragment();
+        editNameDialog.setListener(this);
+        editNameDialog.show(fm, "fragment_edit_name");
+    }
 
-            userName.setText(elements.getUserName());
-            userValuation.setText(elements.getUserComment());
-            ColorGenerator generator = ColorGenerator.MATERIAL;
-            int color = generator.getColor(userName.getText().charAt(0));
-            TextDrawable.IBuilder builder = TextDrawable.builder().round();
-            TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0)+"", color);
-            userImage.setImageDrawable(textDrawable);
-            //userRate.setRating(elements.getUserTotalMark());
-            //Picasso.with(view.getContext()).load(elements.getUserImage()).into(userImage);
-        }
+    @Override
+    public void close(String message) {
+        add(new Valuation("Carlos","http://lorempixel.com/400/200/",message,(float)2.3));
     }
 }

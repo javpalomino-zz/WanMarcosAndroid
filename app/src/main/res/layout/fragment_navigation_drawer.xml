@@ -32,32 +32,38 @@
 
                     <TextView
                         android:id="@+id/nav_drawer_profile_name"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:maxLines="2"
                         android:textColor="#ffffff"
+
                         android:text="Nombre de Usuario"
                         />
                     <TextView
                         android:id="@+id/nav_drawer_profile_email"
                         android:layout_below="@id/nav_drawer_profile_name"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textStyle="bold"
                         android:maxLines="2"
                         android:textColor="#ffffff"
+
                         android:text="usuario@wanmarcos.com"
                         />
 
                 </RelativeLayout>
                 <ImageView
+                    android:id="@+id/nav_drawer_profile_image"
+
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginLeft="16dp"
-                    android:background="#FFFFFF"
+
                     android:layout_above="@id/nav_drawer_profile_details_container"/>
 
 

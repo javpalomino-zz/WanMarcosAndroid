@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/containerProfile"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#cfafffff">
+
+        <ImageView
+            android:id="@+id/nav_drawer_profile_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/testimage"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/profile_image"
+
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"
+                />
+
+            <RelativeLayout
+                android:id="@+id/profile_details_container"
+                android:layout_toRightOf="@id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true">
+
+                <TextView
+                    android:id="@+id/profile_name"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="3"
+                    android:layout_marginTop="5dp"
+
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:text="Francisco Antonio Mora Arámbulo"
+                    />
+                <TextView
+                    android:id="@+id/profile_email"
+
+                    android:layout_below="@id/profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:layout_marginTop="5dp"
+
+                    android:textSize="15sp"
+                    android:textColor="#ffffff"
+                    android:text="fmoraarambulo@gmail.com"
+                    />
+                <TextView
+                    android:id="@+id/profile_faculty"
+                    android:layout_below="@id/profile_email"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:layout_marginTop="5dp"
+
+                    android:textColor="#ffffff"
+                    android:textSize="12.5sp"
+                    android:text="Facultad de Ingenieria de Sistemas e Informatica"
+                    />
+                <TextView
+                    android:id="@+id/profile_carreer"
+                    android:layout_below="@id/profile_faculty"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:layout_marginTop="5dp"
+
+                    android:textSize="12.5sp"
+                    android:textColor="#ffffff"
+                    android:text="Ingenieria de Software"
+                    />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/preferencesLabel"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+
+        android:layout_below="@id/containerProfile"
+        android:textSize="15dp"
+        android:text="Mis Preferencias"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/eventDetailDividerColor"
+
+        android:layout_toRightOf="@id/preferencesLabel"
+        android:layout_below="@id/containerProfile"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/profile_faculty_header"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp"
+
+        android:layout_below="@id/preferencesLabel"
+        android:textSize="15dp"
+        android:text="Facultades"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/eventDetailDividerColor"
+
+        android:layout_toRightOf="@id/profile_faculty_header"
+        android:layout_below="@id/preferencesLabel"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

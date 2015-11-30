@@ -48,7 +48,7 @@ import wan.wanmarcos.views.adapters.EventListAdapter;
 /**
  * Created by postgrado on 17/10/15.
  */
-public class EventViewListFragment extends Fragment implements EventListAdapter.ClickListener{
+public class EventViewListFragment extends Fragment {
 
     RestClient restClient;
     SharedPreferences preferences;
@@ -104,8 +104,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
     private void setUpElements(View layout)
     {
         recyclerView = (RecyclerView) layout.findViewById(R.id.eventList);
-        eventListAdapter = new EventListAdapter(getActivity());
-        eventListAdapter.setClickListener(this);
+        eventListAdapter = new EventListAdapter(this);
         getInitialData();
         recyclerView.setAdapter(eventListAdapter);
         mLayoutManager=new LinearLayoutManager(getActivity());
@@ -139,13 +138,6 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
         received = false;
         System.out.println("Initial Data");
         getEvents();
-    }
-
-    @Override
-    public void itemClicked(View view, int position) {
-        Storage.getSingelton().storage(eventListAdapter.getItemAtPos(position),this);
-        Redirect.getSingelton().showFragment(EventViewListFragment.this,Constants.EVENT_CONTAINER,Constants.FRAGMENT_DETAIL_EVENT);
-        currentPage=1;
     }
     private void addScrollBottomListener() {
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -210,7 +202,7 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
                         Calendar endCal = dateAndTimeDealer.getInstance().turnMilisIntoCalendar((storedObject.get("ends_at").getAsLong()));
                         current.setFinishDateTime(endCal);
                         current.setImgUrl(storedObject.get("image").getAsString());
-                        eventsList.add(current);
+                        eventListAdapter.add(current);
                     }
                 } else {
                     if (responseBody.has("error")) {
@@ -218,7 +210,6 @@ public class EventViewListFragment extends Fragment implements EventListAdapter.
                         Toast.makeText(getActivity(), "Error : " + error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
-                eventListAdapter.addAll(eventsList);
                 received = true;
                 System.out.println("RECEIVED!!: " + currentPage);
                 currentPage++;

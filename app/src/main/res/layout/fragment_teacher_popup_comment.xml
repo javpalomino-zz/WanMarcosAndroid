@@ -29,6 +29,7 @@
 
             <ImageView
                 android:id="@+id/header_image_icon"
+
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="16dp"
@@ -39,32 +40,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/header_image_icon">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/teacher_comment_professor"
                     android:layout_marginTop="5dp"
-                    android:textSize="20sp"
-                    android:text="Santiago Moquillaza Enriquez"
                     android:textStyle="bold"
-                    android:maxLines="2"/>
+                    android:maxLines="2"
+
+                    android:id="@+id/teacher_comment_professor"
+                    android:textSize="20sp"
+                    android:text="Santiago Moquillaza Enriquez"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+
                     android:id="@+id/teacher_comment_course"
                     android:layout_below="@id/teacher_comment_professor"
                     android:textSize="15sp"
-                    android:text="Analisis y diseño de Algoritmos para la programacion"
-                    android:textStyle="bold"
-                    android:maxLines="2"/>
+                    android:text="Analisis y diseño de Algoritmos para la programacion"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="2"
+
                     android:id="@+id/teacher_comment_faculty"
                     android:layout_below="@id/teacher_comment_course"
                     android:textSize="12sp"
-                    android:text="Facultad de Ingenieria de Sistemas E Informatica"
-                    android:maxLines="2"/>
+                    android:text="Facultad de Ingenieria de Sistemas E Informatica"/>
 
             </RelativeLayout>
         </RelativeLayout>
@@ -72,14 +77,16 @@
 
     <TextView
         android:id="@+id/comment_header"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+
         android:text="@string/teacher_comment_title"
         android:layout_below="@id/comment_header_container"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="20sp"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -89,20 +96,28 @@
         android:layout_below="@id/comment_header"
         android:gravity="center_horizontal">
     </android.support.v7.widget.RecyclerView>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/teacher_comment_hint"
-        android:id="@+id/teacher_comment_post"
-        android:layout_below="@id/teacher_comment_rating"
         android:gravity="top"
         android:lines="5"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"/>
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+
+        android:hint="@string/teacher_comment_hint"
+        android:id="@+id/teacher_comment_post"
+        android:layout_below="@id/teacher_comment_rating"/>
+
     <Button
         android:id="@+id/teacher_comment_action"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
         android:text="@string/teacher_comment_action"
         android:background="@color/accentNewsColor"
         android:textColor="@color/buttonTextNewsColor"

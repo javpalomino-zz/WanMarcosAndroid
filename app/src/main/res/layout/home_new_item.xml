@@ -24,10 +24,11 @@
             <ImageView
                 android:layout_width="52dp"
                 android:layout_height="52dp"
-                android:id="@+id/teacher_item_picture"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+
+                android:id="@+id/teacher_item_picture"/>
             <!--style="@style/TeacherItemImage"-->
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -41,31 +42,37 @@
 
                 <TextView
                     android:id="@+id/home_item_name"
+
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre de Elemnto"
-                    android:textSize="17dp"
                     android:textStyle="bold"
-                    android:maxLines="2"/>
+                    android:maxLines="2"
+
+                    android:text="Nombre de Elemnto"
+                    android:textSize="17sp"/>
 
                 <TextView
                     android:id="@+id/home_item_description_label"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/home_item_name"
-                    android:textSize="13dp"
                     android:textStyle="bold"
                     android:layout_marginTop="2dp"
+
+                    android:layout_below="@id/home_item_name"
+                    android:textSize="13sp"
                     android:text="Etiqueta de descripcion : "/>
 
                 <TextView
                     android:id="@+id/home_item_description"
+
                     android:layout_width="fill_parent"
-                    android:textSize="13dp"
                     android:layout_height="wrap_content"
+                    android:maxLines="3"
+
+                    android:textSize="13sp"
                     android:layout_below="@id/home_item_description_label"
-                    android:text="Descripcion del elemento"
-                    android:maxLines="3"/>
+                    android:text="Descripcion del elemento"/>
 
             </RelativeLayout>
 

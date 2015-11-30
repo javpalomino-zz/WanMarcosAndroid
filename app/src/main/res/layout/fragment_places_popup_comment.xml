@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/comment_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="false"
+        card_view:cardPreventCornerOverlap="false">
+
+        <ImageView
+            android:id="@+id/comment_background_header"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/header_image_icon"
+
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/header_image_icon">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:layout_marginTop="5dp"
+
+                    android:id="@+id/place_comment_name"
+                    android:textSize="20sp"
+                    android:text="El rinconcito de Chio"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:layout_marginTop="5dp"
+
+                    android:textSize="15sp"
+                    android:text="Cerca a : Facultad de Odontologia"
+                    android:id="@+id/place_comment_referencePlace"
+                    android:layout_below="@id/place_comment_name"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/comment_header"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+
+        android:text="@string/teacher_comment_title"
+        android:layout_below="@id/comment_header_container"
+        android:textSize="20sp"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/teacher_comment_rating"
+        android:layout_below="@id/comment_header"
+        android:gravity="center_horizontal">
+    </android.support.v7.widget.RecyclerView>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:lines="5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+
+        android:hint="@string/teacher_comment_hint"
+        android:id="@+id/teacher_comment_post"
+        android:layout_below="@id/teacher_comment_rating"/>
+    <Button
+        android:id="@+id/places_comment_action"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:text="@string/teacher_comment_action"
+        android:background="@color/accentNewsColor"
+        android:textColor="@color/buttonTextNewsColor"
+        android:layout_below="@id/teacher_comment_post"/>
+</RelativeLayout>

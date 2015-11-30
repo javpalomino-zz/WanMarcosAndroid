@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <AutoCompleteTextView
+        android:id="@+id/profile_edit_info_faculty"
+
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+
+        android:hint="¿En Qué Facultad Estudias?"/>
+    <AutoCompleteTextView
+        android:id="@+id/profile_edit_info_carreer"
+
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+
+        android:hint="¿En Qué Facultad Estudias?"
+        android:layout_below="@+id/profile_edit_info_faculty" />
+    <Button
+        android:id="@+id/profile_edit_info_submit"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:text="¡ Listo !"
+        android:background="@color/accentNewsColor"
+        android:textColor="@color/buttonTextNewsColor"
+        android:layout_below="@id/profile_edit_info_carreer" />
+
+</RelativeLayout>
