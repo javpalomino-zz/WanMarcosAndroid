@@ -18,9 +18,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.squareup.picasso.Picasso;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +58,9 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     private View containerView;
 
     private ImageView headerBackground;
+    private TextView profileName;
+    private TextView profileEmail;
+    private ImageView profileImage;
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -87,6 +95,14 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         headerBackground = (ImageView)layout.findViewById(R.id.nav_drawer_profile_background);
         Picasso.with(getActivity()).load(R.mipmap.testimage).fit().centerCrop().into(headerBackground);
+        profileImage = (ImageView)layout.findViewById(R.id.nav_drawer_profile_image);
+        profileName = (TextView)layout.findViewById(R.id.nav_drawer_profile_name);
+        profileEmail = (TextView)layout.findViewById(R.id.nav_drawer_profile_email);
+        ColorGenerator generator = ColorGenerator.MATERIAL;
+        int color = generator.getColor(profileName.getText().charAt(0));
+        TextDrawable.IBuilder builder = TextDrawable.builder().round();
+        TextDrawable textDrawable = builder.build(profileName.getText().toString().charAt(0)+"", color);
+        profileImage.setImageDrawable(textDrawable);
     }
 
     public static List<NavDrawerLink> getData()

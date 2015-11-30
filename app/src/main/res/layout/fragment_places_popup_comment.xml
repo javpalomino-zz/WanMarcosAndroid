@@ -30,34 +30,19 @@
             <ImageView
                 android:id="@+id/header_image_icon"
 
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_centerVertical="true"/>
+                style="@style/PopUpCommentHeaderImage"/>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/header_image_icon">
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:maxLines="2"
-                    android:layout_marginTop="5dp"
+                    style="@style/PopUpCommentHeaderTitle"
 
                     android:id="@+id/place_comment_name"
-                    android:textSize="20sp"
                     android:text="El rinconcito de Chio"/>
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:maxLines="2"
-                    android:layout_marginTop="5dp"
-
-                    android:textSize="15sp"
+                    style="@style/PopUpCommentHeaderSubtitle"
                     android:text="Cerca a : Facultad de Odontologia"
                     android:id="@+id/place_comment_referencePlace"
                     android:layout_below="@id/place_comment_name"/>
@@ -69,15 +54,10 @@
     <TextView
         android:id="@+id/comment_header"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true"
+        style="@style/PopUpCommentLabelMessage"
 
         android:text="@string/teacher_comment_title"
-        android:layout_below="@id/comment_header_container"
-        android:textSize="20sp"/>
+        android:layout_below="@id/comment_header_container"/>
 
 
     <android.support.v7.widget.RecyclerView
@@ -88,14 +68,7 @@
         android:gravity="center_horizontal">
     </android.support.v7.widget.RecyclerView>
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:lines="5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        style="@style/PopUpCommentBigTextInput"
 
         android:hint="@string/teacher_comment_hint"
         android:id="@+id/teacher_comment_post"
@@ -103,9 +76,7 @@
     <Button
         android:id="@+id/places_comment_action"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/ScreenWideButtom"
 
         android:text="@string/teacher_comment_action"
         android:background="@color/accentNewsColor"

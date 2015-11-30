@@ -23,96 +23,80 @@
 
             <include
                 android:id="@+id/app_bar"
-                layout="@layout/app_bar">
-            </include>
+                layout="@layout/app_bar"></include>
 
         </LinearLayout>
-        <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/main_content"
-            xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
             android:layout_below="@id/bar_container"
+            android:background="@android:color/white"
             tools:context="wan.wanmarcos.fragments.SuggestedEventFragment">
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@id/bar_container">
 
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                tools:context="wan.wanmarcos.activities.HomeActivity"
-                android:orientation="vertical"
-                android:weightSum="2">
-                <TextView
-                    android:id="@+id/activityheader"
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/bar_container">
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:weightSum="2"
+                    tools:context="wan.wanmarcos.activities.HomeActivity">
 
-                    android:layout_marginTop="20dp"
-                    android:text="@string/pregunta_contactanos"
-                    android:textSize="25sp"
+                    <TextView
+                        android:id="@+id/activityheader"
+                        style="@style/ContactanosHeaderLabel"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/pregunta_contactanos"
+                        android:textSize="25sp"
 
-                />
+                        />
 
-                <TextView
-                    android:id="@+id/activitysubheader"
-                    android:layout_below="@id/activityheader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:gravity="center"
+                    <TextView
+                        android:id="@+id/activitysubheader"
+                        style="@style/ContactanosHeaderLabel"
+                        android:layout_below="@id/activityheader"
 
-                    android:lines="2"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/respuesta_contactanos"
-                    android:textSize="20sp"
-                />
+                        android:layout_marginTop="10dp"
+                        android:lines="2"
+                        android:text="@string/respuesta_contactanos"
+                        android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/txtComment"
-                    android:layout_below="@id/activitysubheader"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:hint="@string/contac_messagueplaceholder"
-                    android:inputType="textMultiLine"
-                    android:singleLine="false"
-                    android:gravity="top"
-                    android:background="@drawable/contactanos_edittext"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:layout_marginTop="20dp"
-                    />
-            </RelativeLayout>
-        </ScrollView>
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnEnviarFeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            app:layout_anchorGravity="bottom|right|end"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:src="@mipmap/ic_send_white_48dp" />
+                    <EditText
+                        android:id="@+id/txtComment"
+                        style="@style/BigTextInput"
+
+                        android:layout_below="@id/activitysubheader"
+
+                        android:background="@drawable/contactanos_edittext"
+                        android:hint="@string/contac_messagueplaceholder" />
+                </RelativeLayout>
+            </ScrollView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnEnviarFeed"
+
+                style="@style/BottomRightFAB"
+
+
+                android:src="@mipmap/ic_send_white_48dp"
+                android:layout_gravity="bottom|right|end"
+                app:layout_anchorGravity="bottom|right|end"/>
         </android.support.design.widget.CoordinatorLayout>
 
     </RelativeLayout>
-        <fragment
-            android:id="@+id/fragment_navigation_drawer"
-            android:name="wan.wanmarcos.fragments.NavigationDrawerFragment"
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:layout="@layout/fragment_navigation_drawer"
-            tools:layout="@layout/fragment_navigation_drawer" />
-        </android.support.v4.widget.DrawerLayout>
+
+    <fragment
+        android:id="@+id/fragment_navigation_drawer"
+        style="@style/NavDrawerStyle"
+        app:layout="@layout/fragment_navigation_drawer"
+        tools:layout="@layout/fragment_navigation_drawer" />
+</android.support.v4.widget.DrawerLayout>
