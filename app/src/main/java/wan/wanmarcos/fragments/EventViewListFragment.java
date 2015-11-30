@@ -88,6 +88,9 @@ public class EventViewListFragment extends Fragment {
         restClient = new RestClient(getActivity());
         preferences = getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         session = Session.getSession(preferences);
+        currentPage=1;
+        eventListAdapter = new EventListAdapter(this);
+        getInitialData();
     }
 
     @Override
@@ -98,15 +101,12 @@ public class EventViewListFragment extends Fragment {
         setUpElements(layout);
         addListeners();
         mLayout=layout;
-        currentPage=1;
         return layout;
     }
 
     private void setUpElements(View layout)
     {
         recyclerView = (RecyclerView) layout.findViewById(R.id.eventList);
-        eventListAdapter = new EventListAdapter(this);
-        getInitialData();
         recyclerView.setAdapter(eventListAdapter);
         mLayoutManager=new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -164,7 +164,6 @@ public class EventViewListFragment extends Fragment {
                 pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
                 if (userScrolled && (visibleItemCount + pastVisiblesItems) == totalItemCount) {
                     userScrolled = false;
-
                     addNewElementsToList();
                 }
 
@@ -184,7 +183,6 @@ public class EventViewListFragment extends Fragment {
 
     private void getEvents()
     {
-        final List<Event> eventsList=new ArrayList<>();
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, Constants.CANTIDAD);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
