@@ -72,7 +72,7 @@ public class EventViewListFragment extends Fragment {
 
     DateAndTimeDealer dateAndTimeDealer;
 
-    private int currentPage=1;
+    private int currentPage;
 
     private View mLayout;
 
@@ -98,6 +98,7 @@ public class EventViewListFragment extends Fragment {
         setUpElements(layout);
         addListeners();
         mLayout=layout;
+        currentPage=1;
         return layout;
     }
 
