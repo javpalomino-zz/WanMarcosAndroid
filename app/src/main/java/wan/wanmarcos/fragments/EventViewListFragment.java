@@ -32,6 +32,7 @@ import java.util.List;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.MainActivity;
@@ -185,7 +186,7 @@ public class EventViewListFragment extends Fragment {
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, Constants.CANTIDAD);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has("events")) {
                     mLayout.findViewById(R.id.loadingPanel).setVisibility(View.GONE);

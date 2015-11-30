@@ -64,7 +64,7 @@ public interface ConsumerService {
                                    @Part("starts_at")long event_startCal,
                                    @Part("ends_at")long event_endCal,
                                    @Part("website")String event_link,
-                                   @Part("image\"; filename=\"1\" ")RequestBody image);
+                                   @Part("image\"; filename=\"image.jpg\" ")RequestBody image);
     @FormUrlEncoded
     @POST(Constants.SUGGESTIONS)
     Call<JsonElement> suggestions(@Header("Authorization") String authorization,@Field("message") String message);

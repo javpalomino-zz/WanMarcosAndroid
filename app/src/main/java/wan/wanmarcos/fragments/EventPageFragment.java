@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Event;
 import wan.wanmarcos.models.Session;
@@ -96,7 +97,7 @@ public class EventPageFragment extends Fragment{
         Call<JsonElement> eventDetail = restClient.getConsumerService().getEventDetail(session.getToken(), Integer.parseInt(id));
         eventDetail.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 event = new Event(responseBody);
                 txtStart.setText(event.getStartDateTimeString());

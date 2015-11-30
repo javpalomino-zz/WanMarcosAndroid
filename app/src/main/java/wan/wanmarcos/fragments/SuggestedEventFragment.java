@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -34,6 +35,7 @@ import okio.BufferedSink;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.*;
@@ -280,7 +282,7 @@ public class SuggestedEventFragment extends Fragment {
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
         button.setText(returnCursor.getString(nameIndex));
-        Toast.makeText(getActivity(),uri.getPath(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),getPath(uri), Toast.LENGTH_SHORT).show();
     }
     private void addSubmitListener() {
         sendFAB.setOnClickListener(new View.OnClickListener() {
@@ -308,7 +310,7 @@ public class SuggestedEventFragment extends Fragment {
 
     private void postEvent() {
         try {
-            File file = new File(imageUri.getPath());
+            File file = new File(getPath(imageUri));
             RequestBody image = RequestBody.create(MediaType.parse("image/*"), file);
             Call<JsonElement> sugEvent = restClient.getConsumerService().suggestEvent(
                     eventToPost.getName() ,
@@ -319,7 +321,7 @@ public class SuggestedEventFragment extends Fragment {
                     image);
             sugEvent.enqueue(new Callback<JsonElement>() {
                 @Override
-                public void onResponse(Response<JsonElement> response) {
+                public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                     if (response.isSuccess()) {
                         JsonObject responseBody = response.body().getAsJsonObject();
                         if (responseBody.has("name")) {
@@ -351,5 +353,17 @@ public class SuggestedEventFragment extends Fragment {
         }
     }
 
+    public String getPath(Uri uri) {
 
+        String[] projection = { MediaStore.Images.Media.DATA };
+
+        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
+
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+
+        cursor.moveToFirst();
+
+        return cursor.getString(column_index);
+
+    }
 }
