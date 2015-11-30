@@ -33,9 +33,10 @@ public class Storage {
     public static String KEY_EVENT_REFERENCE="eventreference";
     public static String KEY_EVENT_NAME="eventname";
     public static String KEY_TEACHER_RATING="teacherrating";
+    private HashMap<String,Integer> data;
     private static Storage singeltonObject;
     private Storage(){
-
+        data=new HashMap<>();
     }
     public static Storage getSingelton(){
         if(singeltonObject==null){
@@ -71,6 +72,12 @@ public class Storage {
         Teacher teacherItem=(Teacher) teacher;
         saveData(teacherItem.getName(), KEY_TEACHER_NAME,mySharedPreferences);
         saveData(teacherItem.getImageUrl(),KEY_TEACHER_IMAGE,mySharedPreferences);
+    }
+    public void storageData(int id, String keyValue){
+        data.put(keyValue,id);
+    }
+    public String getInfo(String keyValue){
+        return String.valueOf(data.get(keyValue));
     }
     private void saveData(String value,String keyValue,SharedPreferences mySharedPreferences){
         SharedPreferences.Editor editor=mySharedPreferences.edit();
