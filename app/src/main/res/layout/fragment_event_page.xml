@@ -22,7 +22,6 @@
                 android:layout_width="fill_parent"
                 android:layout_height="230dp"
                 android:background="@android:color/black"
-                android:src="@mipmap/wm17"
                 android:layout_marginBottom="10dp">
             </ImageView>
 
@@ -46,7 +45,6 @@
                 android:layout_below="@id/eventPageImage"
                 android:layout_toRightOf="@id/eventPagePlaceLablel"
                 android:layout_toEndOf="@id/eventPagePlaceLablel"
-                android:text="@string/eventReferencePlaceText"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
@@ -78,7 +76,6 @@
                 android:layout_below="@id/eventPagePlaceLablel"
                 android:layout_toRightOf="@id/eventPageStartLabel"
                 android:layout_toEndOf="@id/eventPageStartLabel"
-                android:text="@string/eventDatePlaceholder"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
@@ -108,7 +105,6 @@
                 android:layout_below="@id/eventPageStartDateAndTime"
                 android:layout_toRightOf="@id/eventPageStartLabel"
                 android:layout_toEndOf="@id/eventPageStartLabel"
-                android:text="@string/eventDatePlaceholder"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:textSize="15dp"
@@ -125,7 +121,6 @@
                 android:layout_below="@id/eventPageEndDateAndTime"
                 android:layout_width="fill_parent"
                 android:layout_height="100dp"
-                android:text="@string/eventDescriptionPlaceholer"
                 android:textSize="15dp"
                 android:gravity="center"
                 android:background="@color/eventDeatilGridBackgroundColor"/>
@@ -154,7 +149,6 @@
                 android:layout_below="@id/eventPageDescription"
                 android:layout_toRightOf="@id/eventPageLinkLabel"
                 android:layout_toEndOf="@id/eventPageLinkLabel"
-                android:text="@string/eventLinkPlaceholder"
                 android:textSize="15dp"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"

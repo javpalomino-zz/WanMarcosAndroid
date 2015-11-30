@@ -2,7 +2,11 @@ package wan.wanmarcos.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -56,6 +60,8 @@ public class SuggestedEventFragment extends Fragment {
     private Button btnSchedule;
     private EditText txtDescription;
     private Button btnSubmit;
+    private static final int PICKFILE_RESULT_CODE=100;
+    private static final int PICKIMAGE_RESULT_CODE=200;
     FloatingActionButton sendFAB;
 
     private Event eventToPost;
@@ -70,10 +76,8 @@ public class SuggestedEventFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         dateAndTimeDealer=new DateAndTimeDealer();
-
     }
 
     @Override
@@ -224,13 +228,49 @@ public class SuggestedEventFragment extends Fragment {
 
 
     private void addImageLoadListener() {
-        //TO DO
+        btnImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(galleryIntent , PICKIMAGE_RESULT_CODE);
+            }
+        });
     }
 
     private void addScheduleLoadListener() {
-        //TO DO
+        btnSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent,PICKFILE_RESULT_CODE);
+            }
+        });
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        switch(requestCode)
+        {
+            case PICKFILE_RESULT_CODE:
+                setNameOfFileinButton(data.getData(), btnSchedule);
+                break;
+            case PICKIMAGE_RESULT_CODE:
+                setNameOfFileinButton(data.getData(),btnImage);
+                break;
+        }
+    }
+
+    private void setNameOfFileinButton(Uri uri,Button button){
+        Cursor returnCursor = getActivity().getContentResolver().query(uri,null,null,null,null);
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        button.setText(returnCursor.getString(nameIndex));
+        Toast.makeText(getActivity(),uri.getPath(), Toast.LENGTH_SHORT).show();
+    }
     private void addSubmitListener() {
         sendFAB.setOnClickListener(new View.OnClickListener() {
             @Override
