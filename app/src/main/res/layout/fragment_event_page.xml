@@ -193,13 +193,8 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/downloadProgram"
         app:layout_anchor="@id/eventPageImage"
-
         app:layout_anchorGravity="right|bottom|end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:clickable="true"
-
+        style="@style/BottomRightFAB"
         android:src="@mipmap/ic_file_download_white_48dp" />
 
 </android.support.design.widget.CoordinatorLayout>

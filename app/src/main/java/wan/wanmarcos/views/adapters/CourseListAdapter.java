@@ -128,8 +128,6 @@ public class CourseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             courseName= (TextView) itemView.findViewById(R.id.profile_course_course_name);
             courseFaculty=(TextView) itemView.findViewById(R.id.course_faculty);
             initialLetterImage=(ImageView) itemView.findViewById(R.id.letterImageBackground);
-            //courseRating=(RatingBar) itemView.findViewById(R.id.course_rating);
-            //courseMark=(TextView) itemView.findViewById(R.id.course_mark);
             vista=itemView;
         }
 
