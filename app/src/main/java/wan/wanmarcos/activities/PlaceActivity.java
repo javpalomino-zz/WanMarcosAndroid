@@ -12,6 +12,7 @@ import android.view.View;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
+import wan.wanmarcos.fragments.ProfileUserFragment;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 

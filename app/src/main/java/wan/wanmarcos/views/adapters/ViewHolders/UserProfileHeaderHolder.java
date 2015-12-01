@@ -1,8 +1,10 @@
 package wan.wanmarcos.views.adapters.ViewHolders;
 
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
@@ -10,13 +12,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.sql.SQLOutput;
 
 import retrofit.Call;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
+import wan.wanmarcos.models.Session;
 import wan.wanmarcos.models.UserProfile;
 import wan.wanmarcos.utils.Builder;
+import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
@@ -35,9 +41,9 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
     private Builder builder;
     private View view;
     private boolean gotCorrectResponse;
-
-    String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
-
+    private Session session;
+    private String token;
+    private SharedPreferences preferences;
 
     public UserProfileHeaderHolder(View itemView) {
         super(itemView);
@@ -52,38 +58,46 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
         builder=new Builder();
         gotCorrectResponse=false;
         view=itemView;
+        preferences = view.getContext().getSharedPreferences(Constants.PREFERENCES, view.getContext().MODE_PRIVATE);
+        session = Session.getSession(preferences);
         setElements();
+
     }
 
     @Override
     public void setElements() {
-
+        token = Constants.HEADER+session.getToken();
         Call<JsonElement> userInfo=restClient.getConsumerService().me(token);
         userInfo.enqueue(new retrofit.Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
-                System.out.println("Entro al ONresponse");
-                JsonObject jsonObject = response.body().getAsJsonObject();
-                if (jsonObject.has("email")) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    JsonObject jsonObject = response.body().getAsJsonObject();
+                    if (jsonObject.has("email")) {
+                        userName.setText(jsonObject.get("first_name").getAsString() + jsonObject.get("last_name").getAsString());
+                        userEmail.setText(jsonObject.get("email").getAsString());
+                        userCarreer.setText(" ");
+                        userFaculty.setText(" ");
+                        Picasso.with(view.getContext()).load(R.mipmap.backgroundprofile).fit().centerCrop().into(userBackground);
+                        ColorGenerator generator = ColorGenerator.MATERIAL;
+                        int color = generator.getColor(userName.getText().charAt(0));
+                        TextDrawable.IBuilder builder = TextDrawable.builder().round();
+                        TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0)+"", color);
+                        userImage.setImageDrawable(textDrawable);
 
-                    System.out.println("YAY");
-                    userName.setText(jsonObject.get("first_name").getAsString() + jsonObject.get("last_name").getAsString());
-                    userEmail.setText(jsonObject.get("email").getAsString());
-                    userCarreer.setText(" ");
-                    userFaculty.setText(" ");
-                    System.out.println("ALOWING BACKGROUND");
-                    Picasso.with(view.getContext()).load(R.mipmap.backgroundprofile).fit().centerCrop().into(userBackground);
-                    ColorGenerator generator = ColorGenerator.MATERIAL;
-                    int color = generator.getColor(userName.getText().charAt(0));
-                    TextDrawable.IBuilder builder = TextDrawable.builder().round();
-                    TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0)+"", color);
-                    userImage.setImageDrawable(textDrawable);
+                    } else {
+                        if (jsonObject.has("error")) {
+                            System.out.println("Nope");
+                            wan.wanmarcos.models.Error error = builder.buildError(jsonObject.get("error").getAsJsonObject());
+                            System.out.println(error.toString());
+                        }
+                    }
 
-                } else {
-                    if (jsonObject.has("error")) {
-                        System.out.println("Nope");
-                        wan.wanmarcos.models.Error error = builder.buildError(jsonObject.get("error").getAsJsonObject());
-                        System.out.println(error.toString());
+                }else{
+                    try {
+                        System.out.print(response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             }

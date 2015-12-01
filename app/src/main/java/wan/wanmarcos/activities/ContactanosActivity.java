@@ -114,6 +114,7 @@ public class ContactanosActivity extends AppCompatActivity{
                     received = true;
                 }
             }
+
             @Override
             public void onFailure(Throwable t) {
                 received = true;

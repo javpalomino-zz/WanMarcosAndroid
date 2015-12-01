@@ -61,4 +61,8 @@ public class ProfileUserFragment extends Fragment implements FragmentsMethods {
     @Override
     public void addListeners() {
     }
+
+    public void UpdatePhote(){
+
+    }
 }

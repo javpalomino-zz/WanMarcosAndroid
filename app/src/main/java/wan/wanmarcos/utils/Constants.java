@@ -9,6 +9,7 @@ import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EditPreferencesFragment;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.HomeListNewsFragment;
@@ -52,6 +53,7 @@ public class Constants {
     public static final String FRAGMENT_LIST_EVENT= EventViewListFragment.class.getName();
     public static final String FRAGMENT_SUGGEST_EVENT = SuggestedEventFragment.class.getName();
     public static final String FRAGMENT_DETAIL_EVENT= EventPageFragment.class.getName();
+    public static final String FRAGMENT_EDIT_PREFERENCE= EditPreferencesFragment.class.getName();
 
 
 
@@ -69,6 +71,10 @@ public class Constants {
     public static final String REFRESH = "refresh";
     public static final String AUTOCOMPLETE_FACULTIES = "autocomplete/faculties";
     public static final String AUTOCOMPLETE_CARREERS = "autocomplete/degrees";
+    public static final String AUTOCOMPLETE_PLACES="autocomplete/places";
+    public static final String AUTOCOMPLETE_CATEGORIES="autocomplete/categories";
+    public static final String CHANGE_PROFILE_INFORMATION="/users/profile";
+    public static final String CHANGE_PROFILE_PHOTO="users/image";
 
     public static final String HEADER = "Bearer ";
 
@@ -110,8 +116,10 @@ public class Constants {
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;
     public static final int PLACE_NEW_ITEM=R.layout.place_new_item;
     public static final int EVENT_NEW_ITEM=R.layout.event_list_item;
+    public static final int EDIT_PREFERENCES_NEW_ITEM=R.layout.edit_preferences_faculty_list_item;
     public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
     public static final int DETAIL_PLACE=R.layout.detail_place;
+    public static final int MAX_LENGTH_FILE = 2048*1024;
     //Generic things
 
 
