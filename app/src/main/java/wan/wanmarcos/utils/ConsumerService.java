@@ -25,7 +25,9 @@ public interface ConsumerService {
                 @Query("search_text") String search_text,
                 @Query("page") int page,
                 @Query("per_page") int per_page);
-
+    @GET(Constants.TEACHER_DETAIL)
+    Call<JsonElement> getDetailTeacher(@Header("Authorization") String token,
+                                       @Path("id")String professor_id);
 
     @FormUrlEncoded
     @POST(Constants.SIGN_UP)

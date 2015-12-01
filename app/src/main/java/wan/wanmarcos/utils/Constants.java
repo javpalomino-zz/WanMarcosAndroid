@@ -69,7 +69,8 @@ public class Constants {
     public static final String HEADER = "Bearer ";
 
     public static final String PLATFORM = "Android";
-    public static final String TEACHERS ="professors" ;
+    public static final String TEACHERS ="professors";
+    public static final String TEACHER_DETAIL ="professors/{id}";
 
     //SCREEN DEVICE CONSTANTS
     public static float DEVICE_WIDTH=0;
