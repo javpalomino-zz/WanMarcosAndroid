@@ -3,15 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="wan.wanmarcos.activities.HomeActivity">
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:id="@+id/action_edit_photo"
+        android:title="@string/editPhoto"
         android:orderInCategory="100"
         app:showAsAction="never" />
-
     <item
-        android:id="@+id/logout"
-        android:title="@string/btnLogout"
-        android:orderInCategory="200"
-        app:showAsAction="always"
-    />
+        android:id="@+id/action_edit_info"
+        android:title="@string/editInfo"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_edit_prefs"
+        android:title="@string/editPref"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/logout"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
 </menu>

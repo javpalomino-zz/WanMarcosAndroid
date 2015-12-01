@@ -481,8 +481,6 @@ public class SuggestedEventFragment extends Fragment {
         }
 
         eventToPost.setEventLink(txtLink.getText().toString());
-        eventToPost.setReferencePlace("");
-        eventToPost.setCategory(1);
         if(imageUri != null){
             File imageFile = new File(UriManager.getPathImage(imageUri, getActivity()));
             image = RequestBody.create(MediaType.parse("image/*"), imageFile);

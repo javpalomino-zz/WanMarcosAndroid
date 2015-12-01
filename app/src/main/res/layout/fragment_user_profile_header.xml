@@ -1,69 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/userProfileFragmentContainer">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/containerProfile"
         style="@style/UserProfileContainer">
 
         <ImageView
-            android:id="@+id/nav_drawer_profile_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/testimage"/>
+            android:id="@+id/user_profile_backgound"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
 
-            <ImageView
-                android:id="@+id/profile_image"
+                <ImageView
+                    android:id="@+id/profile_image"
+                    style="@style/ProfileCardImage"
 
-                style="@style/UserProfileImage"
-                />
-
-            <RelativeLayout
-                android:id="@+id/profile_details_container"
-                android:layout_toRightOf="@id/profile_image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_centerVertical="true">
+                    />
 
                 <TextView
                     android:id="@+id/profile_name"
-
+                    android:layout_below="@id/profile_image"
                     style="@style/UserProfileName"
                     android:textColor="#ffffff"
-                    android:text="Francisco Antonio Mora Arámbulo"
                     />
                 <TextView
                     android:id="@+id/profile_email"
 
                     android:layout_below="@id/profile_name"
                     style="@style/UserProfileEmail"
-                    android:textSize="15sp"
+
                     android:textColor="#ffffff"
-                    android:text="fmoraarambulo@gmail.com"
                     />
                 <TextView
                     android:id="@+id/profile_faculty"
                     android:layout_below="@id/profile_email"
                     style="@style/UserProfileFacultyCarreer"
                     android:textColor="#ffffff"
-                    android:text="Facultad de Ingenieria de Sistemas e Informatica"
                     />
                 <TextView
                     android:id="@+id/profile_carreer"
                     android:layout_below="@id/profile_faculty"
                     style="@style/UserProfileFacultyCarreer"
                     android:textColor="#ffffff"
-                    android:text="Ingenieria de Software"
                     />
-
-            </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
     <TextView

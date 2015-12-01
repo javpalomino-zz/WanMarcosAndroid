@@ -8,14 +8,13 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.PopUpFragment;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * Created by carlos-pc on 29/11/15.
  */
-public class ValuationPlaceHeaderHolder extends CustomHeaderViewHolder {
+public class ValuationPlaceHeaderHolder extends CustomHeaderViewHolder{
     private TextView placeName;
     private TextView descripctionPlace;
     private TextView referencePlace;

@@ -1,5 +1,6 @@
 package wan.wanmarcos.views.adapters.ViewHolders;
 
+
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
 import wan.wanmarcos.R;
+
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.utils.Storage;
@@ -23,7 +25,7 @@ import wan.wanmarcos.views.widgets.CircleTransform;
 /**
  * Created by soporte on 28/11/15.
  */
-public class CourseHeaderHolder extends CustomHeaderViewHolder{
+public class CourseHeaderHolder extends CustomHeaderViewHolder {
     private TextView teacherName;
     private TextView ratingTeacher;
     private ImageView teacherCardBackground;

@@ -20,7 +20,6 @@ import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.PopUpFragment;
-import wan.wanmarcos.views.adapters.ValuationListAdapter;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**

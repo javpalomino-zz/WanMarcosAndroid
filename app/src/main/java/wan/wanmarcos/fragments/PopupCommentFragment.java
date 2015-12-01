@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -96,6 +97,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
         recyclerView.setAdapter(ratingListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getRatingData();
+        getDialog().getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     }
     public void getRatingData(){

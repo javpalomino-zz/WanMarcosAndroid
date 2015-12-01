@@ -24,7 +24,6 @@ import retrofit.http.Query;
  */
 public interface ConsumerService {
 
-
     @GET(Constants.TEACHERS)
     Call<JsonElement> getTeachers(@Header("Authorization") String token,
                 @Query("search_text") String search_text,
@@ -68,7 +67,7 @@ public interface ConsumerService {
                 @Field("platform") String platform);
 
     @GET(Constants.USER_INFO)
-    void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);
+    Call<JsonElement> me(@Header("Authorization") String authorization);
 
     @GET(Constants.EVENTS)
     Call<JsonElement> getEvents(@Header("Authorization") String authorization ,
@@ -78,6 +77,13 @@ public interface ConsumerService {
     @GET(Constants.EVENTS_DETAIL)
     Call<JsonElement> getEventDetail(@Header("Authorization") String authorization ,
                                      @Path("id") int eventId);
+    @Multipart
+    @POST(Constants.CHANGE_PROFILE_PHOTO)
+    Call<JsonElement> changeProfilePhoto(@Header("Authorization") String authorization ,@Part("image\"; filename=\"image.jpg\" ")RequestBody image);
+
+    @FormUrlEncoded
+    @POST(Constants.CHANGE_PROFILE_INFORMATION)
+    Call<JsonElement> changeProfileInformation(@Header("Authorization") String authorization ,@Field("faculty_id") int faculty, @Field("degree_id") int degree );
     @Multipart
     @POST(Constants.EVENTS)
     Call<JsonElement> suggestEvent(@Header("Authorization") String authorization,
@@ -106,12 +112,15 @@ public interface ConsumerService {
     @POST(Constants.REFRESH)
     Call<JsonElement> resfreshToken(@Header("Authorization") String authorization);
 
+
+    @GET(Constants.AUTOCOMPLETE_FACULTIES)
+    Call<JsonElement> autocompleteFaculties(@Query("search_text") String searchText);
+    @GET(Constants.AUTOCOMPLETE_CARREERS)
+    Call<JsonElement> autocompleteCarrers(@Query("search_text") String searchText);
     @GET(Constants.AUTOCOMPLETE_PLACES)
     Call<JsonElement> autocompletePlaces(@Query("search_text") String searchText);
-
     @GET(Constants.AUTOCOMPLETE_CATEGORIES)
     Call<JsonElement> autocompleteCategories(@Query("search_text") String searchText);
-
 
 
 

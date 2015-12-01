@@ -219,8 +219,8 @@
     </style>
 
     <style name="ProfileCardImage">
-        <item name="android:layout_width">150dp</item>
-        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">120dp</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
@@ -499,7 +499,7 @@
 
     <style name="UserProfileContainer">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">250dp</item>
+        <item name="android:layout_height">270dp</item>
     </style>
 
     <style name="UserProfileImage">
@@ -513,9 +513,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:maxLines">3</item>
+        <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="UserProfileEmail">
@@ -523,7 +526,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="UserProfileFacultyCarreer">
@@ -531,8 +537,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
-        <item name="android:textSize">12.5sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="UserProfileFacultyDividerLabel">

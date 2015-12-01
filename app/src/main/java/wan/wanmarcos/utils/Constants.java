@@ -9,14 +9,15 @@ import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EditPreferencesFragment;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.HomeListNewsFragment;
 import wan.wanmarcos.fragments.PlaceProfileFragment;
+import wan.wanmarcos.fragments.ProfileUserFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
-import wan.wanmarcos.fragments.PopupCommentFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
 
 /**
@@ -27,6 +28,7 @@ public class Constants {
     public static final String EMPTY_STRING="";
 
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
+    public static final int PROFILE_CONTAINER=R.id.home_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
     public static final int PLACE_CONTAINER=R.id.places_fragment;
     public static final int HOME_CONTAINER = R.id.home_fragment;
@@ -43,6 +45,7 @@ public class Constants {
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
     public static final String FRAGMENT_TEACHER_COURSE= TeacherCourseProfileFragment.class.getName();
     public static final String FRAGMENT_LIST_NEWS =HomeListNewsFragment.class.getName();
+    public static final String FRAGMENT_PROFILE=ProfileUserFragment.class.getName();
 
     public static final String FRAGMENT_LIST_PLACE= Fragment.class.getName();
 
@@ -50,6 +53,7 @@ public class Constants {
     public static final String FRAGMENT_LIST_EVENT= EventViewListFragment.class.getName();
     public static final String FRAGMENT_SUGGEST_EVENT = SuggestedEventFragment.class.getName();
     public static final String FRAGMENT_DETAIL_EVENT= EventPageFragment.class.getName();
+    public static final String FRAGMENT_EDIT_PREFERENCE= EditPreferencesFragment.class.getName();
 
 
 
@@ -65,8 +69,13 @@ public class Constants {
     public static final String USER_INFO = "users/me";
     public static final String SUGGESTIONS = "suggestions";
     public static final String REFRESH = "refresh";
+    public static final String AUTOCOMPLETE_FACULTIES = "autocomplete/faculties";
+    public static final String AUTOCOMPLETE_CARREERS = "autocomplete/degrees";
     public static final String AUTOCOMPLETE_PLACES="autocomplete/places";
     public static final String AUTOCOMPLETE_CATEGORIES="autocomplete/categories";
+    public static final String CHANGE_PROFILE_INFORMATION="/users/profile";
+    public static final String CHANGE_PROFILE_PHOTO="users/image";
+
     public static final String HEADER = "Bearer ";
 
     public static final String PLATFORM = "Android";
@@ -91,21 +100,26 @@ public class Constants {
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
+    public static final int PERSONAL_INFO_POPUP=R.layout.fragment_personal_info_popup;
     public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place_list;
     public static final int FRAGMENT_LIST_NEWS_LAYOUT = R.layout.fragment_home_list;
     public static final int FRAGMENT_PROFILE_PLACE_LAYOUT=R.layout.fragment_place_profile;
+    public static final int FRAGMENT_PROFILE_PREFERENCES_LIST=R.layout.fragment_preferences_list;
     //Sections inside fragment
 
     public static final int FRAGMENT_SECTION_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;
     //Items
     public static final int TEACHER_NEW_ITEM=R.layout.teacher_new_item;
     public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;
+    public static final int PREFERENCE_NEW_ITEM=R.layout.preference_list_item;
+    public static final int USER_PROFILE_HEADER=R.layout.fragment_user_profile_header;
     public static final int HOME_NEW_ITEM=R.layout.home_new_item;
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;
     public static final int PLACE_NEW_ITEM=R.layout.place_new_item;
     public static final int EVENT_NEW_ITEM=R.layout.event_list_item;
+    public static final int EDIT_PREFERENCES_NEW_ITEM=R.layout.edit_preferences_faculty_list_item;
     public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
     public static final int DETAIL_PLACE=R.layout.detail_place;
     public static final int MAX_LENGTH_FILE = 2048*1024;
