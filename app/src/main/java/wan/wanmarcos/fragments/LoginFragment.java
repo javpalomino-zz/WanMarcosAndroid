@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.utils.Builder;
@@ -149,7 +150,7 @@ public class LoginFragment extends Fragment {
         Call<JsonElement> logInUser = restClient.getConsumerService().login(email, password, device_token, Constants.PLATFORM);
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 try {
                     if (response.isSuccess()) {
                         JsonObject responseBody = response.body().getAsJsonObject();

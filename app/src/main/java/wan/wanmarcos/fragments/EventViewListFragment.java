@@ -32,6 +32,7 @@ import java.util.List;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.MainActivity;
@@ -53,29 +54,18 @@ public class EventViewListFragment extends Fragment {
     RestClient restClient;
     SharedPreferences preferences;
     Session session;
-
     private Builder builder;
-
     private Boolean received = true;
-
     private boolean userScrolled = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
-
     private LinearLayoutManager mLayoutManager;
-
     private RecyclerView recyclerView;
     private EventListAdapter eventListAdapter;
-
     private Button btnNewEvent;
-
     FloatingActionButton suggestFAB;
-
     DateAndTimeDealer dateAndTimeDealer;
-
     private int currentPage;
-
     private View mLayout;
-
 
     public  EventViewListFragment(){
 
@@ -145,13 +135,11 @@ public class EventViewListFragment extends Fragment {
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                     userScrolled = true;
 
                 }
-
             }
 
             @Override
@@ -186,7 +174,7 @@ public class EventViewListFragment extends Fragment {
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, Constants.CANTIDAD);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has("events")) {
                     mLayout.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
