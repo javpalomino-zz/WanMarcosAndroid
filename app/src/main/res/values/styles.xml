@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
-        <!-- Customize your theme here. -->
-    </style>
-
     <style name="CenterVerticalLayout">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -27,9 +22,47 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="AppTheme.Gateway" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryGatewayColor</item>
+        <item name="colorPrimaryDark">@color/primaryGatewayColorDark</item>
+        <item name="colorAccent">@color/accentGatewayColor</item>
+    </style>
+
+    <style name="AppTheme.News" parent="AppTheme.Base">
         <item name="colorPrimary">@color/primaryNewsColor</item>
         <item name="colorPrimaryDark">@color/primaryNewsColorDark</item>
         <item name="colorAccent">@color/accentNewsColor</item>
+    </style>
+
+    <style name="AppTheme.Teachers" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryTeachersColor</item>
+        <item name="colorPrimaryDark">@color/primaryTeachersColorDark</item>
+        <item name="colorAccent">@color/accentTeachersColor</item>
+    </style>
+
+    <style name="AppTheme.Places" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryPlacesColor</item>
+        <item name="colorPrimaryDark">@color/primaryPlacesColorDark</item>
+        <item name="colorAccent">@color/accentPlacesColor</item>
+    </style>
+
+    <style name="AppTheme.Events" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryEventsColor</item>
+        <item name="colorPrimaryDark">@color/primaryEventsColorDark</item>
+        <item name="colorAccent">@color/accentEventsColor</item>
+    </style>
+
+    <style name="AppTheme.Profile" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryProfileColor</item>
+        <item name="colorPrimaryDark">@color/primaryProfileColorDark</item>
+        <item name="colorAccent">@color/accentProfileColor</item>
+    </style>
+    <style name="AppTheme.ContactUS" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryContactColor</item>
+        <item name="colorPrimaryDark">@color/primaryContactColorDark</item>
+        <item name="colorAccent">@color/accentContactColor</item>
     </style>
 
     <style name="TeacherItemImage">
@@ -413,6 +446,7 @@
         <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
     <style name="PopUpCommentHeaderSubtitle">
@@ -422,6 +456,7 @@
         <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
     <style name="PopUpCommentLabelMessage">
@@ -449,6 +484,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">2</item>
         <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
     <style name="EditPreferencesHeaderLabel">

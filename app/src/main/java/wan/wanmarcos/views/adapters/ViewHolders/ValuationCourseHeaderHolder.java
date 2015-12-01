@@ -39,7 +39,7 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
 
     @Override
     public void setElements() {
-        Picasso.with(view.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        Picasso.with(view.getContext()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(teacherCardBackground);
         Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(teacherImage);
         facultyName.setText("d");
         teacherName.setText("carlos");

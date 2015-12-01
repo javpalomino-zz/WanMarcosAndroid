@@ -94,7 +94,7 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         headerBackground = (ImageView)layout.findViewById(R.id.nav_drawer_profile_background);
-        Picasso.with(getActivity()).load(R.mipmap.testimage).fit().centerCrop().into(headerBackground);
+        Picasso.with(getActivity()).load(R.mipmap.backgroundprofile).fit().centerCrop().into(headerBackground);
         profileImage = (ImageView)layout.findViewById(R.id.nav_drawer_profile_image);
         profileName = (TextView)layout.findViewById(R.id.nav_drawer_profile_name);
         profileEmail = (TextView)layout.findViewById(R.id.nav_drawer_profile_email);

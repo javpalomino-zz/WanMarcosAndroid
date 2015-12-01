@@ -91,14 +91,14 @@ public class PlaceListFragment extends Fragment implements FragmentsMethods{
     private void setMapActive()
     {
         listLine.setVisibility(View.INVISIBLE);
-        setTextColor(textList, R.color.tabUnselectedTextColor);
+        setTextColor(textList, R.color.placesTabUnselectedTextColor);
         mapLine.setVisibility(View.VISIBLE);
         setTextColor(textMap,R.color.pureWhite);
     }
     private void setListActive()
     {
         mapLine.setVisibility(View.INVISIBLE);
-        setTextColor(textMap, R.color.tabUnselectedTextColor);
+        setTextColor(textMap, R.color.placesTabUnselectedTextColor);
         listLine.setVisibility(View.VISIBLE);
         setTextColor(textList, R.color.pureWhite);
     }

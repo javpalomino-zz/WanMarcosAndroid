@@ -93,7 +93,7 @@
         style="@style/ScreenWideButtom"
 
         android:text="@string/teacher_comment_action"
-        android:background="@color/accentNewsColor"
-        android:textColor="@color/buttonTextNewsColor"
+        android:background="@color/accentTeachersColor"
+        android:textColor="@color/pureWhite"
         android:layout_below="@id/teacher_comment_post"/>
 </RelativeLayout>

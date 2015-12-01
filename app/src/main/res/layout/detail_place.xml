@@ -87,7 +87,7 @@
                     android:text="Ver En Mapa"
 
                     android:layout_below="@+id/profile_place_rating_container"
-                    android:background="@color/accentNewsColor"
+                    android:background="@color/accentPlacesColor"
                     android:textColor="#ffffff"
                     />
 
