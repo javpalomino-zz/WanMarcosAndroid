@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
@@ -69,7 +70,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
         Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)), Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 course.setText(responseBody.get("name").getAsString());
             }

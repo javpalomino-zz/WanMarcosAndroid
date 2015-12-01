@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Course;
 import wan.wanmarcos.utils.RestClient;
@@ -45,13 +46,14 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
         Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getDetailTeacher(token,Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
+
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.get("score").isJsonNull()) {
                     ratingTeacher.setText("0");
                 } else {
-                    ratingTeacher.setText(responseBody.get("score").getAsFloat()+ "");
+                    ratingTeacher.setText(responseBody.get("score").getAsFloat() + "");
                 }
                 teacherName.setText(responseBody.get("first_name").getAsString() + " " + responseBody.get("last_name").getAsString());
                 Picasso.with(itemView.getContext()).load(responseBody.get("image").getAsString()).transform(new CircleTransform()).into(teacherImage);

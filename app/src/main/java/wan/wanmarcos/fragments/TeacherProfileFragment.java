@@ -27,6 +27,7 @@ import java.util.List;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
@@ -107,13 +108,13 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getTeacherCourses(token,Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)),current_page,Constants.CANTIDAD);
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has(JSON_SUBJECT)) {
                     JsonArray jsonArray = responseBody.getAsJsonArray(JSON_SUBJECT);
                     for (int i = 0; i < jsonArray.size(); i++) {
                         JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
-                        Log.d("D",storedObject.toString());
+                        Log.d("D", storedObject.toString());
                         Course current = new Course(storedObject);
                         courseListAdapter.add(current);
                     }

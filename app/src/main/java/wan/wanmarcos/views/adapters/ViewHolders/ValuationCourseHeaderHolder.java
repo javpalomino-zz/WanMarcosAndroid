@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
@@ -56,14 +57,13 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
         Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)),Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 courseName.setText(responseBody.get("name").getAsString());
-                if(responseBody.get("score").isJsonNull()){
-                    rating.setText(""+0.0);
-                }
-                else{
-                    rating.setText(responseBody.get("score").getAsFloat()+"");
+                if (responseBody.get("score").isJsonNull()) {
+                    rating.setText("" + 0.0);
+                } else {
+                    rating.setText(responseBody.get("score").getAsFloat() + "");
                 }
             }
 

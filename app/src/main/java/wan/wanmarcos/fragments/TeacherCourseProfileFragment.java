@@ -20,6 +20,7 @@ import com.google.gson.JsonObject;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
@@ -83,9 +84,9 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState != state) {
                     changeState = true;
-                    if (changeState ) {
-                        if(state==0){
-                            if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() == valuationListAdapter.getItemCount() - 2 && layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() > 1) {
+                    if (changeState) {
+                        if (state == 0) {
+                            if (layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() == valuationListAdapter.getItemCount() - 2 && layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() > 1) {
                                 getData();
                             }
                         }
@@ -98,8 +99,9 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     public void getData(){
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getCourseComments(token,Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)),Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)),current_page,Constants.CANTIDAD);
         jsonElementCall.enqueue(new Callback<JsonElement>() {
+
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has(JSON_COMMENT)) {
                     JsonArray jsonArray = responseBody.getAsJsonArray(JSON_COMMENT);
