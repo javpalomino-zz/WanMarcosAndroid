@@ -2,6 +2,7 @@
 <resources>
     <color name="primaryNewsColor">#3F51B5</color>
     <color name="primaryNewsColorDark">#303F9F</color>
+    <color name="tabUnselectedTextColor">#909ad5</color>
     <color name="accentNewsColor">#F7B801</color>
     <color name="buttonTextNewsColor">#000000</color>
     <color name="eventDeatilGridBackgroundColor">#F2F2F2</color>
@@ -18,4 +19,5 @@
     <color name="loginButtonTextColorLight">#000000</color>
     <color name="loginLinkTextColor">#919497</color>
     <color name="loginLinkTextColorLight">#6E6B68</color>
+    <color name="pureWhite">#FFFFFF</color>
 </resources>
