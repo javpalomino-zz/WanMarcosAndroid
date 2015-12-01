@@ -23,8 +23,8 @@
         style="@style/ScreenWideButtom"
 
         android:text="¡ Listo !"
-        android:background="@color/accentNewsColor"
-        android:textColor="@color/buttonTextNewsColor"
+        android:background="@color/accentProfileColor"
+        android:textColor="@color/pureWhite"
         android:layout_below="@id/profile_edit_info_carreer" />
 
 </RelativeLayout>

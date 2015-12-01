@@ -32,7 +32,7 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
 
     @Override
     public void setElements() {
-        Picasso.with(view.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        Picasso.with(view.getContext()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(teacherCardBackground);
         teacherName.setText("Carlos");
         ratingTeacher.setText("4.0");
         Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(teacherImage);

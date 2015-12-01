@@ -54,8 +54,8 @@
                     android:id="@+id/eventFormStartDateButton"
 
                     style="@style/EventSubmitFormFieldButton"
-                    android:background="@color/accentNewsColor"
-                    android:textColor="@color/buttonTextNewsColor"
+                    android:background="@color/accentEventsColor"
+                    android:textColor="@color/pureBlack"
 
                     android:text="@string/btnEventStartDateForm"
                     android:layout_below="@+id/eventFormCategory"/>
@@ -63,8 +63,8 @@
                     android:id="@+id/eventFormStartTimeButton"
 
                     style="@style/EventSubmitFormFieldButton"
-                    android:background="@color/accentNewsColor"
-                    android:textColor="@color/buttonTextNewsColor"
+                    android:background="@color/accentEventsColor"
+                    android:textColor="@color/pureBlack"
 
                     android:text="@string/btnEventStartTimeForm"
                     android:layout_below="@+id/eventFormStartDateButton"/>
@@ -72,8 +72,8 @@
                     android:id="@+id/eventFormEndDateButton"
 
                     style="@style/EventSubmitFormFieldButton"
-                    android:background="@color/accentNewsColor"
-                    android:textColor="@color/buttonTextNewsColor"
+                    android:background="@color/accentEventsColor"
+                    android:textColor="@color/pureBlack"
 
                     android:text="@string/btnEventEndDateForm"
                     android:layout_below="@+id/eventFormStartTimeButton"/>
@@ -81,8 +81,8 @@
                     android:id="@+id/eventFormEndTimeButton"
 
                     style="@style/EventSubmitFormFieldButton"
-                    android:background="@color/accentNewsColor"
-                    android:textColor="@color/buttonTextNewsColor"
+                    android:background="@color/accentEventsColor"
+                    android:textColor="@color/pureBlack"
 
                     android:text="@string/btnEventEndTimeForm"
                     android:layout_below="@+id/eventFormEndDateButton"/>
@@ -101,8 +101,8 @@
                     android:id="@+id/eventFormImage"
 
                     style="@style/EventSubmitFormFieldButton"
-                    android:background="@color/accentNewsColor"
-                    android:textColor="@color/buttonTextNewsColor"
+                    android:background="@color/accentEventsColor"
+                    android:textColor="@color/pureBlack"
 
                     android:text="@string/btnEventImageForm"
                     android:layout_below="@+id/eventFormLink"/>
@@ -111,8 +111,8 @@
                     android:id="@+id/eventFormSchedule"
 
                     style="@style/EventSubmitFormFieldButton"
-                    android:background="@color/accentNewsColor"
-                    android:textColor="@color/buttonTextNewsColor"
+                    android:background="@color/accentEventsColor"
+                    android:textColor="@color/pureBlack"
 
                     android:text="@string/btnEventScheduleForm"
                     android:layout_below="@+id/eventFormImage"/>
