@@ -2,11 +2,34 @@
 <resources>
     <color name="primaryNewsColor">#3F51B5</color>
     <color name="primaryNewsColorDark">#303F9F</color>
-    <color name="accentNewsColor">#F7B801</color>
-    <color name="buttonTextNewsColor">#000000</color>
+    <color name="accentNewsColor">#3F51B5</color>
+
+    <color name="primaryTeachersColor">#F44336</color>
+    <color name="primaryTeachersColorDark">#D32F2F</color>
+    <color name="accentTeachersColor">#F44336</color>
+
+    <color name="primaryPlacesColor">#4CAF50</color>#388E3C
+    <color name="primaryPlacesColorDark">#388E3C</color>
+    <color name="accentPlacesColor">#4CAF50</color>
+    <color name="placesTabUnselectedTextColor">#C8E6C9</color>
+
+    <color name="primaryEventsColor">#FFC107</color>
+    <color name="primaryEventsColorDark">#FFA000</color>
+    <color name="accentEventsColor">#FFC107</color>
     <color name="eventDeatilGridBackgroundColor">#F2F2F2</color>
     <color name="eventDetailDividerColor">#DBDBDB</color>
-    
+
+    <color name="primaryProfileColor">#686868</color>
+    <color name="primaryProfileColorDark">#343434</color>
+    <color name="accentProfileColor">#686868</color>
+
+    <color name="primaryContactColor">#673AB7</color>
+    <color name="primaryContactColorDark">#512DA8</color>
+    <color name="accentContactColor">#673AB7</color>
+
+    <color name="primaryGatewayColor">@color/pureBlack</color>
+    <color name="primaryGatewayColorDark">@color/pureBlack</color>
+    <color name="accentGatewayColor">@color/pureBlack</color>
     <color name="loginBackgroundColor">#000000</color>
     <color name="loginBackgroundColorLight">#ffffff</color>
     <color name="loginButtonBackgroundColor">#1db954</color>
@@ -18,4 +41,7 @@
     <color name="loginButtonTextColorLight">#000000</color>
     <color name="loginLinkTextColor">#919497</color>
     <color name="loginLinkTextColorLight">#6E6B68</color>
+
+    <color name="pureWhite">#FFFFFF</color>
+    <color name="pureBlack">#000000</color>
 </resources>

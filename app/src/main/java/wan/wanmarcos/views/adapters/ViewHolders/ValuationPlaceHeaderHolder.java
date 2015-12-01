@@ -37,7 +37,7 @@ public class ValuationPlaceHeaderHolder extends CustomHeaderViewHolder {
 
     @Override
     public void setElements() {
-        Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(placeCardBackground);
+        Picasso.with(itemView.getContext()).load(R.mipmap.backgroundcardplace).fit().centerCrop().into(placeCardBackground);
         Picasso.with(itemView.getContext()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(placeImage);
         placeName.setText("Chio");
         addEvents();

@@ -2,8 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_teacher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,10 +18,7 @@
 
             <ImageView
                 android:id="@+id/letterImageBackground"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"/>
+                style="@style/CardSmallProfileImage" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -36,23 +32,16 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="2"
-
-                        android:textStyle="bold"
                         android:id="@+id/profile_course_course_name"
-                        android:text="NOMBRE DE CURSO POR DEFECTO"/>
+                        style="@style/CardInfoTitleBold"
+                        android:text="NOMBRE DE CURSO POR DEFECTO" />
                     <!--style="@style/CourseItemName" -->
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="2"
-
-                        android:layout_below="@id/profile_course_course_name"
                         android:id="@+id/course_faculty"
-                        android:text="NOMBRE DE FACULTAD POR DEFECTO"/>
+                        style="@style/CardInfoSubtitleNormal"
+                        android:layout_below="@id/profile_course_course_name"
+                        android:text="NOMBRE DE FACULTAD POR DEFECTO" />
                     <!--style="@style/CourseItemFaculty" -->
 
                 </RelativeLayout>
@@ -65,36 +54,20 @@
 
                     <TextView
                         android:id="@+id/profile_teacher_rating"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:layout_centerVertical="true"
-
-                        android:textColor="@android:color/black"
-                        android:textSize="12.5sp"
+                        style="@style/CardRatingLabelSmall"
                         android:text="4.5"
-                        />
+                        android:textColor="@android:color/black"
+                         />
+
                     <ImageView
                         android:id="@+id/teacher_profile_star_drawable"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="12.5dp"
-                        android:layout_centerVertical="true"
-
+                        style="@style/StarCourseStyleSmall"
                         android:layout_toRightOf="@id/profile_teacher_rating"
-                        android:src="@mipmap/ic_grade_black_24dp"
-                        />
+                        android:src="@mipmap/ic_grade_black_24dp" />
                 </RelativeLayout>
 
             </RelativeLayout>
         </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/eventDetailDividerColor"
-        android:layout_alignBottom="@id/detailContainer" />
     </android.support.v7.widget.CardView>
 
 

@@ -25,23 +25,13 @@
                 <TextView
                     android:id="@+id/edit_preferences_faculty_label"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
+                    style="@style/EditPreferencesHeaderLabel"
 
-                    android:textSize="15sp"
                     android:text="Facultades"/>
                 <ImageView
                     android:id="@+id/add_faculty_button"
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:clickable="true"
-                    android:layout_marginRight="10dp"
+                    style="@style/EditPreferencesDeleteButton"
 
                     android:src="@mipmap/ic_add_circle_black_24dp"/>
 

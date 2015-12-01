@@ -4,144 +4,118 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_places_profile">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view_place_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="0dp"
-        card_view:cardElevation="5dp"
-        card_view:cardPreventCornerOverlap="true"
-        card_view:cardUseCompatPadding="true">
-
-        <ImageView
-            android:id="@+id/places_card_background"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            />
-
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_place_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp">
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="5dp"
+            card_view:cardPreventCornerOverlap="true"
+            card_view:cardUseCompatPadding="true">
 
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_marginBottom="5dp"
-                android:layout_centerHorizontal="true"
-
-                android:id="@+id/profile_place_image"
-
+                android:id="@+id/places_card_background"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 />
-            <!--style="@style/ProfileTeacherItemImage" -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:maxLines="2"
-
-                android:id="@+id/profile_place_name"
-                android:layout_below="@id/profile_place_image"
-                android:textColor="@android:color/white"
-                android:textSize="25sp"
-                android:text="Nombre del lugar"
-                />
-            <!--style="@style/ProfileTeacherItemName"-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:maxLines="2"
-
-                android:textSize="20sp"
-                android:text="Lugar de Referencia"
-                android:textColor="@android:color/white"
-                android:id="@+id/profile_reference_place_name"
-                android:layout_below="@id/profile_place_name"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:gravity="center"
-                android:maxLines="2"
-
-                android:textSize="15sp"
-                android:text="Conocido por "
-                android:id="@+id/profile_place_description"
-                android:textColor="@android:color/white"
-                android:layout_below="@id/profile_reference_place_name"/>
 
             <RelativeLayout
-                android:id="@+id/profile_place_rating_container"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/profile_place_description">
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
 
+                <ImageView
+                    style="@style/ProfileCardImage"
+
+                    android:id="@+id/profile_place_image"
+
+                    />
+                <!--style="@style/ProfileTeacherItemImage" -->
                 <TextView
+                    style="@style/ProfileDetailHeader1"
+                    android:id="@+id/profile_place_name"
+                    android:layout_below="@id/profile_place_image"
+                    android:textColor="@android:color/white"
+                    android:text="Nombre del lugar"
+                    />
+                <!--style="@style/ProfileTeacherItemName"-->
+                <TextView
+                    style="@style/ProfileDetailHeader2"
+                    android:text="Lugar de Referencia"
+                    android:textColor="@android:color/white"
+                    android:id="@+id/profile_reference_place_name"
+                    android:layout_below="@id/profile_place_name"/>
+                <TextView
+                    style="@style/ProfileDetailHeader3"
+                    android:text="Conocido por "
+                    android:id="@+id/profile_place_description"
+                    android:textColor="@android:color/white"
+                    android:layout_below="@id/profile_reference_place_name"/>
+
+                <RelativeLayout
+                    android:id="@+id/profile_place_rating_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLines="1"
                     android:layout_centerHorizontal="true"
+                    android:layout_below="@id/profile_place_description">
 
-                    android:id="@+id/profile_place_rating"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:text="4.5"/>
-                <ImageView
-                    android:id="@+id/place_profile_star_drawable"
+                    <TextView
+                        style="@style/CardRatingLabelMedium"
 
-                    android:layout_width="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="5dp"
+                        android:id="@+id/profile_place_rating"
+                        android:textColor="@android:color/white"
+                        android:text="4.5"/>
+                    <ImageView
+                        android:id="@+id/place_profile_star_drawable"
+                        style="@style/StarCourseStyleMedium"
 
-                    android:layout_height="15dp"
-                    android:layout_toRightOf="@id/profile_place_rating"
+                        android:layout_toRightOf="@id/profile_place_rating"
+                        android:src="@mipmap/ic_grade_white_24dp"/>
+                </RelativeLayout>
 
-                    android:src="@mipmap/ic_grade_white_24dp"/>
+                <Button
+                    android:id="@+id/place_profile_map_buttom"
+                    style="@style/FindInMapButton"
+                    android:text="Ver En Mapa"
+
+                    android:layout_below="@+id/profile_place_rating_container"
+                    android:background="@color/accentPlacesColor"
+                    android:textColor="#ffffff"
+                    />
+
+
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/place_profile_map_buttom"
 
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="10dp"
-                android:layout_centerHorizontal="true"
-                android:drawableLeft="@mipmap/ic_room_white_24dp"
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:id="@+id/place_comments_label"
+            android:layout_below="@id/card_view_place_profile"
+            style="@style/DividerLabelMedium"
+            android:text="Comentarios"/>
+        <View
+            style="@style/DividerLineMedium"
 
-                android:text="Ver En Mapa"
-                android:layout_below="@+id/profile_place_rating_container"
-                android:background="@color/accentNewsColor"
-                android:textColor="#ffffff"
-                />
+            android:layout_toRightOf="@id/place_comments_label"
+            android:layout_below="@id/card_view_place_profile"
+            />
 
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 
-    </android.support.v7.widget.CardView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_anchor="@id/places_card_background"
         app:layout_anchorGravity="right|bottom|end"
-        android:layout_marginRight="16dp"
-        android:clickable="true"
+        style="@style/BottomRightFAB"
         android:src="@mipmap/ic_edit_white_24dp" />
 </android.support.design.widget.CoordinatorLayout>

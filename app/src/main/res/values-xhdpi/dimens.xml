@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="image_slide_height">200dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="navDrawerImageMargin_top">48dp</dimen>
+    <dimen name="applogoMarginTop">80dp</dimen>
+    <dimen name="loginButtonMarginBottom">40dp</dimen>
+    <dimen name="forgotPasswordLinkMarginBottom">20dp</dimen>
+    <dimen name="verticalViewHeaderVerticalMargin">20dp</dimen>
+    <dimen name="screenWideInputGatewayHeight">55dp</dimen>
+    <dimen name="screenWideInputGatewayTextSize">17sp</dimen>
+    <dimen name="eventPageHeight">230dp</dimen>
+    <dimen name="evetListItemImageHeight">200dp</dimen>
+</resources>

@@ -105,11 +105,17 @@ public class EventPageFragment extends Fragment{
                 txtDescription.setText(event.getDescription());
                 txtLink.setText(event.getEventLink());
                 Picasso.with(getActivity()).load(event.getImgUrl()).into(imageView);
+                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+
+                if(bitmap!=null) {
+                    Palette p = Palette.from(bitmap).generate();
+                    imageView.setBackgroundColor(p.getVibrantColor(0x0000000));
+                }
             }
 
             @Override
             public void onFailure(Throwable t) {
-
+                System.out.println(t);
             }
         });
     }

@@ -7,15 +7,7 @@
     <TextView
         android:id="@+id/add_faculty_header_label"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
+        style="@style/AddFacultyPopUpHeader"
 
         android:text="Dinos El Nombre De Una Facultad Que Te Interese"
         />
@@ -23,11 +15,7 @@
     <AutoCompleteTextView
         android:id="@+id/add_faculty_textView"
 
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        style="@style/AutoCompleteTextViewForm"
 
         android:hint="Facultad"
         android:layout_below="@id/add_faculty_header_label"/>
@@ -38,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
 
-        android:background="@color/accentNewsColor"
-        android:textColor="@color/buttonTextNewsColor"
+        android:background="@color/accentTeachersColor"
+        android:textColor="@color/pureBlack"
         android:text=" Guardar "
         android:layout_below="@id/add_faculty_textView" />
 

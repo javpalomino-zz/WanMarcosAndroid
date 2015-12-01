@@ -42,33 +42,20 @@
                 android:layout_toRightOf="@id/header_image_icon">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textStyle="bold"
-                    android:maxLines="2"
+                    style="@style/PopUpCommentHeaderTitle"
 
                     android:id="@+id/teacher_comment_professor"
-                    android:textSize="20sp"
                     android:text="Santiago Moquillaza Enriquez"/>
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:maxLines="2"
+                    style="@style/PopUpCommentHeaderSubtitle"
 
                     android:id="@+id/teacher_comment_course"
                     android:layout_below="@id/teacher_comment_professor"
-                    android:textSize="15sp"
                     android:text="Analisis y diseño de Algoritmos para la programacion"/>
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-
+                    style="@style/PopupCommentHeaderDetail"
                     android:id="@+id/teacher_comment_faculty"
                     android:layout_below="@id/teacher_comment_course"
-                    android:textSize="12sp"
                     android:text="Facultad de Ingenieria de Sistemas E Informatica"/>
 
             </RelativeLayout>
@@ -78,11 +65,7 @@
     <TextView
         android:id="@+id/comment_header"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true"
+        style="@style/PopUpCommentLabelMessage"
 
         android:text="@string/teacher_comment_title"
         android:layout_below="@id/comment_header_container"
@@ -98,14 +81,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:lines="5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        style="@style/PopUpCommentBigTextInput"
 
         android:hint="@string/teacher_comment_hint"
         android:id="@+id/teacher_comment_post"
@@ -114,12 +90,10 @@
     <Button
         android:id="@+id/teacher_comment_action"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/ScreenWideButtom"
 
         android:text="@string/teacher_comment_action"
-        android:background="@color/accentNewsColor"
-        android:textColor="@color/buttonTextNewsColor"
+        android:background="@color/accentTeachersColor"
+        android:textColor="@color/pureWhite"
         android:layout_below="@id/teacher_comment_post"/>
 </RelativeLayout>

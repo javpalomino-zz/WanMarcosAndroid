@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
-        <!-- Customize your theme here. -->
-    </style>
-
     <style name="CenterVerticalLayout">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -23,12 +18,51 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="AppTheme.Gateway" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryGatewayColor</item>
+        <item name="colorPrimaryDark">@color/primaryGatewayColorDark</item>
+        <item name="colorAccent">@color/accentGatewayColor</item>
+    </style>
+
+    <style name="AppTheme.News" parent="AppTheme.Base">
         <item name="colorPrimary">@color/primaryNewsColor</item>
         <item name="colorPrimaryDark">@color/primaryNewsColorDark</item>
         <item name="colorAccent">@color/accentNewsColor</item>
+    </style>
+
+    <style name="AppTheme.Teachers" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryTeachersColor</item>
+        <item name="colorPrimaryDark">@color/primaryTeachersColorDark</item>
+        <item name="colorAccent">@color/accentTeachersColor</item>
+    </style>
+
+    <style name="AppTheme.Places" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryPlacesColor</item>
+        <item name="colorPrimaryDark">@color/primaryPlacesColorDark</item>
+        <item name="colorAccent">@color/accentPlacesColor</item>
+    </style>
+
+    <style name="AppTheme.Events" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryEventsColor</item>
+        <item name="colorPrimaryDark">@color/primaryEventsColorDark</item>
+        <item name="colorAccent">@color/accentEventsColor</item>
+    </style>
+
+    <style name="AppTheme.Profile" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryProfileColor</item>
+        <item name="colorPrimaryDark">@color/primaryProfileColorDark</item>
+        <item name="colorAccent">@color/accentProfileColor</item>
+    </style>
+    <style name="AppTheme.ContactUS" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryContactColor</item>
+        <item name="colorPrimaryDark">@color/primaryContactColorDark</item>
+        <item name="colorAccent">@color/accentContactColor</item>
     </style>
 
     <style name="TeacherItemImage">
@@ -62,13 +96,701 @@
         <item name="android:layout_marginLeft">8dp</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>
+
+    <style name="DividerLabelMedium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DividerLineMedium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@color/eventDetailDividerColor</item>
+    </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ToolbarWhiteText" parent="Theme.AppCompat.NoActionBar">
+    <style name="ToolbarWhiteText" parent="Theme.AppCompat.NoActionBar"></style>
+
+    <style name="ContactanosHeaderLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="BigTextInput">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lines">10</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:gravity">top</item>
+
+    </style>
+
+    <style name="BottomRightFAB">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="NavDrawerStyle">
+        <item name="android:name">wan.wanmarcos.fragments.NavigationDrawerFragment</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">280dp</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="CardSmallProfileImage">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+    </style>
+
+    <style name="CardInfoTitleBold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CardInfoSubtitleNormal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="CardRatingLabelSmall">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">12.5sp</item>
+    </style>
+
+    <style name="CardRatingLabelMedium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="CardRatingLabelBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="StarCourseStyleSmall">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">12.5dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="StarCourseStyleMedium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">15dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="StarCourseStyleBig">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="ProfileCardImage">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">150dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="ProfileDetailHeader1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="ProfileDetailHeader2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ProfileDetailHeader3">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="FindInMapButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:drawableLeft">@mipmap/ic_room_white_24dp</item>
+    </style>
+
+    <style name="EditPreferencesDeleteButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="EditPreferencesListFacultyName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+
+    <style name="EventListImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/evetListItemImageHeight</item>
+    </style>
+
+    <style name="EventTitleBig">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="EvenSubtitleMedium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="AddFacultyPopUpHeader">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="AutoCompleteTextViewForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginRight">25dp</item>
+    </style>
+
+    <style name="ScreenWideButtom">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="EventPageImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/eventPageHeight</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="EventPageFormLabel">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/eventDeatilGridBackgroundColor</item>
+    </style>
+
+    <style name="EventPageFormContent">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@color/eventDeatilGridBackgroundColor</item>
+    </style>
+
+    <style name="EventFormDescription">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:lines">5</item>
+        <item name="android:background">@color/eventDeatilGridBackgroundColor</item>
+    </style>
+
+    <style name="EventSubmitFormFieldButton">
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginRight">25dp</item>
+    </style>
+
+    <style name="BigTextInputSubmitForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lines">6</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginRight">25dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:gravity">top</item>
+    </style>
+
+    <style name="AppLogo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:src">@mipmap/wanmarcosblack</item>
+       <!-- <item name="android:layout_marginTop">@dimen/applogoMarginTop</item>-->
+    </style>
+
+    <style name="GatewayViewHeader">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">@dimen/verticalViewHeaderVerticalMargin</item>
+        <item name="android:layout_marginTop">@dimen/verticalViewHeaderVerticalMargin</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/loginLinkTextColorLight</item>
+    </style>
+
+    <style name="ScreenWideButtomGateway">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="ScreenWideButtomGatewayLogin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:layout_marginBottom">@dimen/loginButtonMarginBottom</item>
+    </style>
+
+    <style name="ScrenWideInpuText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+    <style name="ScrenWideInpuTextGateway">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/screenWideInputGatewayHeight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textSize">@dimen/screenWideInputGatewayTextSize</item>
+    </style>
+
+    <style name="PopUpCommentHeaderImage">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="PopUpCommentHeaderTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/pureWhite</item>
+    </style>
+
+    <style name="PopUpCommentHeaderSubtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/pureWhite</item>
+    </style>
+
+    <style name="PopUpCommentLabelMessage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="PopUpCommentBigTextInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">top</item>
+        <item name="android:lines">5</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="PopupCommentHeaderDetail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/pureWhite</item>
+    </style>
+
+    <style name="EditPreferencesHeaderLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="UserProfileContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">250dp</item>
+    </style>
+
+    <style name="UserProfileImage">
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="UserProfileName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxLines">3</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="UserProfileEmail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="UserProfileFacultyCarreer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="UserProfileFacultyDividerLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="NewsCardInfoTitleBold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="NewsCardInfoSubtitleBold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="NewsCardInfoDescription">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">15sp</item>
+
+    </style>
+
+    <style name="TeacherCardTitleBold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="TabActiveLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">3dp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
+    <style name="RatingItem" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+    </style>
+
+    <!--Rating Item-->
+    <!--START-->
+    <style name="RatingLabel" >
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="RatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:isIndicator">false</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/rating_type</item>
+        <item name="android:numStars">5</item>
+        <item name="android:layout_toEndOf">@id/rating_type</item>
+        <item name="android:layout_alignBottom">@id/rating_type</item>
+    </style>
+
+    <style name="RatingMark">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/rating_progress</item>
+        <item name="android:layout_alignBottom">@id/rating_type</item>
+    </style>
+    <!--Rating Item-->
+    <!--END-->
+
+    <!--START-->
+    <!--Course Item-->
+    <style name="CourseItemName">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="CourseItemFaculty">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_below">@+id/profile_course_course_name</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="CourseItemMark">
+        <item name="android:layout_below">@+id/course_faculty</item>
+        <item name="android:layout_alignRight">@+id/course_faculty</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="CouseItemLabel">
+        <item name="android:layout_below">@+id/course_faculty</item>
+        <item name="android:layout_alignLeft">@+id/course_faculty</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    <!--<style name="CouseItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:layout_below">@+id/course_faculty</item>
+        <item name="android:layout_toLeftOf">@id/course_mark</item>
+        <item name="android:layout_marginTop">5dp</item>
+
+    </style>-->
+
+    <!--Course Item-->
+    <!--END-->
+
+
+    <!--START-->
+    <!--VALUATION ITEM-->
+    <style name="ValuationItemImage">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginStart">23dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="ValuationTextItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignTop">@+id/userImage</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="ValuationLabelItem">
+        <item name="android:layout_alignLeft">@+id/textView2</item>
+        <item name="android:layout_alignStart">@+id/textView2</item>
+        <item name="android:layout_alignBottom">@+id/userImage</item>
+        <item name="android:layout_alignRight">@+id/userRate</item>
+        <item name="android:layout_alignEnd">@+id/userRate</item>
+        <item name="android:layout_below">@+id/textView2</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="ValuationRatingItem" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:layout_alignTop">@+id/textView2</item>
+        <item name="android:layout_toRightOf">@+id/textView2</item>
+        <item name="android:layout_toEndOf">@+id/textView2</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginStart">25dp</item>
+    </style>
+    <!--VALUATION ITEM-->
+    <!--END-->
+
+
+    <!--PROFILE TEACHER-->
+    <!--START-->
+    <style name="ProfileTeacherItemImage">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+
+    </style>
+    <style name="ProfileTeacherItemName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
+    </style>
+    <style name="ProfileTeacherItemRatings">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@+id/profile_teacher_mame</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
+        <item name="android:layout_toEndOf">@id/profile_teacher_image</item>
+        <item name="android:layout_alignBottom">@id/profile_teacher_image</item>
+
+    </style>
+    <style name="ProfileTeacherItemCourse">
+        <item name="android:layout_below">@id/profile_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+
+    </style>
+    <!--PROFILE TEACHER-->
+    <!--END-->
+
+    <style name="GenericListItem">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="CourseTeacherImageItem">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
     </style>
 
 
 
+    <!--START-->
+    <!--COURSE PROFILE -->
 
+    <style name="ProfileCourseItemComments">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_below">@id/profile_course_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ProfileCourseItemRating">
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@id/profile_course_faculty_name</item>
+        <item name="android:layout_above">@id/comments_list</item>
+    </style>
+
+    <style name="ProfileCourseItemFacultyName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_below">@id/profile_course_course_name</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
+    <style name="ProfileCourseItemCourseName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_below">@id/profile_course_teacher_name</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="ProfileCourseItemTeacherName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="ProfileCourseItemImage">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
 
 </resources>
