@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.squareup.okhttp.RequestBody;
 
 import java.util.Calendar;
+import java.util.Map;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -14,6 +15,7 @@ import retrofit.http.Header;
 import retrofit.http.Multipart;
 import retrofit.http.POST;
 import retrofit.http.Part;
+import retrofit.http.PartMap;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
@@ -59,12 +61,25 @@ public interface ConsumerService {
                                      @Path("id") int eventId);
     @Multipart
     @POST(Constants.EVENTS)
-    Call<JsonElement> suggestEvent(@Part("name") String event_name,
+    Call<JsonElement> suggestEvent(@Header("Authorization") String authorization,
+                                   @Part("name") String event_name,
                                    @Part("description") String event_description,
                                    @Part("starts_at")long event_startCal,
                                    @Part("ends_at")long event_endCal,
                                    @Part("website")String event_link,
                                    @Part("image\"; filename=\"image.jpg\" ")RequestBody image);
+    @Multipart
+    @POST(Constants.EVENTS)
+    Call<JsonElement> suggestEventwithSchedule(@Header("Authorization") String authorization,
+                                   @Part("name") String event_name,
+                                   @Part("description") String event_description,
+                                   @Part("starts_at")long event_startCal,
+                                   @Part("ends_at")long event_endCal,
+                                   @Part("website")String event_link,
+                                   @Part("place_id") int place,
+                                   @Part("category_id") int category,
+                                   @Part("image\"; filename=\"image.jpg\" ")RequestBody image,
+                                   @PartMap Map<String,RequestBody> schedule);
     @FormUrlEncoded
     @POST(Constants.SUGGESTIONS)
     Call<JsonElement> suggestions(@Header("Authorization") String authorization,@Field("message") String message);

@@ -35,6 +35,7 @@ public class Event implements Parcelable{
     private String description;
     private String eventLink;
     private String scheduleLink;
+    private int category;
     private int iconId;
     private int eventId;
 
@@ -84,9 +85,9 @@ public class Event implements Parcelable{
             }
 
             if(!event.get("place").isJsonNull()){
-                setReferencePlace(event.get("place").getAsString());
+                setReferencePlace(event.get("place").getAsJsonObject().toString());
             }else{
-                setReferencePlace("No indico");
+                setReferencePlace("");
             }
 
             if(!event.get("information").isJsonNull()){
@@ -243,7 +244,6 @@ public class Event implements Parcelable{
     }
 
     public String getReferencePlace() {
-
         return referencePlace;
     }
 
@@ -325,5 +325,13 @@ public class Event implements Parcelable{
 
     public void setScheduleLink(String scheduleLink) {
         this.scheduleLink = scheduleLink;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
     }
 }

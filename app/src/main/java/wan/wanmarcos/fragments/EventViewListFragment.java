@@ -54,29 +54,18 @@ public class EventViewListFragment extends Fragment {
     RestClient restClient;
     SharedPreferences preferences;
     Session session;
-
     private Builder builder;
-
     private Boolean received = true;
-
     private boolean userScrolled = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
-
     private LinearLayoutManager mLayoutManager;
-
     private RecyclerView recyclerView;
     private EventListAdapter eventListAdapter;
-
     private Button btnNewEvent;
-
     FloatingActionButton suggestFAB;
-
     DateAndTimeDealer dateAndTimeDealer;
-
     private int currentPage=1;
-
     private View mLayout;
-
 
     public  EventViewListFragment(){
 

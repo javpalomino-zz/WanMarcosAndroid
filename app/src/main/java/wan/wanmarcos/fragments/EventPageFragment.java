@@ -50,7 +50,6 @@ public class EventPageFragment extends Fragment{
     private TextView txtDescription;
     private TextView txtLink;
     FloatingActionButton downloadFAB;
-
     private String id;
     private String scheduleLink;
     private boolean received;
@@ -100,6 +99,7 @@ public class EventPageFragment extends Fragment{
             public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 event = new Event(responseBody);
+                txtReference.setText(event.getReferencePlace());
                 txtStart.setText(event.getStartDateTimeString());
                 txtEnd.setText(event.getFinishDateTimeString());
                 txtDescription.setText(event.getDescription());

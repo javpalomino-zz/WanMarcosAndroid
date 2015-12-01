@@ -2,10 +2,16 @@ package wan.wanmarcos.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentUris;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.design.widget.FloatingActionButton;
@@ -27,9 +33,12 @@ import com.squareup.okhttp.RequestBody;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import okio.BufferedSink;
 import retrofit.Call;
@@ -44,6 +53,7 @@ import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.DateAndTimeDealer;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
+import wan.wanmarcos.utils.UriManager;
 
 /**
  * Created by Francisco on 1/11/2015.
@@ -52,7 +62,6 @@ public class SuggestedEventFragment extends Fragment {
 
     private RestClient restClient;
     private Builder builder;
-
     private EditText txtName;
     private AutoCompleteTextView txtPlace;
     private AutoCompleteTextView txtCategory;
@@ -73,12 +82,15 @@ public class SuggestedEventFragment extends Fragment {
     private Uri imageUri;
     private Uri scheduleUri;
     FloatingActionButton sendFAB;
-
     private Event eventToPost;
-
     private View v_Layout;
-
     private DateAndTimeDealer dateAndTimeDealer;
+    private SharedPreferences preferences;
+    private Session session;
+    private String token;
+    private RequestBody image;
+    private Map<String,RequestBody> schedule;
+    private boolean recieved=true;
 
     public SuggestedEventFragment() {
         restClient = new RestClient();
@@ -88,6 +100,8 @@ public class SuggestedEventFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dateAndTimeDealer=new DateAndTimeDealer();
+        preferences = getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
+        session = Session.getSession(preferences);
     }
 
     @Override
@@ -115,6 +129,7 @@ public class SuggestedEventFragment extends Fragment {
         txtDescription = (EditText) layout.findViewById(R.id.eventFormDescription);
         sendFAB = (FloatingActionButton) layout.findViewById(R.id.sendFab);
         builder = new Builder();
+
 
     }
 
@@ -163,7 +178,6 @@ public class SuggestedEventFragment extends Fragment {
             }
         });
     }
-
 
     public void showStartTimePickerDialog(View v) {
         DialogFragment startTimeFragment = new TimePickerFragment(mStartTimeSetListener);
@@ -282,43 +296,99 @@ public class SuggestedEventFragment extends Fragment {
         int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
         returnCursor.moveToFirst();
         button.setText(returnCursor.getString(nameIndex));
-        Toast.makeText(getActivity(),getPath(uri), Toast.LENGTH_SHORT).show();
     }
+
     private void addSubmitListener() {
         sendFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Enviando Sugerencia de Evento", Toast.LENGTH_SHORT).show();
-                getFields();
-                postEvent();
+                if(recieved) {
+                    int errors = getFields();
+                    if (errors == 0) {
+                        postEvent();
+                    }
+                }else{
+                    Toast.makeText(getActivity(),"Su sugerencia esta siendo enviada.",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private void getFields() {
+    private int getFields() {
+        int errors = 0;
+        token = Constants.HEADER+session.getToken();
         eventToPost = new Event();
-        eventToPost.setName(txtName.getText().toString());
-        eventToPost.setDescription(txtDescription.getText().toString());
-        Calendar calStart = new GregorianCalendar();
-        calStart.set(dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH), timeStart.get(Calendar.HOUR), timeStart.get(Calendar.MINUTE), timeStart.get(Calendar.SECOND));
-        eventToPost.setStartDateTime(calStart);
-        Calendar calEnd = new GregorianCalendar();
-        calEnd.set(dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH), timeEnd.get(Calendar.HOUR), timeEnd.get(Calendar.MINUTE), timeEnd.get(Calendar.SECOND));
-        eventToPost.setFinishDateTime(calEnd);
+        String eventName = txtName.getText().toString();
+        String eventDescription = txtDescription.getText().toString();
+
+        if(eventName != null && eventName.trim().length() > 0){
+            eventToPost.setName(eventName);
+        }else{
+            errors++;
+            txtName.setError("Campo obligatorio");
+        }
+
+        if(eventDescription != null && eventDescription.trim().length() > 0){
+            eventToPost.setDescription(eventDescription);
+        }else{
+            errors++;
+            txtDescription.setError("Campo obligatorio");
+        }
+
+        if(dateStart != null && timeStart != null){
+            Calendar calStart = new GregorianCalendar();
+            calStart.set(dateStart.get(Calendar.YEAR), dateStart.get(Calendar.MONTH), dateStart.get(Calendar.DAY_OF_MONTH), timeStart.get(Calendar.HOUR), timeStart.get(Calendar.MINUTE), timeStart.get(Calendar.SECOND));
+            eventToPost.setStartDateTime(calStart);
+        }else{
+            errors++;
+            Toast.makeText(getActivity(), "Fecha de Inicio Obligatorio", Toast.LENGTH_SHORT).show();
+        }
+
+        if(dateEnd != null && timeEnd != null){
+            Calendar calEnd = new GregorianCalendar();
+            calEnd.set(dateEnd.get(Calendar.YEAR), dateEnd.get(Calendar.MONTH), dateEnd.get(Calendar.DAY_OF_MONTH), timeEnd.get(Calendar.HOUR), timeEnd.get(Calendar.MINUTE), timeEnd.get(Calendar.SECOND));
+            eventToPost.setFinishDateTime(calEnd);
+        }else{
+            errors++;
+            Toast.makeText(getActivity(),"Fecha de Fin Obligatorio",Toast.LENGTH_SHORT).show();
+        }
+
         eventToPost.setEventLink(txtLink.getText().toString());
+        eventToPost.setReferencePlace("");
+        eventToPost.setCategory(1);
+        if(imageUri != null){
+            File imageFile = new File(UriManager.getPathImage(imageUri, getActivity()));
+            image = RequestBody.create(MediaType.parse("image/*"), imageFile);
+        }else{
+            image = null;
+        }
+
+        if(scheduleUri != null){
+            schedule = new HashMap<>();
+            File scheduleFile = new File(UriManager.getPath(getActivity(),scheduleUri));
+            RequestBody scheduleBody = RequestBody.create(MediaType.parse("*/*"), scheduleFile);
+            schedule.put(
+                    "information\"; filename=\"file." + UriManager.getFileExtension(btnSchedule.getText().toString())+"\"",scheduleBody);
+        }else{
+            schedule = null;
+        }
+        return errors;
     }
 
     private void postEvent() {
         try {
-            File file = new File(getPath(imageUri));
-            RequestBody image = RequestBody.create(MediaType.parse("image/*"), file);
-            Call<JsonElement> sugEvent = restClient.getConsumerService().suggestEvent(
-                    eventToPost.getName() ,
+            recieved =false;
+            Call<JsonElement> sugEvent = restClient.getConsumerService().suggestEventwithSchedule(
+                    token,
+                    eventToPost.getName(),
                     eventToPost.getDescription(),
                     dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getStartDateTime()),
                     dateAndTimeDealer.getInstance().turnCalendarIntoMilis(eventToPost.getFinishDateTime()),
                     eventToPost.getEventLink().toString(),
-                    image);
+                    1,
+                    1,
+                    image, schedule);
+            Toast.makeText(getActivity(), "Enviando Sugerencia de Evento", Toast.LENGTH_SHORT).show();
             sugEvent.enqueue(new Callback<JsonElement>() {
                 @Override
                 public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
@@ -337,33 +407,23 @@ public class SuggestedEventFragment extends Fragment {
                         try {
                             Toast.makeText(getActivity(), response.errorBody().string(), Toast.LENGTH_LONG).show();
                         }catch (Throwable e){
-                            Toast.makeText(getActivity(),"el string de mierda", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(),"Error Body: ", Toast.LENGTH_LONG).show();
+                            recieved =true;
                         }
                     }
-
+                    recieved =true;
                 }
 
                 @Override
                 public void onFailure(Throwable t) {
-                    Toast.makeText(getActivity(),t.toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),"Failure: "+t.toString(),Toast.LENGTH_LONG).show();
+                    recieved =true;
                 }
             });
         }catch (Throwable e){
-            Toast.makeText(getActivity(),e.toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Failure Last: "+e.toString(),Toast.LENGTH_LONG).show();
+            recieved =true;
         }
     }
 
-    public String getPath(Uri uri) {
-
-        String[] projection = { MediaStore.Images.Media.DATA };
-
-        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null, null, null);
-
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-        cursor.moveToFirst();
-
-        return cursor.getString(column_index);
-
-    }
 }
