@@ -1,6 +1,7 @@
 package wan.wanmarcos.views.adapters.ViewHolders;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,17 +42,17 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
     public void setElements() {
         Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getDetailTeacher(token,Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID));
+        Log.d("D",Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)+"");
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
                 JsonObject responseBody = response.body().getAsJsonObject();
-                if(responseBody.get("score").isJsonNull()){
+                if (responseBody.get("score").isJsonNull()) {
                     ratingTeacher.setText("0");
+                } else {
+                    ratingTeacher.setText(responseBody.get("score").getAsLong() + "");
                 }
-                else {
-                    ratingTeacher.setText(responseBody.get("score").getAsLong()+"");
-                }
-                teacherName.setText(responseBody.get("first_name").getAsString()+" "+responseBody.get("last_name").getAsString());
+                teacherName.setText(responseBody.get("first_name").getAsString() + " " + responseBody.get("last_name").getAsString());
                 Picasso.with(itemView.getContext()).load(responseBody.get("image").getAsString()).transform(new CircleTransform()).into(teacherImage);
             }
 
