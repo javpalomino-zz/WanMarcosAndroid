@@ -2,6 +2,7 @@ package wan.wanmarcos.models;
 
 import android.util.Log;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ public class Teacher {
     private int id;
     private String firstName;
     private String lastName;
-    private int raiting;
-    private List<String> faculties;
+    private float raiting;
+    private List<String> courses;
     private String description;
     private String imageUrl;
 
@@ -24,7 +25,20 @@ public class Teacher {
         this.firstName=object.get("first_name").getAsString();
         this.lastName=object.get("last_name").getAsString();
         this.imageUrl=object.get("image").getAsString();
-        this.faculties=new ArrayList<>();
+        if(object.get("score").isJsonNull()){
+            this.raiting=0;
+        }
+        else{
+            this.raiting=object.get("score").getAsFloat();
+        }
+        this.courses=new ArrayList<>();
+
+        if(object.get("subjects").getAsJsonArray().size()==0){
+            this.courses.add("Ningun curso registrado.");
+        }
+        else{
+            //TODO
+        }
     }
 
     public Teacher(int id, String firstName, String lastName, int raiting, List<String> faculties, String description, String imageUrl) {
@@ -32,7 +46,7 @@ public class Teacher {
         this.firstName = firstName;
         this.lastName = lastName;
         this.raiting = raiting;
-        this.faculties = faculties;
+        this.courses= faculties;
         this.description = description;
         this.imageUrl = imageUrl;
     }
@@ -57,8 +71,8 @@ public class Teacher {
         this.lastName = lastName;
     }
 
-    public int getRaiting() {
-        return raiting;
+    public String getRaiting() {
+        return String.valueOf(raiting);
     }
 
     public void setRaiting(int raiting) {
@@ -67,18 +81,18 @@ public class Teacher {
 
     public String getFaculties() {
         String fac="";
-        int i=faculties.size();
+        int i=courses.size();
         if(i>0){
-            fac=fac+faculties.get(0).toString();
+            fac=fac+courses.get(0).toString();
             for(int j=1;j<i;j++){
-                fac=fac+", "+faculties.get(j).toString();
+                fac=fac+", "+courses.get(j).toString();
             }
         }
         return fac;
     }
 
     public void setFaculties(List<String> faculties) {
-        this.faculties = faculties;
+        this.courses = faculties;
     }
 
     public String getDescription() {

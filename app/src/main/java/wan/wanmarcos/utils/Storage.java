@@ -78,21 +78,23 @@ public class Storage {
     }
     public String getInfo(String keyValue){
         return String.valueOf(data.get(keyValue));
+
     }
     private void saveData(String value,String keyValue,SharedPreferences mySharedPreferences){
         SharedPreferences.Editor editor=mySharedPreferences.edit();
         editor.putString(keyValue, value);
         editor.commit();
     }
+    public String toString(){
+        return data.toString();
+    }
     public String getInfo(Fragment myFragmet,String key){
         SharedPreferences myPreferences=myFragmet.getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         return myPreferences.getString(key,Constants.NOT_FOUND);
     }
-    public void clearData(AppCompatActivity myFragment){
-        SharedPreferences preferences = myFragment.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =  preferences.edit();
-        editor.clear();
-        editor.commit();
+    public void clearData(){
+        Log.d("d","support");
+        data=new HashMap<>();
     }
     public void clearTeacherActivity(AppCompatActivity myFragment){
         SharedPreferences preferences = myFragment.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
