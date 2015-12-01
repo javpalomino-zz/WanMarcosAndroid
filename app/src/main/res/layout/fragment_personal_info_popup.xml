@@ -7,34 +7,24 @@
     <AutoCompleteTextView
         android:id="@+id/profile_edit_info_faculty"
 
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        style="@style/AutoCompleteTextViewForm"
 
         android:hint="¿En Qué Facultad Estudias?"/>
     <AutoCompleteTextView
         android:id="@+id/profile_edit_info_carreer"
 
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        style="@style/AutoCompleteTextViewForm"
 
-        android:hint="¿En Qué Facultad Estudias?"
+        android:hint="¿Qué Carrera Estudias?"
         android:layout_below="@+id/profile_edit_info_faculty" />
     <Button
         android:id="@+id/profile_edit_info_submit"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        style="@style/ScreenWideButtom"
 
         android:text="¡ Listo !"
-        android:background="@color/accentNewsColor"
-        android:textColor="@color/buttonTextNewsColor"
+        android:background="@color/accentProfileColor"
+        android:textColor="@color/pureWhite"
         android:layout_below="@id/profile_edit_info_carreer" />
 
 </RelativeLayout>

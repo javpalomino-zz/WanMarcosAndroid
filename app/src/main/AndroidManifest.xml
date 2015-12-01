@@ -10,10 +10,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:label="@string/app_name">
         <activity
+            android:theme="@style/AppTheme.Gateway"
             android:name=".activities.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_main"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" >
@@ -24,34 +26,50 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/AppTheme.News"
             android:name=".activities.HomeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_home"
             android:launchMode="singleTask" >
         </activity>
         <activity
+            android:theme="@style/AppTheme.Teachers"
             android:name=".activities.TeacherActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_teacher"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
+            android:theme="@style/AppTheme.Events"
             android:name=".activities.EventsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="Eventos"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:theme="@style/AppTheme.ContactUS"
             android:name=".activities.ContactanosActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_contactanos"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity
+            android:theme="@style/AppTheme.Profile"
             android:name=".activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme" >
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_profile" >
         </activity>
         <activity
+            android:theme="@style/AppTheme.Places"
             android:name=".activities.PlaceActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_place"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"  >
