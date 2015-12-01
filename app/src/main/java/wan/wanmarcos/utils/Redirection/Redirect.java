@@ -73,7 +73,7 @@ public class Redirect implements Redirection {
         }
     }
     public void logOut(AppCompatActivity myPreviousActivity){
-        Storage.getSingelton().clearData(myPreviousActivity);
+        Storage.getSingelton().clearData();
         Intent myLogin=new Intent(myPreviousActivity.getApplicationContext(), MainActivity.class);
         myLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         myPreviousActivity.finish();

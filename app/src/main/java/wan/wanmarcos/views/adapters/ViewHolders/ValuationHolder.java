@@ -18,16 +18,16 @@ public class ValuationHolder extends CustomViewHolder<Valuation>  {
     private Valuation valuation;
     private View view;
     private ImageView userImage;
-    private RatingBar userRate;
     private TextView userValuation;
     private TextView userName;
+    private TextView userMark;
 
     public ValuationHolder(View itemView) {
         super(itemView);
         userName=(TextView) itemView.findViewById(R.id.valuation_user_name);
         userImage=(ImageView) itemView.findViewById(R.id.userImage);
+        userMark=(TextView)itemView.findViewById(R.id.profile_teacher_rating);
         userValuation=(TextView) itemView.findViewById(R.id.userComments);
-        view=itemView;
     }
 
     @Override
@@ -35,6 +35,7 @@ public class ValuationHolder extends CustomViewHolder<Valuation>  {
         valuation=object;
         userName.setText(object.getUserName());
         userValuation.setText(object.getUserComment());
+        userMark.setText(object.getUserTotalMark()+"");
         ColorGenerator generator = ColorGenerator.MATERIAL;
         int color = generator.getColor(userName.getText().charAt(0));
         TextDrawable.IBuilder builder = TextDrawable.builder().round();
