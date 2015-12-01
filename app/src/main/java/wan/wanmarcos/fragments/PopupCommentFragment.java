@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
     @Override
     public void setUpElements(View view) {
         backgroundHeader=(ImageView)view.findViewById(R.id.comment_background_header);
-        Picasso.with(getActivity()).load(R.mipmap.testimage).fit().centerCrop().into(backgroundHeader);
+        Picasso.with(getActivity()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(backgroundHeader);
         imageIcon=(ImageView)view.findViewById(R.id.header_image_icon);
         Picasso.with(getActivity()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(imageIcon);
         teacher=(TextView)view.findViewById(R.id.teacher_comment_professor);
@@ -68,6 +69,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
         recyclerView=(RecyclerView)view.findViewById(R.id.teacher_comment_rating);
         comment=(EditText)view.findViewById(R.id.teacher_comment_post);
         button=(Button)view.findViewById(R.id.teacher_comment_action);
+        setBackgroundColor(button,R.attr.colorAccent);
         ratingListAdapter=new RatingListAdapter(getActivity());
         recyclerView.setAdapter(ratingListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -85,7 +87,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validations()){
+                if (validations()) {
                     onClickListener.close(comment.getText().toString());
                     dismiss();
                 }
@@ -108,6 +110,13 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
             }
         }
         return true;
+    }
+    private void setBackgroundColor(Button button,int resID)
+    {
+        TypedValue typedValue = new TypedValue();
+        getActivity().getTheme().resolveAttribute(resID, typedValue, true);
+        int color = typedValue.data;
+        button.setBackgroundColor(color);
     }
     public void setListener(PopUpFragment listener){
         onClickListener=listener;

@@ -21,9 +21,7 @@
             <ImageView
                 android:id="@+id/eventListImage"
 
-                style="@style/EventListImage"
-
-                android:src="@mipmap/wm17">
+                style="@style/EventListImage">
             </ImageView>
 
             <TextView

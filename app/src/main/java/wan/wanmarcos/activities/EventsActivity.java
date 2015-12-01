@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.inputmethod.InputMethodManager;
 
@@ -44,7 +45,15 @@ public class EventsActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setBackgroundColor(toolbar, R.attr.colorPrimary);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
+    }
+    private void setBackgroundColor(Toolbar toolbar,int resID)
+    {
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(resID, typedValue, true);
+        int color = typedValue.data;
+        toolbar.setBackgroundColor(color);
     }
 }

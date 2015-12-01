@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
 
-        android:background="@color/accentNewsColor"
-        android:textColor="@color/buttonTextNewsColor"
+        android:background="@color/accentTeachersColor"
+        android:textColor="@color/pureBlack"
         android:text=" Guardar "
         android:layout_below="@id/add_faculty_textView" />
 
