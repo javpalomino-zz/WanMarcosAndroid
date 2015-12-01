@@ -1,8 +1,10 @@
 package wan.wanmarcos.utils;
 
 import com.google.gson.JsonElement;
+import com.squareup.okhttp.RequestBody;
 
 import java.util.Calendar;
+import java.util.Map;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -10,7 +12,10 @@ import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Header;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
+import retrofit.http.PartMap;
 import retrofit.http.Path;
 import retrofit.http.Query;
 
@@ -73,19 +78,41 @@ public interface ConsumerService {
     @GET(Constants.EVENTS_DETAIL)
     Call<JsonElement> getEventDetail(@Header("Authorization") String authorization ,
                                      @Path("id") int eventId);
-    @FormUrlEncoded
+    @Multipart
     @POST(Constants.EVENTS)
-    Call<JsonElement> suggetEvent(@Field("name") String event_name,
-                                  @Field("description") String event_description,
-                                  @Field("starts_at")long event_startCal,
-                                  @Field("ends_at")long event_endCal,
-                                  @Field("website") String event_link);
+    Call<JsonElement> suggestEvent(@Header("Authorization") String authorization,
+                                   @Part("name") String event_name,
+                                   @Part("description") String event_description,
+                                   @Part("starts_at")long event_startCal,
+                                   @Part("ends_at")long event_endCal,
+                                   @Part("website")String event_link,
+                                   @Part("image\"; filename=\"image.jpg\" ")RequestBody image);
+    @Multipart
+    @POST(Constants.EVENTS)
+    Call<JsonElement> suggestEventwithSchedule(@Header("Authorization") String authorization,
+                                   @Part("name") String event_name,
+                                   @Part("description") String event_description,
+                                   @Part("starts_at")long event_startCal,
+                                   @Part("ends_at")long event_endCal,
+                                   @Part("website")String event_link,
+                                   @Part("place_id") int place,
+                                   @Part("category_id") int category,
+                                   @Part("image\"; filename=\"image.jpg\" ")RequestBody image,
+                                   @PartMap Map<String,RequestBody> schedule);
     @FormUrlEncoded
     @POST(Constants.SUGGESTIONS)
     Call<JsonElement> suggestions(@Header("Authorization") String authorization,@Field("message") String message);
 
     @POST(Constants.REFRESH)
     Call<JsonElement> resfreshToken(@Header("Authorization") String authorization);
+
+    @GET(Constants.AUTOCOMPLETE_PLACES)
+    Call<JsonElement> autocompletePlaces(@Query("search_text") String searchText);
+
+    @GET(Constants.AUTOCOMPLETE_CATEGORIES)
+    Call<JsonElement> autocompleteCategories(@Query("search_text") String searchText);
+
+
 
 
 }
