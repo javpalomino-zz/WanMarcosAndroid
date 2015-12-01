@@ -1,5 +1,9 @@
 package wan.wanmarcos.models;
 
+import android.util.Log;
+
+import com.google.gson.JsonObject;
+
 /**
  * Created by postgrado on 17/10/15.
  */
@@ -14,6 +18,14 @@ public class Valuation {
         this.userImage = userImage;
         this.userComment = userComment;
         this.userTotalMark = userTotalMark;
+    }
+
+    public Valuation(JsonObject storedObject) {
+        JsonObject jsonObject=storedObject.getAsJsonObject("user");
+        this.userName=jsonObject.get("last_name").getAsString()+" "+jsonObject.get("first_name").getAsString();
+        this.userComment=storedObject.get("message").getAsString();
+        this.userTotalMark=storedObject.get("score").getAsFloat();
+        Log.d("d",storedObject.get("score").isJsonNull()+"-"+storedObject.get("score").getAsFloat());
     }
 
     public String getUserName() {

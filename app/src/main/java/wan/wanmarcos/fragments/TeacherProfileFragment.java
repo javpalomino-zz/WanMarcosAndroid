@@ -90,8 +90,8 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
                 if (responseBody.has(JSON_SUBJECT)) {
                     JsonArray jsonArray = responseBody.getAsJsonArray(JSON_SUBJECT);
                     for (int i = 0; i < jsonArray.size(); i++) {
-                        Log.d("d","d");
                         JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
+                        Log.d("D",storedObject.toString());
                         Course current = new Course(storedObject);
                         courseListAdapter.add(current);
                     }

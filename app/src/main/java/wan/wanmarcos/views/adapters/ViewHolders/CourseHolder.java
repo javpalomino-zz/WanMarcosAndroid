@@ -33,7 +33,7 @@ public class CourseHolder extends CustomViewHolder<Course> {
     @Override
     public void setElements(Course object) {
         current=object.getId();
-        current=object.getProfessor_id();
+        current_teacher=object.getProfessor_id();
         courseName.setText(object.getName());
         courseFaculty.setText(object.getFaculty());
         ColorGenerator generator = ColorGenerator.MATERIAL;

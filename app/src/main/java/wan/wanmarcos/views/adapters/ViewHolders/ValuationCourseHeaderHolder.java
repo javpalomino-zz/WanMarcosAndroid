@@ -2,11 +2,13 @@ package wan.wanmarcos.views.adapters.ViewHolders;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import retrofit.Call;
@@ -26,6 +28,7 @@ import wan.wanmarcos.views.widgets.CircleTransform;
 public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
     private TextView teacherName;
     private TextView courseName;
+    private TextView rating;
     private TextView facultyName;
     private ImageView teacherImage;
     private ImageView teacherCardBackground;
@@ -42,17 +45,26 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
         facultyName=(TextView)itemView.findViewById(R.id.profile_course_faculty_name);
         teacherImage=(ImageView)itemView.findViewById(R.id.profile_course_teacher_image);
         floatingActionButton=(FloatingActionButton)itemView.findViewById(R.id.addComment);
+        rating=(TextView)itemView.findViewById(R.id.profile_course_teacher_rating);
         restClient=new RestClient(itemView.getContext());
     }
 
     @Override
     public void setElements() {
         Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        Log.d("D", Storage.getSingelton().toString());
         Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)),Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
-                //TODO
+                JsonObject responseBody = response.body().getAsJsonObject();
+                courseName.setText(responseBody.get("name").getAsString());
+                if(responseBody.get("score").isJsonNull()){
+                    rating.setText(""+0.0);
+                }
+                else{
+                    rating.setText(responseBody.get("score").getAsFloat()+"");
+                }
             }
 
             @Override
@@ -63,7 +75,6 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
         Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(teacherImage);
         facultyName.setText("d");
         teacherName.setText("carlos");
-        courseName.setText("Cato");
         addListeners();
     }
     public void addListeners(){

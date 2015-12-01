@@ -73,7 +73,7 @@ public class Constants {
     public static final String TEACHER_DETAIL ="professors/{id}";
     public static final String TEACHER_COURSES="subjects";
     public static final String TEACHER_COURSE_DETAIL="subjects/{subject_id}";
-
+    public static final String COURSE_COMMENTS="comments";
     //SCREEN DEVICE CONSTANTS
     public static float DEVICE_WIDTH=0;
     public static float DEVICE_WIDTH2=0;

@@ -28,9 +28,11 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
     private ImageView teacherCardBackground;
     private ImageView teacherImage;
     private RestClient restClient;
+    private boolean set;
     private String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
     public CourseHeaderHolder(View itemView) {
         super(itemView);
+        set=false;
         teacherCardBackground=(ImageView)itemView.findViewById(R.id.teacher_card_background);
         teacherImage=(ImageView)itemView.findViewById(R.id.profile_teacher_image);
         teacherName=(TextView)itemView.findViewById(R.id.profile_teacher_mame);
@@ -40,10 +42,8 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
 
     @Override
     public void setElements() {
-<<<<<<< HEAD
         Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getDetailTeacher(token,Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID));
-        Log.d("D",Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)+"");
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response) {
@@ -51,7 +51,7 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
                 if (responseBody.get("score").isJsonNull()) {
                     ratingTeacher.setText("0");
                 } else {
-                    ratingTeacher.setText(responseBody.get("score").getAsLong() + "");
+                    ratingTeacher.setText(responseBody.get("score").getAsFloat()+ "");
                 }
                 teacherName.setText(responseBody.get("first_name").getAsString() + " " + responseBody.get("last_name").getAsString());
                 Picasso.with(itemView.getContext()).load(responseBody.get("image").getAsString()).transform(new CircleTransform()).into(teacherImage);
@@ -62,11 +62,5 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder{
 
             }
         });
-=======
-        Picasso.with(view.getContext()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(teacherCardBackground);
-        teacherName.setText("Carlos");
-        ratingTeacher.setText("4.0");
-        Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(teacherImage);
->>>>>>> dev
     }
 }

@@ -37,8 +37,14 @@ public interface ConsumerService {
 
     @GET(Constants.TEACHER_COURSE_DETAIL)
     Call<JsonElement> getDetailTeacherCourse(@Header("Authorization") String token,
-                                             @Header("subject_id") int subject_id,
+                                             @Path("subject_id") int subject_id,
                                              @Query("professor_id")int professor_id);
+    @GET(Constants.COURSE_COMMENTS)
+    Call<JsonElement> getCourseComments(@Header("Authorization") String token,
+                                        @Query("professor_id")int professor_id,
+                                        @Query("subject_id") int subject_id,
+                                        @Query("page") int page_id,
+                                        @Query("per_page") int per_page);
 
     @FormUrlEncoded
     @POST(Constants.SIGN_UP)
