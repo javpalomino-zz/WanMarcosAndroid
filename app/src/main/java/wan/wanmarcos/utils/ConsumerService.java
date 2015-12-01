@@ -46,6 +46,11 @@ public interface ConsumerService {
                                         @Query("page") int page_id,
                                         @Query("per_page") int per_page);
 
+    @GET(Constants.HOME)
+    Call<JsonElement> getNews(@Header("Authorization") String token,
+                              @Query("page") int page,
+                              @Query("per_page")int per_page);
+
     @FormUrlEncoded
     @POST(Constants.SIGN_UP)
     Call<JsonElement> signUp(@Field("email") String email,
