@@ -64,7 +64,7 @@ public class EventViewListFragment extends Fragment {
     private Button btnNewEvent;
     FloatingActionButton suggestFAB;
     DateAndTimeDealer dateAndTimeDealer;
-    private int currentPage=1;
+    private int currentPage;
     private View mLayout;
 
     public  EventViewListFragment(){
@@ -78,6 +78,9 @@ public class EventViewListFragment extends Fragment {
         restClient = new RestClient(getActivity());
         preferences = getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         session = Session.getSession(preferences);
+        currentPage=1;
+        eventListAdapter = new EventListAdapter(this);
+        getInitialData();
     }
 
     @Override
@@ -94,8 +97,6 @@ public class EventViewListFragment extends Fragment {
     private void setUpElements(View layout)
     {
         recyclerView = (RecyclerView) layout.findViewById(R.id.eventList);
-        eventListAdapter = new EventListAdapter(this);
-        getInitialData();
         recyclerView.setAdapter(eventListAdapter);
         mLayoutManager=new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -151,7 +152,6 @@ public class EventViewListFragment extends Fragment {
                 pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
                 if (userScrolled && (visibleItemCount + pastVisiblesItems) == totalItemCount) {
                     userScrolled = false;
-
                     addNewElementsToList();
                 }
 
@@ -171,7 +171,6 @@ public class EventViewListFragment extends Fragment {
 
     private void getEvents()
     {
-        final List<Event> eventsList=new ArrayList<>();
         Call<JsonElement> eventPage = restClient.getConsumerService().getEvents(session.getToken(), "", currentPage, Constants.CANTIDAD);
         eventPage.enqueue(new Callback<JsonElement>() {
             @Override

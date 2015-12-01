@@ -4,8 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,23 +14,20 @@
 
         <include
             android:id="@+id/app_bar"
-            layout="@layout/app_bar"/>
+            layout="@layout/app_bar" />
 
         <FrameLayout
+            android:id="@+id/places_fragment"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/app_bar"
-            android:id="@+id/places_fragment"/>
+            android:layout_below="@id/app_bar" />
 
 
     </RelativeLayout>
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="wan.wanmarcos.fragments.NavigationDrawerFragment"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
+        style="@style/NavDrawerStyle"
         app:layout="@layout/fragment_navigation_drawer"
         tools:layout="@layout/fragment_navigation_drawer" />
 

@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.R;
 
-import wan.wanmarcos.fragments.EventNewsFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
@@ -49,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_home, menu);
+       // getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
     }
 

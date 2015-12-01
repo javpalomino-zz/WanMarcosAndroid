@@ -65,7 +65,8 @@ public class Constants {
     public static final String USER_INFO = "users/me";
     public static final String SUGGESTIONS = "suggestions";
     public static final String REFRESH = "refresh";
-
+    public static final String AUTOCOMPLETE_PLACES="autocomplete/places";
+    public static final String AUTOCOMPLETE_CATEGORIES="autocomplete/categories";
     public static final String HEADER = "Bearer ";
 
     public static final String PLATFORM = "Android";
@@ -101,9 +102,10 @@ public class Constants {
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;
     public static final int PROFILE_TEACHER=R.layout.detail_teacher;
     public static final int PLACE_NEW_ITEM=R.layout.place_new_item;
-    public static final int EVENT_NEW_ITEM=R.layout.event_new_item;
+    public static final int EVENT_NEW_ITEM=R.layout.event_list_item;
     public static final int DETAIL_COURSE_TEACHER=R.layout.detail_course_teacher;
     public static final int DETAIL_PLACE=R.layout.detail_place;
+    public static final int MAX_LENGTH_FILE = 2048*1024;
     //Generic things
 
 

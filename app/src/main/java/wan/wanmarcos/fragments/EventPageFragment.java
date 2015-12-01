@@ -14,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,7 @@ public class EventPageFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout =inflater.inflate(R.layout.fragment_event_page, container, false);
-        id=Storage.getSingelton().getInfo(getFragment(),Storage.KEY_EVENT_ID);
+        id=Storage.getSingelton().getInfo(Storage.KEY_EVENT_ID);
         setUpElements(layout);
         fillData();
         addListeners();
@@ -105,6 +106,12 @@ public class EventPageFragment extends Fragment{
                 txtDescription.setText(event.getDescription());
                 txtLink.setText(event.getEventLink());
                 Picasso.with(getActivity()).load(event.getImgUrl()).into(imageView);
+                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+
+                if(bitmap!=null) {
+                    Palette p = Palette.from(bitmap).generate();
+                    imageView.setBackgroundColor(p.getVibrantColor(0x0000000));
+                }
             }
 
             @Override
@@ -125,8 +132,8 @@ public class EventPageFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 try {
-                    if(received){
-                        received=false;
+                    if (received) {
+                        received = false;
                         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(scheduleLink));
                         request.setDescription("Cronograma del Evento");
                         request.setTitle("Cronograma");
@@ -138,10 +145,10 @@ public class EventPageFragment extends Fragment{
 
                         DownloadManager manager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                         manager.enqueue(request);
-                        received=true;
+                        received = true;
                     }
-                }catch (Throwable e){
-                    Toast.makeText(getActivity(),"Cronograma no disponible",Toast.LENGTH_SHORT).show();
+                } catch (Throwable e) {
+                    Toast.makeText(getActivity(), "Cronograma no disponible", Toast.LENGTH_SHORT).show();
                 }
             }
         });

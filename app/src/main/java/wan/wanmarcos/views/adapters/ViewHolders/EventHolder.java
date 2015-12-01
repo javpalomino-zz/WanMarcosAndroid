@@ -3,6 +3,7 @@ package wan.wanmarcos.views.adapters.ViewHolders;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.graphics.Palette;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Event;
+import wan.wanmarcos.utils.Storage;
 
 /**
  * Created by soporte on 28/11/15.
@@ -49,6 +51,7 @@ public class EventHolder extends CustomViewHolder<Event>{
 
     @Override
     public void onClick(View v) {
+        Storage.getSingelton().storageData(current,Storage.KEY_EVENT_ID);
         recyclerViewClickListener.recyclerViewListClicked(v,current);
     }
 }

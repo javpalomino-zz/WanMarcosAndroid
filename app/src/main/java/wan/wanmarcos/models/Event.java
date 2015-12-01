@@ -85,7 +85,7 @@ public class Event implements Parcelable{
             }
 
             if(!event.get("place").isJsonNull()){
-                setReferencePlace(event.get("place").getAsJsonObject().toString());
+                setReferencePlace(event.get("place").getAsJsonObject().get("name").getAsString());
             }else{
                 setReferencePlace("");
             }
