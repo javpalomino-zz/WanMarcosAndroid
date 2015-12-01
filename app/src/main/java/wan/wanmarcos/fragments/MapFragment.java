@@ -33,24 +33,7 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
-        mapView = (MapView) view.findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-
-        mapView.onResume();
-
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        googleMap = mapView.getMap();
-
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                                        .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
-
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        setUpElements(view, savedInstanceState);
 
         return view;
     }
@@ -77,5 +60,27 @@ public class MapFragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    public void setUpElements(View view, Bundle savedInstanceState) {
+        mapView = (MapView) view.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+
+        mapView.onResume();
+
+        try {
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        googleMap = mapView.getMap();
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
+
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
     }
 }
