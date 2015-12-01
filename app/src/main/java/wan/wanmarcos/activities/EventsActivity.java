@@ -34,13 +34,6 @@ public class EventsActivity extends AppCompatActivity {
         setUpNavDrawer();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        createdMenu=menu;
-        return true;
-    }
-
     public void setUpNavDrawer(){
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);

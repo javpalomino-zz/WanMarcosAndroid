@@ -17,7 +17,6 @@ import wan.wanmarcos.fragments.ProfileUserFragment;
 import wan.wanmarcos.fragments.SuggestedEventFragment;
 import wan.wanmarcos.fragments.TeacherCourseProfileFragment;
 import wan.wanmarcos.fragments.TeacherListFragment;
-import wan.wanmarcos.fragments.PopupCommentFragment;
 import wan.wanmarcos.fragments.TeacherProfileFragment;
 
 /**
@@ -68,6 +67,8 @@ public class Constants {
     public static final String USER_INFO = "users/me";
     public static final String SUGGESTIONS = "suggestions";
     public static final String REFRESH = "refresh";
+    public static final String AUTOCOMPLETE_FACULTIES = "autocomplete/faculties";
+    public static final String AUTOCOMPLETE_CARREERS = "autocomplete/degrees";
 
     public static final String HEADER = "Bearer ";
 
@@ -90,16 +91,19 @@ public class Constants {
     public static final int FRAGMENT_PROFILE_TEACHER_LAYOUT=R.layout.fragment_teacher_profile;
     public static final int FRAGMENT_TEACHER_COURSE_LAYOUT=R.layout.fragment_teacher_course;
     public static final int FRAGMENT_TEACHER_COMMENT_LAYOUT= R.layout.fragment_teacher_popup_comment;
+    public static final int PERSONAL_INFO_POPUP=R.layout.fragment_personal_info_popup;
     public static final int FRAGMENT_LIST_PLACE_LAYOUT=R.layout.fragment_place_list;
     public static final int FRAGMENT_LIST_NEWS_LAYOUT = R.layout.fragment_home_list;
     public static final int FRAGMENT_PROFILE_PLACE_LAYOUT=R.layout.fragment_place_profile;
-    public static final int FRAGMENT_PROFILE_LAYOUT=R.layout.fragment_user_profile;
+    public static final int FRAGMENT_PROFILE_PREFERENCES_LIST=R.layout.fragment_preferences_list;
     //Sections inside fragment
 
     public static final int FRAGMENT_SECTION_LIST_PLACE_LAYOUT=R.layout.fragment_place__section_list;
     //Items
     public static final int TEACHER_NEW_ITEM=R.layout.teacher_new_item;
     public static final int VALUATION_NEW_ITEM=R.layout.valuation_new_item;
+    public static final int PREFERENCE_NEW_ITEM=R.layout.preference_list_item;
+    public static final int USER_PROFILE_HEADER=R.layout.fragment_user_profile_header;
     public static final int HOME_NEW_ITEM=R.layout.home_new_item;
     public static final int RATING_NEW_ITEM=R.layout.rating_new_item;
     public static final int COURSE_NEW_ITEM=R.layout.course_new_item;

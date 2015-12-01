@@ -27,6 +27,7 @@ import java.util.GregorianCalendar;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.*;
@@ -302,7 +303,7 @@ public class SuggestedEventFragment extends Fragment {
                 eventToPost.getEventLink());
         sugEvent.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has("name")) {
                     String name = responseBody.get("name").getAsString();

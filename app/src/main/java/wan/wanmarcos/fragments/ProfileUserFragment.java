@@ -3,44 +3,35 @@ package wan.wanmarcos.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import javax.security.auth.callback.Callback;
-
-import retrofit.Call;
-import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
+import wan.wanmarcos.managers.ItemAdapterListener;
+import wan.wanmarcos.models.Preference;
+import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.RestClient;
+import wan.wanmarcos.views.adapters.PreferenceListAdapter;
 
 /**
  * Created by carlos-pc on 29/11/15.
  */
-public class ProfileUserFragment extends Fragment implements FragmentsMethods{
-    private TextView name;
-    private TextView email;
-    private RestClient restClient;
+public class ProfileUserFragment extends Fragment implements FragmentsMethods {
 
-    String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
+    private PreferenceListAdapter preferenceListAdapter;
+    private RecyclerView recyclerViewPreferences;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        restClient=new RestClient();
+    public ProfileUserFragment(){
+
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(Constants.FRAGMENT_PROFILE_LAYOUT,container,false);
+        View view=inflater.inflate(Constants.FRAGMENT_PROFILE_PREFERENCES_LIST,container,false);
         setUpElements(view);
         addListeners();
         return view;
@@ -48,30 +39,26 @@ public class ProfileUserFragment extends Fragment implements FragmentsMethods{
 
     @Override
     public void setUpElements(View view) {
-        name=(TextView)view.findViewById(R.id.profile_name);
-        email=(TextView)view.findViewById(R.id.profile_email);
+        recyclerViewPreferences=(RecyclerView)view.findViewById(R.id.preferencesLabel_list);
+        //recyclerViewRating=(RecyclerView)view.findViewById(R.id.rating_list);
+        preferenceListAdapter=new PreferenceListAdapter(this);
         getData();
+        recyclerViewPreferences.setAdapter(preferenceListAdapter);
+        //recyclerViewRating.setAdapter(ratingListAdapter);
+        recyclerViewPreferences.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerViewRating.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     public void getData(){
-        Call<JsonElement> userInfo=restClient.getConsumerService().me(token);
-        userInfo.enqueue(new retrofit.Callback<JsonElement>() {
-            @Override
-            public void onResponse(Response<JsonElement> response) {
-                JsonObject jsonObject=response.body().getAsJsonObject();
-
-                name.setText(jsonObject.get("first_name").getAsString()+" "+jsonObject.get("last_name").getAsString());
-                email.setText(jsonObject.get("email").getAsString());
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
+        preferenceListAdapter.add(new Preference("FISI",0));
+        preferenceListAdapter.add(new Preference("FISI 2",0));
+        preferenceListAdapter.add(new Preference("FISI 3",0));
+        preferenceListAdapter.add(new Preference("FISI 4", 0));
+        preferenceListAdapter.add(new Preference("FISI 5 ", 0));
+        preferenceListAdapter.add(new Preference("FISI 6", 0));
+        preferenceListAdapter.add(new Preference("FISI 7", 0));
     }
     @Override
     public void addListeners() {
-
     }
 }

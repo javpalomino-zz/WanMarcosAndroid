@@ -1,7 +1,6 @@
 package wan.wanmarcos.views.adapters.ViewHolders;
 
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,9 +8,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
-import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.views.adapters.PopUpFragment;
-import wan.wanmarcos.views.adapters.ValuationListAdapter;
 import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**

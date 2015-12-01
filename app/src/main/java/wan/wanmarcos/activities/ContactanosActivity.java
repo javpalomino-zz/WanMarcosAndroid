@@ -26,6 +26,7 @@ import com.google.gson.JsonObject;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.fragments.NavigationDrawerFragment;
 import wan.wanmarcos.models.Session;
@@ -97,7 +98,7 @@ public class ContactanosActivity extends AppCompatActivity{
         Call < JsonElement > suggestion = restClient.getConsumerService().suggestions(token,message);
         suggestion.enqueue(new Callback<JsonElement>() {
             @Override
-            public void onResponse(Response<JsonElement> response) {
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 try {
                     if (response.isSuccess()) {
                         JsonObject responseBody = response.body().getAsJsonObject();

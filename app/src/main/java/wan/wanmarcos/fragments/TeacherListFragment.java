@@ -26,6 +26,7 @@ import java.util.List;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
@@ -129,7 +130,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods{
         Call<JsonElement> teacherPage= restClient.getConsumerService().getTeachers(token,search_text,currentPage,Constants.CANTIDAD);
         teacherPage.enqueue(new Callback<JsonElement>() {
             @Override
-            public synchronized void onResponse(Response<JsonElement> response) {
+            public synchronized void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 if (responseBody.has(JSON_TEACHER)) {
                     JsonArray jsonArray = responseBody.getAsJsonArray(JSON_TEACHER);

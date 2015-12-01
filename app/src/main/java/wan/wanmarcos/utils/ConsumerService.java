@@ -67,5 +67,10 @@ public interface ConsumerService {
     @POST(Constants.REFRESH)
     Call<JsonElement> resfreshToken(@Header("Authorization") String authorization);
 
+    @GET(Constants.AUTOCOMPLETE_FACULTIES)
+    Call<JsonElement> autocompleteFaculties(@Query("search_text") String searchText);
+    @GET(Constants.AUTOCOMPLETE_CARREERS)
+    Call<JsonElement> autocompleteCarrers(@Query("search_text") String searchText);
+
 
 }

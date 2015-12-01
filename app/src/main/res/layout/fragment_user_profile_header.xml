@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/containerProfile"
+        style="@style/UserProfileContainer">
+
+        <ImageView
+            android:id="@+id/user_profile_backgound"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    style="@style/ProfileCardImage"
+
+                    />
+
+                <TextView
+                    android:id="@+id/profile_name"
+                    android:layout_below="@id/profile_image"
+                    style="@style/UserProfileName"
+                    android:textColor="#ffffff"
+                    />
+                <TextView
+                    android:id="@+id/profile_email"
+
+                    android:layout_below="@id/profile_name"
+                    style="@style/UserProfileEmail"
+
+                    android:textColor="#ffffff"
+                    />
+                <TextView
+                    android:id="@+id/profile_faculty"
+                    android:layout_below="@id/profile_email"
+                    style="@style/UserProfileFacultyCarreer"
+                    android:textColor="#ffffff"
+                    />
+                <TextView
+                    android:id="@+id/profile_carreer"
+                    android:layout_below="@id/profile_faculty"
+                    style="@style/UserProfileFacultyCarreer"
+                    android:textColor="#ffffff"
+                    />
+        </RelativeLayout>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/preferencesLabel"
+        style="@style/DividerLabelMedium"
+        android:layout_below="@id/containerProfile"
+        android:text="Mis Preferencias"/>
+    <View
+        style="@style/DividerLineMedium"
+
+        android:layout_toRightOf="@id/preferencesLabel"
+        android:layout_below="@id/containerProfile"/>
+    <TextView
+        android:id="@+id/profile_faculty_header"
+
+        style="@style/UserProfileFacultyDividerLabel"
+
+        android:layout_below="@id/preferencesLabel"
+        android:text="Facultades"/>
+    <View
+        style="@style/DividerLineMedium"
+
+        android:layout_toRightOf="@id/profile_faculty_header"
+        android:layout_below="@id/preferencesLabel"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

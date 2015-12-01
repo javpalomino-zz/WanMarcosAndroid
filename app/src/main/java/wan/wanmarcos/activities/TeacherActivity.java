@@ -49,7 +49,6 @@ public class TeacherActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id){
             case R.id.action_settings : return true;
-            case R.id.logout : Redirect.getSingelton().logOut(this); break;
         }
 
         return super.onOptionsItemSelected(item);
