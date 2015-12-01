@@ -88,11 +88,8 @@ public class Storage {
         SharedPreferences myPreferences=myFragmet.getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         return myPreferences.getString(key,Constants.NOT_FOUND);
     }
-    public void clearData(AppCompatActivity myFragment){
-        SharedPreferences preferences = myFragment.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor =  preferences.edit();
-        editor.clear();
-        editor.commit();
+    public void clearData(){
+        data=new HashMap<>();
     }
     public void clearTeacherActivity(AppCompatActivity myFragment){
         SharedPreferences preferences = myFragment.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
