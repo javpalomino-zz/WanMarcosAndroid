@@ -60,7 +60,7 @@ public class Constants {
     public static final String PREFERENCES = "WanMarcos_preferences";
 
 
-    public static final String WANMARCOS_BASE_URL = "http://52.89.124.0";
+    public static final String WANMARCOS_BASE_URL = "http://52.35.45.112";
     public static final String WANMARCOS_API_VERSION = "v1";
     public static final String WANMARCOS_API_BASE_URL = WANMARCOS_BASE_URL+"/api/"+WANMARCOS_API_VERSION+"/";
 

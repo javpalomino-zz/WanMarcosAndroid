@@ -36,15 +36,12 @@
                     android:id="@+id/profile_course_teacher_name"
                     style="@style/ProfileDetailHeader1"
                     android:layout_below="@id/profile_course_teacher_image"
-                    android:text="Frank Escobedo Bailon"
                     android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/profile_course_course_name"
                     style="@style/ProfileDetailHeader2"
                     android:layout_below="@id/profile_course_teacher_name"
-
-                    android:text="Gestiacion"
                     android:textColor="@android:color/white"/>
 
                 <TextView
@@ -52,8 +49,6 @@
                     style="@style/ProfileDetailHeader3"
 
                     android:layout_below="@id/profile_course_course_name"
-
-                    android:text="Facultad de Ingee Informatica"
                     android:textColor="@android:color/white" />
 
                 <RelativeLayout

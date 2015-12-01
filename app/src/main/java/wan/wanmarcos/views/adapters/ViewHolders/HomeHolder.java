@@ -30,9 +30,9 @@ public class HomeHolder extends CustomViewHolder<Home>{
     @Override
     public void setElements(Home object) {
         Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(referenceImage);
-        referenceName.setText("O thi");
-        referenceTypeDescription.setText("Teacher");
-        referenceDescription.setText("O no se que hacer");
+        referenceName.setText("Card Home de Prueba");
+        referenceTypeDescription.setText("Subtitulo de Prueaba");
+        referenceDescription.setText("Descripcion de Prueba");
     }
 
     @Override

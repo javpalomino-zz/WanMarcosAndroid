@@ -14,6 +14,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import wan.wanmarcos.R;
 
@@ -78,9 +79,10 @@ public class MapFragment extends Fragment {
         googleMap = mapView.getMap();
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
+                .target(new LatLng(-12.0572359, -77.0837147)).zoom(16).build();
 
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        googleMap.addMarker(new MarkerOptions().title("UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS").position(new LatLng(-12.0572359, -77.0837147)).draggable(false));
 
     }
 }

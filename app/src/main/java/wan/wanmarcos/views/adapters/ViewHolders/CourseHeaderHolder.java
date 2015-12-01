@@ -45,7 +45,7 @@ public class CourseHeaderHolder extends CustomHeaderViewHolder {
 
     @Override
     public void setElements() {
-        Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        Picasso.with(itemView.getContext()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(teacherCardBackground);
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getDetailTeacher(token,Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
 
