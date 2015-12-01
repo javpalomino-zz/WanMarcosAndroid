@@ -32,7 +32,7 @@ public class PlaceListFragment extends Fragment implements FragmentsMethods{
     private View mapLine;
     private View listLine;
     private Place_SectionListFragment place_sectionListFragment;
-    private Place_SectionMap place_sectionMap;
+    private MapFragment place_sectionMap;
     private View mView;
 
     public PlaceListFragment() {
@@ -64,7 +64,7 @@ public class PlaceListFragment extends Fragment implements FragmentsMethods{
         listLine=view.findViewById(R.id.list_active_line);
         listLine.bringToFront();
         place_sectionListFragment=new Place_SectionListFragment();
-        place_sectionMap=new Place_SectionMap();
+        place_sectionMap=new MapFragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.add(R.id.tabbedFragment,place_sectionListFragment,Place_SectionListFragment.class.getName());
         ft.add(R.id.tabbedFragment, place_sectionMap, Place_SectionMap.class.getName());
