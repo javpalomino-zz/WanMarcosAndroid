@@ -9,6 +9,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Course;
+import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.RecyclerViewClickListener;
 
 /**
@@ -17,8 +18,8 @@ import wan.wanmarcos.views.adapters.RecyclerViewClickListener;
 public class CourseHolder extends CustomViewHolder<Course> {
     private TextView courseName;
     private TextView courseFaculty;
-    private View vista;
     private int current;
+    private int current_teacher;
     private ImageView initialLetterImage;
 
     public CourseHolder(View itemView) {
@@ -27,12 +28,12 @@ public class CourseHolder extends CustomViewHolder<Course> {
         courseName= (TextView) itemView.findViewById(R.id.profile_course_course_name);
         courseFaculty=(TextView) itemView.findViewById(R.id.course_faculty);
         initialLetterImage=(ImageView) itemView.findViewById(R.id.letterImageBackground);
-        vista=itemView;
     }
 
     @Override
     public void setElements(Course object) {
         current=object.getId();
+        current_teacher=object.getProfessor_id();
         courseName.setText(object.getName());
         courseFaculty.setText(object.getFaculty());
         ColorGenerator generator = ColorGenerator.MATERIAL;
@@ -44,6 +45,9 @@ public class CourseHolder extends CustomViewHolder<Course> {
 
     @Override
     public void onClick(View v) {
+        Storage.getSingelton().clearData();
+        Storage.getSingelton().storageData(current,Storage.KEY_COURSE_ID);
+        Storage.getSingelton().storageData(current_teacher,Storage.KEY_TEACHER_ID);
         recyclerViewClickListener.recyclerViewListClicked(v,current);
     }
 }
