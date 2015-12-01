@@ -39,6 +39,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
     private ValuationListAdapter valuationListAdapter;
     private RecyclerView recyclerViewComments;
     private RestClient restClient;
+    private LinearLayoutManager layoutManagerRecyclerView;
     private int current_page;
     private String JSON_COMMENT="comments";
     String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
@@ -52,6 +53,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         current_page=1;
         restClient=new RestClient(getActivity());
         valuationListAdapter=new ValuationListAdapter(this);
+        layoutManagerRecyclerView=new LinearLayoutManager(getActivity());
         getData();
     }
 
@@ -68,11 +70,30 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
         recyclerViewComments=(RecyclerView)view.findViewById(R.id.comments_list);
         valuationListAdapter=new ValuationListAdapter(this);
         recyclerViewComments.setAdapter(valuationListAdapter);
-        recyclerViewComments.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewComments.setLayoutManager(layoutManagerRecyclerView);
     }
 
     public void addListeners(){
+        recyclerViewComments.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            private int state = 0;
+            private int i = 0;
+            private boolean changeState = false;
 
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState != state) {
+                    changeState = true;
+                    if (changeState ) {
+                        if(state==0){
+                            if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() == valuationListAdapter.getItemCount() - 2 && layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() > 1) {
+                                getData();
+                            }
+                        }
+                    }
+                    state = newState;
+                }
+            }
+        });
     }
     public void getData(){
         Call<JsonElement> jsonElementCall=restClient.getConsumerService().getCourseComments(token,Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)),Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)),current_page,Constants.CANTIDAD);
@@ -95,11 +116,5 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
 
             }
         });
-        valuationListAdapter.add(new Valuation("Carlos","d","Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.",14));
-        valuationListAdapter.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuationListAdapter.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuationListAdapter.add(new Valuation("Carlos","d","Curso Boni",14));
-        valuationListAdapter.add(new Valuation("Carlos", "d", "Curso Boni", 14));
-        valuationListAdapter.add(new Valuation("Carlos", "d", "Curso Boni", 14));
     }
 }

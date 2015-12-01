@@ -47,6 +47,7 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
     private RecyclerView recyclerViewTeacherCourses;
     private CourseListAdapter courseListAdapter;
     private RestClient restClient;
+    private LinearLayoutManager layoutManagerRecyclerView;
     private String JSON_SUBJECT="subjects";
     private String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
     public TeacherProfileFragment(){
@@ -72,13 +73,34 @@ public class TeacherProfileFragment extends Fragment implements FragmentsMethods
 
     @Override
     public void setUpElements(View view) {
+        layoutManagerRecyclerView=new LinearLayoutManager(getActivity());
         recyclerViewTeacherCourses=(RecyclerView)view.findViewById(R.id.course_list);
         recyclerViewTeacherCourses.setAdapter(courseListAdapter);
-        recyclerViewTeacherCourses.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewTeacherCourses.setLayoutManager(layoutManagerRecyclerView);
     }
 
     @Override
     public void addListeners() {
+        recyclerViewTeacherCourses.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            private int state = 0;
+            private int i = 0;
+            private boolean changeState = false;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState != state) {
+                    changeState = true;
+                    if (changeState ) {
+                        if(state==0){
+                            if(layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() == courseListAdapter.getItemCount() - 2 && layoutManagerRecyclerView.findLastCompletelyVisibleItemPosition() > 0) {
+                                getData();
+                            }
+                        }
+                    }
+                    state = newState;
+                }
+            }
+        });
 
     }
     public void getData() {

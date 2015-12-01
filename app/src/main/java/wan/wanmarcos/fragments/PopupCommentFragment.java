@@ -15,13 +15,19 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.Click;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.models.Rating;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.PopUpFragment;
 import wan.wanmarcos.views.adapters.RatingListAdapter;
@@ -40,7 +46,9 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
     private ImageView backgroundHeader;
     private ImageView imageIcon;
     private Button button;
+    private String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
     private PopUpFragment onClickListener;
+    private RestClient restClient;
     public PopupCommentFragment() {
         // Empty constructor required for DialogFragment
     }
@@ -56,14 +64,27 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
 
     @Override
     public void setUpElements(View view) {
+        restClient=new RestClient(getActivity());
+        course=(TextView)view.findViewById(R.id.teacher_comment_course);
+        Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)), Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
+        jsonElementCall.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Response<JsonElement> response) {
+                JsonObject responseBody = response.body().getAsJsonObject();
+                course.setText(responseBody.get("name").getAsString());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
         backgroundHeader=(ImageView)view.findViewById(R.id.comment_background_header);
         Picasso.with(getActivity()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(backgroundHeader);
         imageIcon=(ImageView)view.findViewById(R.id.header_image_icon);
         Picasso.with(getActivity()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(imageIcon);
         teacher=(TextView)view.findViewById(R.id.teacher_comment_professor);
         teacher.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
-        course=(TextView)view.findViewById(R.id.teacher_comment_course);
-        course.setText(Storage.getSingelton().getInfo(this,Storage.KEY_COURSE_NAME));
         faculty=(TextView)view.findViewById(R.id.teacher_comment_faculty);
         faculty.setText(Storage.getSingelton().getInfo(this,Storage.KEY_FACULTY_NAME));
         recyclerView=(RecyclerView)view.findViewById(R.id.teacher_comment_rating);
