@@ -116,7 +116,7 @@ public class EventPageFragment extends Fragment{
 
             @Override
             public void onFailure(Throwable t) {
-
+                System.out.println(t);
             }
         });
     }

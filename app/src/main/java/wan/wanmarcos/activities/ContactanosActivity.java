@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,9 +64,9 @@ public class ContactanosActivity extends AppCompatActivity{
     void addListenerSendFeedback(){
         btnEnviarFeed.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(received == false){
+                if (received == false) {
                     return;
-                }else{
+                } else {
                     getFields();
                     postFeedback(v.getContext());
                 }
@@ -82,6 +83,7 @@ public class ContactanosActivity extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setBackgroundColor(toolbar,R.attr.colorPrimary);
         drawerFragment = (NavigationDrawerFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.SetUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
         btnEnviarFeed = (FloatingActionButton)this.findViewById(R.id.btnEnviarFeed);
@@ -126,5 +128,13 @@ public class ContactanosActivity extends AppCompatActivity{
                         Constants.MODAL_MESSAGE_CONTACTANOS+post_response_messague,
                         Constants.MODAL_BUTTON_DENADA,true);
         modal.showModal();
+    }
+
+    private void setBackgroundColor(Toolbar toolbar,int resID)
+    {
+        TypedValue typedValue = new TypedValue();
+        getTheme().resolveAttribute(resID, typedValue, true);
+        int color = typedValue.data;
+        toolbar.setBackgroundColor(color);
     }
 }

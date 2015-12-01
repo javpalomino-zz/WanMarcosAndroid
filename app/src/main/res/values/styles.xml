@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
-        <!-- Customize your theme here. -->
-    </style>
-
     <style name="CenterVerticalLayout">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -27,9 +22,47 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+    <style name="AppTheme.Gateway" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryGatewayColor</item>
+        <item name="colorPrimaryDark">@color/primaryGatewayColorDark</item>
+        <item name="colorAccent">@color/accentGatewayColor</item>
+    </style>
+
+    <style name="AppTheme.News" parent="AppTheme.Base">
         <item name="colorPrimary">@color/primaryNewsColor</item>
         <item name="colorPrimaryDark">@color/primaryNewsColorDark</item>
         <item name="colorAccent">@color/accentNewsColor</item>
+    </style>
+
+    <style name="AppTheme.Teachers" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryTeachersColor</item>
+        <item name="colorPrimaryDark">@color/primaryTeachersColorDark</item>
+        <item name="colorAccent">@color/accentTeachersColor</item>
+    </style>
+
+    <style name="AppTheme.Places" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryPlacesColor</item>
+        <item name="colorPrimaryDark">@color/primaryPlacesColorDark</item>
+        <item name="colorAccent">@color/accentPlacesColor</item>
+    </style>
+
+    <style name="AppTheme.Events" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryEventsColor</item>
+        <item name="colorPrimaryDark">@color/primaryEventsColorDark</item>
+        <item name="colorAccent">@color/accentEventsColor</item>
+    </style>
+
+    <style name="AppTheme.Profile" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryProfileColor</item>
+        <item name="colorPrimaryDark">@color/primaryProfileColorDark</item>
+        <item name="colorAccent">@color/accentProfileColor</item>
+    </style>
+    <style name="AppTheme.ContactUS" parent="AppTheme.Base">
+        <item name="colorPrimary">@color/primaryContactColor</item>
+        <item name="colorPrimaryDark">@color/primaryContactColorDark</item>
+        <item name="colorAccent">@color/accentContactColor</item>
     </style>
 
     <style name="TeacherItemImage">
@@ -413,6 +446,7 @@
         <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
     <style name="PopUpCommentHeaderSubtitle">
@@ -422,6 +456,7 @@
         <item name="android:maxLines">2</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
     <style name="PopUpCommentLabelMessage">
@@ -449,6 +484,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLines">2</item>
         <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
     <style name="EditPreferencesHeaderLabel">
@@ -538,6 +574,223 @@
         <item name="android:maxLines">2</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="TabActiveLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">3dp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
+    <style name="RatingItem" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+    </style>
+
+    <!--Rating Item-->
+    <!--START-->
+    <style name="RatingLabel" >
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="RatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:isIndicator">false</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/rating_type</item>
+        <item name="android:numStars">5</item>
+        <item name="android:layout_toEndOf">@id/rating_type</item>
+        <item name="android:layout_alignBottom">@id/rating_type</item>
+    </style>
+
+    <style name="RatingMark">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/rating_progress</item>
+        <item name="android:layout_alignBottom">@id/rating_type</item>
+    </style>
+    <!--Rating Item-->
+    <!--END-->
+
+    <!--START-->
+    <!--Course Item-->
+    <style name="CourseItemName">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="CourseItemFaculty">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_below">@+id/profile_course_course_name</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="CourseItemMark">
+        <item name="android:layout_below">@+id/course_faculty</item>
+        <item name="android:layout_alignRight">@+id/course_faculty</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <style name="CouseItemLabel">
+        <item name="android:layout_below">@+id/course_faculty</item>
+        <item name="android:layout_alignLeft">@+id/course_faculty</item>
+        <item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+    <!--<style name="CouseItemRatingBar" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:layout_below">@+id/course_faculty</item>
+        <item name="android:layout_toLeftOf">@id/course_mark</item>
+        <item name="android:layout_marginTop">5dp</item>
+
+    </style>-->
+
+    <!--Course Item-->
+    <!--END-->
+
+
+    <!--START-->
+    <!--VALUATION ITEM-->
+    <style name="ValuationItemImage">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginStart">23dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="ValuationTextItem">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignTop">@+id/userImage</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="ValuationLabelItem">
+        <item name="android:layout_alignLeft">@+id/textView2</item>
+        <item name="android:layout_alignStart">@+id/textView2</item>
+        <item name="android:layout_alignBottom">@+id/userImage</item>
+        <item name="android:layout_alignRight">@+id/userRate</item>
+        <item name="android:layout_alignEnd">@+id/userRate</item>
+        <item name="android:layout_below">@+id/textView2</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="ValuationRatingItem" parent="android:Widget.DeviceDefault.Light.RatingBar.Small">
+        <item name="android:layout_alignTop">@+id/textView2</item>
+        <item name="android:layout_toRightOf">@+id/textView2</item>
+        <item name="android:layout_toEndOf">@+id/textView2</item>
+        <item name="android:layout_marginLeft">25dp</item>
+        <item name="android:layout_marginStart">25dp</item>
+    </style>
+    <!--VALUATION ITEM-->
+    <!--END-->
+
+
+    <!--PROFILE TEACHER-->
+    <!--START-->
+    <style name="ProfileTeacherItemImage">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+
+    </style>
+    <style name="ProfileTeacherItemName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
+    </style>
+    <style name="ProfileTeacherItemRatings">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@+id/profile_teacher_mame</item>
+        <item name="android:layout_toRightOf">@id/profile_teacher_image</item>
+        <item name="android:layout_toEndOf">@id/profile_teacher_image</item>
+        <item name="android:layout_alignBottom">@id/profile_teacher_image</item>
+
+    </style>
+    <style name="ProfileTeacherItemCourse">
+        <item name="android:layout_below">@id/profile_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+
+    </style>
+    <!--PROFILE TEACHER-->
+    <!--END-->
+
+    <style name="GenericListItem">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="CourseTeacherImageItem">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+
+
+    <!--START-->
+    <!--COURSE PROFILE -->
+
+    <style name="ProfileCourseItemComments">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_below">@id/profile_course_teacher_image</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="ProfileCourseItemRating">
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_below">@id/profile_course_faculty_name</item>
+        <item name="android:layout_above">@id/comments_list</item>
+    </style>
+
+    <style name="ProfileCourseItemFacultyName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_below">@id/profile_course_course_name</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
+    <style name="ProfileCourseItemCourseName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_below">@id/profile_course_teacher_name</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="ProfileCourseItemTeacherName">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_toRightOf">@id/profile_course_teacher_image</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="ProfileCourseItemImage">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentTop">true</item>
     </style>
 
 </resources>

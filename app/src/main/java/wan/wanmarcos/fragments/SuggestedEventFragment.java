@@ -406,7 +406,6 @@ public class SuggestedEventFragment extends Fragment {
                 default:Toast.makeText(getActivity(),"lol",Toast.LENGTH_LONG).show();
             }
         }
-
     }
 
     private void setNameOfFileInButton(Uri uri,EditText button){
