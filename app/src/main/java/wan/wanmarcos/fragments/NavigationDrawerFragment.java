@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,18 +24,27 @@ import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.models.Session;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.NavDrawerLink;
+import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
 
@@ -56,11 +66,13 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
 
     private NavDrawerAdapter adapter;
     private View containerView;
+    private RestClient restClient;
 
     private ImageView headerBackground;
     private TextView profileName;
     private TextView profileEmail;
     private ImageView profileImage;
+    private String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -74,6 +86,7 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         if(savedInstanceState!=null){
             mFromSavedInstanceState=true;
         }
+        restClient=new RestClient(getActivity());
     }
 
     @Override
@@ -98,11 +111,24 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         profileImage = (ImageView)layout.findViewById(R.id.nav_drawer_profile_image);
         profileName = (TextView)layout.findViewById(R.id.nav_drawer_profile_name);
         profileEmail = (TextView)layout.findViewById(R.id.nav_drawer_profile_email);
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color = generator.getColor(profileName.getText().charAt(0));
-        TextDrawable.IBuilder builder = TextDrawable.builder().round();
-        TextDrawable textDrawable = builder.build(profileName.getText().toString().charAt(0)+"", color);
-        profileImage.setImageDrawable(textDrawable);
+        Call<JsonElement> jsonElementCall=restClient.getConsumerService().me(Session.getSession(getActivity().getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE)).getToken());
+        jsonElementCall.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
+                JsonObject jsonObject=response.body().getAsJsonObject();
+                profileEmail.setText(jsonObject.get("email").getAsString());
+                profileName.setText(jsonObject.get("first_name").getAsString()+" "+jsonObject.get("last_name").getAsString());
+                ColorGenerator generator = ColorGenerator.MATERIAL;
+                int color = generator.getColor(profileName.getText().charAt(0));
+                TextDrawable.IBuilder builder = TextDrawable.builder().round();
+                TextDrawable textDrawable = builder.build(profileName.getText().toString().charAt(0)+"", color);
+                profileImage.setImageDrawable(textDrawable);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+            }
+        });
     }
 
     public static List<NavDrawerLink> getData()

@@ -68,7 +68,7 @@ public interface ConsumerService {
                 @Field("platform") String platform);
 
     @GET(Constants.USER_INFO)
-    void me(@Header("Authorization") String authorization ,Callback<JsonElement> callback);
+    Call<JsonElement> me(@Header("Authorization") String authorization );
 
     @GET(Constants.EVENTS)
     Call<JsonElement> getEvents(@Header("Authorization") String authorization ,
