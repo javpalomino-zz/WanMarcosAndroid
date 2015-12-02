@@ -65,6 +65,7 @@ public class TeacherListFragment extends Fragment implements FragmentsMethods{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        getActivity().setTitle(R.string.title_activity_teacher);
         View view=inflater.inflate(Constants.FRAGMENT_LIST_TEACHER_LAYOUT, container, false);
         setUpElements(view);
         addListeners();

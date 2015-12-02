@@ -51,7 +51,7 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
 
     @Override
     public void setElements() {
-        Picasso.with(itemView.getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").fit().centerCrop().into(teacherCardBackground);
+        Picasso.with(itemView.getContext()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(teacherCardBackground);
         Log.d("D", Storage.getSingelton().toString());
         Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)),Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
         jsonElementCall.enqueue(new Callback<JsonElement>() {

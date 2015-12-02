@@ -17,7 +17,7 @@
         <gradient
             android:angle="0"
             android:endColor="#FFFFFF"
-            android:startColor="@color/accentEventsColor"
+            android:startColor="@color/accentContactColor"
             android:type="sweep"
             android:useLevel="false" />
     </shape>

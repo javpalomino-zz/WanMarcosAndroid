@@ -36,8 +36,7 @@
 
                 android:id="@+id/profile_teacher_mame"
                 android:layout_below="@id/profile_teacher_image"
-                android:textColor="@android:color/white"
-                android:text="Frank Escobedo Bailon"/>
+                android:textColor="@android:color/white"/>
             <!--style="@style/ProfileTeacherItemName"-->
 
             <RelativeLayout
@@ -51,8 +50,7 @@
                     style="@style/CardRatingLabelBig"
 
                     android:id="@+id/profile_teacher_rating"
-                    android:textColor="@android:color/white"
-                    android:text="4.5"/>
+                    android:textColor="@android:color/white"/>
                 <ImageView
                     android:id="@+id/teacher_profile_star_drawable"
 
