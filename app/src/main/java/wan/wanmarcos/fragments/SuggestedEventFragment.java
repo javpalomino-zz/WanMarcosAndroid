@@ -189,6 +189,7 @@ public class SuggestedEventFragment extends Fragment {
         txtPlace.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                txtPlace.setSelection(0);
                 String place = txtPlace.getText().toString();
                 placeId = Integer.parseInt(mapPlaces.get(place));
             }
@@ -198,6 +199,7 @@ public class SuggestedEventFragment extends Fragment {
         txtCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                txtCategory.setSelection(0);
                 String category = txtCategory.getText().toString();
                 categoryId = Integer.parseInt(mapCategories.get(category));
             }

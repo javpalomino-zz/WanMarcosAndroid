@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.os.Parcel;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.util.Log;
@@ -58,6 +59,7 @@ public class EventPageFragment extends Fragment{
     private Session session;
     private RestClient restClient;
     private Event event;
+    private View layout;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -72,7 +74,9 @@ public class EventPageFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout =inflater.inflate(R.layout.fragment_event_page, container, false);
+        layout =inflater.inflate(R.layout.fragment_event_page, container, false);
+        layout.findViewById(R.id.contentContainer).setVisibility(View.GONE);
+        layout.findViewById(R.id.downloadProgram).setVisibility(View.GONE);
         id=Storage.getSingelton().getInfo(Storage.KEY_EVENT_ID);
         setUpElements(layout);
         fillData();
@@ -98,20 +102,30 @@ public class EventPageFragment extends Fragment{
         eventDetail.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
+                layout.findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                layout.findViewById(R.id.contentContainer).setVisibility(View.VISIBLE);
+                layout.findViewById(R.id.downloadProgram).setVisibility(View.VISIBLE);
                 JsonObject responseBody = response.body().getAsJsonObject();
                 event = new Event(responseBody);
+                getActivity().setTitle(event.getName());
                 txtReference.setText(event.getReferencePlace());
                 txtStart.setText(event.getStartDateTimeString());
                 txtEnd.setText(event.getFinishDateTimeString());
                 txtDescription.setText(event.getDescription());
                 txtLink.setText(event.getEventLink());
-                Picasso.with(getActivity()).load(event.getImgUrl()).into(imageView);
-                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                Picasso.with(getActivity()).load(event.getImgUrl()).into(imageView, new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                        Palette p = Palette.from(bitmap).generate();
+                        imageView.setBackgroundColor(p.getVibrantColor(ContextCompat.getColor(getContext(), R.color.primaryEventsColor)));
+                    }
 
-                if(bitmap!=null) {
-                    Palette p = Palette.from(bitmap).generate();
-                    imageView.setBackgroundColor(p.getVibrantColor(0x0000000));
-                }
+                    @Override
+                    public void onError() {
+                        Toast.makeText(getContext(),"Error al cargar imagen de evento",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
             @Override
