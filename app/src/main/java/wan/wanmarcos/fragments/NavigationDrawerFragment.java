@@ -61,6 +61,11 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     private TextView profileName;
     private TextView profileEmail;
     private ImageView profileImage;
+    private boolean needsRedirect;
+
+
+    private String activityExecute="";
+    private NavigationDrawerFragment fragment;
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -103,6 +108,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         TextDrawable.IBuilder builder = TextDrawable.builder().round();
         TextDrawable textDrawable = builder.build(profileName.getText().toString().charAt(0)+"", color);
         profileImage.setImageDrawable(textDrawable);
+        needsRedirect=false;
+        fragment=this;
     }
 
     public static List<NavDrawerLink> getData()
@@ -161,6 +168,12 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 getActivity().invalidateOptionsMenu();
+                if(needsRedirect)
+                {
+                    needsRedirect=false;
+                    Storage.getSingelton().clearActivityData(fragment);
+                    Redirect.getSingelton().showActivity(fragment, activityExecute);
+                }
             }
         };
     }
@@ -179,8 +192,6 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     @Override
     public void itemClicked(View view, int position) {
 
-        String activityExecute="";
-
         switch (position){
             case 0 :
                 activityExecute=Constants.HOME_ACTIVITY; break;
@@ -198,7 +209,6 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                 activityExecute=Constants.CONTACT_ACTIVITY;break;
         }
         mDrawerLayout.closeDrawers();
-        Storage.getSingelton().clearActivityData(this);
-        Redirect.getSingelton().showActivity(this, activityExecute);
+        needsRedirect=true;
     }
 }
