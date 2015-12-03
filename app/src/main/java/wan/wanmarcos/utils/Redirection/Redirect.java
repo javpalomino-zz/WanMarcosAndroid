@@ -86,6 +86,7 @@ public class Redirect implements Redirection {
     public void showActivity(AppCompatActivity myPreviousActivity,Class myActivity) {
         if(!myPreviousActivity.getClass().getName().equals(myActivity.getName())){
             defaultConfiguration=true;
+            Log.d("D","primera actividad"+defaultConfiguration);
             Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),myActivity);
             if(!myPreviousActivity.getClass().getName().equals(Constants.HOME_ACTIVITY)){
                 myPreviousActivity.finish();
@@ -169,6 +170,7 @@ public class Redirect implements Redirection {
     public void showFragment(AppCompatActivity myActivity, int containerID, Fragment fragmentView) {
         try{
             FragmentTransaction fragmentTransaction=myActivity.getSupportFragmentManager().beginTransaction();
+            Log.d("D","primer fragmento"+defaultConfiguration);
             if(!defaultConfiguration){
                 fragmentTransaction.replace(containerID, fragmentView);
                 fragmentTransaction.addToBackStack(fragmentView.getClass().getName());
