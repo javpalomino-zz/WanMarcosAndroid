@@ -93,7 +93,6 @@ public class Storage {
         return myPreferences.getString(key,Constants.NOT_FOUND);
     }
     public void clearData(){
-        Log.d("d","support");
         data=new HashMap<>();
     }
     public void clearTeacherActivity(AppCompatActivity myFragment){

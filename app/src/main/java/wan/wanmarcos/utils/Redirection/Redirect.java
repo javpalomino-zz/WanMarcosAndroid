@@ -3,6 +3,8 @@ package wan.wanmarcos.utils.Redirection;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentManager;
@@ -73,11 +75,11 @@ public class Redirect implements Redirection {
         }
     }
     public void logOut(AppCompatActivity myPreviousActivity){
-        Storage.getSingelton().clearData();
-        Intent myLogin=new Intent(myPreviousActivity.getApplicationContext(), MainActivity.class);
-        myLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        myPreviousActivity.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE).edit().remove("token").commit();
+        Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),MainActivity.class);
+        myNewView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         myPreviousActivity.finish();
-        myPreviousActivity.startActivity(myLogin);
+        myPreviousActivity.startActivity(myNewView);
     }
 
     @Override

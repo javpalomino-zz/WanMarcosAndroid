@@ -68,4 +68,10 @@ public class HomeActivity extends AppCompatActivity {
         int color = typedValue.data;
         toolbar.setBackgroundColor(color);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("D","D");
+    }
 }
