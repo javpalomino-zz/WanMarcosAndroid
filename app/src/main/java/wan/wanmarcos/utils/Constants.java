@@ -6,6 +6,7 @@ import wan.wanmarcos.R;
 import wan.wanmarcos.activities.ContactanosActivity;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.activities.MainActivity;
 import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
@@ -28,7 +29,7 @@ public class Constants {
     public static final String EMPTY_STRING="";
 
     public static final int TEACHER_CONTAINER=R.id.home_fragment;
-    public static final int PROFILE_CONTAINER=R.id.home_fragment;
+    public static final int PROFILE_CONTAINER=R.id.profile_fragment;
     public static final int EVENT_CONTAINER=R.id.home_fragment;
     public static final int PLACE_CONTAINER=R.id.places_fragment;
     public static final int HOME_CONTAINER = R.id.home_fragment;
@@ -40,7 +41,7 @@ public class Constants {
     public static final String CONTACT_ACTIVITY= ContactanosActivity.class.getName();
     public static final String PLACE_ACTIVITY= PlaceActivity.class.getName();
     public static final String PROFILE_ACTIVITY= ProfileActivity.class.getName();
-    public static final String LOGIN_ACTIVITY= ProfileActivity.class.getName();
+    public static final String LOGIN_ACTIVITY= MainActivity.class.getName();
 
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();

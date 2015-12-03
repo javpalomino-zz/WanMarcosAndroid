@@ -27,6 +27,7 @@ import wan.wanmarcos.activities.MainActivity;
 import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EditPreferencesFragment;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.HomeListNewsFragment;
@@ -114,6 +115,7 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.PROFILE_ACTIVITY)){
             return ProfileActivity.class;
         }else if(name.equals(Constants.LOGIN_ACTIVITY)){
+            System.out.println("EQUALS LOGIN");
             return MainActivity.class;
         }else
         {
@@ -153,7 +155,9 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.FRAGMENT_PROFILE)){
             return new ProfileUserFragment();
         }
-        else{
+        else if(name.equals(Constants.FRAGMENT_EDIT_PREFERENCE)){
+            return new EditPreferencesFragment();
+        }else{
             return new Fragment();
         }
     }
