@@ -3,8 +3,8 @@
     <string name="teacher_comment_hint">¿Algo mas que nos quieras decir?</string>
     <string name="teacher_comment_title">¡ Danos tu opinion !</string>
     <string name="teacher_comment_action">Enviar Opinion</string>
-    <string name="app_name">Wanmarcos</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="app_name">WanMarcos</string>
+    <string name="title_activity_main">WanMarcos</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

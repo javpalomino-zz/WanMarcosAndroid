@@ -339,7 +339,7 @@
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@color/eventDeatilGridBackgroundColor</item>
+        <item name="android:background">@color/pureWhite</item>
     </style>
 
     <style name="EventPageFormContent">
@@ -347,7 +347,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:background">@color/eventDeatilGridBackgroundColor</item>
+        <item name="android:background">@color/pureWhite</item>
     </style>
 
     <style name="EventFormDescription">
@@ -356,7 +356,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:lines">5</item>
-        <item name="android:background">@color/eventDeatilGridBackgroundColor</item>
+        <item name="android:background">@color/pureWhite</item>
     </style>
 
     <style name="EventSubmitFormFieldButton">
@@ -365,6 +365,11 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">25dp</item>
         <item name="android:layout_marginRight">25dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingLeft">5dp</item>
     </style>
 
     <style name="BigTextInputSubmitForm">

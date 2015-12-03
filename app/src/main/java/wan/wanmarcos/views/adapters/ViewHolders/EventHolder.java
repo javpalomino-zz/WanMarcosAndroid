@@ -2,12 +2,14 @@ package wan.wanmarcos.views.adapters.ViewHolders;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -36,15 +38,7 @@ public class EventHolder extends CustomViewHolder<Event>{
     public void setElements(Event object) {
         current=object.getEventId();
         title.setText(object.getName());
-        Picasso.with(itemView.getContext())
-                .load(object.getImgUrl())
-                .into(img);
-        if(img.getDrawable()!=null)
-        {
-            Bitmap bitmap = ((BitmapDrawable)img.getDrawable()).getBitmap();
-            Palette p = Palette.from(bitmap).generate();
-            img.setBackgroundColor(p.getVibrantColor(0x0000000));
-        }
+        Picasso.with(itemView.getContext()).load(object.getImgUrl()).fit().centerCrop().into(img);
         String startDateAndTime = object.CalendarToString(object.getStartDateTime())+" - "+object.CalendarToString(object.getFinishDateTime());
         dateAndTime.setText(startDateAndTime);
 

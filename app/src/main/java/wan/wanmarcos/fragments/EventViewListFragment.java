@@ -87,6 +87,7 @@ public class EventViewListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle("Eventos");
         View layout =inflater.inflate(R.layout.fragment_events_list, container, false);
         setUpElements(layout);
         addListeners();

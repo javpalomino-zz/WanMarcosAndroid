@@ -29,6 +29,7 @@ import wan.wanmarcos.activities.MainActivity;
 import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EditPreferencesFragment;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.HomeListNewsFragment;
@@ -86,9 +87,9 @@ public class Redirect implements Redirection {
     public void showActivity(AppCompatActivity myPreviousActivity,Class myActivity) {
         if(!myPreviousActivity.getClass().getName().equals(myActivity.getName())){
             defaultConfiguration=true;
-            Log.d("D","primera actividad"+defaultConfiguration);
             Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),myActivity);
             if(!myPreviousActivity.getClass().getName().equals(Constants.HOME_ACTIVITY)){
+                Log.d("D","Othi"+myActivity.getName());
                 myPreviousActivity.finish();
             }
             myPreviousActivity.startActivity(myNewView);
@@ -116,7 +117,10 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.PROFILE_ACTIVITY)){
             return ProfileActivity.class;
-        }else{
+        }else if(name.equals(Constants.LOGIN_ACTIVITY)){
+            return MainActivity.class;
+        }else
+        {
             return Object.class;
         }
 
@@ -153,7 +157,9 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.FRAGMENT_PROFILE)){
             return new ProfileUserFragment();
         }
-        else{
+        else if(name.equals(Constants.FRAGMENT_EDIT_PREFERENCE)){
+            return new EditPreferencesFragment();
+        }else{
             return new Fragment();
         }
     }
@@ -170,7 +176,6 @@ public class Redirect implements Redirection {
     public void showFragment(AppCompatActivity myActivity, int containerID, Fragment fragmentView) {
         try{
             FragmentTransaction fragmentTransaction=myActivity.getSupportFragmentManager().beginTransaction();
-            Log.d("D","primer fragmento"+defaultConfiguration);
             if(!defaultConfiguration){
                 fragmentTransaction.replace(containerID, fragmentView);
                 fragmentTransaction.addToBackStack(fragmentView.getClass().getName());

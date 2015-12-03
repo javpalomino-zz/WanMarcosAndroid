@@ -32,17 +32,15 @@
 
                 <AutoCompleteTextView
                     android:id="@+id/eventFormPlace"
-
                     style="@style/AutoCompleteTextViewForm"
-
                     android:hint="@string/eventPlaceFormPlaceholder"
-                    android:layout_below="@+id/eventFormName" />
+                    android:layout_below="@+id/eventFormName"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/eventFormCategory"
                     style="@style/AutoCompleteTextViewForm"
                     android:hint="@string/eventCategoryFormPlaceholder"
-                    android:layout_below="@+id/eventFormPlace" />
+                    android:layout_below="@+id/eventFormPlace"/>
 
                 <EditText
                     android:id="@+id/eventFormStartDateButton"
