@@ -40,6 +40,7 @@ public class Constants {
     public static final String CONTACT_ACTIVITY= ContactanosActivity.class.getName();
     public static final String PLACE_ACTIVITY= PlaceActivity.class.getName();
     public static final String PROFILE_ACTIVITY= ProfileActivity.class.getName();
+    public static final String LOGIN_ACTIVITY= ProfileActivity.class.getName();
 
     public static final String FRAGMENT_LIST_TEACHER= TeacherListFragment.class.getName();
     public static final String FRAGMENT_PROFILE_TEACHER= TeacherProfileFragment.class.getName();
