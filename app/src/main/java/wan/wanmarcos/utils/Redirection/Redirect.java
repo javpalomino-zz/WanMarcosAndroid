@@ -27,6 +27,7 @@ import wan.wanmarcos.activities.MainActivity;
 import wan.wanmarcos.activities.PlaceActivity;
 import wan.wanmarcos.activities.ProfileActivity;
 import wan.wanmarcos.activities.TeacherActivity;
+import wan.wanmarcos.fragments.EditPreferencesFragment;
 import wan.wanmarcos.fragments.EventPageFragment;
 import wan.wanmarcos.fragments.EventViewListFragment;
 import wan.wanmarcos.fragments.HomeListNewsFragment;
@@ -74,7 +75,7 @@ public class Redirect implements Redirection {
     }
     public void logOut(AppCompatActivity myPreviousActivity){
         Storage.getSingelton().clearData();
-        Intent myLogin=new Intent(myPreviousActivity.getApplicationContext(), MainActivity.class);
+        Intent myLogin=new Intent(myPreviousActivity.getApplicationContext(), getActivityClass(Constants.LOGIN_ACTIVITY));
         myLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         myPreviousActivity.finish();
         myPreviousActivity.startActivity(myLogin);
@@ -113,7 +114,11 @@ public class Redirect implements Redirection {
         }
         else if(name.equals(Constants.PROFILE_ACTIVITY)){
             return ProfileActivity.class;
-        }else{
+        }else if(name.equals(Constants.LOGIN_ACTIVITY)){
+            System.out.println("EQUALS LOGIN");
+            return MainActivity.class;
+        }else
+        {
             return Object.class;
         }
 
@@ -150,7 +155,9 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.FRAGMENT_PROFILE)){
             return new ProfileUserFragment();
         }
-        else{
+        else if(name.equals(Constants.FRAGMENT_EDIT_PREFERENCE)){
+            return new EditPreferencesFragment();
+        }else{
             return new Fragment();
         }
     }

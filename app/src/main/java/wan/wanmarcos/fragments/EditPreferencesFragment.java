@@ -74,7 +74,7 @@ public class EditPreferencesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View layout =inflater.inflate(R.layout.fragment_events_list, container, false);
+        View layout =inflater.inflate(R.layout.fragment_profile_edit_preferences, container, false);
         setUpElements(layout);
         addListeners();
         mLayout=layout;
@@ -83,7 +83,7 @@ public class EditPreferencesFragment extends Fragment {
 
     private void setUpElements(View layout)
     {
-        recyclerView = (RecyclerView) layout.findViewById(R.id.eventList);
+        recyclerView = (RecyclerView) layout.findViewById(R.id.faculties_list);
         recyclerView.setAdapter(editPreferencesAdapter);
         mLayoutManager=new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
