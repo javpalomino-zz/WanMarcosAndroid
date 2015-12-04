@@ -25,9 +25,7 @@ public class Valuation {
         this.userName=jsonObject.get("last_name").getAsString()+" "+jsonObject.get("first_name").getAsString();
         this.userComment=storedObject.get("message").getAsString();
         this.userTotalMark=storedObject.get("score").getAsFloat();
-        //this.userImage = storedObject.get("image").getAsString();
         this.userImage=null;//Cuando pinchi acuaice el WS para mandarte la imagen , borra esta linea y saca el comentario de la de arriba
-        Log.d("d",storedObject.get("score").isJsonNull()+"-"+storedObject.get("score").getAsFloat());
     }
 
     public String getUserName() {

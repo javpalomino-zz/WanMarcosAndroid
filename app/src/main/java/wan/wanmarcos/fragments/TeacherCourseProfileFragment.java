@@ -110,6 +110,7 @@ public class TeacherCourseProfileFragment extends Fragment implements FragmentsM
                         Valuation current = new Valuation(storedObject);
                         valuationListAdapter.add(current);
                     }
+                    current_page++;
                 }
             }
 

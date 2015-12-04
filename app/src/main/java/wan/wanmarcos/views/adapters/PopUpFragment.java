@@ -5,5 +5,5 @@ package wan.wanmarcos.views.adapters;
  */
 public interface PopUpFragment {
     void popUp();
-    void close(String message);
+    void close(String message,float score);
 }

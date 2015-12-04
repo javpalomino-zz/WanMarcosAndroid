@@ -55,6 +55,14 @@ public interface ConsumerService {
                               @Query("page") int current_page);
 
     @FormUrlEncoded
+    @POST(Constants.COURSE_COMMENTS)
+    Call<JsonElement> commentCourse(@Header("Authorization") String authorization,
+                                    @Field("subject_id") int subjectId,
+                                    @Field("professor_id") int professorId,
+                                    @Field("score") float score,
+                                    @Field("message") String message);
+
+    @FormUrlEncoded
     @POST(Constants.SIGN_UP)
     Call<JsonElement> signUp(@Field("email") String email,
                 @Field("password") String password,

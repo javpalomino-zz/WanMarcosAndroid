@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,12 +69,18 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
     public void setUpElements(View view) {
         restClient=new RestClient(getActivity());
         course=(TextView)view.findViewById(R.id.teacher_comment_course);
+        teacher=(TextView)view.findViewById(R.id.teacher_comment_professor);
+        faculty=(TextView)view.findViewById(R.id.teacher_comment_faculty);
+        imageIcon=(ImageView)view.findViewById(R.id.header_image_icon);
         Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)), Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 JsonObject responseBody = response.body().getAsJsonObject();
                 course.setText(responseBody.get("name").getAsString());
+                teacher.setText(responseBody.get("professor").getAsJsonObject().get("name").getAsString());
+                faculty.setText(responseBody.get("faculty").getAsJsonObject().get("name").getAsString());
+                Picasso.with(getActivity()).load(responseBody.get("professor").getAsJsonObject().get("image").getAsString()).transform(new CircleTransform()).into(imageIcon);
             }
 
             @Override
@@ -83,12 +90,6 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
         });
         backgroundHeader=(ImageView)view.findViewById(R.id.comment_background_header);
         Picasso.with(getActivity()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(backgroundHeader);
-        imageIcon=(ImageView)view.findViewById(R.id.header_image_icon);
-        Picasso.with(getActivity()).load("http://lorempixel.com/350/230/").transform(new CircleTransform()).into(imageIcon);
-        teacher=(TextView)view.findViewById(R.id.teacher_comment_professor);
-        teacher.setText(Storage.getSingelton().getInfo(this,Storage.KEY_TEACHER_NAME));
-        faculty=(TextView)view.findViewById(R.id.teacher_comment_faculty);
-        faculty.setText(Storage.getSingelton().getInfo(this,Storage.KEY_FACULTY_NAME));
         recyclerView=(RecyclerView)view.findViewById(R.id.teacher_comment_rating);
         comment=(EditText)view.findViewById(R.id.teacher_comment_post);
         button=(Button)view.findViewById(R.id.teacher_comment_action);
@@ -112,7 +113,7 @@ public class PopupCommentFragment extends DialogFragment implements FragmentsMet
             @Override
             public void onClick(View v) {
                 if (validations()) {
-                    onClickListener.close(comment.getText().toString());
+                    onClickListener.close(comment.getText().toString(),ratingListAdapter.getCount()/ratingListAdapter.getItemCount());
                     dismiss();
                 }
             }

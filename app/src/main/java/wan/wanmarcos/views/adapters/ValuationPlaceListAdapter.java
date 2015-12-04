@@ -51,7 +51,7 @@ public class ValuationPlaceListAdapter extends CustomDoubleAdapter<Valuation> im
     }
 
     @Override
-    public void close(String message) {
+    public void close(String message, float score) {
         add(new Valuation("Carlos","http://lorempixel.com/400/200/",message,(float)2.3));
     }
 }
