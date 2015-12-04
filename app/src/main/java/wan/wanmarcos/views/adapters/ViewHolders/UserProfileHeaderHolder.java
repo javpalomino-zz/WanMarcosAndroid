@@ -77,8 +77,22 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
                     if (jsonObject.has("email")) {
                         userName.setText(jsonObject.get("first_name").getAsString() +" "+ jsonObject.get("last_name").getAsString());
                         userEmail.setText(jsonObject.get("email").getAsString());
-                        userCarreer.setText(" ");
-                        userFaculty.setText(" ");
+                        /*if(jsonObject.get("faculty").isJsonNull())
+                        {
+                            userFaculty.setText(" ");
+                        }
+                        else
+                        {
+                            userFaculty.setText(jsonObject.get("faculty").getAsString());
+                        }
+                        if(jsonObject.get("degree").isJsonNull())
+                        {
+                            userCarreer.setText(" ");
+                        }
+                        else
+                        {
+                            userCarreer.setText(jsonObject.get("degree").getAsString());
+                        }*/
                         Picasso.with(view.getContext()).load(R.mipmap.backgroundprofile).fit().centerCrop().into(userBackground);
                         String imgString = jsonObject.get("image").getAsString();
                         if(imgString!=null)

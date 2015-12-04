@@ -125,7 +125,7 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
                     System.out.println("Success");
                 }else{
 
-                    Toast.makeText(getActivity(),"Error al comunicarse con el servidor",Toast.LENGTH_SHORT).show();
+                    System.out.println("Faliure");
                 }
             }
 
@@ -147,13 +147,10 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
                 if (response.isSuccess()) {
                     JsonArray faculties = response.body().getAsJsonObject().getAsJsonArray("faculties");
                     ArrayList<String> body = new ArrayList<String>();
-                    String prueba = "";
                     for (int i = 0; i < faculties.size(); i++) {
-                        prueba += faculties.get(i).getAsJsonObject().get("name").getAsString();
                         body.add(faculties.get(i).getAsJsonObject().get("name").getAsString());
                         mapFaculties.put(faculties.get(i).getAsJsonObject().get("name").getAsString(), faculties.get(i).getAsJsonObject().get("id").getAsString());
                     }
-                    Toast.makeText(getActivity(), prueba, Toast.LENGTH_SHORT).show();
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, body);
                     faculty.setAdapter(adapter);
                 }
@@ -182,13 +179,10 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
                 if (response.isSuccess()) {
                     JsonArray carrers = response.body().getAsJsonObject().getAsJsonArray("degrees");
                     ArrayList<String> body = new ArrayList<String>();
-                    String prueba = "";
                     for (int i = 0; i < carrers.size(); i++) {
-                        prueba += carrers.get(i).getAsJsonObject().get("name").getAsString();
                         body.add(carrers.get(i).getAsJsonObject().get("name").getAsString());
                         mapCarreers.put(carrers.get(i).getAsJsonObject().get("name").getAsString(), carrers.get(i).getAsJsonObject().get("id").getAsString());
                     }
-                    Toast.makeText(getActivity(), prueba, Toast.LENGTH_SHORT).show();
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, body);
                     carreer.setAdapter(adapter);
                 }
