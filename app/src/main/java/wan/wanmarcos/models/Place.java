@@ -1,5 +1,9 @@
 package wan.wanmarcos.models;
 
+import com.google.gson.JsonObject;
+
+import java.util.Random;
+
 /**
  * Created by soporte on 25/11/15.
  */
@@ -20,6 +24,21 @@ public class Place {
         this.distance = distance;
         this.ratingPlace = ratingPlace;
         this.references = references;
+    }
+
+    public Place(JsonObject storedObject) {
+        this.idPlace=storedObject.get("id").getAsInt();
+        this.placeName=storedObject.get("name").getAsString();
+        if(storedObject.get("image").isJsonNull()){
+            this.urlPlace=null;
+        }
+        else{
+            this.urlPlace=storedObject.get("image").getAsString();
+        }
+        this.referencePlace="-";
+        this.distance= (int)(Math.random()*50+1);
+        this.references="";
+
     }
 
     public int getIdPlace() {

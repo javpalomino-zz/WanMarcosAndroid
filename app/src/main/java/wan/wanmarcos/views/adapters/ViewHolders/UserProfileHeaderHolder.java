@@ -95,10 +95,9 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
                             //userCarreer.setText(jsonObject.get("degree").getAsString());
                         }
                         Picasso.with(view.getContext()).load(R.mipmap.backgroundprofile).fit().centerCrop().into(userBackground);
-                        String imgString = jsonObject.get("image").getAsString();
-                        if(imgString!=null)
+                        if(!jsonObject.get("image").isJsonNull())
                         {
-                            Picasso.with(view.getContext()).load(imgString).transform(new CircleTransform()).into(userImage);
+                            Picasso.with(view.getContext()).load(jsonObject.get("image").getAsString()).transform(new CircleTransform()).into(userImage);
                         }
                         else
                         {

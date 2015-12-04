@@ -4,6 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
+import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
@@ -42,7 +44,16 @@ public class PlaceHolder extends CustomViewHolder<Place>{
         placeReference.setText(object.getReferencePlace());
         placeDescription.setText(object.getReferences());
         placeRating.setText(String.valueOf(object.getRatingPlace()));
-        Picasso.with(vista.getContext()).load("http://lorempixel.com/300/300/").transform(new CircleTransform()).into(imageView);
+        if(object.getUrlPlace()==null){
+            ColorGenerator generator = ColorGenerator.MATERIAL;
+            int color = generator.getColor(placeName.getText().charAt(0));
+            TextDrawable.IBuilder builder = TextDrawable.builder().round();
+            TextDrawable textDrawable = builder.build(placeName.getText().toString().charAt(0)+"", color);
+            imageView.setImageDrawable(textDrawable);
+        }
+        else{
+            Picasso.with(vista.getContext()).load(object.getUrlPlace()).transform(new CircleTransform()).into(imageView);
+        }
     }
 
     @Override

@@ -23,6 +23,7 @@ public class PlaceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Lugares");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place);
         toolbar = (Toolbar) findViewById(R.id.app_bar);
