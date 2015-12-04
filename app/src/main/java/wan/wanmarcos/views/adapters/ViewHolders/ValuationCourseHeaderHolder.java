@@ -52,7 +52,6 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
     @Override
     public void setElements() {
         Picasso.with(itemView.getContext()).load(R.mipmap.backgroundcardteacher).fit().centerCrop().into(teacherCardBackground);
-        Log.d("D", Storage.getSingelton().toString());
         Call<JsonElement>jsonElementCall=restClient.getConsumerService().getDetailTeacherCourse(token, Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_COURSE_ID)),Integer.parseInt(Storage.getSingelton().getInfo(Storage.KEY_TEACHER_ID)));
         jsonElementCall.enqueue(new Callback<JsonElement>() {
             @Override
@@ -64,6 +63,9 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
                 } else {
                     rating.setText(responseBody.get("score").getAsFloat() + "");
                 }
+                facultyName.setText(responseBody.get("faculty").getAsJsonObject().get("name").getAsString());
+                teacherName.setText(responseBody.get("professor").getAsJsonObject().get("name").getAsString());
+                Picasso.with(itemView.getContext()).load(responseBody.get("professor").getAsJsonObject().get("image").getAsString()).transform(new CircleTransform()).into(teacherImage);
             }
 
             @Override
@@ -71,9 +73,6 @@ public class ValuationCourseHeaderHolder extends CustomHeaderViewHolder {
 
             }
         });
-        Picasso.with(itemView.getContext()).load("http://lorempixel.com/g/400/200/").transform(new CircleTransform()).into(teacherImage);
-        facultyName.setText("d");
-        teacherName.setText("carlos");
         addListeners();
     }
     public void addListeners(){

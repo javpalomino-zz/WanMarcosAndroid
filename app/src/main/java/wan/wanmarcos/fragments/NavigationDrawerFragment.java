@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,12 +140,13 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                 if (response.isSuccess()) {
                     JsonObject jsonObject = response.body().getAsJsonObject();
                     if (jsonObject.has("email")) {
+
                         profileName.setText(jsonObject.get("first_name").getAsString() +" " + jsonObject.get("last_name").getAsString());
                         profileEmail.setText(jsonObject.get("email").getAsString());
-                        String imgString = jsonObject.get("image").getAsString();
-                        if(imgString!=null)
+                        Constants.name=profileName.getText().toString();
+                        if(!jsonObject.get("image").isJsonNull())
                         {
-                            Picasso.with(getActivity()).load(imgString).transform(new CircleTransform()).into(profileImage);
+                            Picasso.with(getActivity()).load(jsonObject.get("image").getAsString()).transform(new CircleTransform()).into(profileImage);
                         }
                         else
                         {

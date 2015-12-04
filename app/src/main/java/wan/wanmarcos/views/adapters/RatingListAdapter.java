@@ -53,6 +53,17 @@ public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.Ra
         notifyItemInserted(getItemCount());
     }
 
+    public float getCount() {
+        int i=ratings.size();
+        float count=0;
+        if(i>0){
+            for(int j=0;j<i;j++){
+                count+=ratings.get(j).getRating();
+            }
+        }
+        return count;
+    }
+
 
     public class RatingHolder extends RecyclerView.ViewHolder implements ViewHolderSetters<Rating>{
         private TextView ratingType;
@@ -87,7 +98,6 @@ public class RatingListAdapter extends RecyclerView.Adapter<RatingListAdapter.Ra
 
     }
     public boolean isChanged(int pos){
-        Log.d("D",ratings.get(pos).getRating()+"-");
         if(ratings.get(pos).getRating()!=0){
             return true;
         }

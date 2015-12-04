@@ -8,9 +8,9 @@ import com.google.gson.JsonObject;
  * Created by carlos-pc on 29/11/15.
  */
 public class Home {
-    private static final String JSON_TEACHER = "professor";
-    private static final String JSON_EVENT = "event";
-    private static final String JSON_PLACE = "place";
+    private static final String JSON_TEACHER = "professors";
+    private static final String JSON_EVENT = "events";
+    private static final String JSON_PLACE = "places";
     private int id;
     private String name;
     private String description;
