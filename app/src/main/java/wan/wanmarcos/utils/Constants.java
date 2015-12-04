@@ -75,7 +75,7 @@ public class Constants {
     public static final String AUTOCOMPLETE_CARREERS = "autocomplete/degrees";
     public static final String AUTOCOMPLETE_PLACES="autocomplete/places";
     public static final String AUTOCOMPLETE_CATEGORIES="autocomplete/categories";
-    public static final String CHANGE_PROFILE_INFORMATION="/users/profile";
+    public static final String CHANGE_PROFILE_INFORMATION="users/profile";
     public static final String CHANGE_PROFILE_PHOTO="users/image";
 
     public static final String HEADER = "Bearer ";

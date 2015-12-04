@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.w3c.dom.Text;
 
 import wan.wanmarcos.R;
@@ -21,6 +23,8 @@ public class EditPreferencesHolder extends CustomViewHolder<Preference> {
 
     private TextView preferenceName;
     private ImageView deleteButton;
+    private ImageView workinprogress;
+    private View view;
     private int prefernceId;
 
     public EditPreferencesHolder(View itemView) {
@@ -29,6 +33,8 @@ public class EditPreferencesHolder extends CustomViewHolder<Preference> {
         preferenceName = (TextView) itemView.findViewById(R.id.editpref_faculty_list_faculty_name);
         deleteButton = (ImageView) itemView.findViewById(R.id.remove_faculty_button);
         deleteButton.setVisibility(View.GONE);
+        workinprogress=(ImageView)itemView.findViewById(R.id.underConstructionEdit);
+        view=itemView;
         setListeners();
     }
 
@@ -64,6 +70,7 @@ public class EditPreferencesHolder extends CustomViewHolder<Preference> {
     @Override
     public void setElements(Preference object) {
         preferenceName.setText(object.getPreferenceName());
+        Picasso.with(view.getContext()).load(R.mipmap.enconstruccionbob).fit().into(workinprogress);
     }
 
     @Override

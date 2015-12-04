@@ -25,6 +25,12 @@
         android:gravity="center"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/underConstructionEdit"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/editpref_faculty_list_faculty_name"/>
+
 
 
 </RelativeLayout>

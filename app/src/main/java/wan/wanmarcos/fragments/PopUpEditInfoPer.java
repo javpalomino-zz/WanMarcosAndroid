@@ -71,6 +71,8 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(Constants.PERSONAL_INFO_POPUP, container);
+        facultyId=0;
+        carreerId=0;
         setUpElements(view);
         addListeners();
         return view;
@@ -94,7 +96,28 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
         getDialog().getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     }
+    public boolean validateFields(){
+        int errors=0;
+        if(facultyId==0){
+            errors++;
+            faculty.setError("Seleccione un item");
+        }else{
+            faculty.setError(null);
+        }
 
+        if(carreerId==0){
+            errors++;
+            carreer.setError("Seleccione un item");
+        }else{
+            carreer.setError(null);
+        }
+
+        if(errors==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
     @Override
     public void addListeners() {
         setListenerSendButton();
@@ -105,7 +128,7 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (recieved) {
+                if (recieved && validateFields()) {
                     sendPersonalInformation();
                     dismiss();
                 } else {
@@ -122,10 +145,13 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
             @Override
             public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 if(response.isSuccess()){
-                    System.out.println("Success");
-                }else{
 
-                    Toast.makeText(getActivity(),"Error al comunicarse con el servidor",Toast.LENGTH_SHORT).show();
+                }else{
+                    try {
+                        System.out.print(response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -134,7 +160,6 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
                 System.out.println(t);
             }
         });
-
     }
     public void setListener(PopUpFragment listener){
         onClickListener=listener;
@@ -147,13 +172,10 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
                 if (response.isSuccess()) {
                     JsonArray faculties = response.body().getAsJsonObject().getAsJsonArray("faculties");
                     ArrayList<String> body = new ArrayList<String>();
-                    String prueba = "";
                     for (int i = 0; i < faculties.size(); i++) {
-                        prueba += faculties.get(i).getAsJsonObject().get("name").getAsString();
                         body.add(faculties.get(i).getAsJsonObject().get("name").getAsString());
                         mapFaculties.put(faculties.get(i).getAsJsonObject().get("name").getAsString(), faculties.get(i).getAsJsonObject().get("id").getAsString());
                     }
-                    Toast.makeText(getActivity(), prueba, Toast.LENGTH_SHORT).show();
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, body);
                     faculty.setAdapter(adapter);
                 }
@@ -169,6 +191,7 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
         faculty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String facultynname = faculty.getText().toString();
                 facultyId = Integer.parseInt(mapFaculties.get(facultynname));
             }
@@ -182,13 +205,10 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
                 if (response.isSuccess()) {
                     JsonArray carrers = response.body().getAsJsonObject().getAsJsonArray("degrees");
                     ArrayList<String> body = new ArrayList<String>();
-                    String prueba = "";
                     for (int i = 0; i < carrers.size(); i++) {
-                        prueba += carrers.get(i).getAsJsonObject().get("name").getAsString();
                         body.add(carrers.get(i).getAsJsonObject().get("name").getAsString());
                         mapCarreers.put(carrers.get(i).getAsJsonObject().get("name").getAsString(), carrers.get(i).getAsJsonObject().get("id").getAsString());
                     }
-                    Toast.makeText(getActivity(), prueba, Toast.LENGTH_SHORT).show();
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.select_dialog_item, body);
                     carreer.setAdapter(adapter);
                 }

@@ -43,8 +43,6 @@ import wan.wanmarcos.utils.Storage;
  */
 public class EventPageFragment extends Fragment{
 
-
-
     private ImageView imageView;
     private TextView txtReference;
     private TextView txtStart;
@@ -80,7 +78,7 @@ public class EventPageFragment extends Fragment{
         id=Storage.getSingelton().getInfo(Storage.KEY_EVENT_ID);
         setUpElements(layout);
         fillData();
-        addListeners();
+        //addListeners();
         return layout;
     }
 
@@ -113,6 +111,8 @@ public class EventPageFragment extends Fragment{
                 txtEnd.setText(event.getFinishDateTimeString());
                 txtDescription.setText(event.getDescription());
                 txtLink.setText(event.getEventLink());
+                scheduleLink=event.getScheduleLink();
+                addListeners();
                 Picasso.with(getActivity()).load(event.getImgUrl()).into(imageView, new com.squareup.picasso.Callback() {
                     @Override
                     public void onSuccess() {
