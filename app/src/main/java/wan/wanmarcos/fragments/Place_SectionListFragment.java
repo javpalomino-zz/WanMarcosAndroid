@@ -12,18 +12,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
 import wan.wanmarcos.models.Place;
+import wan.wanmarcos.models.Teacher;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
+import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.views.adapters.PlaceListAdapter;
 
 
-public class Place_SectionListFragment extends Fragment implements FragmentsMethods,ItemAdapterListener<Place> {
+public class Place_SectionListFragment extends Fragment implements FragmentsMethods{
     private RecyclerView recyclerView;
     private PlaceListAdapter placeListAdapter;
+    private RestClient restClient;
+    private int current_page;
+    String token="Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1IiwiaXNzIjoiaHR0cDpcL1wvNTIuODkuMTI0LjBcL2FwaVwvdjFcL2F1dGhlbnRpY2F0ZSIsImlhdCI6IjE0NDcxMDQ5MzQiLCJleHAiOiIxNDU1NzQ0OTM0IiwibmJmIjoiMTQ0NzEwNDkzNCIsImp0aSI6IjcxZjM2NjgwN2EwZTIyZTY1ODM0OWYzZDMyOTcxNDQ1In0.gQK_MjKSRx6BhVCsy0CyhvJTEZB-wK2EWvKKJrDpUm4";
+    private String JSON_PLACE="places";
 
     public Place_SectionListFragment(){
 
@@ -32,13 +46,10 @@ public class Place_SectionListFragment extends Fragment implements FragmentsMeth
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         placeListAdapter=new PlaceListAdapter(this);
+        restClient=new RestClient(getActivity());
+        current_page=1;
+        getData();
     }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,33 +61,38 @@ public class Place_SectionListFragment extends Fragment implements FragmentsMeth
 
     @Override
     public void setUpElements(View view) {
-        addPlaces();
         recyclerView=(RecyclerView)view.findViewById(R.id.places_list);
         recyclerView.setAdapter(placeListAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
-    private void addPlaces() {
-        placeListAdapter.add(new Place("http://lorempixel.com/400/200/",0,"Tortitas Fritas","Al frente de chio",34,(float)4.5,"Rica comida :3"));
-        placeListAdapter.add(new Place("http://lorempixel.com/400/200/",1,"Bebidas Personales","Encima de la loma",25,(float)2.5,"Ambiente comodo"));
-        placeListAdapter.add(new Place("http://lorempixel.com/400/200/",2,"Desarrollo personal","Odonto",100,(float)1.0,"o thi"));
-        placeListAdapter.add(new Place("http://lorempixel.com/400/200/",2,"Desarrollo personal","Odonto",10,(float)1.0,"o thi"));
-        placeListAdapter.add(new Place("http://lorempixel.com/400/200/",2,"Desarrollo personal","Odonto",130,(float)1.0,"o thi"));
-        placeListAdapter.add(new Place("http://lorempixel.com/400/200/",2,"Desarrollo personal","Odonto",10000000,(float)1.0,"o thi"));
+    private void getData() {
+        Call<JsonElement> teacherPage= restClient.getConsumerService().getPlaces(token, 1, Constants.CANTIDAD);
+        teacherPage.enqueue(new Callback<JsonElement>() {
+            @Override
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
+                JsonObject responseBody = response.body().getAsJsonObject();
+                if (responseBody.has(JSON_PLACE)) {
+                    JsonArray jsonArray = responseBody.getAsJsonArray(JSON_PLACE);
+                    for (int i = 0; i < jsonArray.size(); i++) {
+                        JsonObject storedObject = jsonArray.get(i).getAsJsonObject();
+                        Place current = new Place(storedObject);
+                        placeListAdapter.add(current);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+
+            }
+        });
     }
 
     @Override
     public void addListeners() {
-
-    }
-
-    @Override
-    public void itemClicked(View view, Place object) {
-        Redirect.getSingelton().showFragment(this,Constants.PLACE_CONTAINER,Constants.FRAGMENT_PROFILE_PLACE);
-    }
-
-    @Override
-    public void addClicked(String fragmentProfileTeacher) {
 
     }
 }

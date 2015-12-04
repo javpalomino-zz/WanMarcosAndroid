@@ -62,6 +62,10 @@ public interface ConsumerService {
                                     @Field("score") float score,
                                     @Field("message") String message);
 
+    @GET(Constants.PLACES)
+    Call<JsonElement> getPlaces(@Header("Authorization") String authorization,
+                                @Query("page") int per_page,
+                                @Query("per_page") int page);
     @FormUrlEncoded
     @POST(Constants.SIGN_UP)
     Call<JsonElement> signUp(@Field("email") String email,
