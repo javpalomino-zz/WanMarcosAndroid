@@ -1,5 +1,6 @@
 package wan.wanmarcos.activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.JsonElement;
@@ -55,6 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
     private Session session;
     private String token;
     private boolean recieved;
+    private ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,14 +110,17 @@ public class ProfileActivity extends AppCompatActivity {
                imageUri = data.getData();
                File image = new File(UriManager.getPathImage(imageUri,this));
                if(recieved){
-                   Toast.makeText(getBaseContext(),"El archivo",Toast.LENGTH_SHORT).show();
                    uploadPhoto(image);
                    Redirect.getSingelton().showFragment(this, Constants.PROFILE_CONTAINER, Constants.FRAGMENT_PROFILE);
+                   progressDialog = new ProgressDialog(this);
+                   progressDialog.setMessage("Actualizando Foto De Perfil");
+                   progressDialog.setCancelable(false);
+                   progressDialog.show();
                }
             }
         }
     }
-    public void uploadPhoto(File image){
+    public void uploadPhoto(final File image){
         recieved=false;
         RequestBody imageFile = RequestBody.create(MediaType.parse("image/*"),image);
         Call<JsonElement> uploadPhoto = restClient.getConsumerService().changeProfilePhoto(token,imageFile);
@@ -128,8 +134,10 @@ public class ProfileActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }else{
-                    System.out.println("subio archivo bb");
-                    Toast.makeText(getBaseContext(),"El archivo fue subido",Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    UpdatePhotoToProfileHeader(image);
+                    UpdatePhotoToNavDrawer(image);
+                    Toast.makeText(getBaseContext(),"Imagen Actualizada",Toast.LENGTH_SHORT).show();
                 }
                 recieved = true;
             }
@@ -157,10 +165,17 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
-    public void UpdatePhoto()
+    public void UpdatePhotoToProfileHeader(File image)
     {
-        ProfileUserFragment fragment = (ProfileUserFragment) getSupportFragmentManager().findFragmentById(R.id.userProfileFragmentContainer);
-        fragment.UpdatePhote();
+        System.out.println("DENTRO DE ACTIVITY");
+        ProfileUserFragment fragment = (ProfileUserFragment) getSupportFragmentManager().findFragmentById(R.id.profile_fragment);
+        fragment.UpdatePhoto(image);
+    }
+    public void UpdatePhotoToNavDrawer(File image)
+    {
+        System.out.println("DENTRO DE ACTIVITY");
+        NavigationDrawerFragment fragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        fragment.UpdatePhoto(image);
     }
     public void GotoEditPrf()
     {

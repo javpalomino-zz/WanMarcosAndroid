@@ -12,6 +12,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
@@ -60,7 +62,8 @@ public class ProfileUserFragment extends Fragment implements FragmentsMethods {
     public void addListeners() {
     }
 
-    public void UpdatePhote(){
-
+    public void UpdatePhoto(File image){
+        System.out.println("DENTRO DE FRAGMENT");
+        preferenceListAdapter.UpdatePhoto(image);
     }
 }

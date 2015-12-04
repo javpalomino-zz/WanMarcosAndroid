@@ -29,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -278,5 +279,10 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         }
         mDrawerLayout.closeDrawers();
         needsRedirect=true;
+    }
+    public void UpdatePhoto(File img)
+    {
+        System.out.println("DENTRO DE NAV DRAWER FRAGMENT");
+        Picasso.with(getContext()).load(img).transform(new CircleTransform()).into(profileImage);
     }
 }

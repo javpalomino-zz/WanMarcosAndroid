@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLOutput;
 
@@ -118,5 +119,9 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
         });
     }
     public void addListeners(){
+    }
+    public void UpdatePhoto(File img)
+    {
+        Picasso.with(view.getContext()).load(img).transform(new CircleTransform()).into(userImage);
     }
 }
