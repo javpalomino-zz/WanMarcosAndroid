@@ -12,6 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLOutput;
 
@@ -74,16 +75,25 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
                 if(response.isSuccess()){
                     JsonObject jsonObject = response.body().getAsJsonObject();
                     if (jsonObject.has("email")) {
-                        userName.setText(jsonObject.get("first_name").getAsString() + jsonObject.get("last_name").getAsString());
+                        userName.setText(jsonObject.get("first_name").getAsString() +" "+ jsonObject.get("last_name").getAsString());
                         userEmail.setText(jsonObject.get("email").getAsString());
                         userCarreer.setText(" ");
                         userFaculty.setText(" ");
                         Picasso.with(view.getContext()).load(R.mipmap.backgroundprofile).fit().centerCrop().into(userBackground);
-                        ColorGenerator generator = ColorGenerator.MATERIAL;
-                        int color = generator.getColor(userName.getText().charAt(0));
-                        TextDrawable.IBuilder builder = TextDrawable.builder().round();
-                        TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0)+"", color);
-                        userImage.setImageDrawable(textDrawable);
+                        String imgString = jsonObject.get("image").getAsString();
+                        if(imgString!=null)
+                        {
+                            Picasso.with(view.getContext()).load(imgString).transform(new CircleTransform()).into(userImage);
+                        }
+                        else
+                        {
+
+                            ColorGenerator generator = ColorGenerator.MATERIAL;
+                            int color = generator.getColor(userName.getText().charAt(0));
+                            TextDrawable.IBuilder builder = TextDrawable.builder().round();
+                            TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0) + "", color);
+                            userImage.setImageDrawable(textDrawable);
+                        }
 
                     } else {
                         if (jsonObject.has("error")) {
@@ -109,5 +119,9 @@ public class UserProfileHeaderHolder extends CustomHeaderViewHolder {
         });
     }
     public void addListeners(){
+    }
+    public void UpdatePhoto(File img)
+    {
+        Picasso.with(view.getContext()).load(img).transform(new CircleTransform()).into(userImage);
     }
 }

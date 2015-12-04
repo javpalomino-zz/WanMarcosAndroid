@@ -57,6 +57,7 @@ public class HomeListNewsFragment extends Fragment implements FragmentsMethods {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(Constants.FRAGMENT_LIST_NEWS_LAYOUT, container, false);
+        getActivity().setTitle("Noticias");
         setUpElements(view);
         addListeners();
         return view;

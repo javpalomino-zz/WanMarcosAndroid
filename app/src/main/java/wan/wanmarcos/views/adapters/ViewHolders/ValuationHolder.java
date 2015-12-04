@@ -7,9 +7,11 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.squareup.picasso.Picasso;
 
 import wan.wanmarcos.R;
 import wan.wanmarcos.models.Valuation;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * Created by soporte on 28/11/15.
@@ -35,12 +37,19 @@ public class ValuationHolder extends CustomViewHolder<Valuation>  {
         valuation=object;
         userName.setText(object.getUserName());
         userValuation.setText(object.getUserComment());
-        userMark.setText(object.getUserTotalMark()+"");
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color = generator.getColor(userName.getText().charAt(0));
-        TextDrawable.IBuilder builder = TextDrawable.builder().round();
-        TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0)+"", color);
-        userImage.setImageDrawable(textDrawable);
+        userMark.setText(object.getUserTotalMark() + "");
+        if(object.getUserImage()!=null)
+        {
+            Picasso.with(view.getContext()).load(object.getUserImage()).transform(new CircleTransform()).into(userImage);
+        }
+        else
+        {
+            ColorGenerator generator = ColorGenerator.MATERIAL;
+            int color = generator.getColor(userName.getText().charAt(0));
+            TextDrawable.IBuilder builder = TextDrawable.builder().round();
+            TextDrawable textDrawable = builder.build(userName.getText().toString().charAt(0)+"", color);
+            userImage.setImageDrawable(textDrawable);
+        }
     }
 
     @Override

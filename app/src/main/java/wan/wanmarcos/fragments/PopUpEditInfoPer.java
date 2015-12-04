@@ -122,19 +122,16 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
             @Override
             public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
                 if(response.isSuccess()){
-                    //((ProfileActivity)getActivity()).uploadPhoto();
+                    System.out.println("Success");
                 }else{
-                    try {
-                        Toast.makeText(getActivity(),response.errorBody().string(),Toast.LENGTH_SHORT).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
+                    Toast.makeText(getActivity(),"Error al comunicarse con el servidor",Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-
+                System.out.println(t);
             }
         });
 
