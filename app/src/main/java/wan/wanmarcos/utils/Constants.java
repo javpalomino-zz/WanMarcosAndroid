@@ -137,5 +137,9 @@ public class Constants {
     public static String MODAL_MESSAGE_CONTACTANOS = "Gracias por darnos tu opinión";
     public static String MODAL_BUTTON_DENADA = "De Nada";
 
+    public static String MODAL_TITLE_ERROR_PHOTO = "¡ Advertencia !";
+    public static String MODAL_MESSAGE_ERROR_PHOTO = "Ocurrio un error al intentar actualizar tu foto de perfil .Por favor , inténtalo de nuevo.";
+    public static String MODAL_ERROR_PHOTO_BUTTON_OK = "OK";
+
     public static String FRAGMENT_PROFILE_PLACE =PlaceProfileFragment.class.getName();
 }

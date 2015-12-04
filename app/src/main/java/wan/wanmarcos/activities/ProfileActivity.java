@@ -40,17 +40,19 @@ import wan.wanmarcos.fragments.PopupCommentFragment;
 import wan.wanmarcos.fragments.ProfileUserFragment;
 import wan.wanmarcos.models.Session;
 import wan.wanmarcos.utils.Constants;
+import wan.wanmarcos.utils.Modal;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.utils.UriManager;
 import wan.wanmarcos.views.adapters.PopUpFragment;
 
 public class ProfileActivity extends AppCompatActivity {
+    private int PICKIMAGE_RESULT_CODE = 100;
+    private Uri imageUri;
+
 
     private Toolbar toolbar;
     NavigationDrawerFragment drawerFragment;
-    private int PICKIMAGE_RESULT_CODE = 100;
-    private Uri imageUri;
     private PopUpFragment perInfo;
     RestClient restClient;
     private SharedPreferences preferences;
@@ -58,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
     private String token;
     private boolean recieved;
     private ProgressDialog progressDialog;
+    private Modal modal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,7 +140,7 @@ public class ProfileActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     UpdatePhotoToProfileHeader(image);
                     UpdatePhotoToNavDrawer(image);
-                    Toast.makeText(getBaseContext(),"Imagen Actualizada",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(),"Foto de perfil actulizada",Toast.LENGTH_SHORT).show();
                 }
                 recieved = true;
             }
@@ -145,6 +148,9 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(Throwable t) {
                 System.out.println(t.toString());
+                progressDialog.dismiss();
+                modal.buildModal(Constants.MODAL_TITLE_ERROR_PHOTO,Constants.MODAL_MESSAGE_ERROR_PHOTO,Constants.MODAL_ERROR_PHOTO_BUTTON_OK,true);
+                modal.showModal();
             }
         });
 
