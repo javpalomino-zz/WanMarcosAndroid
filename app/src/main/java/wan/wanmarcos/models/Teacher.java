@@ -37,7 +37,12 @@ public class Teacher {
             this.courses.add("Ningun curso registrado.");
         }
         else{
-            //TODO
+            JsonArray jsonElements=object.get("subjects").getAsJsonArray();
+            int j=jsonElements.size();
+            for(int i=0;i<j;i++){
+                this.courses.add(jsonElements.get(i).getAsJsonObject().get("name").getAsString());
+            }
+
         }
     }
 

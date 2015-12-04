@@ -32,14 +32,16 @@ import wan.wanmarcos.views.adapters.HomeListAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class HomeListNewsFragment extends Fragment implements FragmentsMethods {
-    private static final String JSON_TEACHER = "professor";
-    private static final String JSON_EVENT = "event";
-    private static final String JSON_PLACE = "place";
+    private static final String JSON_TEACHER = "professors";
+    private static final String JSON_EVENT = "events";
+    private static final String JSON_PLACE = "places";
     private HomeListAdapter homeListAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManagerRecyclerView;
     private RestClient restClient;
     private int current_page;
+    private boolean blocked=true;
+
     public HomeListNewsFragment() {
         // Required empty public constructor
     }
@@ -102,26 +104,35 @@ public class HomeListNewsFragment extends Fragment implements FragmentsMethods {
         logInUser.enqueue(new Callback<JsonElement>() {
             @Override
             public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
-                JsonObject responseBody = response.body().getAsJsonObject();
-                if (responseBody.has(JSON_TEACHER)&&responseBody.has(JSON_EVENT)&&responseBody.has(JSON_PLACE)) {
-                    JsonObject storedObject;
-                    Home current;
-                    if(!responseBody.get(JSON_EVENT).isJsonNull()){
-                        storedObject = responseBody.getAsJsonObject(JSON_EVENT);
-                        current= new Home(storedObject,JSON_EVENT);
-                        homeListAdapter.add(current);
+                if(blocked){
+                    blocked=true;
+                    JsonObject responseBody = response.body().getAsJsonObject();
+                    if (responseBody.has(JSON_TEACHER)&&responseBody.has(JSON_EVENT)&&responseBody.has(JSON_PLACE)) {
+                        JsonArray storedObjectTeacher,storedObjectPlace,storedObjectEvent;
+                        storedObjectEvent=responseBody.getAsJsonArray(JSON_EVENT);
+                        storedObjectPlace=responseBody.getAsJsonArray(JSON_PLACE);
+                        storedObjectTeacher=responseBody.getAsJsonArray(JSON_TEACHER);
+                        if(storedObjectEvent.size()!=0){
+                            homeListAdapter.add(new Home(storedObjectEvent.get(0).getAsJsonObject(),JSON_EVENT));
+                        }
+                        if(storedObjectPlace.size()!=0){
+                            homeListAdapter.add(new Home(storedObjectPlace.get(0).getAsJsonObject(),JSON_PLACE));
+                        }
+                        if(storedObjectTeacher.size()!=0){
+                            homeListAdapter.add(new Home(storedObjectTeacher.get(0).getAsJsonObject(),JSON_TEACHER));
+                        }
+                        if(storedObjectEvent.size()>1){
+                            homeListAdapter.add(new Home(storedObjectEvent.get(1).getAsJsonObject(),JSON_EVENT));
+                        }
+                        if(storedObjectPlace.size()>1){
+                            homeListAdapter.add(new Home(storedObjectPlace.get(1).getAsJsonObject(),JSON_PLACE));
+                        }
+                        if(storedObjectTeacher.size()>1){
+                            homeListAdapter.add(new Home(storedObjectTeacher.get(1).getAsJsonObject(),JSON_TEACHER));
+                        }
+                        current_page++;
                     }
-                    if (!responseBody.get(JSON_PLACE).isJsonNull()){
-                        storedObject = responseBody.getAsJsonObject(JSON_PLACE);
-                        current = new Home(storedObject,JSON_PLACE);
-                        homeListAdapter.add(current);
-                    }
-                    if(!responseBody.get(JSON_TEACHER).isJsonNull()){
-                        storedObject = responseBody.getAsJsonObject(JSON_TEACHER);
-                        current = new Home(storedObject,JSON_TEACHER);
-                        homeListAdapter.add(current);
-                    }
-                    current_page++;
+                    blocked=true;
                 }
             }
 

@@ -94,7 +94,7 @@ public class Constants {
     public static float DEVICE_HEIGHT=0;
     public static float DEVICE_HEIGHT2=0;
     public static float DEVICE_DENSITY=0;
-    public static final int CANTIDAD=5;
+    public static final int CANTIDAD=6;
 
 
     //LAYOUTS
@@ -142,4 +142,5 @@ public class Constants {
     public static String MODAL_ERROR_PHOTO_BUTTON_OK = "OK";
 
     public static String FRAGMENT_PROFILE_PLACE =PlaceProfileFragment.class.getName();
+    public static String name;
 }

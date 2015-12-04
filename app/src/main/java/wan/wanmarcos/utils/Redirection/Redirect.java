@@ -89,7 +89,6 @@ public class Redirect implements Redirection {
             defaultConfiguration=true;
             Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),myActivity);
             if(!myPreviousActivity.getClass().getName().equals(Constants.HOME_ACTIVITY)){
-                Log.d("D","Othi"+myActivity.getName());
                 myPreviousActivity.finish();
             }
             myPreviousActivity.startActivity(myNewView);
