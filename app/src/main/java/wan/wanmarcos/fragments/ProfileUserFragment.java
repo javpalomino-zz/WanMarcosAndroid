@@ -8,6 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+
 import wan.wanmarcos.R;
 import wan.wanmarcos.managers.FragmentsMethods;
 import wan.wanmarcos.managers.ItemAdapterListener;
@@ -24,7 +28,7 @@ public class ProfileUserFragment extends Fragment implements FragmentsMethods {
 
     private PreferenceListAdapter preferenceListAdapter;
     private RecyclerView recyclerViewPreferences;
-
+    private ImageView workInProgress;
     public ProfileUserFragment(){
 
     }
@@ -50,13 +54,7 @@ public class ProfileUserFragment extends Fragment implements FragmentsMethods {
     }
 
     public void getData(){
-        preferenceListAdapter.add(new Preference("FISI",0));
-        preferenceListAdapter.add(new Preference("FISI 2",0));
-        preferenceListAdapter.add(new Preference("FISI 3",0));
-        preferenceListAdapter.add(new Preference("FISI 4", 0));
-        preferenceListAdapter.add(new Preference("FISI 5 ", 0));
-        preferenceListAdapter.add(new Preference("FISI 6", 0));
-        preferenceListAdapter.add(new Preference("FISI 7", 0));
+        preferenceListAdapter.add(new Preference("ESTA SECCION SE ENCUENTRA BAJO CONSTRUCCION",0));
     }
     @Override
     public void addListeners() {

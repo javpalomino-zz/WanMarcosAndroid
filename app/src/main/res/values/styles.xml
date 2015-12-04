@@ -142,6 +142,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">16dp</item>
         <item name="android:clickable">true</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="NavDrawerStyle">
@@ -263,6 +264,7 @@
         <item name="android:paddingRight">10dp</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:drawableLeft">@mipmap/ic_room_white_24dp</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="EditPreferencesDeleteButton">
@@ -271,6 +273,7 @@
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:clickable">true</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="EditPreferencesListFacultyName">
@@ -327,6 +330,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">10dp</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="EventPageImage">
@@ -370,6 +374,7 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:textSize">15sp</item>
         <item name="android:paddingLeft">5dp</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="BigTextInputSubmitForm">
@@ -410,6 +415,7 @@
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
     <style name="ScreenWideButtomGatewayLogin">
         <item name="android:layout_width">match_parent</item>
@@ -418,6 +424,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:layout_marginBottom">@dimen/loginButtonMarginBottom</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
     </style>
 
     <style name="ScrenWideInpuText">

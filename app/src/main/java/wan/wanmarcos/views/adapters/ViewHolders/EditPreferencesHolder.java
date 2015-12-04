@@ -28,6 +28,7 @@ public class EditPreferencesHolder extends CustomViewHolder<Preference> {
         itemView.setOnClickListener(this);
         preferenceName = (TextView) itemView.findViewById(R.id.editpref_faculty_list_faculty_name);
         deleteButton = (ImageView) itemView.findViewById(R.id.remove_faculty_button);
+        deleteButton.setVisibility(View.GONE);
         setListeners();
     }
 

@@ -89,6 +89,7 @@ public class EditPreferencesFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         addPreference=(ImageView)layout.findViewById(R.id.add_faculty_button);
         builder = new Builder();
+        addPreference.setVisibility(View.GONE);
     }
 
     private void addListeners()
@@ -110,12 +111,6 @@ public class EditPreferencesFragment extends Fragment {
         getData();
     }
     public void getData(){
-        editPreferencesAdapter.add(new Preference("FISI",0));
-        editPreferencesAdapter.add(new Preference("FISI 2",0));
-        editPreferencesAdapter.add(new Preference("FISI 3",0));
-        editPreferencesAdapter.add(new Preference("FISI 4", 0));
-        editPreferencesAdapter.add(new Preference("FISI 5 ", 0));
-        editPreferencesAdapter.add(new Preference("FISI 6", 0));
-        editPreferencesAdapter.add(new Preference("FISI 7", 0));
+        editPreferencesAdapter.add(new Preference("ESTA SECCION SE ENCUENTRA BAJO CONSTRUCCION",0));
     }
 }

@@ -23,20 +23,31 @@ import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit.Call;
+import retrofit.Response;
+import retrofit.Retrofit;
 import wan.wanmarcos.R;
 import wan.wanmarcos.activities.HomeActivity;
+import wan.wanmarcos.models.Session;
+import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.activities.EventsActivity;
 import wan.wanmarcos.models.NavDrawerLink;
+import wan.wanmarcos.utils.RestClient;
 import wan.wanmarcos.utils.Storage;
 import wan.wanmarcos.views.adapters.NavDrawerAdapter;
+import wan.wanmarcos.views.widgets.CircleTransform;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -66,6 +77,11 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
 
     private String activityExecute="";
     private NavigationDrawerFragment fragment;
+    private Session session;
+    private String token;
+    private RestClient restClient;
+    private Builder builder;
+    private SharedPreferences preferences;
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -75,6 +91,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        restClient=new RestClient();
+        builder=new Builder();
         mUserLearnedDrawer=Boolean.valueOf(ReadFromPreferences(getActivity(),KEY_USER_LEARNED_DRAWER,"false"));
         if(savedInstanceState!=null){
             mFromSavedInstanceState=true;
@@ -86,6 +104,8 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout =inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        preferences = layout.getContext().getSharedPreferences(Constants.PREFERENCES, layout.getContext().MODE_PRIVATE);
+        session=Session.getSession(preferences);
         setUpElements(layout);
         return layout;
     }
@@ -103,14 +123,62 @@ public class NavigationDrawerFragment extends Fragment implements NavDrawerAdapt
         profileImage = (ImageView)layout.findViewById(R.id.nav_drawer_profile_image);
         profileName = (TextView)layout.findViewById(R.id.nav_drawer_profile_name);
         profileEmail = (TextView)layout.findViewById(R.id.nav_drawer_profile_email);
-        ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color = generator.getColor(profileName.getText().charAt(0));
-        TextDrawable.IBuilder builder = TextDrawable.builder().round();
-        TextDrawable textDrawable = builder.build(profileName.getText().toString().charAt(0)+"", color);
-        profileImage.setImageDrawable(textDrawable);
+        getUserData(layout);
         needsRedirect=false;
         fragment=this;
     }
+
+    private void getUserData(final View layout)
+    {
+        token = Constants.HEADER+session.getToken();
+        Call<JsonElement> userInfo=restClient.getConsumerService().me(token);
+        userInfo.enqueue(new retrofit.Callback<JsonElement>() {
+            @Override
+            public void onResponse(Response<JsonElement> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    JsonObject jsonObject = response.body().getAsJsonObject();
+                    if (jsonObject.has("email")) {
+                        profileName.setText(jsonObject.get("first_name").getAsString() +" " + jsonObject.get("last_name").getAsString());
+                        profileEmail.setText(jsonObject.get("email").getAsString());
+                        String imgString = jsonObject.get("image").getAsString();
+                        if(imgString!=null)
+                        {
+                            Picasso.with(getActivity()).load(imgString).transform(new CircleTransform()).into(profileImage);
+                        }
+                        else
+                        {
+
+                            ColorGenerator generator = ColorGenerator.MATERIAL;
+                            int color = generator.getColor(profileName.getText().charAt(0));
+                            TextDrawable.IBuilder builder = TextDrawable.builder().round();
+                            TextDrawable textDrawable = builder.build(profileName.getText().toString().charAt(0) + "", color);
+                            profileImage.setImageDrawable(textDrawable);
+                        }
+
+                    } else {
+                        if (jsonObject.has("error")) {
+                            System.out.println("Nope");
+                            wan.wanmarcos.models.Error error = builder.buildError(jsonObject.get("error").getAsJsonObject());
+                            System.out.println(error.toString());
+                        }
+                    }
+
+                } else {
+                    try {
+                        System.out.print(response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+    }
+
 
     public static List<NavDrawerLink> getData()
     {

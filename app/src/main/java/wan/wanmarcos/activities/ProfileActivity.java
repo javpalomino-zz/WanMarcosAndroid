@@ -128,6 +128,7 @@ public class ProfileActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }else{
+                    System.out.println("subio archivo bb");
                     Toast.makeText(getBaseContext(),"El archivo fue subido",Toast.LENGTH_SHORT).show();
                 }
                 recieved = true;
@@ -163,7 +164,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
     public void GotoEditPrf()
     {
-        System.out.println("Holi");
         Redirect.getSingelton().showFragment(this, Constants.PROFILE_CONTAINER, Constants.FRAGMENT_EDIT_PREFERENCE);
     }
 
