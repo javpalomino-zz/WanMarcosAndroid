@@ -31,6 +31,7 @@ import wan.wanmarcos.activities.HomeActivity;
 import wan.wanmarcos.utils.Builder;
 import wan.wanmarcos.utils.Constants;
 import wan.wanmarcos.utils.ConvertResponse;
+import wan.wanmarcos.utils.Redirection.Redirect;
 import wan.wanmarcos.utils.RestClient;
 
 
@@ -157,7 +158,7 @@ public class LoginFragment extends Fragment {
                         if (responseBody.has("token")) {
                             String token = responseBody.get("token").getAsString();
                             setPreferences(token);
-                            changeToHome();
+                            Redirect.getSingelton().showActivity(LoginFragment.this,Constants.HOME_ACTIVITY);
                             received = true;
                         }
                     } else {

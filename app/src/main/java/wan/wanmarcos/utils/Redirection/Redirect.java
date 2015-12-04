@@ -3,6 +3,8 @@ package wan.wanmarcos.utils.Redirection;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v4.app.FragmentManager;
@@ -74,11 +76,11 @@ public class Redirect implements Redirection {
         }
     }
     public void logOut(AppCompatActivity myPreviousActivity){
-        Storage.getSingelton().clearData();
-        Intent myLogin=new Intent(myPreviousActivity.getApplicationContext(), getActivityClass(Constants.LOGIN_ACTIVITY));
-        myLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        myPreviousActivity.getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE).edit().remove("token").commit();
+        Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),MainActivity.class);
+        myNewView.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         myPreviousActivity.finish();
-        myPreviousActivity.startActivity(myLogin);
+        myPreviousActivity.startActivity(myNewView);
     }
 
     @Override
@@ -87,6 +89,7 @@ public class Redirect implements Redirection {
             defaultConfiguration=true;
             Intent myNewView=new Intent(myPreviousActivity.getApplicationContext(),myActivity);
             if(!myPreviousActivity.getClass().getName().equals(Constants.HOME_ACTIVITY)){
+                Log.d("D","Othi"+myActivity.getName());
                 myPreviousActivity.finish();
             }
             myPreviousActivity.startActivity(myNewView);
@@ -115,7 +118,6 @@ public class Redirect implements Redirection {
         else if(name.equals(Constants.PROFILE_ACTIVITY)){
             return ProfileActivity.class;
         }else if(name.equals(Constants.LOGIN_ACTIVITY)){
-            System.out.println("EQUALS LOGIN");
             return MainActivity.class;
         }else
         {

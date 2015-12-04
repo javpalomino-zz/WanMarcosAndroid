@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(Constants.PREFERENCES, Context.MODE_PRIVATE);
         String token = sharedPreferences.getString("token",null);
         if(token != null){
-            Redirect.getSingelton().showActivity(this,HomeActivity.class);
+            Redirect.getSingelton().showActivity(this, HomeActivity.class);
         }else{
             if(findViewById(R.id.fragment_container) != null){
                 if(savedInstanceState != null){
