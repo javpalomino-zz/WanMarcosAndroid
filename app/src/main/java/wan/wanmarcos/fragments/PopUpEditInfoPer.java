@@ -117,9 +117,6 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
         }else{
             return false;
         }
-
-
-
     }
     @Override
     public void addListeners() {
@@ -132,7 +129,6 @@ public class PopUpEditInfoPer extends DialogFragment implements FragmentsMethods
             @Override
             public void onClick(View v) {
                 if (recieved && validateFields()) {
-
                     sendPersonalInformation();
                     dismiss();
                 } else {
